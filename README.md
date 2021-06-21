@@ -1,4 +1,4 @@
-# CryptoRepo
+# telebagger
 Various Crypto or Exchange related projects
 
 #This codebase is intended to be run from a webserver, I'll use it with heroku
