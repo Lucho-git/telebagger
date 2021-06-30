@@ -1,6 +1,6 @@
-def bag():
+def bag(msg):
   print("bag")
-  
+  print(msg)
   
   
   
