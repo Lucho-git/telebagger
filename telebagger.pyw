@@ -4,7 +4,7 @@ import requests
 import msg_vip_signals
 
 def print_past_messages(client):
-  msgs = await client.get_messages('CryptoVIPsignalTA', limit=2000)
+  msgs = client.get_messages('CryptoVIPsignalTA', limit=2000)
   if msgs is not None:
     print("Messages:\n---------")
     f = open("vip_examples.txt", "w")
