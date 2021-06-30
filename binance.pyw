@@ -20,12 +20,12 @@ def futures_snapshot():
   #get futures positions    
   positions = realclient.futures_position_information()
   for p in positions:
-  if (float(p['positionAmt']) > 0) or (float(p['positionAmt']) < 0):
-    #print(p)
-    #Determine if position is in profit or loss
-    gain = True
-    if float(p['unRealizedProfit']) < 0:
-      gain = False
+    if (float(p['positionAmt']) > 0) or (float(p['positionAmt']) < 0):
+      #print(p)
+      #Determine if position is in profit or loss
+      gain = True
+      if float(p['unRealizedProfit']) < 0:
+        gain = False
 
     #Calculate percentage profit or loss
     percentage =  str(abs((float(p['markPrice']) - float(p['entryPrice']))  / float(p['markPrice'])*100*int(p['leverage']))) 
