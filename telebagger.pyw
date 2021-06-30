@@ -35,6 +35,9 @@ def StartTelegramForwarding():
             if str(event.raw_text) == '/stop':
               print('Exiting....')
               await client.disconnect()
+            #stub for testing
+            if str(event.raw_text) == '/vip':
+              msg_vip_signals.bag(event.raw_text)
 
     print("Starting telegram scraper")
     client.start()
