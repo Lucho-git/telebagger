@@ -6,7 +6,7 @@ import requests
 #Methods within this package
 from trade_classes import Trade, FTrade, MFTrade
 import msg_vip_signals
-import binance
+import binance_wrap
 
 
 def SendMessageToAlwaysWin(message):
