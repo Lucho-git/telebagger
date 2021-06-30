@@ -45,7 +45,7 @@ def StartTelegramForwarding():
             if str(event.raw_text) == '/vip':
               msg_vip_signals.bag(event.raw_text)
             if str(event.raw_text) == '/trade':
-                print(binance.futures_snapshot())
+                print(binance_wrap.futures_snapshot())
 
     print("Starting telegram scraper")
     client.start()
