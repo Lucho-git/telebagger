@@ -50,7 +50,7 @@ def search_coin(text):
         if (coinspaces in text) or (coinslash in text) or (coinusdt in text) or (coinfullstop in text) or (coinbtc in text):
           coins.append(line)
     if coins:
-      coins.append('Futures')'
+      coins.append('Futures')
     else:
       print("No Coin Found")
   else:
