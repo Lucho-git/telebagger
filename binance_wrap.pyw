@@ -9,6 +9,7 @@ realclient = Client(r_api_key, r_api_secret)
 def futures_snapshot():
   #get futures info
   tangibles = realclient.futures_account_balance()
+  retstring = ''
   
   for t in tangibles:
     if float(t["balance"]) > 0:
@@ -58,4 +59,5 @@ def futures_snapshot():
       pos += "\nLIQ: " +p['liquidationPrice']
       pos += "\nType: " +p['marginType']
       pos += "\n---------------------"
-    return pos
+      retstring += pos
+    return retstring
