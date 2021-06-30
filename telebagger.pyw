@@ -1,7 +1,13 @@
+#3rd Party libs
 from telethon import TelegramClient, events, sync, utils
 from telethon.sessions import StringSession
 import requests
+
+#Methods within this package
+from trade_classes import Trade, FTrade, MFTrade
 import msg_vip_signals
+import binance
+
 
 def SendMessageToAlwaysWin(message):
     if '/USDT' in message:
@@ -38,6 +44,8 @@ def StartTelegramForwarding():
             #stub for testing
             if str(event.raw_text) == '/vip':
               msg_vip_signals.bag(event.raw_text)
+            if str(event.raw_text) == '/trade':
+                print(binance.futures_snapshot())
 
     print("Starting telegram scraper")
     client.start()
