@@ -3,6 +3,22 @@ from telethon.sessions import StringSession
 import requests
 import msg_vip_signals
 
+def print_past_messages(client):
+  msgs = await client.get_messages('CryptoVIPsignalTA', limit=2000)
+  if msgs is not None:
+    print("Messages:\n---------")
+    f = open("vip_examples.txt", "w")
+
+    for msg in msgs:
+      if ('buy zone'.upper() in str(msg).upper()) and ('target'.upper() in str(msg).upper())  and ('-' in str(msg)):
+        f.write(str(msg.message) +'\n')
+        f.write('______________________\n')
+    f.close()   
+
+
+
+
+
 def SendMessageToAlwaysWin(message):
     if '/USDT' in message:
         message= "<@&834911692303237172>\n" + message
@@ -38,6 +54,7 @@ def StartTelegramForwarding():
             #stub for testing
             if str(event.raw_text) == '/vip':
               msg_vip_signals.bag(event.raw_text)
+              print_past_messages(client)
 
     print("Starting telegram scraper")
     client.start()
