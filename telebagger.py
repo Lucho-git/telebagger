@@ -1,7 +1,7 @@
 from telethon import TelegramClient, events, sync, utils
 from telethon.sessions import StringSession
 import requests
-
+import msg_vip_signals
 
 def SendMessageToAlwaysWin(message):
     if '/USDT' in message:
@@ -28,6 +28,8 @@ def StartTelegramForwarding():
         print(msg)
         if sender_id == "1375168387":
             SendMessageToAlwaysWin(event.raw_text)
+        if chat.id == 1312345502:
+            msg_vip_signals.bag(event.raw_text)
         elif chat.id == 1899129008:
             print("Robot Section +++")
             if str(event.raw_text) == '/stop':
