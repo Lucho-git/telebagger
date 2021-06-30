@@ -13,7 +13,7 @@ def SendMessageToAlwaysWin(message):
 def StartTelegramForwarding():
     api_id = 5747368
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
-    stringsesh = '1BVtsOIIBuxkl8w5skOHjonDCR_DFvM7luxNQA8itLwXv1CYkUSzhUh-sjw6I-qA6esNDR7JLmxUhCdXXE96vb6wMxPTmbWRDTDD626CeEmGa3ohLgJaoH1CeG_28DuYLqnNVsumwhp-rVqFb4Ksvo7GNgnCOiNUOpMthcHT2neKufl6c31LpedhxGoBCnbZIFc4peEK_hwqlJgW7uQAVD2p8LD0LVR70EQxjXnwJ-ROfWScorMUrcV7C2NA1Fg71KFhWpGSoyfkKzgdAD7OIM3E5TdXLdpX-7g4lwQCloCL1GODnhGQD28eAwcHZ4Y7b_OWO3Ueeej7esgIbzx7NAJGJkfTTifI='
+    stringsesh = '1BVtsOHgBu5DuJXuehRfDlGAdXz0SidTkr6lFXo_csesUWmcScUvpi6WfkvoxIpkT78gUAfVl8aj8s-EvaWQ9Le4epxt2WyjPI9mbBpQRgYGIGM8YKKhFs0TMHv8P5EwWOxxOgKnka2RtW-J4aLNFv4zLmR9ekS2wDhLVhNlMhS6gnEoCVAmdxcLH3Qc7005IGuz7Ff2HqYXUYoKz5gDRbzC7gjF086Ux_vK52OSnWjo0XdkUH9qG2aPWohIY0cqeRHCtXIlYkESYcmifKkhcL1C_ZTapxsawrdYrOyuHUYP-fWVEPLFj4XjypFZrlaLUmLz8EL2VxkxG2p1vqFIjmgLI_VcWMSU='
     client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
     
     @client.on(events.NewMessage()) 
