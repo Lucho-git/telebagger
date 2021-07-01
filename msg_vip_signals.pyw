@@ -1,5 +1,4 @@
-def bag(msg):
-  print("bag")
+def bag(msg, binance_wrap):
   
   search_text = open("onexample.txt", 'r').read()
   result = None
@@ -7,7 +6,14 @@ def bag(msg):
   if result:
     vip_string = str(result[0]) +"___" + str(result[1])
     print(vip_string)
-    return result
+    if binance_wrap.isUSDTpair(coin[0]):
+      pair = coin[0] + 'USDT'
+    elif binance_wrap.isBTCpair(coin[0]):
+      pair = coin[0] + 'BTC'
+    else:
+      raise Exception('No USDT or BTC pair')
+    print('Trading pair:', pair)
+    
     #client.send_message(bot, vip_string)
     #await print_robot(event, search_text)
       
