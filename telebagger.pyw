@@ -43,7 +43,9 @@ def StartTelegramForwarding():
               await client.disconnect()
             #stub for testing
             if str(event.raw_text) == '/vip':
-              msg_vip_signals.bag(event.raw_text)
+                coin = msg_vip_signals.bag(event.raw_text)
+                binance_wrap.coin_info(coin[0])
+              
             if str(event.raw_text) == '/trade':
                 print(binance_wrap.futures_snapshot())
 
