@@ -7,6 +7,7 @@ def bag(msg):
   if result:
     vip_string = str(result[0]) +"___" + str(result[1])
     print(vip_string)
+    return result
     #client.send_message(bot, vip_string)
     #await print_robot(event, search_text)
       
