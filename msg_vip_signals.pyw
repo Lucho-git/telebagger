@@ -6,10 +6,10 @@ def bag(msg, binance_wrap):
   if result:
     vip_string = str(result[0]) +"___" + str(result[1])
     print(vip_string)
-    if binance_wrap.isUSDTpair(coin[0]):
-      pair = coin[0] + 'USDT'
-    elif binance_wrap.isBTCpair(coin[0]):
-      pair = coin[0] + 'BTC'
+    if binance_wrap.isUSDTpair(result[0]):
+      pair = result[0] + 'USDT'
+    elif binance_wrap.isBTCpair(result[0]):
+      pair = result[0] + 'BTC'
     else:
       raise Exception('No USDT or BTC pair')
     print('Trading pair:', pair)
