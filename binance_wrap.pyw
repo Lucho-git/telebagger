@@ -9,7 +9,7 @@ realclient = Client(r_api_key, r_api_secret)
 def coin_info(coinname):
   exchange_info = realclient.get_exchange_info()
   for s in exchange_info['symbols']:
-    if s['baseasset'] == coinname:
+    if s['baseAsset'] == coinname:
       print(s['symbol'])
 
 def futures_snapshot():
