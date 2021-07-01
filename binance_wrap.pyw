@@ -12,7 +12,7 @@ def coin_pairs(coinname):
   for s in exchange_info['symbols']:
     if s['baseAsset'] == coinname:
       print(s['symbol'])
-      pairs.append(s['symbol']
+      pairs.append(s['symbol'])
   return pairs
                    
 def isUSDTpair(coinname):
