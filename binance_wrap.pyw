@@ -6,6 +6,12 @@ r_api_secret='gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032'
 
 realclient = Client(r_api_key, r_api_secret)
 
+def coin_info(coinname):
+  exchange_info = realclient.get_exchange_info()
+  for s in exchange_info['symbols']:
+    if s['baseasset'] == coinname:
+      print(s['symbol'])
+
 def futures_snapshot():
   #get futures info
   tangibles = realclient.futures_account_balance()
