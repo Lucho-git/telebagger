@@ -1,11 +1,42 @@
 from binance.client import Client
-
+import math
 
 r_api_key='GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  #Put your own api keys here
 r_api_secret='gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032' 
 
 realclient = Client(r_api_key, r_api_secret)
 
+def round_decimals_down(number:float, decimals:int=2):
+    if not isinstance(decimals, int):
+        raise TypeError("decimal places must be an integer")
+    elif decimals < 0:
+        raise ValueError("decimal places has to be 0 or more")
+    elif decimals == 0:
+        return math.floor(number)
+    factor = 10 ** decimals
+    return math.floor(number * factor) / factor
+
+def btc2usdt(realclient):
+  balance = float(realclient.get_asset_balance(asset='BTC')['free'])
+  quant = str(float(round_decimals_down(balance, 6)))
+  try:
+    market_order = realclient.order_market_sell(symbol='BTCUSDT', quantity=quant)
+  except Exception e:
+    print('Exception converting BTC to USDT')
+    print(e)
+  print("Converted BTC to USDT")
+  
+def usdt2btc:
+  symbol = 'BTCUSDT'
+  side = 'BUY'
+  amount = float(realclient.get_asset_balance(asset='USDT')['free'])
+  try:
+    market_order = realclient.create_order(symbol=symbol, type="market", side='buy', quoteOrderQty=amount, price=None)
+  except Exception e:
+    print('Exception converting USDT to BTC')
+    print(e)
+  print("Converted USDT to BTC")
+  
 def coin_pairs(coinname):
   exchange_info = realclient.get_exchange_info()
   pairs = []
