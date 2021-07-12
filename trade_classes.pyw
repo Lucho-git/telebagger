@@ -1,6 +1,7 @@
 class Trade:
-  def __init__(self, pair, entryprice, stoploss, exitprice, status, tradetime, amount):
-    self.pair = pair
+  def __init__(self, pair, base, entryprice, stoploss, exitprice, status, tradetime, amount):
+    self.pair = pair.upper()
+    self.base = base.upper()
     self.entryprice = entryprice
     self.stoploss = stoploss
     self.exitprice = exitprice
@@ -11,9 +12,16 @@ class Trade:
     self.amount = amount
 
   def validate_trade(self):
+    reason = ''
     valid = True
     if not self.pair:
       valid = False
+    elif ('USDT' in self.pair) and ('BTC' in self.pair):
+      valid = False
+      reason = 'BTC/USDT pair not allowed'
+    if not ((self.base == 'BTC') or (self.base == 'USDT')):
+      valid = False
+      reason = 'neither BTC or USDT is the base currency'      
     if not self.entryprice or self.isinstance(entryprice, str):
       valid = False
     if not self.stoploss or isinstance(self.stoploss, str):
@@ -40,8 +48,8 @@ class Trade:
       pass
 
 class FTrade(Trade):
-  def __init__(self, pair, entryprice, stoploss, exitprice, status, tradetime, amount, direction, leverage, mode):
-    super().__init__(pair, entryprice, stoploss, exitprice, status, tradetime, amount)
+  def __init__(self, pair, base, entryprice, stoploss, exitprice, status, tradetime, amount, direction, leverage, mode):
+    super().__init__(pair, base, entryprice, stoploss, exitprice, status, tradetime, amount)
     self.direction = direction
     self.leverage = leverage
     self.mode = mode
@@ -72,8 +80,8 @@ class FTrade(Trade):
     print("Futures")
 
 class MFTrade(FTrade):
-  def __init__(self, pair, entryprice, stoploss, exitprice, status, tradetime, amount, direction, leverage, mode, m_tp, m_tpa, m_sl, wait_entry):
-    super().__init__(pair, entryprice, stoploss, exitprice, status, tradetime, amount, direction, leverage, mode)
+  def __init__(self, pair, base, entryprice, stoploss, exitprice, status, tradetime, amount, direction, leverage, mode, m_tp, m_tpa, m_sl, wait_entry):
+    super().__init__(pair, base, entryprice, stoploss, exitprice, status, tradetime, amount, direction, leverage, mode)
     self.m_tp = m_tp
     self.m_tpa = m_tpa
     self.m_sl = m_sl
