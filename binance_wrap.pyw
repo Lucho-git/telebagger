@@ -2,7 +2,7 @@ from binance.client import Client
 import math
 
 r_api_key='GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  #Put your own api keys here
-r_api_secret='gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032' 
+r_api_secret='gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032'   
 
 realclient = Client(r_api_key, r_api_secret)
 
@@ -16,6 +16,41 @@ def round_decimals_down(number:float, decimals:int=2):
     factor = 10 ** decimals
     return math.floor(number * factor) / factor
 
+def marketTrade(realclient, signal, percentage, buying)
+    symbol = signal.symbol
+    base = signal.base
+    coin = symbol.replace(base,'')
+    trade_size = percentage
+
+    if not buying:
+      #buying back btc or usdt
+      #find symbol precision
+      symbol_info = realclient.get_symbol_info(symbol)
+      step_size = 0.0
+      for f in symbol_info['filters']:
+        if f['filterType'] == 'LOT_SIZE':
+          step_size = float(f['stepSize'])
+      precision = int(round(-math.log(step_size, 10), 0))    
+    
+      balance = float(realclient.get_asset_balance(asset=coin)['free'])
+      balance = balance * trade_size
+      quant = str(float(round_decimals_down(balance, precision)))
+      market_order = realclient.order_market_sell(symbol=symbol, quantity=quant)
+      print('sold nano')
+    else:
+      #buying amount of signal coin
+      balance = float(realclient.get_asset_balance(asset=base)['free'])
+      balance = balance * trade_size
+      if base == 'USDT':
+        precision = 8
+      elif base == 'BTC':
+        precision = 6
+      balance = str(float(round_decimals_down(balance, precision)))
+      market_order = realclient.create_order(symbol=symbol, type="market", side='buy', quoteOrderQty=balance, price=None)
+      print('bought nano')
+    return market_order
+    
+    
 def btc2usdt(realclient):
   balance = float(realclient.get_asset_balance(asset='BTC')['free'])
   quant = str(float(round_decimals_down(balance, 6)))
