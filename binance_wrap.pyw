@@ -48,6 +48,7 @@ def market_trade(signal, percentage, buying):
       balance = str(float(round_decimals_down(balance, precision)))
       market_order = realclient.create_order(symbol=symbol, type="market", side='buy', quoteOrderQty=balance, price=None)
       print('bought nano')
+    signal.init_vals(market_order)
     return market_order
     
     
