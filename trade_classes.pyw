@@ -1,4 +1,30 @@
+
+from binance.client import Client
+r_api_key='GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  #Put your own api keys here
+r_api_secret='gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032'   
+client = Client(r_api_key, r_api_secret)
+
+
 class Trade:
+  def __init__(self, pair, base):
+    self.pair = pair.upper()
+    self.base = base.upper()
+    self.status = 'Pre_Trade'
+    self.price = None
+    self.tradetime = None
+    self.amount = None
+    self.receipt = None
+    
+  def initialize_values(self, receipt):
+    self.receipt = receipt
+    average = receipt['fills']
+    #self.price = 
+    self.tradetime = receipt['transactTime']
+    self.amount = receipt['executedQty']
+    print(self.tradetime)
+    print(self.amount)
+    
+class Signal:
   def __init__(self, pair, base, entryprice, stoploss, exitprice, status, tradetime, amount):
     self.pair = pair.upper()
     self.base = base.upper()
