@@ -29,7 +29,7 @@ class Trade:
   def init_vals(self, receipt):
     self.receipt = receipt
     fills = receipt['fills']
-    self.price = get_price(self, fills) 
+    self.price = self.get_price(fills) 
     self.tradetime = receipt['transactTime']
     if receipt['executedQty']:
       self.status = 'Completed'
