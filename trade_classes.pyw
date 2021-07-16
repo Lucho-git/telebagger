@@ -15,6 +15,17 @@ class Trade:
     self.amount = None
     self.receipt = None
     
+  def get_price(self, fills):
+    total = 0
+    totalqty = 0
+    for f in fills:
+      price = float(f['price'])
+      qty = float(f['qty'])
+      totalqty += qty
+      total += price*qty
+    total = total/totalqty
+    return total
+    
   def init_vals(self, receipt):
     self.receipt = receipt
     fills = receipt['fills']
@@ -30,17 +41,6 @@ class Trade:
     print(self.amount)
     print(self.price)
     print(self.status)    
-    
-  def get_price(self, fills):
-    total = 0
-    totalqty = 0
-    for f in fills:
-      price = float(f['price'])
-      qty = float(f['qty'])
-      totalqty += qty
-      total += price*qty
-    total = total/totalqty
-    return total
     
 class Signal:
   def __init__(self, pair, base, entryprice, stoploss, exitprice, status, tradetime, amount):
