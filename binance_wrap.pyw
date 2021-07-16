@@ -56,7 +56,7 @@ def btc2usdt():
   quant = str(float(round_decimals_down(balance, 6)))
   try:
     market_order = realclient.order_market_sell(symbol='BTCUSDT', quantity=quant)
-  raise Exception('Problem Selling BTC'):
+  except:
     print('Exception converting BTC to USDT')
   print("Converted BTC to USDT")
   
@@ -66,7 +66,7 @@ def usdt2btc():
   amount = float(realclient.get_asset_balance(asset='USDT')['free'])
   try:
     market_order = realclient.create_order(symbol=symbol, type="market", side='buy', quoteOrderQty=amount, price=None)
-  raise Exception('Problem Buying BTC'):
+  except:
     print('Exception converting USDT to BTC')
   print("Converted USDT to BTC")
   
