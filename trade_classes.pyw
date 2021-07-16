@@ -17,12 +17,30 @@ class Trade:
     
   def init_vals(self, receipt):
     self.receipt = receipt
-    average = receipt['fills']
-    #self.price = 
+    fills = receipt['fills']
+    self.price = get_price(self, fills) 
     self.tradetime = receipt['transactTime']
-    self.amount = receipt['executedQty']
+    if receipt['executedQty']:
+      self.status = 'Completed'
+      self.amount = receipt['executedQty']
+    
+  def snapshot(self)
+    print(self.pair)
     print(self.tradetime)
     print(self.amount)
+    print(self.price)
+    print(self.status)    
+    
+  def get_price(self, fills):
+    total = 0
+    totalqty = 0
+    for f in fills:
+      price = float(f['price'])
+      qty = float(f['qty'])
+      totalqty += qty
+      total += price*qty
+    total = total/totalqty
+    return total
     
 class Signal:
   def __init__(self, pair, base, entryprice, stoploss, exitprice, status, tradetime, amount):
