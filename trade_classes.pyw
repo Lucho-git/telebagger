@@ -15,7 +15,7 @@ class Trade:
     self.amount = None
     self.receipt = None
     
-  def initialize_values(self, receipt):
+  def init_vals(self, receipt):
     self.receipt = receipt
     average = receipt['fills']
     #self.price = 
