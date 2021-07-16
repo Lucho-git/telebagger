@@ -22,6 +22,7 @@ def market_trade(signal, percentage, buying):
     base = signal.base
     coin = symbol.replace(base,'')
     trade_size = percentage
+    market_order = '-1'
 
     if not buying:
       #buying back btc or usdt
