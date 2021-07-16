@@ -16,7 +16,7 @@ def round_decimals_down(number:float, decimals:int=2):
     factor = 10 ** decimals
     return math.floor(number * factor) / factor
 
-def market_trade(signal, percentage, buying)
+def market_trade(signal, percentage, buying):
     symbol = signal.symbol
     base = signal.base
     coin = symbol.replace(base,'')
