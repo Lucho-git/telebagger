@@ -49,15 +49,13 @@ def StartTelegramForwarding():
             if str(event.raw_text) == '/trade':
                 print(binance_wrap.futures_snapshot())
             if str(event.raw_text) == '/buynano':
-                #signal - trade object
-                #percentage - percentage of funds, as a decimal
-                #buying,  boolean true or false to buy or sell
                 signal = Trade('NANOUSDT','USDT')
-                #(self, pair, base, entryprice, stoploss, exitprice, status, tradetime, amount):
-                rec = binance_wrap.market_trade(signal, 1, True)
+                binance_wrap.market_trade(signal, 1, True)
+                signal.snapshot()
             if str(event.raw_text) == '/sellnano':
-                signal = Trade('NANOUSDT','USDT', '-1', '-1', '-1', 'PreTrade', 'Now', '-1')
-                rec = binance_wrap.market_trade(signal, 1, False)
+                signal = Trade('NANOUSDT','USDT')
+                binance_wrap.market_trade(signal, 1, False)
+                signal.snapshot()
                 
     print("Starting telegram scraper")
     client.start()
