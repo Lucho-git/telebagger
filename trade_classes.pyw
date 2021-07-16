@@ -24,7 +24,7 @@ class Trade:
       self.status = 'Completed'
       self.amount = receipt['executedQty']
     
-  def snapshot(self)
+  def snapshot(self):
     print(self.pair)
     print(self.tradetime)
     print(self.amount)
