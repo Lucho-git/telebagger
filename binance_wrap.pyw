@@ -35,8 +35,13 @@ def market_trade(signal, percentage, buying):
       balance = float(realclient.get_asset_balance(asset=coin)['free'])
       balance = balance * trade_size
       quant = str(float(round_decimals_down(balance, precision)))
-      market_order = realclient.order_market_sell(symbol=symbol, quantity=quant)
-      print('sold nano')
+        
+      try:
+        market_order = realclient.order_market_sell(symbol=symbol, quantity=quant)
+        print('sold nano')
+      except BinanceAPIException:
+        print('Exception, probably relating to not enough funds to make trade')        
+        
     else:
       #buying amount of signal coin
       balance = float(realclient.get_asset_balance(asset=base)['free'])
@@ -46,8 +51,14 @@ def market_trade(signal, percentage, buying):
       elif base == 'BTC':
         precision = 6
       balance = str(float(round_decimals_down(balance, precision)))
-      market_order = realclient.create_order(symbol=symbol, type="market", side='buy', quoteOrderQty=balance, price=None)
-      print('bought nano')
+    
+      try:
+        market_order = realclient.create_order(symbol=symbol, type="market", side='buy', quoteOrderQty=balance, price=None)
+        print('bought nano')
+      except BinanceAPIException:
+        print('Exception, probably relating to not enough funds to make trade')
+    
+    
     signal.init_vals(market_order)
     return market_order
     
