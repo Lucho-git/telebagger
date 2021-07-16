@@ -16,7 +16,7 @@ def round_decimals_down(number:float, decimals:int=2):
     factor = 10 ** decimals
     return math.floor(number * factor) / factor
 
-def marketTrade(realclient, signal, percentage, buying)
+def market_trade(signal, percentage, buying)
     symbol = signal.symbol
     base = signal.base
     coin = symbol.replace(base,'')
@@ -51,7 +51,7 @@ def marketTrade(realclient, signal, percentage, buying)
     return market_order
     
     
-def btc2usdt(realclient):
+def btc2usdt():
   balance = float(realclient.get_asset_balance(asset='BTC')['free'])
   quant = str(float(round_decimals_down(balance, 6)))
   try:
@@ -61,7 +61,7 @@ def btc2usdt(realclient):
     print(e)
   print("Converted BTC to USDT")
   
-def usdt2btc:
+def usdt2btc():
   symbol = 'BTCUSDT'
   side = 'BUY'
   amount = float(realclient.get_asset_balance(asset='USDT')['free'])
