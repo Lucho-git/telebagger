@@ -10,6 +10,8 @@ import binance_wrap
 
 
 def SendMessageToAlwaysWin(message):
+    pass
+    #TODO            remove stub
     if '/USDT' in message:
         message= "<@&834911692303237172>\n" + message
     mUrl = "https://ptb.discord.com/api/webhooks/838079506660851762/7-lpGNlqWGGlO08XZJ3RwAvSXpWGDf5J6Z4ro5bsdtogYGGXovVfmYGmCb3Jvr1RvtWG"
@@ -44,9 +46,18 @@ def StartTelegramForwarding():
             #stub for testing
             if str(event.raw_text) == '/vip':
                 msg_vip_signals.bag(event.raw_text, binance_wrap)
-              
             if str(event.raw_text) == '/trade':
                 print(binance_wrap.futures_snapshot())
+            if str(event.raw_text) == '/buynano':
+                #signal - trade object
+                #percentage - percentage of funds, as a decimal
+                #buying,  boolean true or false to buy or sell
+                signal = Trade('NANOUSDT','USDT', '-1', '-1', '-1', 'PreTrade', 'Now', '-1')
+                #(self, pair, base, entryprice, stoploss, exitprice, status, tradetime, amount):
+                binance_wrap.market_trade(signal, 1, True)
+            if str(event.raw_text) == '/sellnano':
+                signal = Trade('NANOUSDT','USDT', '-1', '-1', '-1', 'PreTrade', 'Now', '-1')
+                binance_wrap.market_trade(signal, 1, False)
 
     print("Starting telegram scraper")
     client.start()
