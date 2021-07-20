@@ -37,7 +37,7 @@ def StartTelegramForwarding():
         if sender_id == "1375168387":
             SendMessageToAlwaysWin(event.raw_text)
         if chat.id == 1312345502:
-            msg_vip_signals.bag(event.raw_text)
+            msg_vip_signals.bag(event.raw_text, binance_wrap, Trade)
         elif chat.id == 1899129008:
             print("Robot Section +++")
             if str(event.raw_text) == '/stop':
@@ -45,7 +45,7 @@ def StartTelegramForwarding():
               await client.disconnect()
             #stub for testing
             if str(event.raw_text) == '/vip':
-                msg_vip_signals.bag(event.raw_text, binance_wrap)
+                msg_vip_signals.bag(event.raw_text, binance_wrap, Trade)
             if str(event.raw_text) == '/trade':
                 print(binance_wrap.futures_snapshot())
             if str(event.raw_text) == '/buynano':
