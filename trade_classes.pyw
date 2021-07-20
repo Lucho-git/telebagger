@@ -14,6 +14,8 @@ class Trade:
     self.tradetime = None
     self.amount = None
     self.receipt = None
+    self.numtrades = 0
+    self.origin = origin
     
   def get_price(self, fills):
     total = 0
@@ -34,14 +36,19 @@ class Trade:
     if receipt['executedQty']:
       self.status = 'Completed'
       self.amount = receipt['executedQty']
-    
+    self.numtrades += 1
   def snapshot(self):
-    print(self.pair)
-    print(self.tradetime)
-    print(self.amount)
-    print(self.price)
-    print(self.status)    
+    snapshot = 'SnapShot: \n'
+    snapshot += 'Pair: '+self.pair +'\n'
+    snapshot += 'Time: '+self.tradetime +'\n'
+    snapshot += 'Amount: '+self.amount +'\n'
+    snapshot += 'Price: '+self.price +'\n'
+    snapshot += 'Status: '+self.status +'\n'
+    snapshot += 'Number Trades: '+self.numtrades +'\n'
+    snapshot += 'Signal Origin: '+self.origin +'\n'
+
     
+    return snapshot
 class Signal:
   def __init__(self, pair, base, entryprice, stoploss, exitprice, status, tradetime, amount):
     self.pair = pair.upper()
