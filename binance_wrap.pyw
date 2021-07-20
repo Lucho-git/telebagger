@@ -2,11 +2,14 @@ from binance.client import Client
 from binance.exceptions import BinanceAPIException, BinanceOrderException
 import math
 
+#Binance API Keys, TODO: Switch these to environmental variables if this code ever goes public
 r_api_key='GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  #Put your own api keys here
 r_api_secret='gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032'   
 
+#Binance Client Object
 realclient = Client(r_api_key, r_api_secret)
 
+#Rounds a decimal value down, to account for binance precision values
 def round_decimals_down(number:float, decimals:int=2):
     if not isinstance(decimals, int):
         raise TypeError("decimal places must be an integer")
@@ -17,6 +20,7 @@ def round_decimals_down(number:float, decimals:int=2):
     factor = 10 ** decimals
     return math.floor(number * factor) / factor
 
+#Performs a percentage market trade of any spot coin, using BTC or USDT as the base
 def market_trade(signal, percentage, buying):
     symbol = signal.pair
     base = signal.base
@@ -60,11 +64,10 @@ def market_trade(signal, percentage, buying):
       except BinanceAPIException:
         print('Exception, probably relating to not enough funds to make trade')
     
-    
     signal.init_vals(market_order)
     return market_order
     
-    
+#converts all spot btc to usdt
 def btc2usdt():
   balance = float(realclient.get_asset_balance(asset='BTC')['free'])
   quant = str(float(round_decimals_down(balance, 6)))
@@ -74,6 +77,7 @@ def btc2usdt():
     print('Exception converting BTC to USDT')
   print("Converted BTC to USDT")
   
+#Converts all spot usdt to btc
 def usdt2btc():
   symbol = 'BTCUSDT'
   side = 'BUY'
@@ -84,6 +88,7 @@ def usdt2btc():
     print('Exception converting USDT to BTC')
   print("Converted USDT to BTC")
   
+#Checks alls base pairings of a coin, ect   BTCUSDT, BTCBUSD, BTCETH,
 def coin_pairs(coinname):
   exchange_info = realclient.get_exchange_info()
   pairs = []
@@ -92,14 +97,16 @@ def coin_pairs(coinname):
       print(s['symbol'])
       pairs.append(s['symbol'])
   return pairs
-                   
+
+#Checks if coin has a USDT pairing
 def isUSDTpair(coinname):
   pairs = coin_pairs(coinname)
   for p in pairs:
     if 'USDT' in p:
        return True
   return False
-                   
+
+#Checks if coin has a BTC pairing
 def isBTCpair(coinname):
   pairs = coin_pairs(coinname)
   for p in pairs:
@@ -107,6 +114,7 @@ def isBTCpair(coinname):
        return True
   return False                   
 
+#Print out a viewable snapshot of current futures account state
 def futures_snapshot():
   #get futures info
   tangibles = realclient.futures_account_balance()
