@@ -40,7 +40,7 @@ def market_trade(signal, percentage, buying):
         
       try:
         market_order = realclient.order_market_sell(symbol=symbol, quantity=quant)
-        print('sold nano')
+        print('Sold Coin')
       except BinanceAPIException:
         print('Exception, probably relating to not enough funds to make trade')        
         
@@ -56,7 +56,7 @@ def market_trade(signal, percentage, buying):
     
       try:
         market_order = realclient.create_order(symbol=symbol, type="market", side='buy', quoteOrderQty=balance, price=None)
-        print('bought nano')
+        print('Bought Coin')
       except BinanceAPIException:
         print('Exception, probably relating to not enough funds to make trade')
     
