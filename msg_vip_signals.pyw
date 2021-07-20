@@ -1,5 +1,6 @@
+import time
+
 def bag(msg, binance_wrap, Trade):
-  
   search_text = open("onexample.txt", 'r').read()
   result = None
   result = vip_signals_message(search_text)
@@ -8,13 +9,39 @@ def bag(msg, binance_wrap, Trade):
     print(vip_string)
     if binance_wrap.isUSDTpair(result[0]):
       pair = result[0] + 'USDT'
+      base = 'USDT'
     elif binance_wrap.isBTCpair(result[0]):
       pair = result[0] + 'BTC'
+      base = 'BTC'
     else:
       raise Exception('No USDT or BTC pair')
-    print('Symbol:', result[0])
-    print('Trading pair:', pair)
+    ##Swap to base currency
+    if base == 'BTC':
+      binance_wrap.usdt2btc()
+    elif base == 'USDT':
+      binance_wrap.btc2usdt()
+      
+    #Create a signal based on message values, buys x amount of coin
+    signal = Trade(pair, base, 'VIP Signals')
+    binance_wrap.market_trade(signal, 1, True)
+    print(signal.snapshot())
+    filename = 'VIPTRADES/' + signal.tradetime + '.txt'
+    with open(filename, 'w') as f:
+      f.write(signal.snapshot())
+    #waits 2 minutes after buying signals
+    time.sleep(120)
+    #2 minutes later, sell the signaled coin, recording the results
+    binance_wrap.market_trade(signal, 1, False)
+    print(signal.snapshot())
+    filename2 = 'VIPTRADES/' + signal.tradetime + '.txt'
+    with open(filename2, 'w') as f:
+      f.write(signal.snapshot())
     
+    #if spot portfolio is left in BTC, transfer back to USDT
+    if base == 'BTC':
+      binance_wrap.usdt2btc()
+    
+    return trade
     #client.send_message(bot, vip_string)
     #await print_robot(event, search_text)
       
