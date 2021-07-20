@@ -6,7 +6,7 @@ client = Client(r_api_key, r_api_secret)
 
 
 class Trade:
-  def __init__(self, pair, base):
+  def __init__(self, pair, base, origin):
     self.pair = pair.upper()
     self.base = base.upper()
     self.status = 'Pre_Trade'
