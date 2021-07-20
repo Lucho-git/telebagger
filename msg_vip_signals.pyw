@@ -1,7 +1,7 @@
 import time
 
 def bag(msg, binance_wrap, Trade):
-  search_text = open("onexample.txt", 'r').read()
+  search_text = msg
   result = None
   result = vip_signals_message(search_text)
   if result:
@@ -25,7 +25,7 @@ def bag(msg, binance_wrap, Trade):
     signal = Trade(pair, base, 'VIP Signals')
     binance_wrap.market_trade(signal, 1, True)
     print(signal.snapshot())
-    filename = 'VIPTRADES/' + signal.tradetime + '.txt'
+    filename = 'VIPTRADES/' + str(signal.tradetime) + '.txt'
     with open(filename, 'w') as f:
       f.write(signal.snapshot())
     #waits 2 minutes after buying signals
@@ -33,7 +33,7 @@ def bag(msg, binance_wrap, Trade):
     #2 minutes later, sell the signaled coin, recording the results
     binance_wrap.market_trade(signal, 1, False)
     print(signal.snapshot())
-    filename2 = 'VIPTRADES/' + signal.tradetime + '.txt'
+    filename2 = 'VIPTRADES/' + str(signal.tradetime) + '.txt'
     with open(filename2, 'w') as f:
       f.write(signal.snapshot())
     
@@ -41,7 +41,7 @@ def bag(msg, binance_wrap, Trade):
     if base == 'BTC':
       binance_wrap.usdt2btc()
     
-    return trade
+    return signal
     #client.send_message(bot, vip_string)
     #await print_robot(event, search_text)
       
@@ -124,16 +124,12 @@ def print_past_messages(client):
   if msgs is not None:
     print("Messages:\n---------")
     f = open("vip_examples.txt", "w")
-
     for msg in msgs:
       if ('buy zone'.upper() in str(msg).upper()) and ('target'.upper() in str(msg).upper())  and ('-' in str(msg)):
         f.write(str(msg.message) +'\n')
         f.write('______________________\n')
     f.close()   
 '''
-  
-  
-  
-  
+
   
   
