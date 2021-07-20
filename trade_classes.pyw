@@ -40,11 +40,11 @@ class Trade:
   def snapshot(self):
     snapshot = 'SnapShot: \n'
     snapshot += 'Pair: '+self.pair +'\n'
-    snapshot += 'Time: '+self.tradetime +'\n'
-    snapshot += 'Amount: '+self.amount +'\n'
-    snapshot += 'Price: '+self.price +'\n'
+    snapshot += 'Time: '+str(self.tradetime) +'\n'
+    snapshot += 'Amount: '+str(self.amount) +'\n'
+    snapshot += 'Price: '+str(self.price) +'\n'
     snapshot += 'Status: '+self.status +'\n'
-    snapshot += 'Number Trades: '+self.numtrades +'\n'
+    snapshot += 'Number Trades: '+str(self.numtrades) +'\n'
     snapshot += 'Signal Origin: '+self.origin +'\n'
 
     
