@@ -16,16 +16,21 @@ class Trade:
     self.receipt = None
     self.numtrades = 0
     self.origin = origin
+    self.fee = None
     
   def get_price(self, fills):
     total = 0
     totalqty = 0
+    totalfees = 0
     for f in fills:
       price = float(f['price'])
       qty = float(f['qty'])
+      fee = float(f['commission'])
       totalqty += qty
       total += price*qty
+      totalfees += fee
     total = total/totalqty
+    self.fee = totalfees
     return total
     
   def init_vals(self, receipt):
@@ -46,9 +51,9 @@ class Trade:
     snapshot += 'Status: '+self.status +'\n'
     snapshot += 'Number Trades: '+str(self.numtrades) +'\n'
     snapshot += 'Signal Origin: '+self.origin +'\n'
-
     
     return snapshot
+  
 class Signal:
   def __init__(self, pair, base, entryprice, stoploss, exitprice, status, tradetime, amount):
     self.pair = pair.upper()
@@ -150,3 +155,14 @@ class MFTrade(FTrade):
   def trade_status(self):
     super().trade_status()
     print("Multiple Futures")
+
+def tradediff(trade1,trade2):
+  price_diff = trade2.price - trade1.price
+  value_diff = str(price_diff * trade2.price)
+  perc_diff = str(round(price_diff/trade2.price,3))
+  trade_time = str(trade2.time - trade1.time)
+  snapshot = 'Bought ' + trade1.pair + ' at ' + str(trade1.price) + ' | Sold at ' + str(trade2.price) + '\n'
+  snapshot += 'Trade Value of ' + value_diff + '\n'
+  snapshot += 'Percentage ' + perc_diff + '\n'
+  snapshot += 'Trading fees ' + str(trade1.fee + trade2.fee) +'\n'
+  snapshot += 'Trade time ' + trade_time
