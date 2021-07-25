@@ -156,7 +156,7 @@ class MFTrade(FTrade):
     super().trade_status()
     print("Multiple Futures")
 
-def tradediff(trade1,trade2):
+def trade_diff(trade1,trade2):
   price_diff = trade2.price - trade1.price
   value_diff = str(price_diff * trade2.price)
   perc_diff = str(round(price_diff/trade2.price,3))
