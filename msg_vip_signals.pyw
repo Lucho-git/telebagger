@@ -23,19 +23,30 @@ def bag(msg, binance_wrap, Trade):
       
     #Create a signal based on message values, buys x amount of coin
     signal = Trade(pair, base, 'VIP Signals')
+    #Perform 1st trade, and copy results
     binance_wrap.market_trade(signal, 1, True)
+    trade1 = signal.deepcopy()
     print(signal.snapshot())
+    
+    #Record trade results
     filename = 'VIPTRADES/' + str(signal.tradetime) + '.txt'
     with open(filename, 'w') as f:
       f.write(signal.snapshot())
     #waits 2 minutes after buying signals
+    #This section can be improved, maybe use a limit sell order instead of market
     time.sleep(120)
     #2 minutes later, sell the signaled coin, recording the results
+    
+    #Perform 2nd trade, then compare with 1st trade to see difference
     binance_wrap.market_trade(signal, 1, False)
+    trade2 = signal.deepcopy()
     print(signal.snapshot())
+    difference = signal.trade_diff(trade1, trade2)
+    print(difference)
     filename2 = 'VIPTRADES/' + str(signal.tradetime) + '.txt'
     with open(filename2, 'w') as f:
       f.write(signal.snapshot())
+      f.write(difference)
     
     #if spot portfolio is left in BTC, transfer back to USDT
     if base == 'BTC':
