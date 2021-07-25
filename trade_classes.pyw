@@ -166,3 +166,4 @@ def tradediff(trade1,trade2):
   snapshot += 'Percentage ' + perc_diff + '\n'
   snapshot += 'Trading fees ' + str(trade1.fee + trade2.fee) +'\n'
   snapshot += 'Trade time ' + trade_time
+  return snapshot
