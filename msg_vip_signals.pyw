@@ -1,4 +1,5 @@
 import time
+import copy
 
 def bag(msg, binance_wrap, Trade):
   search_text = msg
@@ -25,7 +26,7 @@ def bag(msg, binance_wrap, Trade):
     signal = Trade(pair, base, 'VIP Signals')
     #Perform 1st trade, and copy results
     binance_wrap.market_trade(signal, 1, True)
-    trade1 = signal.deepcopy()
+    trade1 = copy.deepcopy(signal)
     print(signal.snapshot())
     
     #Record trade results
@@ -34,12 +35,12 @@ def bag(msg, binance_wrap, Trade):
       f.write(signal.snapshot())
     #waits 2 minutes after buying signals
     #This section can be improved, maybe use a limit sell order instead of market
-    time.sleep(120)
+    time.sleep(5)
     #2 minutes later, sell the signaled coin, recording the results
     
     #Perform 2nd trade, then compare with 1st trade to see difference
     binance_wrap.market_trade(signal, 1, False)
-    trade2 = signal.deepcopy()
+    trade2 = copy.deepcopy(signal)
     print(signal.snapshot())
     difference = signal.trade_diff(trade1, trade2)
     print(difference)
@@ -144,3 +145,4 @@ def print_past_messages(client):
 
   
   
+
