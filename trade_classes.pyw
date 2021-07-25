@@ -42,6 +42,9 @@ class Trade:
       self.status = 'Completed'
       self.amount = receipt['executedQty']
     self.numtrades += 1
+
+
+    
   def snapshot(self):
     snapshot = 'SnapShot: \n'
     snapshot += 'Pair: '+self.pair +'\n'
@@ -53,6 +56,20 @@ class Trade:
     snapshot += 'Signal Origin: '+self.origin +'\n'
     
     return snapshot
+
+  def trade_diff(self,trade1,trade2):
+    price_diff = trade2.price - trade1.price
+    value_diff = str(price_diff * trade2.price)
+    perc_diff = str(round(price_diff/trade2.price,3))
+    trade_time = str(trade2.tradetime - trade1.tradetime)
+    snapshot = 'Bought ' + trade1.pair + ' at ' + str(trade1.price) + ' | Sold at ' + str(trade2.price) + '\n'
+    snapshot += 'Trade Value of ' + value_diff + '\n'
+    snapshot += 'Percentage ' + perc_diff + '\n'
+    snapshot += 'Trading fees ' + str(trade1.fee + trade2.fee) +'\n'
+    snapshot += 'Trade time ' + trade_time
+    return snapshot
+
+
   
 class Signal:
   def __init__(self, pair, base, entryprice, stoploss, exitprice, status, tradetime, amount):
@@ -156,14 +173,3 @@ class MFTrade(FTrade):
     super().trade_status()
     print("Multiple Futures")
 
-def trade_diff(trade1,trade2):
-  price_diff = trade2.price - trade1.price
-  value_diff = str(price_diff * trade2.price)
-  perc_diff = str(round(price_diff/trade2.price,3))
-  trade_time = str(trade2.time - trade1.time)
-  snapshot = 'Bought ' + trade1.pair + ' at ' + str(trade1.price) + ' | Sold at ' + str(trade2.price) + '\n'
-  snapshot += 'Trade Value of ' + value_diff + '\n'
-  snapshot += 'Percentage ' + perc_diff + '\n'
-  snapshot += 'Trading fees ' + str(trade1.fee + trade2.fee) +'\n'
-  snapshot += 'Trade time ' + trade_time
-  return snapshot
