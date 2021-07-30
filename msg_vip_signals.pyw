@@ -1,11 +1,26 @@
 import time
 import copy
+tradeheat = [False]
+vip_signals_timer = [0]
 
 def bag(msg, binance_wrap, Trade):
   search_text = msg
   result = None
   result = vip_signals_message(search_text)
-  if result:
+  print('Vip Message analsis')
+
+  raw_server_time = binance_wrap.timenow()
+  print(raw_server_time)
+  if raw_server_time < vip_signals_timer[0]:
+    tradeheat[0] = True
+    print("Cooling Down")
+  else:
+    tradeheat[0] = False
+    print("Cold and ready")
+    
+  if result and not tradeheat[0]:
+    trade_decimal = 1
+    #TODO, add global variable to top of file
     vip_string = str(result[0]) +"___" + str(result[1])
     print(vip_string)
     if binance_wrap.isUSDTpair(result[0]):
@@ -20,12 +35,11 @@ def bag(msg, binance_wrap, Trade):
     if base == 'BTC':
       binance_wrap.usdt2btc()
     elif base == 'USDT':
-      binance_wrap.btc2usdt()
-      
+      binance_wrap.btc2usdt()    
     #Create a signal based on message values, buys x amount of coin
     signal = Trade(pair, base, 'VIP Signals')
     #Perform 1st trade, and copy results
-    binance_wrap.market_trade(signal, 1, True)
+    binance_wrap.market_trade(signal, trade_decimal, True)
     trade1 = copy.deepcopy(signal)
     print(signal.snapshot())
     
@@ -33,13 +47,14 @@ def bag(msg, binance_wrap, Trade):
     filename = 'VIPTRADES/' + str(signal.tradetime) + '.txt'
     with open(filename, 'w') as f:
       f.write(signal.snapshot())
+      
     #waits 2 minutes after buying signals
     #This section can be improved, maybe use a limit sell order instead of market
-    time.sleep(5)
+    time.sleep(20)
     #2 minutes later, sell the signaled coin, recording the results
     
     #Perform 2nd trade, then compare with 1st trade to see difference
-    binance_wrap.market_trade(signal, 1, False)
+    binance_wrap.market_trade(signal, trade_decimal, False)
     trade2 = copy.deepcopy(signal)
     print(signal.snapshot())
     difference = signal.trade_diff(trade1, trade2)
@@ -52,22 +67,25 @@ def bag(msg, binance_wrap, Trade):
     #if spot portfolio is left in BTC, transfer back to USDT
     if base == 'BTC':
       binance_wrap.usdt2btc()
-    
+
+    #Wait 1000 seconds before allowing new vip trades  
+    vip_signals_timer[0] = signal.tradetime + 180000 
     return signal
     #client.send_message(bot, vip_string)
     #await print_robot(event, search_text)
-      
+  else:
+    print('Not a signal')
+    
 def vip_signals_message(vip_message):
   validity = valid_trade_message(vip_message)
   trade_type = None
   if validity:
     trade_type = search_coin(vip_message)
-    #search_text = open("/content/gdrive/MyDrive/MountDrive/large_data.txt", 'r').read()
   return trade_type
 
 def valid_trade_message(vip_message):
   vip_message = vip_message.upper()
-  if (('TARGET ' in vip_message) or ('TARGET:' in vip_message)) and ('-' in vip_message):
+  if (('TARGET ' in vip_message) or ('TARGET:' in vip_message) or ('TARGETS ' in vip_message) or ('TARGETS:' in vip_message)) and ('-' in vip_message):
     print("Valid Message")
     return True
   else:
@@ -145,4 +163,3 @@ def print_past_messages(client):
 
   
   
-

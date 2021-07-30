@@ -1,0 +1,8 @@
+SnapShot: 
+Pair: SFPUSDT
+Time: 1627216236967
+Amount: 465.04000000
+Price: 0.8294139858936865
+Status: Completed
+Number Trades: 1
+Signal Origin: VIP Signals

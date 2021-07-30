@@ -10,13 +10,14 @@ import binance_wrap
 
 
 def SendMessageToAlwaysWin(message):
-    pass
-    #TODO            remove stub
     if '/USDT' in message:
         message= "<@&834911692303237172>\n" + message
     mUrl = "https://ptb.discord.com/api/webhooks/838079506660851762/7-lpGNlqWGGlO08XZJ3RwAvSXpWGDf5J6Z4ro5bsdtogYGGXovVfmYGmCb3Jvr1RvtWG"
     data = {"content": message}
     response = requests.post(mUrl, json=data)
+
+def SendMessageToTelegram(client, message):
+    pass
 
 def StartTelegramForwarding():
     api_id = 5747368
@@ -26,16 +27,18 @@ def StartTelegramForwarding():
     
     @client.on(events.NewMessage()) 
     async def my_event_handler(event):
-        print(event.raw_text)
+        #print(event.raw_text)
 
         sender = await event.get_sender()
         chat = await event.get_chat()
         sender_id = str(sender.id)
         channel_name = utils.get_display_name(sender)
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
-        print(msg)
+        #print(msg)
         if sender_id == "1375168387":
-            SendMessageToAlwaysWin(event.raw_text)
+            #SendMessageToAlwaysWin(event.raw_text)
+            #Forward Message to my telegram channel
+            await client.send_message(1576065688,str(event.raw_text))
         if chat.id == 1312345502:
             msg_vip_signals.bag(event.raw_text, binance_wrap, Trade)
         elif chat.id == 1899129008:
@@ -45,17 +48,20 @@ def StartTelegramForwarding():
               await client.disconnect()
             #stub for testing
             if str(event.raw_text) == '/vip':
-                msg_vip_signals.bag(event.raw_text, binance_wrap, Trade)
+                contents = open("onexample.txt", "r").read()
+                msg_vip_signals.bag(contents, binance_wrap, Trade)
             if str(event.raw_text) == '/trade':
                 print(binance_wrap.futures_snapshot())
             if str(event.raw_text) == '/buynano':
                 signal = Trade('NANOUSDT','USDT')
-                binance_wrap.market_trade(signal, 1, True)
+                binance_wrap.market_trade(signal, 0.04, True)
                 signal.snapshot()
             if str(event.raw_text) == '/sellnano':
                 signal = Trade('NANOUSDT','USDT')
                 binance_wrap.market_trade(signal, 1, False)
                 signal.snapshot()
+            if str(event.raw_text) == '/dynasty':
+                await client.send_message(1576065688,'AW MESSAGE')
                 
     print("Starting telegram scraper")
     client.start()

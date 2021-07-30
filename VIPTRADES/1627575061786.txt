@@ -1,0 +1,8 @@
+SnapShot: 
+Pair: WANUSDT
+Time: 1627575061786
+Amount: 504.52000000
+Price: 0.6220348370728614
+Status: Completed
+Number Trades: 1
+Signal Origin: VIP Signals

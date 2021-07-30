@@ -1,0 +1,13 @@
+SnapShot: 
+Pair: SFPUSDT
+Time: 1627216242729
+Amount: 465.04000000
+Price: 0.8275688112850508
+Status: Completed
+Number Trades: 2
+Signal Origin: VIP Signals
+Bought SFPUSDT at 0.8294139858936865 | Sold at 0.8275688112850508
+Trade Value of -0.001527008957482053
+Percentage -0.002
+Trading fees 0.00193254
+Trade time 5762

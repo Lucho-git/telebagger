@@ -1,0 +1,13 @@
+SnapShot: 
+Pair: 1INCHUSDT
+Time: 1627301761014
+Amount: 165.93000000
+Price: 2.3395
+Status: Completed
+Number Trades: 2
+Signal Origin: VIP Signals
+Bought 1INCHUSDT at 2.3265105225094915 | Sold at 2.3395
+Trade Value of 0.030388882589044885
+Percentage 0.006
+Trading fees 0.0018194700000000001
+Trade time 20588

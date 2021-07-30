@@ -1,0 +1,13 @@
+SnapShot: 
+Pair: AIONUSDT
+Time: 1627543298044
+Amount: 3132.76000000
+Price: 0.12364924826670412
+Status: Completed
+Number Trades: 2
+Signal Origin: VIP Signals
+Bought AIONUSDT at 0.124 | Sold at 0.12364924826670412
+Trade Value of -4.33701881502789e-05
+Percentage -0.003
+Trading fees 0.00185249
+Trade time 120578

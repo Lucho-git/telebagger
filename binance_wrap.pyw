@@ -1,5 +1,6 @@
 from binance.client import Client
 from binance.exceptions import BinanceAPIException, BinanceOrderException
+from datetime import datetime
 import math
 
 #Binance API Keys, TODO: Switch these to environmental variables if this code ever goes public
@@ -113,6 +114,17 @@ def isBTCpair(coinname):
     if 'BTC' in p:
        return True
   return False                   
+
+#Gets Server Time
+def timenow():
+    raw_server_time = realclient.get_server_time()
+    return raw_server_time['serverTime']
+
+#Gets Server Time in readable form, TODO CHANGE TO DATE/TIME
+def datetimenow():
+    raw_server_time = realclient.get_server_time()
+    server_time = datetime.fromtimestamp(raw_server_time['serverTime']/1000.0)
+    return server_time
 
 #Print out a viewable snapshot of current futures account state
 def futures_snapshot():
