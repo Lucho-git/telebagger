@@ -1,0 +1,8 @@
+SnapShot: 
+Pair: DATAUSDT
+Time: 1628010862071
+Amount: 518.10000000
+Price: 0.09996
+Status: Completed
+Number Trades: 1
+Signal Origin: VIP Signals

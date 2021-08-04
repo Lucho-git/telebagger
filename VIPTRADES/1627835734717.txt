@@ -1,0 +1,8 @@
+SnapShot: 
+Pair: DIAUSDT
+Time: 1627835734717
+Amount: 235.57000000
+Price: 1.485
+Status: Completed
+Number Trades: 1
+Signal Origin: VIP Signals
