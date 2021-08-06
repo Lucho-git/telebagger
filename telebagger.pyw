@@ -7,6 +7,7 @@ import requests
 from trade_classes import Trade, FTrade, MFTrade
 import msg_vip_signals
 import binance_wrap
+import trade_stream
 
 
 def SendMessageToAlwaysWin(message):
@@ -40,7 +41,7 @@ def StartTelegramForwarding():
         if sender_id == "1375168387":
             # SendMessageToAlwaysWin(event.raw_text)
             # Forward Message to my telegram channel
-            # await client.send_message(1576065688, str(event.raw_text))
+            # await client.send_message(1576065688, event.message)
             pass
         if chat.id == 1312345502:
             msg_vip_signals.bag(event.raw_text, binance_wrap, Trade)
@@ -53,22 +54,21 @@ def StartTelegramForwarding():
             if str(event.raw_text) == '/vip':
                 contents = open("onexample.txt", "r").read()
                 msg_vip_signals.bag(contents, binance_wrap, Trade)
-            if str(event.raw_text) == '/trade':
+            elif str(event.raw_text) == '/trade':
                 print(binance_wrap.futures_snapshot())
-            if str(event.raw_text) == '/buycoin':
+            elif str(event.raw_text) == '/buycoin':
                 signal = Trade('AIONUSDT', 'USDT', 'Manual')
                 binance_wrap.market_trade(signal, 0.04, True)
                 signal.snapshot()
-            if str(event.raw_text) == '/sellcoin':
+            elif str(event.raw_text) == '/sellcoin':
                 signal = Trade('AIONUSDT', 'USDT', 'Manual')
                 binance_wrap.market_trade(signal, 1, False)
                 signal.snapshot()
-            if str(event.raw_text) == '/dynasty':
+            elif str(event.raw_text) == '/dynasty':
                 await client.send_message(1576065688, 'AW MESSAGE')
-            if str(event.raw_text) == '/min':
-                binance_wrap.btc2usdt()
-            if '/event' in str(event.raw_text):
-                await client.send_message(1899129008, event.message)
+            elif str(event.raw_text) == '/stream':
+                trade_stream.streamer()
+
 
     print("Starting telegram scraper")
     client.start()
@@ -77,3 +77,5 @@ def StartTelegramForwarding():
 
 
 StartTelegramForwarding()
+
+
