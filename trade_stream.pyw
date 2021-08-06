@@ -7,7 +7,14 @@ class Trade:
     def __init__(self, pair, id):
         self.pair = pair.upper()
         self.id = id
-        self.paremeters = 'STUB'
+        self.parameters = 'STUB'
+
+    def __repr__(self):
+        retstr = ' {TradeObj | ' + self.pair + ' | ' + str(self.id) +'}'
+        retstr = ''+self.pair+'_'+str(self.id)+''
+        return retstr
+
+
 
 
 # No Error is default, must be explicitly sent by binance
@@ -97,11 +104,13 @@ def streamer():
         reload = True
         if reload:
             for a in activestreams[:]:
-                time.sleep(20)
+                time.sleep(3)
+                print(a)
                 restartstream.append(a)
                 twm.stop_socket(a[0])
                 activestreams.remove(a)
 
+    #print('rest:',restartstream[1][1][0].dump())
     print('\n\n')
     print('Tradequeue_|', tradequeue)
     print('CompletedTrades_|', completedtrades)
