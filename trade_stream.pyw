@@ -1,6 +1,7 @@
 from binance import ThreadedWebsocketManager
 from binance.streams import AsyncClient
 import time
+import pickle
 
 
 class Trade:
@@ -13,8 +14,6 @@ class Trade:
         retstr = ' {TradeObj | ' + self.pair + ' | ' + str(self.id) +'}'
         retstr = ''+self.pair+'_'+str(self.id)+''
         return retstr
-
-
 
 
 # No Error is default, must be explicitly sent by binance
@@ -104,16 +103,23 @@ def streamer():
         reload = True
         if reload:
             for a in activestreams[:]:
-                time.sleep(3)
+                time.sleep(1)
                 print(a)
                 restartstream.append(a)
                 twm.stop_socket(a[0])
                 activestreams.remove(a)
 
-    #print('rest:',restartstream[1][1][0].dump())
     print('\n\n')
     print('Tradequeue_|', tradequeue)
     print('CompletedTrades_|', completedtrades)
     print('ActiveStreams_|', activestreams)
     print('StopTrades_|', stoptrades)
     print('RestartStream_|', restartstream)
+
+    with open('config.dictionary', 'wb') as config_dictionary_file:
+        pickle.dump(restartstream, config_dictionary_file)
+    print('DUMPED')
+
+    with open('config.dictionary', 'rb') as config_dictionary_file:
+        restarted = pickle.load(config_dictionary_file)
+        print(restarted)
