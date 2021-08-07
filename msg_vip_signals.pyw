@@ -52,7 +52,7 @@ def bag(msg, binance_wrap, Trade):
 
         # waits 2 minutes after buying signals
         # This section can be improved, maybe use a limit sell order instead of market
-        time.sleep(180)
+        time.sleep(130)
         # 2 minutes later, sell the signaled coin, recording the results
 
         # Perform 2nd trade, then compare with 1st trade to see difference
@@ -71,7 +71,7 @@ def bag(msg, binance_wrap, Trade):
             binance_wrap.usdt2btc()
 
         # Wait 180 seconds before allowing new vip trades
-        vip_signals_timer[0] = signal.tradetime + 360000
+        vip_signals_timer[0] = signal.tradetime + 720000
         return signal
         # client.send_message(bot, vip_string)
         # await print_robot(event, search_text)
