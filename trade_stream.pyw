@@ -9,11 +9,23 @@ class Trade:
         self.pair = pair.upper()
         self.id = id
         self.parameters = 'STUB'
+        self.stream_id = None
 
     def __repr__(self):
         retstr = ' {TradeObj | ' + self.pair + ' | ' + str(self.id) +'}'
         retstr = ''+self.pair+'_'+str(self.id)+''
         return retstr
+
+    def snap(self):
+        retstr = ' {TradeObj | ' + self.pair + ' | ' + str(self.id) + ' | ' + str(self.stream_id) + '}'
+        return retstr
+
+
+tr1 = Trade('BTCUSDT', 22)
+tr2 = Trade('ETHUSDT', 6)
+tr3 = Trade('ETHUSDT', 15)
+tr4 = Trade('DOGEUSDT', 31)
+tr5 = Trade('NANOUSDT', 2)
 
 
 # No Error is default, must be explicitly sent by binance
@@ -31,95 +43,109 @@ def coin_trade_data(msg):
         stream['error'] = False
         print(stream)
         # def updatetrade
-        #
     else:
         stream['error'] = True
+
+
+def save(restartstream):
+    with open('savefile', 'wb') as config_dictionary_file:
+        pickle.dump(restartstream, config_dictionary_file)
+    print('Saved...')
+
+
+def load(twm):
+    with open('savefile', 'rb') as config_dictionary_file:
+        restartstream = pickle.load(config_dictionary_file)
+        print('Loaded...')
+
+    # Restart the streams
+    if restartstream:
+        for r in restartstream:
+            sym = restartstream[r][0].pair
+            twm.start_kline_socket(callback=coin_trade_data, symbol=sym, interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
+    return restartstream
+
+
+def addstream(tradequeue, activestreams, streamdict, twm):
+    for t in tradequeue[:]:
+        print('Adding:', t)
+        # Checks to see if pair is already being streamed, if so adds trade to that stream
+        duplicate = False
+        for a in streamdict:
+            if streamdict[a][0].pair == t.pair:
+                print('Duplicate Stream', t.pair)
+                streamdict[a].append(t)
+                t.stream_id = streamdict[a][0].stream_id
+                duplicate = True
+
+        # If pair is not being streamed, begin streaming pair
+        if not duplicate:
+            streamID = twm.start_kline_socket(callback=coin_trade_data, symbol=t.pair,
+                                              interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
+            print(streamID)
+            t.stream_id = streamID
+            streamdict[t.stream_id] = [t]
+        tradequeue.remove(t)
 
 
 def streamer():
     twm = ThreadedWebsocketManager()
     twm.start()
 
-    tradequeue = ['BTCUSDT', 'ETHUSDT', 'NANOUSDT', 'DOGEUSDT', 'BTCUSDT']
+    tradequeue = [tr1, tr2, tr3, tr4, tr5]
+    tradequeue = []
     activestreams = []
+    streamdict = {}
+    stoptrades = [tr1, tr2, tr3, tr4, tr5]
     stoptrades = []
     completedtrades = []
-    restartstream = []
 
-    for t in tradequeue[:]:
-        tr = Trade(t, 1)
-        print('Adding:', t)
-        # Checks to see if pair is already being streamed, if so adds trade to that stream
-        duplicate = False
-        for a in activestreams:
-            if a[1]:
-                if a[1][0].pair == t:
-                    tr.id += 1
-                    a[1].append(tr)
-                    duplicate = True
+    # Reload Streams
+    streamdict = load(twm)
+    restartstream = streamdict
+    print('RestartStreams_|', restartstream)
+    print('\n')
 
-        # If pair is not being streamed, begin streaming pair
-        if not duplicate:
-            streamID = twm.start_kline_socket(callback=coin_trade_data, symbol=t,
-                                              interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
-            print(streamID)
-            activestreams.append((streamID, [tr]))
-        tradequeue.remove(t)
-        print(activestreams)
-        print(tradequeue)
+    # print('ActiveStreams_|', activestreams)
+    print('Tradequeue_|', tradequeue)
+    addstream(tradequeue, activestreams, streamdict, twm)
+    print(streamdict)
 
-    print(activestreams)
     print('Streaming....\n')
     # stoptrades.append(('DOGEUSDT',1))
 
-    while activestreams:
-        while stoptrades:
-            for a in activestreams[:]:
-                if a[1]:
-                    streamname = a[1][0].pair
-                for s in stoptrades[:]:
-                    # remove duplicate trade
-                    if (streamname == s[0]) and (len(a[1]) > 1):
-                        # Later replace name stub, with specific Trade object identifier, probably use the trade time as Unique Key
-                        print("Matched Duplicate:", streamname, 'And:', s)
-                        for id in a[1][:]:
-                            if id.id == s[1]:
-                                print('Removed duplicate instance of:', streamname, "ID:", id.id)
-                                a[1].remove(id)
-                        print(a, 'After Removeal')
-                        stoptrades.remove(s)
-                        completedtrades.append(streamname)
-                    # remove trade and stopstream
-                    elif (streamname == s[0]):
-                        print("Matched:", streamname, 'And:', s)
-                        twm.stop_socket(a[0])
-                        removed = a
-                        activestreams.remove(a)
-                        stoptrades.remove(s)
-                        completedtrades.append(removed)
-                        print('1 Removed Stream:', removed)
-        #  stoptrades.extend([ ('BTCUSDT',1) ,('ETHUSDT',1) ,('NANOUSDT',1) ,('BTCUSDT',2)])
+    for s in stoptrades[:]:
+        if len(streamdict[s.stream_id]) > 1:
+            print('Matched Duplicate')
+            for t in streamdict[s.stream_id][:]:
+                if t.id == s.id:
+                    print('Removed duplicate instance of:', s.stream_id, "ID:", s.id)
+                    streamdict[s.stream_id].remove(t)
+            completedtrades.append(s)
+            stoptrades.remove(s)
+        else:
+            print('Matched Stream')
+            twm.stop_socket(s.stream_id)
+            streamdict.pop(s.stream_id)
+            completedtrades.append(s)
+            print('removing:', s)
+            stoptrades.remove(s)
 
-        reload = True
-        if reload:
-            for a in activestreams[:]:
-                time.sleep(1)
-                print(a)
-                restartstream.append(a)
-                twm.stop_socket(a[0])
-                activestreams.remove(a)
+    reload = True
+    if reload:
+        restartstream = streamdict
+        for d in streamdict:
+            time.sleep(1)
+            print(streamdict[d])
+            twm.stop_socket(streamdict[d][0].stream_id)
+    save(restartstream)
 
     print('\n\n')
     print('Tradequeue_|', tradequeue)
     print('CompletedTrades_|', completedtrades)
-    print('ActiveStreams_|', activestreams)
     print('StopTrades_|', stoptrades)
-    print('RestartStream_|', restartstream)
+    print(streamdict)
+    if reload:
+        print('RestartStream_|', restartstream)
 
-    with open('config.dictionary', 'wb') as config_dictionary_file:
-        pickle.dump(restartstream, config_dictionary_file)
-    print('DUMPED')
 
-    with open('config.dictionary', 'rb') as config_dictionary_file:
-        restarted = pickle.load(config_dictionary_file)
-        print(restarted)
