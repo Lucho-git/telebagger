@@ -1,12 +1,18 @@
 from binance import ThreadedWebsocketManager
 from binance.streams import AsyncClient
+import asyncio
 import time
 import pickle
 import random
 
 stoptrades = []
 tradequeue = []
+completedtrades = []
+restart = []
 streamdict = {}
+reload = [False]
+update = [False]
+active = [False]
 
 
 class Trade:
@@ -31,8 +37,11 @@ class Trade:
         num = random.randrange(1, 3, 1)
         if num == 1:
             self.active = False
+            print(self.pair,self.id,' Got the dice roll')
 
 
+tr0 = Trade('BTCUSDT', 1)
+tr0.stream_id = 'btcusdt@kline_1m'
 tr1 = Trade('BTCUSDT', 22)
 tr1.stream_id = 'btcusdt@kline_1m'
 tr2 = Trade('ETHUSDT', 6)
@@ -60,17 +69,23 @@ def coin_trade_data(msg):
         stream['high'] = k['h']
         stream['low'] = k['l']
         stream['error'] = False
-
         print(stream)
         # custom per trade object functionality
         key = stream['symbol'].lower() + '@' + e + '_' + i
+
+        '''
         for u in streamdict[key]:
             u.stopchance()
             if not u.active:
                 stoptrades.append(u)
-                print('REMOVED', u)
+        '''
     else:
         stream['error'] = True
+
+
+async def restart():
+    print('ITS LIT')
+    reload[0] = True
 
 
 def save(in_streamdict, twm):
@@ -83,26 +98,35 @@ def save(in_streamdict, twm):
     with open('savefile', 'wb') as config_dictionary_file:
         pickle.dump(restartstream, config_dictionary_file)
     print('Saved...')
+    print(restartstream)
 
 
-def load(in_streamdict, twm):
+def load(twm):
     # Retrieve loadfile
-    with open('savefile', 'rb') as config_dictionary_file:
-        restartstream = pickle.load(config_dictionary_file)
-        print('Loaded...')
+    restartstream = None
+    try:
+        with open('savefile', 'rb') as config_dictionary_file:
+            restartstream = pickle.load(config_dictionary_file)
+            print('Loaded...')
+            print(restartstream)
+    except:
+        print('No Save File')
 
     # Restart the streams
     if restartstream:
+        print("Reloaded....")
         for r in restartstream:
             sym = restartstream[r][0].pair
             twm.start_kline_socket(callback=coin_trade_data, symbol=sym, interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
     else:
         restartstream = {}
-    in_streamdict = restartstream
+    streamdict.update(restartstream)
 
 
-def addtrade(trade):
-    tradequeue.append(trade)
+async def addtrade():  #import trade in future
+    tradequeue.extend([tr0])
+    print("Added trade", tr0)
+    await bump()
 
 
 def addstream(in_tradequeue, in_streamdict, twm):
@@ -117,72 +141,91 @@ def addstream(in_tradequeue, in_streamdict, twm):
 
         # If pair is not being streamed, begin streaming pair
         if not duplicate:
-            streamID = twm.start_kline_socket(callback=coin_trade_data, symbol=t.pair,
-                                              interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
+            streamID = twm.start_kline_socket(callback=coin_trade_data, symbol=t.pair, interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
             print(streamID)
             t.stream_id = streamID
             in_streamdict[t.stream_id] = [t]
         in_tradequeue.remove(t)
 
 
-def stoptrade(in_stoptrades, in_streamdict, completedtrades, twm):
+def stoptrade(in_stoptrades, in_streamdict, in_completedtrades, twm):
+    print('Stopping trades....', in_stoptrades)
     for s in in_stoptrades[:]:
         if len(in_streamdict[s.stream_id]) > 1:
-            print('Matched Duplicate')
             for t in in_streamdict[s.stream_id][:]:
                 if t.id == s.id:
                     print('Removed duplicate instance of:', s.stream_id, "ID:", s.id)
                     in_streamdict[s.stream_id].remove(t)
-            completedtrades.append(s)
+            in_completedtrades.append(s)
             in_stoptrades.remove(s)
         else:
             twm.stop_socket(s.stream_id)
             in_streamdict.pop(s.stream_id)
-            completedtrades.append(s)
+            in_completedtrades.append(s)
             print('removing:', s)
             in_stoptrades.remove(s)
 
 
-def savetraderesults(completedtrades):
-    for c in completedtrades[:]:
+def savetraderesults(in_completedtrades):
+    for c in in_completedtrades[:]:
         with open('telebagger/Saves/TradeResults.txt', 'a') as f:
             f.write(str(c.snapshot()))
             f.write('\n\n')
-        completedtrades.remove(c)
-    print("Saved Results....")
+        in_completedtrades.remove(c)
+    print("Recorded a Trade")
 
 
-def streamer():
+async def streamcommand():
+    update[0] = True
+
+
+async def bump():
+    if not active[0]:
+        await streamer()
+
+
+async def streamer():
     # Start websocket
     twm = ThreadedWebsocketManager()
     twm.start()
 
     # Stub Queue values
-    tradequeue.extend([tr1, tr2, tr3, tr4, tr5])
-    # tradequeue = []
-    # stoptrades = [tr1, tr2, tr3, tr4, tr5]
-    completedtrades = []
-
-    # Reload Streams
-    load(streamdict, twm)
-
+    #tradequeue.extend([tr1, tr2, tr3, tr4, tr5])
+    #stoptrades.extend([tr1, tr2, tr3, tr4, tr5])
+    
+    load(twm)
     addstream(tradequeue, streamdict, twm)
 
-    print(streamdict)
-    print('Streaming....', streamdict, '\n')
+    if streamdict:
+        print('Streaming....', streamdict, '\n')
+        active[0] = True
 
     while streamdict:
         if stoptrades:
             stoptrade(stoptrades, streamdict, completedtrades, twm)
 
-        #  print('Completedtrades:', completedtrades)
         if completedtrades:
             savetraderesults(completedtrades)
+
+        if tradequeue:
+            addstream(tradequeue, streamdict, twm)
+
+        await asyncio.sleep(1)
         time.sleep(1)
 
-    time.sleep(10)
-    reload = True
-    if reload:
-        save(streamdict, twm)
+        streamstring = ''
+        for i in streamdict:
+            streamstring += str(i) + ' #'+str(len(streamdict[i])) + ' | '
+        print('Checking for updates....', streamstring)
+        if update[0]:
+            print('Update Recieved')
+            update[0] = False
 
+        if reload[0]:
+            save(streamdict, twm)
+            active[0] = False
+            reload[0] = False
+            break
 
+    active[0] = False
+    print('No more active trades, waiting on new events....')

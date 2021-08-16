@@ -2,12 +2,14 @@
 from telethon import TelegramClient, events, sync, utils
 from telethon.sessions import StringSession
 import requests
+import asyncio
 
 # Methods within this package
 from trade_classes import Trade, FTrade, MFTrade
 import msg_vip_signals
 import binance_wrap
 import trade_stream
+import sink
 
 
 def SendMessageToAlwaysWin(message):
@@ -23,6 +25,7 @@ def SendMessageToTelegram(client, message):
 
 
 def StartTelegramForwarding():
+    #loop = asyncio.get_event_loop()
     api_id = 5747368
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
     stringsesh = '1BVtsOHgBu5DuJXuehRfDlGAdXz0SidTkr6lFXo_csesUWmcScUvpi6WfkvoxIpkT78gUAfVl8aj8s-EvaWQ9Le4epxt2WyjPI9mbBpQRgYGIGM8YKKhFs0TMHv8P5EwWOxxOgKnka2RtW-J4aLNFv4zLmR9ekS2wDhLVhNlMhS6gnEoCVAmdxcLH3Qc7005IGuz7Ff2HqYXUYoKz5gDRbzC7gjF086Ux_vK52OSnWjo0XdkUH9qG2aPWohIY0cqeRHCtXIlYkESYcmifKkhcL1C_ZTapxsawrdYrOyuHUYP-fWVEPLFj4XjypFZrlaLUmLz8EL2VxkxG2p1vqFIjmgLI_VcWMSU='
@@ -66,10 +69,18 @@ def StartTelegramForwarding():
                 signal.snapshot()
             elif str(event.raw_text) == '/dynasty':
                 await client.send_message(1576065688, 'AW MESSAGE')
+
+                # stream commands
             elif str(event.raw_text) == '/stream':
-                trade_stream.streamer()
+                await trade_stream.streamer()
+            elif str(event.raw_text) == '/restart':
+                await trade_stream.restart()
+            elif str(event.raw_text) == '/update':
+                await trade_stream.streamcommand()
+            elif str(event.raw_text) == '/add':
+                await trade_stream.addtrade()
 
-
+    # End of event handler code ____________________
     print("Starting telegram scraper")
     client.start()
     client.get_dialogs()
