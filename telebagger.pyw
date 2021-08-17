@@ -79,6 +79,8 @@ def StartTelegramForwarding():
                 await trade_stream.streamcommand()
             elif str(event.raw_text) == '/add':
                 await trade_stream.addtrade()
+            elif str(event.raw_text) == '/menu':
+                await trade_stream.stopstream()
 
     # End of event handler code ____________________
     print("Starting telegram scraper")
@@ -88,5 +90,5 @@ def StartTelegramForwarding():
 
 
 StartTelegramForwarding()
-
+print('We out this bitch')
 

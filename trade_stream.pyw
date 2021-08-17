@@ -5,6 +5,7 @@ import time
 import pickle
 import random
 
+twm = ThreadedWebsocketManager()
 stoptrades = []
 tradequeue = []
 completedtrades = []
@@ -13,6 +14,7 @@ streamdict = {}
 reload = [False]
 update = [False]
 active = [False]
+stop = [False]
 
 
 class Trade:
@@ -38,6 +40,8 @@ class Trade:
         if num == 1:
             self.active = False
             print(self.pair,self.id,' Got the dice roll')
+        else:
+            print(self.pair, self.id, 'Got lucky this time')
 
 
 tr0 = Trade('BTCUSDT', 1)
@@ -73,25 +77,41 @@ def coin_trade_data(msg):
         # custom per trade object functionality
         key = stream['symbol'].lower() + '@' + e + '_' + i
 
-        '''
         for u in streamdict[key]:
             u.stopchance()
             if not u.active:
                 stoptrades.append(u)
-        '''
+
+        #checkupdate
+        checkupdate()
+
     else:
         stream['error'] = True
 
 
+def checkupdate():
+    if stoptrades:
+        stoptrade(stoptrades, streamdict, completedtrades)
+    if completedtrades:
+        savetraderesults(completedtrades)
+
+
+async def stopstream():
+    print("Returning to menu")
+    stop[0] = True
+
+
 async def restart():
     print('ITS LIT')
+    await save(streamdict)
+    active[0] = False
+    twm.stop()
     reload[0] = True
 
 
-def save(in_streamdict, twm):
+async def save(in_streamdict):
     restartstream = in_streamdict
     for d in in_streamdict:
-        time.sleep(1)
         print(in_streamdict[d])
         twm.stop_socket(in_streamdict[d][0].stream_id)
 
@@ -101,7 +121,7 @@ def save(in_streamdict, twm):
     print(restartstream)
 
 
-def load(twm):
+def load():
     # Retrieve loadfile
     restartstream = None
     try:
@@ -123,20 +143,28 @@ def load(twm):
     streamdict.update(restartstream)
 
 
-async def addtrade():  #import trade in future
+async def addtrade():  # import trade in future
     tradequeue.extend([tr0])
     print("Added trade", tr0)
+    addstream(tradequeue, streamdict)
     await bump()
 
 
-def addstream(in_tradequeue, in_streamdict, twm):
+def addstream(in_tradequeue, in_streamdict):
     for t in in_tradequeue[:]:
         # Checks to see if pair is already being streamed, if so adds trade to that stream
         duplicate = False
+        exactcopy = False
         for a in in_streamdict:
             if in_streamdict[a][0].pair == t.pair:
-                in_streamdict[a].append(t)
-                t.stream_id = in_streamdict[a][0].stream_id
+                if len(in_streamdict[a]) > 0:
+                    for o in in_streamdict[a]:
+                        if o.id == t.id:
+                            exactcopy = True
+                            print("Exact Copy!")
+                if not exactcopy:
+                    in_streamdict[a].append(t)
+                    t.stream_id = in_streamdict[a][0].stream_id
                 duplicate = True
 
         # If pair is not being streamed, begin streaming pair
@@ -148,7 +176,7 @@ def addstream(in_tradequeue, in_streamdict, twm):
         in_tradequeue.remove(t)
 
 
-def stoptrade(in_stoptrades, in_streamdict, in_completedtrades, twm):
+def stoptrade(in_stoptrades, in_streamdict, in_completedtrades):
     print('Stopping trades....', in_stoptrades)
     for s in in_stoptrades[:]:
         if len(in_streamdict[s.stream_id]) > 1:
@@ -184,31 +212,40 @@ async def bump():
         await streamer()
 
 
+
 async def streamer():
     # Start websocket
-    twm = ThreadedWebsocketManager()
-    twm.start()
+    if not active[0]:
+        if reload[0]:
+            global twm
+            twm = ThreadedWebsocketManager()
+            twm.start()
+            reload[0] = False
+        else:
+            twm.start()
 
-    # Stub Queue values
-    #tradequeue.extend([tr1, tr2, tr3, tr4, tr5])
-    #stoptrades.extend([tr1, tr2, tr3, tr4, tr5])
-    
-    load(twm)
-    addstream(tradequeue, streamdict, twm)
+        # Stub Queue values
+        #tradequeue.extend([tr1, tr2, tr3, tr4, tr5])
+        #stoptrades.extend([tr1, tr2, tr3, tr4, tr5])
+
+        load()
+        addstream(tradequeue, streamdict)
 
     if streamdict:
         print('Streaming....', streamdict, '\n')
         active[0] = True
+        stop[0] = False
 
     while streamdict:
+        '''
         if stoptrades:
-            stoptrade(stoptrades, streamdict, completedtrades, twm)
+            stoptrade(stoptrades, streamdict, completedtrades)
 
         if completedtrades:
             savetraderesults(completedtrades)
-
+        '''
         if tradequeue:
-            addstream(tradequeue, streamdict, twm)
+            addstream(tradequeue, streamdict)
 
         await asyncio.sleep(1)
         time.sleep(1)
@@ -216,16 +253,15 @@ async def streamer():
         streamstring = ''
         for i in streamdict:
             streamstring += str(i) + ' #'+str(len(streamdict[i])) + ' | '
-        print('Checking for updates....', streamstring)
+        print('Checking for updates....', streamstring, twm)
         if update[0]:
             print('Update Recieved')
             update[0] = False
 
         if reload[0]:
-            save(streamdict, twm)
-            active[0] = False
-            reload[0] = False
             break
 
-    active[0] = False
-    print('No more active trades, waiting on new events....')
+        if stop[0]:
+            break
+
+    print('Returning To Event Menu....')
