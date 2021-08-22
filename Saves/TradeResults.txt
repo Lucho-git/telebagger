@@ -1,624 +1,144 @@
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
+NANOUSDT
+TimeStarted: 2021-08-19_14:48 | 2021-08-20_20:42
+Duration: 29.9 hrs
+Pricechange: 5.7055 | 6 | + 5.16%
+Status: stopprof
+Origin: manual
+
+
+ETHUSDT
+TimeStarted: 2021-08-19_14:48 | 2021-08-20_20:44
+Duration: 29.93 hrs
+Pricechange: 2989.0 | 3200 | + 7.06%
+Status: stopprof
+Origin: manual
+
+
+BTCUSDT
+TimeStarted: 2021-08-19_14:48 | 2021-08-20_20:44
+Duration: 29.93 hrs
+Pricechange: 44280.55 | 46000 | + 3.88%
+Status: stopprof
+Origin: manual
+
+
+DOGEUSDT
+TimeStarted: 2021-08-19_14:48 | 2021-08-20_20:44
+Duration: 29.93 hrs
+Pricechange: 0.29872 | 0.3 | + 0.43%
+Status: stopprof
+Origin: manual
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:42 | 2021-08-20_20:44
+Duration: 0.03 hrs
+Pricechange: 0.1879 | 0.1873 | - -0.32%
+Status: time
+Origin: VIP Signals
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:42 | 2021-08-20_20:44
+Duration: 0.03 hrs
+Pricechange: 0.1879 | 0.1873 | - -0.32%
+Status: time
+Origin: VIP Signals
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:42 | 2021-08-20_20:45
+Duration: 0.05 hrs
+Pricechange: 0.1879 | 0.1875 | - -0.21%
+Status: time
+Origin: VIP Signals
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:42 | 2021-08-20_20:47
+Duration: 0.08 hrs
+Pricechange: 0.1879 | 0.1869 | - -0.53%
+Status: time
+Origin: VIP Signals
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:55 | 2021-08-20_20:56
+Duration: 0.02 hrs
+Pricechange: 0.1881 | 0.1882 | + 0.05%
+Status: time
+Origin: VIP Signals
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:55 | 2021-08-20_20:58
+Duration: 0.05 hrs
+Pricechange: 0.1881 | 0.1878 | - -0.16%
+Status: time
+Origin: VIP Signals
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:55 | 2021-08-20_20:59
+Duration: 0.07 hrs
+Pricechange: 0.1881 | 0.1878 | - -0.16%
+Status: time
+Origin: VIP Signals
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:55 | 2021-08-20_21:01
+Duration: 0.1 hrs
+Pricechange: 0.1881 | 0.1881 | + 0.0%
+Status: time
+Origin: VIP Signals
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:42 | 2021-08-21_12:27
+Duration: 15.75 hrs
+Pricechange: 0.1879 | 0.1991 | + 5.96%
+Status: time
+Origin: VIP Signals
 
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
 
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
+SNXUSDT
+TimeStarted: 2021-08-22_21:12 | 2021-08-22_21:15
+Duration: 0.04 hrs
+Pricechange: 14.3 | 100 | - 11986.01%
+Status: stoploss
+Origin: Always Win
 
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
 
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
+AVAXUSDT
+TimeStarted: 2021-08-22_21:31 | 2021-08-22_21:34
+Duration: 0.05 hrs
+Pricechange: 42.9 | 100 | - 2662.0%
+Status: stoploss
+Origin: Always Win
 
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
 
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
+AVAXUSDT
+TimeStarted: 2021-08-22_21:31 | 2021-08-22_21:34
+Duration: 0.05 hrs
+Pricechange: 42.9 | 100 | - 2662.0%
+Status: stoploss
+Origin: Always Win
 
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
 
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
+LRCUSDT
+TimeStarted: 2021-08-22_22:33 | 2021-08-22_22:58
+Duration: 0.4 hrs
+Pricechange: 0.491 | 100 | - 405331.98%
+Status: stoploss
+Origin: Always Win
 
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
 
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
+LRCUSDT
+TimeStarted: 2021-08-22_22:33 | 2021-08-22_23:26
+Duration: 0.87 hrs
+Pricechange: 0.491 | 100 | - 405331.98%
+Status: stoploss
+Origin: Always Win
 
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 22 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 6 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | ETHUSDT | 15 | ethusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | NANOUSDT | 2 | nanousdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | DOGEUSDT | 31 | dogeusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
-
- {TradeObj | BTCUSDT | 1 | btcusdt@kline_1m}
-Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%
 

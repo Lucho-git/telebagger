@@ -1,0 +1,40 @@
+SNXUSDT
+TimeStarted: 2021-08-22_21:12 | 2021-08-22_21:15
+Duration: 0.04 hrs
+Pricechange: 14.3 | 100 | - 11986.01%
+Status: stoploss
+Origin: Always Win
+
+
+AVAXUSDT
+TimeStarted: 2021-08-22_21:31 | 2021-08-22_21:34
+Duration: 0.05 hrs
+Pricechange: 42.9 | 100 | - 2662.0%
+Status: stoploss
+Origin: Always Win
+
+
+AVAXUSDT
+TimeStarted: 2021-08-22_21:31 | 2021-08-22_21:34
+Duration: 0.05 hrs
+Pricechange: 42.9 | 100 | - 2662.0%
+Status: stoploss
+Origin: Always Win
+
+
+LRCUSDT
+TimeStarted: 2021-08-22_22:33 | 2021-08-22_22:58
+Duration: 0.4 hrs
+Pricechange: 0.491 | 100 | - 405331.98%
+Status: stoploss
+Origin: Always Win
+
+
+LRCUSDT
+TimeStarted: 2021-08-22_22:33 | 2021-08-22_23:26
+Duration: 0.87 hrs
+Pricechange: 0.491 | 100 | - 405331.98%
+Status: stoploss
+Origin: Always Win
+
+

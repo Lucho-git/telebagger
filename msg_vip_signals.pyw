@@ -1,11 +1,20 @@
 import time
 import copy
+import fake_trade
+from trade_classes import Trade, Futures
 
 tradeheat = [False]
 vip_signals_timer = [0]
+real = [False]
 
+WAIT_TIME1 = 60 * 1000
+WAIT_TIME2 = 120 * 1000
+WAIT_TIME3 = 180 * 1000
+WAIT_TIME4 = 300 * 1000
+WAIT_TIME5 = 10000 * 1000
+WAIT_TIMES = [WAIT_TIME1,WAIT_TIME2,WAIT_TIME3,WAIT_TIME4,WAIT_TIME5]
 
-def bag(msg, binance_wrap, Trade):
+def bag(msg, binance_wrap):
     search_text = msg
     result = None
     result = vip_signals_message(search_text)
@@ -37,44 +46,51 @@ def bag(msg, binance_wrap, Trade):
             binance_wrap.usdt2btc()
         elif base == 'USDT':
             binance_wrap.btc2usdt()
-            # Create a signal based on message values, buys x amount of coin
-        signal = Trade(pair, base, 'VIP Signals')
+        # Create a signal based on message values, buys x amount of coin
+        signals = []
+        for w in WAIT_TIMES:
+            signal = Trade(pair, base, 'VIP Signals', 'spot')
+            fake_trade.spot_trade(signal)
+            signal.timelimit = signal.time + w
+            signals.append(signal)
+        first_trade_time = signals[0].time
         # Perform 1st trade, and copy results
-        print(binance_wrap.getprice(pair))
-        binance_wrap.market_trade(signal, trade_decimal, True)
-        trade1 = copy.deepcopy(signal)
-        print(signal.snapshot())
 
-        # Record trade results
-        filename = 'VIPTRADES/' + str(signal.tradetime) + '.txt'
-        with open(filename, 'w') as f:
-            f.write(signal.snapshot())
+        if real[0]:
+            print(binance_wrap.getprice(pair))
+            binance_wrap.market_trade(signal, trade_decimal, True)
+            trade1 = copy.deepcopy(signal)
+            print(signal.snapshot())
 
-        # waits 2 minutes after buying signals
-        # This section can be improved, maybe use a limit sell order instead of market
-        time.sleep(130)
-        # 2 minutes later, sell the signaled coin, recording the results
+            # Record trade results
+            filename = 'VIPTRADES/' + str(signal.tradetime) + '.txt'
+            with open(filename, 'w') as f:
+                f.write(signal.snapshot())
 
-        # Perform 2nd trade, then compare with 1st trade to see difference
-        binance_wrap.market_trade(signal, trade_decimal, False)
-        trade2 = copy.deepcopy(signal)
-        print(signal.snapshot())
-        difference = signal.trade_diff(trade1, trade2)
-        print(difference)
-        filename2 = 'VIPTRADES/' + str(signal.tradetime) + '.txt'
-        with open(filename2, 'w') as f:
-            f.write(signal.snapshot())
-            f.write(difference)
+            # waits 2 minutes after buying signals
+            # This section can be improved, maybe use a limit sell order instead of market
+            time.sleep(130)
+            # 2 minutes later, sell the signaled coin, recording the results
 
-        # if spot portfolio is left in BTC, transfer back to USDT
-        if base == 'BTC':
-            binance_wrap.usdt2btc()
+            # Perform 2nd trade, then compare with 1st trade to see difference
+            binance_wrap.market_trade(signal, trade_decimal, False)
+            trade2 = copy.deepcopy(signal)
+            print(signal.snapshot())
+            difference = signal.trade_diff(trade1, trade2)
+            print(difference)
+            filename2 = 'VIPTRADES/' + str(signal.tradetime) + '.txt'
+            with open(filename2, 'w') as f:
+                f.write(signal.snapshot())
+                f.write(difference)
+
+            # if spot portfolio is left in BTC, transfer back to USDT
+            if base == 'BTC':
+                binance_wrap.usdt2btc()
 
         # Wait 180 seconds before allowing new vip trades
-        vip_signals_timer[0] = signal.tradetime + 720000
-        return signal
-        # client.send_message(bot, vip_string)
-        # await print_robot(event, search_text)
+        vip_signals_timer[0] = first_trade_time + 720000
+        return signals
+
     else:
         print('Not a signal')
 

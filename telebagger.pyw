@@ -1,16 +1,19 @@
 # 3rd Party libs
+from colorama import init
+from colorama import Fore, Back, Style
 from telethon import TelegramClient, events, sync, utils
 from telethon.sessions import StringSession
 import requests
 import asyncio
 
 # Methods within this package
-from trade_classes import Trade, FTrade, MFTrade
+from trade_classes import Trade, Futures, MFutures
+# from trade_stream import Trade
 import msg_vip_signals
 import binance_wrap
 import trade_stream
-import sink
-
+import fake_trade
+init()
 
 def SendMessageToAlwaysWin(message):
     if '/USDA' in message:
@@ -47,7 +50,9 @@ def StartTelegramForwarding():
             # await client.send_message(1576065688, event.message)
             pass
         if chat.id == 1312345502:
-            msg_vip_signals.bag(event.raw_text, binance_wrap, Trade)
+            vip_trades = msg_vip_signals.bag(event.raw_text, binance_wrap)
+            if vip_trades:
+                await trade_stream.addtrade(vip_trades)
         elif chat.id == 1899129008:
             print("Robot Section +++")
             if str(event.raw_text) == '/stop':
@@ -56,7 +61,9 @@ def StartTelegramForwarding():
             # stub for testing
             if str(event.raw_text) == '/vip':
                 contents = open("onexample.txt", "r").read()
-                msg_vip_signals.bag(contents, binance_wrap, Trade)
+                vip_trades = msg_vip_signals.bag(contents, binance_wrap)
+                await trade_stream.addtrade(vip_trades)
+
             elif str(event.raw_text) == '/trade':
                 print(binance_wrap.futures_snapshot())
             elif str(event.raw_text) == '/buycoin':
@@ -77,10 +84,56 @@ def StartTelegramForwarding():
                 await trade_stream.restart()
             elif str(event.raw_text) == '/update':
                 await trade_stream.streamcommand()
+            elif str(event.raw_text) == '/once':
+                await trade_stream.onceoff_f()
+
             elif str(event.raw_text) == '/add':
-                await trade_stream.addtrade()
+                tr0 = Trade('ETHUSDT', 'USDT', 'manual', 'futures')
+                tr0.conditions = Futures(2800, 3200, 'long', 10, 'isolation')
+                fake_trade.futures_trade(tr0)
+
+                tr1 = Trade('ETHUSDT', 'USDT', 'manual', 'futures')
+                tr1.conditions = Futures(2900, 3300, 'long', 5, 'isolation')
+                fake_trade.futures_trade(tr1)
+
+                tr2 = Trade('BTCUSDT', 'USDT', 'manual', 'futures')
+                tr2.conditions = Futures(44500, 46000, 'long', 5, 'isolation')
+                fake_trade.futures_trade(tr2)
+
+                tr3 = Trade('NANOUSDT', 'USDT', 'manual', 'futures')
+                tr3.conditions = Futures(5.5, 6, 'long', 5, 'isolation')
+                fake_trade.futures_trade(tr3)
+
+                tr4 = Trade('DOGEUSDT', 'USDT', 'manual', 'futures')
+                tr4.conditions = Futures(0.28, 0.3, 'long', 5, 'isolation')
+                fake_trade.futures_trade(tr4)
+
+                newtrades = [tr0, tr1, tr2, tr3, tr4]
+                await trade_stream.addtrade(newtrades)
+            elif str(event.raw_text) == '/add2':
+                tr0 = Trade('AVAXUSDT', 'USDT', 'Always Win', 'mfutures')
+                tr0.conditions = MFutures([100, 100, 100, 100, 100], [46, 43, 42.9, 42.3, 41.1], [50, 20, 10, 10, 10],          [42.3, 41.1, 39.6, 35, 30], 'short', 20, 'isolation')
+                tr1 = Trade('AVAXUSDT', 'USDT', 'Always Win', 'mfutures')
+                tr1.conditions = MFutures([100, 100, 100, 100, 100], [46, 43, 42.9, 42.3, 41.1], [10, 22.5, 33.75, 25.3, 8.45], [42.3, 41.1, 39.6, 35, 30], 'short', 20, 'isolation')
+                fake_trade.mfutures_trade(tr0, 42.9)
+                fake_trade.mfutures_trade(tr1, 42.9)
+                newtrades = [tr0, tr1]
+                await trade_stream.addtrade(newtrades)
+
+            elif str(event.raw_text) == '/add3':
+                tr2 = Trade('SNXUSDT', 'USDT', 'Always Win', 'mfutures')
+                tr2.conditions = MFutures([100, 100, 100, 100, 100], [15, 14.08, 13.7, 13.2, 12], [50, 20, 10, 10, 10], [14.08, 13.7, 13.2, 12, 10], 'short', 20, 'isolation')
+                fake_trade.mfutures_trade(tr2, 14.3)
+                tr3 = Trade('LRCUSDT', 'USDT', 'Always Win', 'mfutures')
+                tr3.conditions = MFutures([100, 100, 100, 100, 100], [0.52, 0.491, 0.483, 0.471, 0.45], [30, 20, 20, 10, 10], [0.483, 0.471, 0.45, 0.35, 0.30], 'short', 20, 'isolation')
+                fake_trade.mfutures_trade(tr3, 0.491)
+                newtrades = [tr2, tr3]
+                await trade_stream.addtrade(newtrades)
+
             elif str(event.raw_text) == '/menu':
                 await trade_stream.stopstream()
+            elif str(event.raw_text) == '/colour':
+                print(Fore.RED + 'RED TEXT')
 
     # End of event handler code ____________________
     print("Starting telegram scraper")

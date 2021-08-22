@@ -1,11 +1,14 @@
 from binance import ThreadedWebsocketManager
 from binance.streams import AsyncClient
+from trade_classes import Trade, Futures
+# from stream_trade import Trade
 import asyncio
 import time
 import pickle
-import random
 
 twm = ThreadedWebsocketManager()
+twm.start()
+
 stoptrades = []
 tradequeue = []
 completedtrades = []
@@ -15,47 +18,7 @@ reload = [False]
 update = [False]
 active = [False]
 stop = [False]
-
-
-class Trade:
-    def __init__(self, pair, id):
-        self.pair = pair.upper()
-        self.id = id
-        self.parameters = 'STUB'
-        self.stream_id = None
-        self.active = True
-
-    def __repr__(self):
-        retstr = ' {TradeObj | ' + self.pair + ' | ' + str(self.id) +'}'
-        retstr = ''+self.pair+'_'+str(self.id)+''
-        return retstr
-
-    def snapshot(self):
-        retstr = ' {TradeObj | ' + self.pair + ' | ' + str(self.id) + ' | ' + str(self.stream_id) + '}\n'
-        retstr += 'Trade ended in Profit/Loss, Entry price here, Exit price here, TradePercentage = +/- x%'
-        return retstr
-
-    def stopchance(self):
-        num = random.randrange(1, 3, 1)
-        if num == 1:
-            self.active = False
-            print(self.pair,self.id,' Got the dice roll')
-        else:
-            print(self.pair, self.id, 'Got lucky this time')
-
-
-tr0 = Trade('BTCUSDT', 1)
-tr0.stream_id = 'btcusdt@kline_1m'
-tr1 = Trade('BTCUSDT', 22)
-tr1.stream_id = 'btcusdt@kline_1m'
-tr2 = Trade('ETHUSDT', 6)
-tr2.stream_id = 'ethusdt@kline_1m'
-tr3 = Trade('ETHUSDT', 15)
-tr3.stream_id = 'ethusdt@kline_1m'
-tr4 = Trade('DOGEUSDT', 31)
-tr4.stream_id = 'dogeusdt@kline_1m'
-tr5 = Trade('NANOUSDT', 2)
-tr5.stream_id = 'nanousdt@kline_1m'
+onceoff = [False]
 
 
 # No Error is default, must be explicitly sent by binance
@@ -69,24 +32,46 @@ def coin_trade_data(msg):
         i = k['i']
         stream['symbol'] = msg['s']
         stream['time'] = msg['E']
-        stream['last'] = k['c']
-        stream['high'] = k['h']
-        stream['low'] = k['l']
+        stream['last'] = float(k['c'])
+        stream['high'] = float(k['h'])
+        stream['low'] = float(k['l'])
         stream['error'] = False
-        print(stream)
+        # print(stream)
         # custom per trade object functionality
         key = stream['symbol'].lower() + '@' + e + '_' + i
 
         for u in streamdict[key]:
-            u.stopchance()
-            if not u.active:
+            u.update_trade(stream)
+            u.update_snapshot(stream)
+            if not u.status == 'active':
+                print("Removing ", u, 'for reason', u.status)
                 stoptrades.append(u)
-
-        #checkupdate
         checkupdate()
-
     else:
         stream['error'] = True
+    if onceoff[0]:
+        onceoff[0] = False
+        k = msg['k']
+        e = msg['e']
+        i = k['i']
+        stream['symbol'] = msg['s']
+        stream['time'] = msg['E']
+        stream['last'] = float(k['c'])
+        stream['high'] = float(k['h'])
+        stream['low'] = float(k['l'])
+        stream['error'] = False
+        key = stream['symbol'].lower() + '@' + e + '_' + i
+        for u in streamdict[key]:
+            u.update_trade(stream)
+            u.update_snapshot(stream)
+            if not u.status == 'active':
+                print("Removing ", u, 'for reason', u.status)
+                stoptrades.append(u)
+        checkupdate()
+
+
+async def onceoff_f():
+    onceoff[0] = True
 
 
 def checkupdate():
@@ -102,7 +87,7 @@ async def stopstream():
 
 
 async def restart():
-    print('ITS LIT')
+    print('Saving stream and closing sockets')
     await save(streamdict)
     active[0] = False
     twm.stop()
@@ -143,10 +128,11 @@ def load():
     streamdict.update(restartstream)
 
 
-async def addtrade():  # import trade in future
-    tradequeue.extend([tr0])
-    print("Added trade", tr0)
+async def addtrade(new_trades):  # import trade in future
+    tradequeue.extend(new_trades)
+    print("Adding trades", new_trades)
     addstream(tradequeue, streamdict)
+    print('bumping')
     await bump()
 
 
@@ -166,7 +152,6 @@ def addstream(in_tradequeue, in_streamdict):
                     in_streamdict[a].append(t)
                     t.stream_id = in_streamdict[a][0].stream_id
                 duplicate = True
-
         # If pair is not being streamed, begin streaming pair
         if not duplicate:
             streamID = twm.start_kline_socket(callback=coin_trade_data, symbol=t.pair, interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
@@ -197,7 +182,11 @@ def stoptrade(in_stoptrades, in_streamdict, in_completedtrades):
 def savetraderesults(in_completedtrades):
     for c in in_completedtrades[:]:
         with open('telebagger/Saves/TradeResults.txt', 'a') as f:
-            f.write(str(c.snapshot()))
+            f.write(str(c.savestring))
+            f.write('\n\n')
+        openstr = 'telebagger/Saves/' + c.origin + '.txt'
+        with open(openstr, 'a') as f:
+            f.write(str(c.savestring))
             f.write('\n\n')
         in_completedtrades.remove(c)
     print("Recorded a Trade")
@@ -212,7 +201,6 @@ async def bump():
         await streamer()
 
 
-
 async def streamer():
     # Start websocket
     if not active[0]:
@@ -222,7 +210,7 @@ async def streamer():
             twm.start()
             reload[0] = False
         else:
-            twm.start()
+            pass
 
         # Stub Queue values
         #tradequeue.extend([tr1, tr2, tr3, tr4, tr5])

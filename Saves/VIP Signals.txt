@@ -1,0 +1,40 @@
+AIONUSDT
+TimeStarted: 2021-08-20_20:55 | 2021-08-20_20:56
+Duration: 0.02 hrs
+Pricechange: 0.1881 | 0.1882 | + 0.05%
+Status: time
+Origin: VIP Signals
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:55 | 2021-08-20_20:58
+Duration: 0.05 hrs
+Pricechange: 0.1881 | 0.1878 | - -0.16%
+Status: time
+Origin: VIP Signals
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:55 | 2021-08-20_20:59
+Duration: 0.07 hrs
+Pricechange: 0.1881 | 0.1878 | - -0.16%
+Status: time
+Origin: VIP Signals
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:55 | 2021-08-20_21:01
+Duration: 0.1 hrs
+Pricechange: 0.1881 | 0.1881 | + 0.0%
+Status: time
+Origin: VIP Signals
+
+
+AIONUSDT
+TimeStarted: 2021-08-20_20:42 | 2021-08-21_12:27
+Duration: 15.75 hrs
+Pricechange: 0.1879 | 0.1991 | + 5.96%
+Status: time
+Origin: VIP Signals
+
+
