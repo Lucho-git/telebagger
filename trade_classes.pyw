@@ -106,16 +106,15 @@ class Trade:
 
     def percent_diff(self, now):
         diff = float(now) - self.price
-
         if self.type == 'spot':
             percentage = round((diff / self.price * 100), 2)
-            percentage = str(percentage)
             if diff < 0:
-                percentage = Fore.RED + "- " + percentage + "%" + Style.RESET_ALL
+                percentage = percentage*-1
+                percentage = Fore.RED + "- " + str(round(percentage, 2)) + "%" + Style.RESET_ALL
             elif diff > 0:
-                percentage = Fore.LIGHTGREEN_EX + "+ " + percentage + "%" + Style.RESET_ALL
+                percentage = Fore.LIGHTGREEN_EX + "+ " + str(round(percentage, 2)) + "%" + Style.RESET_ALL
             else:
-                percentage = Fore.LIGHTBLUE_EX + "+ " + percentage + "%" + Style.RESET_ALL
+                percentage = Fore.LIGHTBLUE_EX + str(round(percentage, 2)) + "%" + Style.RESET_ALL
             return percentage
         elif self.type == 'futures' or self.type == 'mfutures':
             percentage = diff / self.price * 100 * self.conditions.leverage
@@ -134,6 +133,8 @@ class Trade:
             else:
                 percentage = Fore.LIGHTBLUE_EX + "+ " + str(round(percentage, 2)) + "%" + Style.RESET_ALL
             return percentage
+        else:
+            print("WRONG TYPEEE")
 
     def snapshot(self):
         snapshot = 'SnapShot: \n'
@@ -175,7 +176,7 @@ class Trade:
                     percentage = percentage * (-1)
         return percentage
 
-    def update_mfutures(self):
+    def update_mfutures(self, price):
         direction = self.conditions.direction
         if direction == 'long':
             losslimit = self.conditions.losstargets[self.conditions.targetnum]
@@ -184,53 +185,52 @@ class Trade:
             if self.conditions.new_lowest < losslimit:
                 # amount_left = amount_left - stoploss_amount
                 amount = self.conditions.stoploss[self.conditions.targetnum]
-                self.trade_log = 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(self.percentage_result(losslimit, 'loss'))
+                self.trade_log = 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(losslimit, 'loss'), 2))+'%'
                 print(self.trade_log)
                 self.conditions.amount_left = self.conditions.amount_left - (self.conditions.amount_left * amount/100)
                 self.conditions.trade_amounts += self.percentage_result(losslimit, 'loss') * amount/100
                 if self.conditions.amount_left == 0:
                     self.status = 'stoploss'
-                    self.closed = self.conditions.losstargets[self.conditions.targetnum]
+                    self.closed = losslimit
                 elif self.conditions.amount_left > 0:
                     self.conditions.targetnum += 1
-                    self.conditions.new_highest = self.price
-                    self.conditions.new_lowest = self.price
+                    self.conditions.new_highest = price
+                    self.conditions.new_lowest = price
                 else:
                     print("longLoss Numbers not adding to 100, error")
 
             elif self.conditions.new_highest > proflimit:
                 amount = self.conditions.stopprof[self.conditions.targetnum]
-                self.trade_log = 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(self.percentage_result(proflimit, 'prof'))
+                self.trade_log = 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%'
                 print(self.trade_log)
                 self.conditions.amount_left = self.conditions.amount_left - amount
                 self.conditions.trade_amounts += self.percentage_result(proflimit, 'prof') * amount/100
                 if self.conditions.amount_left == 0:
                     self.status = 'stopprof'
-                    self.closed = self.conditions.proftargets[self.conditions.targetnum]
+                    self.closed = proflimit
                 elif self.conditions.amount_left > 0:
                     self.conditions.targetnum += 1
-                    self.conditions.new_highest = self.price
-                    self.conditions.new_lowest = self.price
+                    self.conditions.new_highest = price
+                    self.conditions.new_lowest = price
                 else:
                     print('longProfit Numbers not adding to 100, error')
 
         elif direction == 'short':
             proflimit = self.conditions.proftargets[self.conditions.targetnum]
             losslimit = self.conditions.losstargets[self.conditions.targetnum]
-            print(self.conditions.new_highest, '>', losslimit)
             if self.conditions.new_lowest < proflimit:
                 amount = self.conditions.stopprof[self.conditions.targetnum]
-                self.trade_log = 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(self.percentage_result(losslimit, 'prof'))
+                self.trade_log = 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%'
                 print(self.trade_log)
                 self.conditions.amount_left = self.conditions.amount_left - amount
                 self.conditions.trade_amounts += self.percentage_result(proflimit, 'prof') * amount/100
                 if self.conditions.amount_left == 0:
                     self.status = 'stopprof'
-                    self.closed = self.conditions.proftargets[self.conditions.targetnum]
+                    self.closed = proflimit
                 elif self.conditions.amount_left > 0:
                     self.conditions.targetnum += 1
-                    self.conditions.new_highest = self.price
-                    self.conditions.new_lowest = self.price
+                    self.conditions.new_highest = price
+                    self.conditions.new_lowest = price
                 else:
                     print('shortProfit Numbers not adding to 100, error')
             elif self.conditions.new_highest > losslimit:
@@ -241,11 +241,11 @@ class Trade:
                 self.conditions.trade_amounts += self.percentage_result(losslimit, 'loss') * amount/100
                 if self.conditions.amount_left == 0:
                     self.status = 'stoploss'
-                    self.closed = self.conditions.stoploss[self.conditions.targetnum]
+                    self.closed = losslimit
                 elif self.conditions.amount_left > 0:
                     self.conditions.targetnum += 1
-                    self.conditions.new_highest = self.price
-                    self.conditions.new_lowest = self.price
+                    self.conditions.new_highest = price
+                    self.conditions.new_lowest = price
                 else:
                     print("shortLoss Numbers not adding to 100, error")
 
@@ -264,7 +264,7 @@ class Trade:
                 self.closed = self.conditions.stopprof
             if self.conditions.new_highest > self.conditions.stoploss:
                 self.status = 'stoploss'
-                self.closed = self.conditions.stopprof
+                self.closed = self.conditions.stoploss
 
     def update_trade(self, k):
         if k['low'] < self.lowest:
@@ -277,9 +277,9 @@ class Trade:
         elif self.status == 'active' and self.type == 'mfutures':
             if k['low'] < self.conditions.new_lowest:
                 self.conditions.new_lowest = k['low']
-            if k['low'] < self.conditions.new_highest:
+            if k['high'] > self.conditions.new_highest:
                 self.conditions.new_highest = k['high']
-            self.update_mfutures()
+            self.update_mfutures(k['last'])
         elif self.status == 'active' and self.type == 'mtrade':
             pass
 
@@ -347,9 +347,9 @@ class Trade:
 
     def trade_complete(self, k):
         time_passed = str(round((k['time'] - self.time) / 3600000, 2))
-        start_time = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%Y-%m-%d_%H:%M')
-        end_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%Y-%m-%d_%H:%M')
-        print('Here close', self.closed)
+        start_time = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%Y-%m-%d  %H:%M')
+        end_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%Y-%m-%d  %H:%M')
+
         percent = self.strip_ansi_codes(str(self.percent_diff(self.closed)))
 
         savestr = ''

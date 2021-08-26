@@ -1,18 +1,19 @@
 import time
 import copy
 import fake_trade
-from trade_classes import Trade, Futures
+from trade_classes import Trade, Futures, STrade
 
 tradeheat = [False]
 vip_signals_timer = [0]
 real = [False]
 
 WAIT_TIME1 = 60 * 1000
-WAIT_TIME2 = 120 * 1000
+WAIT_TIME2 = 1000 * 1000
 WAIT_TIME3 = 180 * 1000
 WAIT_TIME4 = 300 * 1000
 WAIT_TIME5 = 10000 * 1000
-WAIT_TIMES = [WAIT_TIME1,WAIT_TIME2,WAIT_TIME3,WAIT_TIME4,WAIT_TIME5]
+WAIT_TIMES = [WAIT_TIME1, WAIT_TIME2, WAIT_TIME3, WAIT_TIME4, WAIT_TIME5]
+
 
 def bag(msg, binance_wrap):
     search_text = msg
@@ -51,6 +52,7 @@ def bag(msg, binance_wrap):
         for w in WAIT_TIMES:
             signal = Trade(pair, base, 'VIP Signals', 'spot')
             fake_trade.spot_trade(signal)
+            signal.conditions = STrade(0, 99999999)
             signal.timelimit = signal.time + w
             signals.append(signal)
         first_trade_time = signals[0].time
@@ -115,7 +117,7 @@ def valid_trade_message(vip_message):
 
 def search_coin(text):
     coins = []
-    with open("binance_spot.txt", "r") as file:
+    with open("/telebagger/docs/binance_spot.txt", "r") as file:
         for line in file:
             line = line.strip()
             coinspaces = str(line + ' ')
@@ -127,7 +129,7 @@ def search_coin(text):
                     coinbtc in text):
                 coins.append(line)
     if not coins:
-        with open("binance_future.txt", "r") as file:
+        with open("/telebagger/docs/binance_future.txt", "r") as file:
             for line in file:
                 line = line.strip()
                 coinspaces = str(line + ' ')

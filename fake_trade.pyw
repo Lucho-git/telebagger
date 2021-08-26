@@ -38,12 +38,11 @@ def futures_trade(trade):
     print(trade.status)
 
 
-def mfutures_trade(trade, price):
+def mfutures_trade(trade):
     symbol = trade.pair
     base = trade.base
     coin = symbol.replace(trade.base, '')
     trade.price = float(realclient.get_symbol_ticker(symbol=trade.pair)['price'])
-    trade.price = price
     trade.time = realclient.futures_time()['serverTime']
     trade.id = trade.time
     trade.lowest = trade.price

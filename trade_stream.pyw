@@ -15,10 +15,8 @@ completedtrades = []
 restart = []
 streamdict = {}
 reload = [False]
-update = [False]
 active = [False]
 stop = [False]
-onceoff = [False]
 
 
 # No Error is default, must be explicitly sent by binance
@@ -49,29 +47,6 @@ def coin_trade_data(msg):
         checkupdate()
     else:
         stream['error'] = True
-    if onceoff[0]:
-        onceoff[0] = False
-        k = msg['k']
-        e = msg['e']
-        i = k['i']
-        stream['symbol'] = msg['s']
-        stream['time'] = msg['E']
-        stream['last'] = float(k['c'])
-        stream['high'] = float(k['h'])
-        stream['low'] = float(k['l'])
-        stream['error'] = False
-        key = stream['symbol'].lower() + '@' + e + '_' + i
-        for u in streamdict[key]:
-            u.update_trade(stream)
-            u.update_snapshot(stream)
-            if not u.status == 'active':
-                print("Removing ", u, 'for reason', u.status)
-                stoptrades.append(u)
-        checkupdate()
-
-
-async def onceoff_f():
-    onceoff[0] = True
 
 
 def checkupdate():
@@ -100,7 +75,7 @@ async def save(in_streamdict):
         print(in_streamdict[d])
         twm.stop_socket(in_streamdict[d][0].stream_id)
 
-    with open('savefile', 'wb') as config_dictionary_file:
+    with open('/telebagger/save_data/save_file', 'wb') as config_dictionary_file:
         pickle.dump(restartstream, config_dictionary_file)
     print('Saved...')
     print(restartstream)
@@ -110,7 +85,7 @@ def load():
     # Retrieve loadfile
     restartstream = None
     try:
-        with open('savefile', 'rb') as config_dictionary_file:
+        with open('/telebagger/save_data/save_file', 'rb') as config_dictionary_file:
             restartstream = pickle.load(config_dictionary_file)
             print('Loaded...')
             print(restartstream)
@@ -181,19 +156,15 @@ def stoptrade(in_stoptrades, in_streamdict, in_completedtrades):
 
 def savetraderesults(in_completedtrades):
     for c in in_completedtrades[:]:
-        with open('telebagger/Saves/TradeResults.txt', 'a') as f:
+        with open('telebagger/save_data/results/TradeResults.txt', 'a') as f:
             f.write(str(c.savestring))
             f.write('\n\n')
-        openstr = 'telebagger/Saves/' + c.origin + '.txt'
+        openstr = 'telebagger/save_data/results/' + c.origin + '.txt'
         with open(openstr, 'a') as f:
             f.write(str(c.savestring))
             f.write('\n\n')
         in_completedtrades.remove(c)
     print("Recorded a Trade")
-
-
-async def streamcommand():
-    update[0] = True
 
 
 async def bump():
@@ -212,10 +183,6 @@ async def streamer():
         else:
             pass
 
-        # Stub Queue values
-        #tradequeue.extend([tr1, tr2, tr3, tr4, tr5])
-        #stoptrades.extend([tr1, tr2, tr3, tr4, tr5])
-
         load()
         addstream(tradequeue, streamdict)
 
@@ -225,15 +192,6 @@ async def streamer():
         stop[0] = False
 
     while streamdict:
-        '''
-        if stoptrades:
-            stoptrade(stoptrades, streamdict, completedtrades)
-
-        if completedtrades:
-            savetraderesults(completedtrades)
-        '''
-        if tradequeue:
-            addstream(tradequeue, streamdict)
 
         await asyncio.sleep(1)
         time.sleep(1)
@@ -242,14 +200,8 @@ async def streamer():
         for i in streamdict:
             streamstring += str(i) + ' #'+str(len(streamdict[i])) + ' | '
         print('Checking for updates....', streamstring, twm)
-        if update[0]:
-            print('Update Recieved')
-            update[0] = False
 
-        if reload[0]:
-            break
-
-        if stop[0]:
+        if reload[0] or stop[0]:
             break
 
     print('Returning To Event Menu....')
