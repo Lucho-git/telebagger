@@ -75,7 +75,7 @@ async def save(in_streamdict):
         print(in_streamdict[d])
         twm.stop_socket(in_streamdict[d][0].stream_id)
 
-    with open('/telebagger/save_data/save_file', 'wb') as config_dictionary_file:
+    with open('telebagger/save_data/savefile', 'wb') as config_dictionary_file:
         pickle.dump(restartstream, config_dictionary_file)
     print('Saved...')
     print(restartstream)
@@ -85,7 +85,7 @@ def load():
     # Retrieve loadfile
     restartstream = None
     try:
-        with open('/telebagger/save_data/save_file', 'rb') as config_dictionary_file:
+        with open('telebagger/save_data/savefile', 'rb') as config_dictionary_file:
             restartstream = pickle.load(config_dictionary_file)
             print('Loaded...')
             print(restartstream)

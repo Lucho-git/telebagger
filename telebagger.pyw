@@ -66,7 +66,7 @@ def StartTelegramForwarding():
                 await client.disconnect()
 
             if str(event.raw_text) == '/vip':
-                contents = open("/telebagger/docs/onexample.txt", "r").read()
+                contents = open("telebagger/docs/onexample.txt", "r").read()
                 vip_trades = msg_vip_signals.bag(contents, binance_wrap)
                 await trade_stream.addtrade(vip_trades)
 

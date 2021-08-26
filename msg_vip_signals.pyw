@@ -117,7 +117,7 @@ def valid_trade_message(vip_message):
 
 def search_coin(text):
     coins = []
-    with open("/telebagger/docs/binance_spot.txt", "r") as file:
+    with open("telebagger/docs/binance_spot.txt", "r") as file:
         for line in file:
             line = line.strip()
             coinspaces = str(line + ' ')
@@ -129,7 +129,7 @@ def search_coin(text):
                     coinbtc in text):
                 coins.append(line)
     if not coins:
-        with open("/telebagger/docs/binance_future.txt", "r") as file:
+        with open("telebagger/docs/binance_future.txt", "r") as file:
             for line in file:
                 line = line.strip()
                 coinspaces = str(line + ' ')
