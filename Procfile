@@ -1,1 +1,1 @@
-worker: python telebagger.pyw
+worker: python telebagger.py
