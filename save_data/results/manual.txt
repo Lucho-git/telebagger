@@ -1,0 +1,24 @@
+BTCUSDT
+TimeStarted: 2021-08-27  20:07 | 2021-08-27  20:08
+Duration: 0.01 hrs
+Pricechange: 47453.19 | 46000 | - 15.31%
+Status: stopprof
+Origin: manual
+
+
+DOGEUSDT
+TimeStarted: 2021-08-27  20:07 | 2021-08-27  20:08
+Duration: 0.01 hrs
+Pricechange: 0.2784 | 0.28 | + 2.87%
+Status: stoploss
+Origin: manual
+
+
+NANOUSDT
+TimeStarted: 2021-08-27  20:07 | 2021-08-27  20:08
+Duration: 0.01 hrs
+Pricechange: 6.58 | 6 | - 44.07%
+Status: stopprof
+Origin: manual
+
+

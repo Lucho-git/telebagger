@@ -252,17 +252,17 @@ class Trade:
     def update_futures(self):
         direction = self.conditions.direction
         if direction == 'long':
-            if self.conditions.new_lowest < self.conditions.stoploss:
+            if self.lowest < self.conditions.stoploss:
                 self.status = 'stoploss'
                 self.closed = self.conditions.stoploss
-            if self.conditions.new_highest > self.conditions.stopprof:
+            if self.highest > self.conditions.stopprof:
                 self.status = 'stopprof'
                 self.closed = self.conditions.stopprof
         elif direction == 'short':
-            if self.conditions.new_lowest < self.conditions.stopprof:
+            if self.lowest < self.conditions.stopprof:
                 self.status = 'stopprof'
                 self.closed = self.conditions.stopprof
-            if self.conditions.new_highest > self.conditions.stoploss:
+            if self.highest > self.conditions.stoploss:
                 self.status = 'stoploss'
                 self.closed = self.conditions.stoploss
 
