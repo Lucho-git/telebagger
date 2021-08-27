@@ -8,6 +8,7 @@ import asyncio
 import time
 
 # Methods within this package
+import trade_classes
 from trade_classes import Trade, Futures, MFutures
 # from trade_stream import Trade
 import msg_vip_signals
