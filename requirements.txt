@@ -2,3 +2,4 @@ telethon==1.21.1
 asyncio==3.4.3
 requests==2.25.1
 python-binance==1.0.12
+colorama=0.4.4
