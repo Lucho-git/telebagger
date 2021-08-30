@@ -2,6 +2,21 @@ import time
 import copy
 import fake_trade
 from trade_classes import Trade, Futures, STrade
+import pyrebase
+
+# Setting up connection to Firebase, cloud storage system
+config = {
+    "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
+    "authDomain": "telebagger.firebaseapp.com",
+    "projectId": "telebagger",
+    "storageBucket": "telebagger.appspot.com",
+    "messagingSenderId": "332905720250",
+    "appId": "1:332905720250:web:e2006e777fa8d980d61583",
+    "measurementId": "G-02W82CCF85",
+    "databaseURL":  "https://telebagger-default-rtdb.firebaseio.com/"
+}
+firebase = pyrebase.initialize_app(config)
+storage = firebase.storage()
 
 tradeheat = [False]
 vip_signals_timer = [0]
@@ -117,7 +132,13 @@ def valid_trade_message(vip_message):
 
 def search_coin(text):
     coins = []
-    with open("telebagger/docs/binance_spot.txt", "r") as file:
+    path_on_cloud = "docs/binance_spot.txt"
+    path_on_cloud2 = "docs/binance_spot.txt"
+    path_on_local = "docs/binance_spot.txt"
+    path_on_local2 = "docs/binance_spot.txt"
+    storage.child(path_on_cloud).download("./", path_on_local)
+    storage.child(path_on_cloud2).download("./", path_on_local2)
+    with open(path_on_local, "r") as file:
         for line in file:
             line = line.strip()
             coinspaces = str(line + ' ')
@@ -129,7 +150,7 @@ def search_coin(text):
                     coinbtc in text):
                 coins.append(line)
     if not coins:
-        with open("telebagger/docs/binance_future.txt", "r") as file:
+        with open(path_on_local2, "r") as file:
             for line in file:
                 line = line.strip()
                 coinspaces = str(line + ' ')
@@ -171,17 +192,3 @@ def search_coin(text):
     if coins:
         coins[1] = coins[int(len(coins)) - 1]
     return coins[0:2]
-
-
-'''
-def print_past_messages(client):
-  msgs = client.get_messages('CryptoVIPsignalTA', limit=2000)
-  if msgs is not None:
-    print("Messages:\n---------")
-    f = open("vip_examples.txt", "w")
-    for msg in msgs:
-      if ('buy zone'.upper() in str(msg).upper()) and ('target'.upper() in str(msg).upper())  and ('-' in str(msg)):
-        f.write(str(msg.message) +'\n')
-        f.write('______________________\n')
-    f.close()   
-'''

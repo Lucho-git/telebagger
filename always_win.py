@@ -74,17 +74,7 @@ def search_coin(text):
     return [signal, signal2]
 
 
-
-
 '''
 def print_past_messages(client):
   msgs = client.get_messages('CryptoVIPsignalTA', limit=2000)
-  if msgs is not None:
-    print("Messages:\n---------")
-    f = open("vip_examples.txt", "w")
-    for msg in msgs:
-      if ('buy zone'.upper() in str(msg).upper()) and ('target'.upper() in str(msg).upper())  and ('-' in str(msg)):
-        f.write(str(msg.message) +'\n')
-        f.write('______________________\n')
-    f.close()   
 '''

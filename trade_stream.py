@@ -6,7 +6,6 @@ import asyncio
 import time
 import pickle
 import pyrebase
-
 # Setting up connection to Firebase, cloud storage system
 config = {
     "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
@@ -91,8 +90,13 @@ async def save(in_streamdict):
         print(in_streamdict[d])
         twm.stop_socket(in_streamdict[d][0].stream_id)
 
-    with open('save_data/savefile', 'wb') as config_dictionary_file:
+    path_on_cloud = "save_data/savefile"
+    path_on_local = "save_data/savefile"
+    storage.child(path_on_cloud).download("./", path_on_local)
+    with open(path_on_local, 'wb') as config_dictionary_file:
         pickle.dump(restartstream, config_dictionary_file)
+    storage.child(path_on_cloud).put(path_on_local)
+
     print('Saved...')
     print(restartstream)
 
@@ -100,8 +104,11 @@ async def save(in_streamdict):
 def load():
     # Retrieve loadfile
     restartstream = None
+    path_on_cloud = "save_data/savefile"
+    path_on_local = "save_data/savefile"
+    storage.child(path_on_cloud).download("./", path_on_local)
     try:
-        with open('save_data/savefile', 'rb') as config_dictionary_file:
+        with open(path_on_local, 'rb') as config_dictionary_file:
             restartstream = pickle.load(config_dictionary_file)
             print('Loaded...')
             print(restartstream)
