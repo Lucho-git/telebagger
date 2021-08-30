@@ -1,0 +1,32 @@
+AVAXUSDT
+TimeStarted: 2021-08-27  19:57 | 2021-08-27  22:17
+Duration: 2.33 hrs
+Pricechange: 45.84 | 46 | - 6.98%
+Status: stoploss
+Origin: Always Win
+
+
+AVAXUSDT
+TimeStarted: 2021-08-27  19:57 | 2021-08-27  22:17
+Duration: 2.33 hrs
+Pricechange: 45.86 | 46 | - 6.11%
+Status: stoploss
+Origin: Always Win
+
+
+SANDUSDT
+TimeStarted: 2021-08-29  20:44 | 2021-08-29  21:25
+Duration: 0.67 hrs
+Pricechange: 1.0094 | 1.003 | + 12.68%
+Status: stoploss
+Origin: Always Win
+
+
+FTMUSDT
+TimeStarted: 2021-08-30  19:30 | 2021-08-30  19:50
+Duration: 0.33 hrs
+Pricechange: 0.7083 | 0.717 | - 24.57%
+Status: stoploss
+Origin: Always Win
+
+

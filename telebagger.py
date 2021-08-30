@@ -8,15 +8,15 @@ import asyncio
 import time
 
 # Methods within this package
-import trade_classes
 from trade_classes import Trade, Futures, MFutures
-# from trade_stream import Trade
 import msg_vip_signals
 import always_win
 import binance_wrap
 import trade_stream
 import fake_trade
-init()
+
+init()  # Calling in colorama
+
 update = [False]
 update2 = [False]
 
@@ -33,7 +33,8 @@ def StartTelegramForwarding():
     # loop = asyncio.get_event_loop()
     api_id = 5747368
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
-    stringsesh = '1BVtsOHgBu5DuJXuehRfDlGAdXz0SidTkr6lFXo_csesUWmcScUvpi6WfkvoxIpkT78gUAfVl8aj8s-EvaWQ9Le4epxt2WyjPI9mbBpQRgYGIGM8YKKhFs0TMHv8P5EwWOxxOgKnka2RtW-J4aLNFv4zLmR9ekS2wDhLVhNlMhS6gnEoCVAmdxcLH3Qc7005IGuz7Ff2HqYXUYoKz5gDRbzC7gjF086Ux_vK52OSnWjo0XdkUH9qG2aPWohIY0cqeRHCtXIlYkESYcmifKkhcL1C_ZTapxsawrdYrOyuHUYP-fWVEPLFj4XjypFZrlaLUmLz8EL2VxkxG2p1vqFIjmgLI_VcWMSU='
+    stringsesh = '1BVtsOL0Bu4c_nflfOgudjCsjpr3PqxJGtfN6SVKTuxYdxzCr0e4-BXbirG8DuWTRwTYjBXhzqcyUr-hVXTYNgepV_dssSX1_yZMIewmEL1QQAuFWcKSB9WPs4U5O37e2s-CXE2BZwmPGrG_p-FI6AvIPRFD7CDb_PAxqI3j6HWKA-lQf8rvYsO6ozlYWyVZ1di554f_UMa7ijdgi0zwcWKhyAt-uWfX9FY2kjWatZNdOvYWLFNZwx_rgKL_ikZSBcNVmv7yx1A6aIvsGnTX8GMWeEEmmQ__VRVAewJ58V0YCYlWqfbRx96_VP4Whrn4s-Wl09sh517n3LhFuvY3S2JqhAA55bgA='
+
     client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
 
     @client.on(events.NewMessage())
@@ -67,7 +68,7 @@ def StartTelegramForwarding():
                 await client.disconnect()
 
             if str(event.raw_text) == '/vip':
-                contents = open("telebagger/docs/onexample.txt", "r").read()
+                contents = open("docs/onexample.txt", "r").read()
                 vip_trades = msg_vip_signals.bag(contents, binance_wrap)
                 await trade_stream.addtrade(vip_trades)
 

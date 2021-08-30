@@ -5,6 +5,22 @@ from trade_classes import Trade, Futures
 import asyncio
 import time
 import pickle
+import pyrebase
+
+# Setting up connection to Firebase, cloud storage system
+config = {
+    "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
+    "authDomain": "telebagger.firebaseapp.com",
+    "projectId": "telebagger",
+    "storageBucket": "telebagger.appspot.com",
+    "messagingSenderId": "332905720250",
+    "appId": "1:332905720250:web:e2006e777fa8d980d61583",
+    "measurementId": "G-02W82CCF85",
+    "databaseURL":  "https://telebagger-default-rtdb.firebaseio.com/"
+}
+firebase = pyrebase.initialize_app(config)
+storage = firebase.storage()
+
 
 twm = ThreadedWebsocketManager()
 twm.start()
@@ -75,7 +91,7 @@ async def save(in_streamdict):
         print(in_streamdict[d])
         twm.stop_socket(in_streamdict[d][0].stream_id)
 
-    with open('telebagger/save_data/savefile', 'wb') as config_dictionary_file:
+    with open('save_data/savefile', 'wb') as config_dictionary_file:
         pickle.dump(restartstream, config_dictionary_file)
     print('Saved...')
     print(restartstream)
@@ -85,7 +101,7 @@ def load():
     # Retrieve loadfile
     restartstream = None
     try:
-        with open('telebagger/save_data/savefile', 'rb') as config_dictionary_file:
+        with open('save_data/savefile', 'rb') as config_dictionary_file:
             restartstream = pickle.load(config_dictionary_file)
             print('Loaded...')
             print(restartstream)
@@ -156,15 +172,27 @@ def stoptrade(in_stoptrades, in_streamdict, in_completedtrades):
 
 def savetraderesults(in_completedtrades):
     for c in in_completedtrades[:]:
-        with open('telebagger/save_data/results/TradeResults.txt', 'a') as f:
+        # Add trade result to all trades
+        path_on_cloud = "trade_results/TradeResults.txt"
+        path_on_local = "save_data/results/TradeResults.txt"
+        storage.child(path_on_cloud).download("./", path_on_local)
+        with open('save_data/results/TradeResults.txt', 'a') as f:
             f.write(str(c.savestring))
             f.write('\n\n')
-        openstr = 'telebagger/save_data/results/' + c.origin + '.txt'
-        with open(openstr, 'a') as f:
+        storage.child(path_on_cloud).put(path_on_local)
+
+        # Add trade result to specific trade file
+        path_on_cloud = "trade_results/" + c.origin + ".txt"
+        path_on_local = "save_data/results/" + c.origin + ".txt"
+        storage.child(path_on_cloud).download("./", path_on_local)
+        with open(path_on_local, 'a') as f:
             f.write(str(c.savestring))
             f.write('\n\n')
+        storage.child(path_on_cloud).put(path_on_local)
+
+        # Remove trade fom list
         in_completedtrades.remove(c)
-    print("Recorded a Trade")
+    print("Recorded Trade to Database")
 
 
 async def bump():
