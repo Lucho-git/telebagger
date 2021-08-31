@@ -181,16 +181,16 @@ def savetraderesults(in_completedtrades):
     for c in in_completedtrades[:]:
         # Add trade result to all trades
         path_on_cloud = "trade_results/TradeResults.txt"
-        path_on_local = "save_data/results/TradeResults.txt"
+        path_on_local = "save_data/TradeResults.txt"
         storage.child(path_on_cloud).download("./", path_on_local)
-        with open('save_data/results/TradeResults.txt', 'a') as f:
+        with open('save_data/TradeResults.txt', 'a') as f:
             f.write(str(c.savestring))
             f.write('\n\n')
         storage.child(path_on_cloud).put(path_on_local)
 
         # Add trade result to specific trade file
         path_on_cloud = "trade_results/" + c.origin + ".txt"
-        path_on_local = "save_data/results/" + c.origin + ".txt"
+        path_on_local = "save_data/" + c.origin + ".txt"
         storage.child(path_on_cloud).download("./", path_on_local)
         with open(path_on_local, 'a') as f:
             f.write(str(c.savestring))
