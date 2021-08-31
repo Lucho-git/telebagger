@@ -185,8 +185,7 @@ class Trade:
             if self.conditions.new_lowest < losslimit:
                 # amount_left = amount_left - stoploss_amount
                 amount = self.conditions.stoploss[self.conditions.targetnum]
-                self.trade_log = 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(losslimit, 'loss'), 2))+'%'
-                print(self.trade_log)
+                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(losslimit, 'loss'), 2))+'%\n'
                 self.conditions.amount_left = self.conditions.amount_left - (self.conditions.amount_left * amount/100)
                 self.conditions.trade_amounts += self.percentage_result(losslimit, 'loss') * amount/100
                 if self.conditions.amount_left == 0:
@@ -201,8 +200,7 @@ class Trade:
 
             elif self.conditions.new_highest > proflimit:
                 amount = self.conditions.stopprof[self.conditions.targetnum]
-                self.trade_log = 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%'
-                print(self.trade_log)
+                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%'
                 self.conditions.amount_left = self.conditions.amount_left - amount
                 self.conditions.trade_amounts += self.percentage_result(proflimit, 'prof') * amount/100
                 if self.conditions.amount_left == 0:
@@ -220,8 +218,7 @@ class Trade:
             losslimit = self.conditions.losstargets[self.conditions.targetnum]
             if self.conditions.new_lowest < proflimit:
                 amount = self.conditions.stopprof[self.conditions.targetnum]
-                self.trade_log = 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%'
-                print(self.trade_log)
+                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%'
                 self.conditions.amount_left = self.conditions.amount_left - amount
                 self.conditions.trade_amounts += self.percentage_result(proflimit, 'prof') * amount/100
                 if self.conditions.amount_left == 0:
@@ -235,8 +232,7 @@ class Trade:
                     print('shortProfit Numbers not adding to 100, error')
             elif self.conditions.new_highest > losslimit:
                 amount = self.conditions.stoploss[self.conditions.targetnum]
-                self.trade_log = 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(self.percentage_result(losslimit, 'loss'))
-                print(self.trade_log)
+                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(self.percentage_result(losslimit, 'loss'))
                 self.conditions.amount_left = self.conditions.amount_left - (self.conditions.amount_left * amount/100)
                 self.conditions.trade_amounts += self.percentage_result(losslimit, 'loss') * amount/100
                 if self.conditions.amount_left == 0:

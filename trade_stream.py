@@ -194,7 +194,8 @@ def savetraderesults(in_completedtrades):
         storage.child(path_on_cloud).download("./", path_on_local)
         with open(path_on_local, 'a') as f:
             f.write(str(c.savestring))
-            f.write('\n\n')
+            f.write(c.trade_log)
+            f.write('_________________________________\n\n')
         storage.child(path_on_cloud).put(path_on_local)
 
         # Remove trade fom list

@@ -1,8 +1,0 @@
-SnapShot: 
-Pair: COSUSDT
-Time: 1627228451719
-Amount: 28256.70000000
-Price: 0.01362
-Status: Completed
-Number Trades: 1
-Signal Origin: VIP Signals

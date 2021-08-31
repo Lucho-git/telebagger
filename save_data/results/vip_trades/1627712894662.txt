@@ -1,8 +1,0 @@
-SnapShot: 
-Pair: MDTUSDT
-Time: 1627712894662
-Amount: 13081.40000000
-Price: 0.026833596251165777
-Status: Completed
-Number Trades: 1
-Signal Origin: VIP Signals

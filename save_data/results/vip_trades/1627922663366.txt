@@ -1,8 +1,0 @@
-SnapShot: 
-Pair: PONDUSDT
-Time: 1627922663366
-Amount: 1566.30000000
-Price: 0.0655
-Status: Completed
-Number Trades: 1
-Signal Origin: VIP Signals
