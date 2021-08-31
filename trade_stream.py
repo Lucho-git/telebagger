@@ -90,8 +90,8 @@ async def save(in_streamdict):
         print(in_streamdict[d])
         twm.stop_socket(in_streamdict[d][0].stream_id)
 
-    path_on_cloud = "savefile"
-    path_on_local = "savefile"
+    path_on_cloud = "save_data/savefile"
+    path_on_local = "save_data/savefile"
     storage.child(path_on_cloud).download("./", path_on_local)
     with open(path_on_local, 'wb') as config_dictionary_file:
         pickle.dump(restartstream, config_dictionary_file)
@@ -104,8 +104,8 @@ async def save(in_streamdict):
 def load():
     # Retrieve loadfile
     restartstream = None
-    path_on_cloud = "savefile"
-    path_on_local = "savefile"
+    path_on_cloud = "save_data/savefile"
+    path_on_local = "save_data/savefile"
     storage.child(path_on_cloud).download("./", path_on_local)
     try:
         with open(path_on_local, 'rb') as config_dictionary_file:
