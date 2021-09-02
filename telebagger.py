@@ -5,6 +5,7 @@ from telethon import TelegramClient, events, sync, utils
 from telethon.sessions import StringSession
 import requests
 import asyncio
+import pyrebase
 import time
 
 # Methods within this package
@@ -14,8 +15,8 @@ import always_win
 import binance_wrap
 import trade_stream
 import fake_trade
-import pyrebase
 import utility
+import hirn
 
 
 config = {  # initialising database connection
@@ -87,12 +88,26 @@ def StartTelegramForwarding():
                 except Exception as e:
                     utility.failed_message(message, 'Vip Signals', storage, e)
                     utility.add_message(storage, 'Vip Signals', '[-]')
+        elif chat.id == 1248393106:
+            valid = hirn.valid_trade_message(message)
+            if valid:
+                try:
+                    hir = hirn.bag(message)
+                    await trade_stream.addtrade(hir)
+                except Exception as e:
+                    utility.failed_message(message, 'Hirn', storage, e)
+                    utility.add_message(storage, 'Hirn', '[-]')
 
         elif chat.id == 1899129008:
             print("Robot Section +++")
             if str(event.raw_text) == '/stop':
                 print('Exiting....')
                 await client.disconnect()
+
+            if str(event.raw_text) == '/hirn':
+                contents = open("docs/hirn_example.txt", "r", errors="ignore").read()
+                hir = hirn.bag(contents)
+                await trade_stream.addtrade(hir)
 
             if str(event.raw_text) == '/vip':
                 contents = open("docs/onexample.txt", "r").read()

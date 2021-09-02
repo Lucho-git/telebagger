@@ -20,6 +20,8 @@ def valid_trade_message(msg):
 
 def search_coin(text):
     # print(text)
+    text = text.replace('  ', ' ')
+    text = text.replace('   ', ' ')
     lines = text.split('\n')
     pair = lines[0].split(' ')[0]
     base = pair.split('/')[1]
@@ -28,10 +30,7 @@ def search_coin(text):
     direction = lines[0].split(' ')[1].lower()
     lev = lines[1].split(' ')[1]
     lev = float(lev.split('x')[0])
-    if lines[2].split(' ')[1] == ' ':
-        entry = float(lines[2].split(' ')[2])
-    else:
-        entry = float(lines[2].split(' ')[1])
+    entry = float(lines[2].split(' ')[2])
     t1 = float(lines[3].split(' ')[2])
     t2 = float(lines[4].split(' ')[2])
     t3 = float(lines[5].split(' ')[2])

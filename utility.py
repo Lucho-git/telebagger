@@ -14,7 +14,7 @@ def failed_message(msg, origin, storage, e):
         print(ex)
         print("No Previous File existed I think")
         with open(path_on_local, 'w+') as f:
-            f.write('Failed ', origin, 'Messages:\n')
+            f.write('Failed ' + origin + ' Messages:\n')
             f.write('==========================\n')
             f.write(msg + '\n')
             f.write('__________________________\n')
@@ -36,7 +36,7 @@ def add_message(storage, origin, result):
         print(e)
         print("New count file?")
         with open(path_on_local, 'w+') as f:
-            f.write(origin, 'Signal Count    [-] is Fail  ||  [X] is Success \n')
+            f.write(origin + 'Signal Count    [-] is Fail  ||  [X] is Success \n')
             f.write('==========================\n')
             f.write(result + '\n')
         storage.child(path_on_cloud).put(path_on_local)
