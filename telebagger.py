@@ -14,8 +14,24 @@ import always_win
 import binance_wrap
 import trade_stream
 import fake_trade
+import pyrebase
+import utility
 
-init()  # Calling in colorama
+
+config = {  # initialising database connection
+    "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
+    "authDomain": "telebagger.firebaseapp.com",
+    "projectId": "telebagger",
+    "storageBucket": "telebagger.appspot.com",
+    "messagingSenderId": "332905720250",
+    "appId": "1:332905720250:web:e2006e777fa8d980d61583",
+    "measurementId": "G-02W82CCF85",
+    "databaseURL":  "https://telebagger-default-rtdb.firebaseio.com/"
+}
+firebase = pyrebase.initialize_app(config)
+storage = firebase.storage()
+
+init()  # Initialising colorama
 
 update = [False]
 update2 = [False]
@@ -30,7 +46,6 @@ def SendMessageToAlwaysWin(message):
 
 
 def StartTelegramForwarding():
-    # loop = asyncio.get_event_loop()
     api_id = 5747368
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
     stringsesh = '1BVtsOL0Bu4c_nflfOgudjCsjpr3PqxJGtfN6SVKTuxYdxzCr0e4-BXbirG8DuWTRwTYjBXhzqcyUr-hVXTYNgepV_dssSX1_yZMIewmEL1QQAuFWcKSB9WPs4U5O37e2s-CXE2BZwmPGrG_p-FI6AvIPRFD7CDb_PAxqI3j6HWKA-lQf8rvYsO6ozlYWyVZ1di554f_UMa7ijdgi0zwcWKhyAt-uWfX9FY2kjWatZNdOvYWLFNZwx_rgKL_ikZSBcNVmv7yx1A6aIvsGnTX8GMWeEEmmQ__VRVAewJ58V0YCYlWqfbRx96_VP4Whrn4s-Wl09sh517n3LhFuvY3S2JqhAA55bgA='
@@ -45,22 +60,34 @@ def StartTelegramForwarding():
         chat = await event.get_chat()
         sender_id = str(sender.id)
         channel_name = utils.get_display_name(sender)
+        message = event.raw_text
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
         # print(msg)
         if sender_id == "1375168387":
-            message = event.raw_text
-            aw = None
-            if '/USDT' in message:
-                aw = always_win.bag(message, binance_wrap)
-            if aw:
-                await trade_stream.addtrade(aw)
+            valid = always_win.valid_trade_message(message)
+            if valid:
+                try:
+                    aw = always_win.bag(message, binance_wrap)
+                    utility.add_message(storage, 'Always Win', '[X]')
+                    await trade_stream.addtrade(aw)
+                except Exception as e:
+                    utility.failed_message(message, 'Always Win', storage, e)
+                    utility.add_message(storage, 'Always Win', '[-]')
+
             # Forward Message to my telegram channel
             # await client.send_message(1576065688, event.message)
             pass
         if chat.id == 1312345502:
-            vip_trades = msg_vip_signals.bag(event.raw_text, binance_wrap)
-            if vip_trades:
-                await trade_stream.addtrade(vip_trades)
+            valid = msg_vip_signals.valid_trade_message(message)
+            if valid:
+                try:
+                    vip = msg_vip_signals.bag(message, binance_wrap)
+                    utility.add_message(storage, 'Vip Signals', '[X]')
+                    await trade_stream.addtrade(vip)
+                except Exception as e:
+                    utility.failed_message(message, 'Vip Signals', storage, e)
+                    utility.add_message(storage, 'Vip Signals', '[-]')
+
         elif chat.id == 1899129008:
             print("Robot Section +++")
             if str(event.raw_text) == '/stop':
@@ -69,6 +96,8 @@ def StartTelegramForwarding():
 
             if str(event.raw_text) == '/vip':
                 contents = open("docs/onexample.txt", "r").read()
+                utility.failed_message(contents, 'Vip Signals', storage, 'ERROOR MESSAGE')
+                utility.add_message(storage, 'Vip Signals', '[-]')
                 vip_trades = msg_vip_signals.bag(contents, binance_wrap)
                 await trade_stream.addtrade(vip_trades)
 

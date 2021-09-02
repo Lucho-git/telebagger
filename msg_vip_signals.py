@@ -31,11 +31,7 @@ WAIT_TIMES = [WAIT_TIME1, WAIT_TIME2, WAIT_TIME3, WAIT_TIME4, WAIT_TIME5]
 
 
 def bag(msg, binance_wrap):
-    search_text = msg
-    result = None
-    result = vip_signals_message(search_text)
-    print('Vip Message analsis')
-
+    result = search_coin(msg)
     raw_server_time = binance_wrap.timenow()
     print(raw_server_time)
     if raw_server_time < vip_signals_timer[0]:
@@ -46,7 +42,6 @@ def bag(msg, binance_wrap):
 
     if result and not tradeheat[0]:
         trade_decimal = 1
-        # TODO, add global variable to top of file
         vip_string = str(result[0]) + "___" + str(result[1])
         print(vip_string)
         if binance_wrap.isUSDTpair(result[0]):
@@ -74,6 +69,7 @@ def bag(msg, binance_wrap):
         # Perform 1st trade, and copy results
 
         if real[0]:
+            '''
             print(binance_wrap.getprice(pair))
             binance_wrap.market_trade(signal, trade_decimal, True)
             trade1 = copy.deepcopy(signal)
@@ -103,6 +99,7 @@ def bag(msg, binance_wrap):
             # if spot portfolio is left in BTC, transfer back to USDT
             if base == 'BTC':
                 binance_wrap.usdt2btc()
+        '''
 
         # Wait 180 seconds before allowing new vip trades
         vip_signals_timer[0] = first_trade_time + 720000
@@ -110,14 +107,6 @@ def bag(msg, binance_wrap):
 
     else:
         print('Not a signal')
-
-
-def vip_signals_message(vip_message):
-    validity = valid_trade_message(vip_message)
-    trade_type = None
-    if validity:
-        trade_type = search_coin(vip_message)
-    return trade_type
 
 
 def valid_trade_message(vip_message):
