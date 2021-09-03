@@ -1,25 +1,9 @@
 from binance import ThreadedWebsocketManager
 from binance.streams import AsyncClient
 from trade_classes import Trade, Futures
-# from stream_trade import Trade
 import asyncio
 import time
-import pickle
-import pyrebase
-# Setting up connection to Firebase, cloud storage system
-config = {
-    "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
-    "authDomain": "telebagger.firebaseapp.com",
-    "projectId": "telebagger",
-    "storageBucket": "telebagger.appspot.com",
-    "messagingSenderId": "332905720250",
-    "appId": "1:332905720250:web:e2006e777fa8d980d61583",
-    "measurementId": "G-02W82CCF85",
-    "databaseURL":  "https://telebagger-default-rtdb.firebaseio.com/"
-}
-firebase = pyrebase.initialize_app(config)
-storage = firebase.storage()
-
+import utility
 
 twm = ThreadedWebsocketManager()
 twm.start()
@@ -34,7 +18,7 @@ active = [False]
 stop = [False]
 
 
-# No Error is default, must be explicitly sent by binance
+# Not Error is default, must be explicitly set as error by binance
 stream = {'error': False}
 
 
@@ -90,34 +74,18 @@ async def save(in_streamdict):
         print(in_streamdict[d])
         twm.stop_socket(in_streamdict[d][0].stream_id)
 
-    path_on_cloud = "save_data/savefile"
-    path_on_local = "save_data/savefile"
-    storage.child(path_on_cloud).download("./", path_on_local)
-    with open(path_on_local, 'wb') as config_dictionary_file:
-        pickle.dump(restartstream, config_dictionary_file)
-    storage.child(path_on_cloud).put(path_on_local)
-
+    utility.save_stream(restartstream)
     print('Saved...')
     print(restartstream)
 
 
 def load():
     # Retrieve loadfile
-    restartstream = None
-    path_on_cloud = "save_data/savefile"
-    path_on_local = "save_data/savefile"
-    storage.child(path_on_cloud).download("./", path_on_local)
-    try:
-        with open(path_on_local, 'rb') as config_dictionary_file:
-            restartstream = pickle.load(config_dictionary_file)
-            print('Loaded...')
-            print(restartstream)
-    except:
-        print('No Save File')
-
+    restartstream = utility.load_stream()
     # Restart the streams
     if restartstream:
-        print("Reloaded....")
+        print("Reloaded Stream....")
+        print(restartstream)
         for r in restartstream:
             sym = restartstream[r][0].pair
             twm.start_kline_socket(callback=coin_trade_data, symbol=sym, interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
@@ -179,25 +147,8 @@ def stoptrade(in_stoptrades, in_streamdict, in_completedtrades):
 
 def savetraderesults(in_completedtrades):
     for c in in_completedtrades[:]:
-        # Add trade result to all trades
-        path_on_cloud = "trade_results/TradeResults.txt"
-        path_on_local = "save_data/TradeResults.txt"
-        storage.child(path_on_cloud).download("./", path_on_local)
-        with open('save_data/TradeResults.txt', 'a') as f:
-            f.write(str(c.savestring))
-            f.write('\n\n')
-        storage.child(path_on_cloud).put(path_on_local)
-
-        # Add trade result to specific trade file
-        path_on_cloud = "trade_results/" + c.origin + ".txt"
-        path_on_local = "save_data/" + c.origin + ".txt"
-        storage.child(path_on_cloud).download("./", path_on_local)
-        with open(path_on_local, 'a') as f:
-            f.write(str(c.savestring))
-            f.write(c.trade_log)
-            f.write('_________________________________\n\n')
-        storage.child(path_on_cloud).put(path_on_local)
-
+        # Save trade to database
+        utility.save_trade(c)
         # Remove trade fom list
         in_completedtrades.remove(c)
     print("Recorded Trade to Database")
@@ -216,9 +167,6 @@ async def streamer():
             twm = ThreadedWebsocketManager()
             twm.start()
             reload[0] = False
-        else:
-            pass
-
         load()
         addstream(tradequeue, streamdict)
 
@@ -228,7 +176,6 @@ async def streamer():
         stop[0] = False
 
     while streamdict:
-
         await asyncio.sleep(1)
         time.sleep(1)
 
