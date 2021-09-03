@@ -345,15 +345,30 @@ class Trade:
         time_passed = str(round((k['time'] - self.time) / 3600000, 2))
         start_time = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%Y-%m-%d  %H:%M')
         end_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%Y-%m-%d  %H:%M')
-
         percent = self.strip_ansi_codes(str(self.percent_diff(self.closed)))
+        closest = ''
+        goal = ''
+        if self.status == 'stopprof':
+            if self.closed > self.price:
+                closest = str(self.lowest)
+                goal = str(self.conditions.stoploss)
+            else:
+                closest = str(self.highest)
+                goal = str(self.conditions.stopprof)
+        elif self.status == 'stoploss':
+            if self.closed < self.price:
+                closest = str(self.highest)
+                goal = str(self.conditions.stopprof)
+            else:
+                closest = str(self.lowest)
+                goal = str(self.conditions.stoploss)
 
         savestr = ''
         savestr += self.pair + '\n'
         savestr += 'TimeStarted: ' + start_time + ' | ' + end_time + '\n'
         savestr += 'Duration: ' + time_passed + ' hrs\n'
         savestr += 'Pricechange: ' + str(self.price) + ' | ' + str(self.closed) + ' | ' + percent + '\n'
+        savestr += 'Result Window: ' + str(self.price) + ' | ' + closest + ' | ' + goal + '\n'
         savestr += 'Status: ' + self.status + '\n'
         savestr += 'Origin: ' + self.origin + '\n'
-
         self.savestring = savestr
