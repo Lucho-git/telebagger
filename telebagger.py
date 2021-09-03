@@ -49,7 +49,7 @@ def SendMessageToAlwaysWin(message):
 def StartTelegramForwarding():
     api_id = 5747368
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
-    stringsesh = '1BVtsOLMBu3o3MhsasnS-a0N9wg3OlFNg9nCFxjj4BiOw6tOfAt5Pm4O_xfNqeILainGhI8mjcwfkFXT-20WlP1sgaYVFMXOE_HnYdKBRIl8V225xc7ImEUmZV0IhHF8S3IKNFbnlapW6VopYqOdUNwexUJXDCiRy1nU-BcTpg3jUxXeeNZ4Sh7deuWDttjYHCrMZBSuX_M_YRbJ4PnsS_JUfE1m9rv3b7mA3P09U1H5L0_Ggau_408ESWtZ0M-iWZ6aUfAAvatPlZ9gLWc8mmmbqFG89jcuGF3tjV9ect-sKq8kQU402NUi0NloswOgeey7X5dKCJ3FbXZHeqw9_AGwg_PGXnlY='
+    stringsesh = '1BVtsOLMBu6Qk9ySEhzDzQmaB-CevSjYE2Y59wxlQiidUKQs-SmrMyI5v9uua4ZWeTTkU58JqxPdKVFZPMBd-Cr3uibuiF96FQFg9kVyX3G5S5FOQ7O7oN33iM0d80lQT_oAcUbf8YV0J3DCzwyqr8sv-AiyHKtcgCazKeob5kAGl7IFNToYJHElA-yWR1oxHd5ArK3TpPIOQ4weZ5M1-qVSaVU-Q4XNMZFS4QYPhvyFKPHQgRA3_0PI4XQWFIAe28y_IoUdYmTnCauxtDKbUTJXCQBIgp2f2vCEB5Oe9m1UBNy76onhyuDmevNPkbYPLX_MAQ_P5FYTuDnlgACqkb9P6pvandiw='
 
     client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
 
@@ -68,7 +68,7 @@ def StartTelegramForwarding():
             valid = always_win.valid_trade_message(message)
             if valid:
                 try:
-                    aw = always_win.bag(message, binance_wrap)
+                    aw = always_win.bag(message)
                     utility.add_message(storage, 'Always Win', '[X]')
                     await trade_stream.addtrade(aw)
                 except Exception as e:
@@ -120,7 +120,7 @@ def StartTelegramForwarding():
                 message = event.raw_text
                 aw = None
                 if '/USDT' in message:
-                    aw = always_win.bag(message, binance_wrap)
+                    aw = always_win.bag(message)
                 if aw:
                     await trade_stream.addtrade(aw)
 

@@ -2,6 +2,7 @@ def failed_message(msg, origin, storage, e):
     path_on_cloud = "trade_results/failed_messages/" + origin + '_failed.txt'
     path_on_local = origin + '_failed.txt'
     storage.child(path_on_cloud).download("./", path_on_local)
+    e = str(e)
 
     try:
         with open(path_on_local, 'a') as f:
@@ -11,6 +12,7 @@ def failed_message(msg, origin, storage, e):
             f.write('\n\n')
         storage.child(path_on_cloud).put(path_on_local)
     except Exception as ex:
+        ex = str(ex)
         print(ex)
         print("No Previous File existed I think")
         with open(path_on_local, 'w+') as f:
