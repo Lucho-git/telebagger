@@ -1,10 +1,10 @@
-LRC/USDT SHORT 🛑
+AXS/USDT SHORT ðŸ›‘
 Leverage 20x
-Entries 0.593
-Target 1 0.584
-Target 2 0.568
-Target 3 0.547
-Target 4 0.40
-Target 5 0.35
+Entries  88.5
+Target 1 87
+Target 2 84.8
+Target 3 81.5
+Target 4 70
+Target 5 60
 
-SL 0.63
+SL 95

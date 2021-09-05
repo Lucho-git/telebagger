@@ -21,8 +21,9 @@ init()  # Initialising colorama
 
 update = [False]
 update2 = [False]
-'''
+
 # Stream Commands
+'''
 STOP = '/stop'
 STREAM = '/stream'
 RESTART = '/restart'
@@ -56,6 +57,9 @@ def SendMessageToAlwaysWin(message):
 def StartTelegramForwarding():
     api_id = 5747368
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
+    # Local Session
+    stringsesh = '1BVtsOIQBu3LMJ7OLGqK63WxuVxgcdOm3EXqVqNANTsCC6En6KmoxsBlr59lP70lvaFTDjb_0mhyWyL5ndC5R3m-Nmo_75NyW_KPlsVPpwXxsK3CAfjQnIfOMw53X8WTbJUp98SmSmtioS1ZdY5PCFw2OZ7bBzzr_ttQpn_7z6IYhLvD5aEEGRSLoRaviT3uSgg9mKsFzbtZsGZ-R5g49Y7JleJtmqoBZPsPr_o8Uu1glHWHCcgcFv1x-ASRlaN-pf2a4dT1RAFIn30l20AVhIRw2bcrKFkhrfKJBfWPxtnuNvMnjjtix-STUGYV2UoHd6hHn2-hJ1T6JXbN-yugTCR9_ZNTZYhs='
+    # Heroku session
     stringsesh = '1BVtsOIQBuxr6ZxLuwVQyGOhCNK5d9pQj3JItDcREpmOAnlKXQjqzWHhMXRrAnS4DVZrnwTjHjH12hX-gBbC0bobd8isvh3Xxoxw5hDQFuOEQNqXIIb80HMvtq4dztayw7Mj0I3FEE0ByBEM_Kr6goGhNsRWp0zYnaAXIUgzA8VXloZT9GZJhm1_HkV0mEO3vQMfd60Z7tTDnCz5_FaL1V7vsTxVPM8NbgwI1sDIKHBZFEwd0soJzNmQLfyD97_SBGUZQmz-3uo5zZNYTJPFZZfm6E-RMkRoWmFnkMtoLGFjs9wRI5zIh-MWxerZZZ4qPjpI3J8yzTmiYcTzdNn6fAROO7w-w9VQ='
 
     client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
@@ -67,7 +71,7 @@ def StartTelegramForwarding():
         chat = await event.get_chat()
         sender_id = str(sender.id)
         channel_name = utils.get_display_name(sender)
-        message = event.raw_text
+        message = str(event.raw_text)
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
         if sender_id == "1375168387":  # Always Win
             valid = always_win.valid_trade_message(message)
@@ -102,18 +106,18 @@ def StartTelegramForwarding():
         elif chat.id == 1899129008:  # Telegram Bot
             print("Robot Section +++")
             # stream commands
-            if str(event.raw_text) == STOP:
+            if message == STOP:
                 print('Exiting....')
                 await client.disconnect()
-            elif str(event.raw_text) == STREAM:
+            elif message == STREAM:
                 await trade_stream.streamer()
-            elif str(event.raw_text) == RESTART:
+            elif message == RESTART:
                 await trade_stream.restart()
-            elif str(event.raw_text) == UPDATE2:
+            elif message == UPDATE2:
                 while update[0]:
                     await trade_stream.stopstream()
                     await asyncio.sleep(360)
-            elif str(event.raw_text) == UPDATE:
+            elif message == UPDATE:
                 ''' Restart Every Hour'''
                 if update[0]:
                     update[0] = False
@@ -127,7 +131,7 @@ def StartTelegramForwarding():
                     await asyncio.sleep(3600)
                     print("Scheduled Restart end")
 
-            elif str(event.raw_text) == ADD:  # Test Trades
+            elif message == ADD:  # Test Trades
                 tr0 = Trade('ETHUSDT', 'USDT', 'manual', 'futures')
                 tr0.conditions = Futures(2800, 3200, 'long', 10, 'isolation')
                 fake_trade.futures_trade(tr0)
@@ -150,7 +154,7 @@ def StartTelegramForwarding():
 
                 newtrades = [tr0, tr1, tr2, tr3, tr4]
                 await trade_stream.addtrade(newtrades)
-            elif str(event.raw_text) == ADD2:
+            elif message == ADD2:
                 tr0 = Trade('AVAXUSDT', 'USDT', 'Always Win', 'mfutures')
                 tr0.conditions = MFutures([100, 100, 100, 100, 100], [46, 43, 42.9, 42.3, 41.1], [50, 20, 10, 10, 10],          [42.3, 41.1, 39.6, 35, 30], 'short', 20, 'isolation')
                 tr1 = Trade('AVAXUSDT', 'USDT', 'Always Win', 'mfutures')
@@ -160,7 +164,7 @@ def StartTelegramForwarding():
                 newtrades = [tr0, tr1]
                 await trade_stream.addtrade(newtrades)
 
-            elif str(event.raw_text) == ADD3:
+            elif message == ADD3:
                 tr2 = Trade('SNXUSDT', 'USDT', 'Always Win', 'mfutures')
                 tr2.conditions = MFutures([100, 100, 100, 100, 100], [15, 14.08, 13.7, 13.2, 12], [50, 20, 10, 10, 10], [14.08, 13.7, 13.2, 12, 10], 'short', 20, 'isolation')
                 fake_trade.mfutures_trade(tr2)
@@ -169,7 +173,7 @@ def StartTelegramForwarding():
                 fake_trade.mfutures_trade(tr3)
                 newtrades = [tr2, tr3]
                 await trade_stream.addtrade(newtrades)
-            elif str(event.raw_text) == MENU:
+            elif message == MENU:
                 await trade_stream.stopstream()
 
     # End of event handler code ____________________

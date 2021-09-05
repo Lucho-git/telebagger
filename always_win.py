@@ -30,7 +30,7 @@ def search_coin(text):
     direction = lines[0].split(' ')[1].lower()
     lev = lines[1].split(' ')[1]
     lev = float(lev.split('x')[0])
-    entry = float(lines[2].split(' ')[2])
+    entry = float(lines[2].split(' ')[1])
     t1 = float(lines[3].split(' ')[2])
     t2 = float(lines[4].split(' ')[2])
     t3 = float(lines[5].split(' ')[2])
