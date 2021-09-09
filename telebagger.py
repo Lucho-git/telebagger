@@ -21,7 +21,7 @@ init()  # Initialising colorama
 
 update = [False]
 update2 = [False]
-
+'''
 # Stream Commands
 STOP = '/stop'
 STREAM = '/stream'
@@ -43,7 +43,7 @@ ADD2 = '/add2!'
 ADD3 = '/add3!'
 UPDATE = '/update!'
 UPDATE2 = '/update2!'
-'''
+
 
 
 def SendMessageToAlwaysWin(message):

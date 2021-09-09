@@ -14,6 +14,7 @@ config = {  # initialising database connection
 }
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
+'''
 # Firebase Cloud Storage File Paths
 FAILED_MESSAGES = "trade_results/failed_messages/"  # Filepath
 ADD_MESSAGE = "trade_results/message_count/"  # Filepath
@@ -25,7 +26,7 @@ FAILED_MESSAGES = "heroku/trade_results/failed_messages/"  # Filepath
 ADD_MESSAGE = "heroku/trade_results/message_count/"  # Filepath
 SAVE_STREAM = "heroku/save_data/savefile"  # Path and file
 SAVE_TRADE = "heroku/trade_results/"  # Path
-'''
+
 
 
 def failed_message(msg, origin, e):
