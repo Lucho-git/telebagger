@@ -182,7 +182,7 @@ async def streamer():
         streamstring = ''
         for i in streamdict:
             streamstring += str(i) + ' #'+str(len(streamdict[i])) + ' | '
-        print('Checking for updates....', streamstring, twm)
+        # print('Checking for updates....', streamstring, twm)
 
         if reload[0] or stop[0]:
             break

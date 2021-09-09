@@ -1,0 +1,89 @@
+ADABTC
+TimeStarted: 2021-09-07  15:21 | 2021-09-07  15:22
+Duration: 0.0 hrs
+Pricechange: 0.00005196 | 0.000052002 | + 0.81%
+Result Window: 0.00005196 | 0.00005189 | 5.2002e-05
+Status: stoploss
+Origin: Hirn
+_________________________________
+
+ADABTC
+TimeStarted: 2021-09-07  15:22 | 2021-09-07  15:23
+Duration: 0.01 hrs
+Pricechange: 0.00005187 | 0.000052002 | + 2.54%
+Result Window: 0.00005187 | 0.00005159 | 0.000052002
+Status: stoploss
+Origin: Hirn
+_________________________________
+
+ADABTC
+TimeStarted: 2021-09-07  15:26 | 2021-09-07  15:27
+Duration: 0.01 hrs
+Pricechange: + 0.81%
+Buy Price: 0.00005196 |  Sell Price: 0.000052002
+Result Window: 0.00005196 | 0.0000519 | 0.000052002
+Status: stoploss
+Origin: Hirn
+_________________________________
+
+ADABTC
+TimeStarted: 2021-09-07  15:47 | 2021-09-07  15:48
+Duration: 0.01 hrs
+Pricechange: + 12.3%
+Buy Price: 0.00005137 |  Sell Price: 0.000052002
+Result Window: 0.00005137[- 1.36%] | 0.0000513[+ 12.3%] | 0.000052002
+Status: stoploss
+Origin: Hirn
+_________________________________
+
+ADABTC
+TimeStarted: 2021-09-07  15:50 | 2021-09-07  15:51
+Duration: 0.02 hrs
+Pricechange: + 15.07%
+Buy Price: 0.00005123 |  Sell Price: 0.000052002
+Result Window: 0.000051230.0000512[- 0.59%] | 0.000052002[+ 15.07%] | 
+Status: stoploss
+Origin: Hirn
+_________________________________
+
+ADABTC
+TimeStarted: 2021-09-07  15:54 | 2021-09-07  15:55
+Duration: 0.0 hrs
+Pricechange: + 9.55%
+Buy Price: 0.00005151 |  Sell Price: 0.000052002
+Result Window: 0.00005151 | 0.00005138[- 2.52%] | 0.000052002[+ 9.55%]
+Status: stoploss
+Origin: Hirn
+_________________________________
+
+ADABTC
+TimeStarted: 2021-09-07  15:57 | 2021-09-07  15:58
+Duration: 0.01 hrs
+Pricechange: + 8.18%
+Buy Price: 0.00005158 |  Sell Price: 0.000052002
+Result Window: 0.00005158 | 0.0000515[- 1.55%] | 0.000052002[+ 8.18%]
+Status: stoploss
+Origin: Hirn
+_________________________________
+
+ADABTC
+TimeStarted: 2021-09-07  15:59 | 2021-09-07  16:00
+Duration: 0.0 hrs
+Pricechange: + 7.01%
+Buy Price: 0.00005164 |  Sell Price: 0.000052002
+Result Window: 0.00005164 | 0.00005159[- 0.97%] | 0.000052002[+ 7.01%]
+Status: stoploss
+Origin: Hirn
+_________________________________
+
+EGLDBTC
+TimeStarted: 2021-09-09  17:35 | 2021-09-09  17:36
+Duration: 0.01 hrs
+Pricechange: + 178475.39%
+Buy Price: 0.004475 |  Sell Price: 0.80315235
+Result Window: 0.004475 | 0.004469[- 1.34%] | 0.80315235[+ 178475.39%]
+Status: stoploss
+Origin: Hirn
+
+_________________________________
+

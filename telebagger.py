@@ -23,7 +23,6 @@ update = [False]
 update2 = [False]
 
 # Stream Commands
-'''
 STOP = '/stop'
 STREAM = '/stream'
 RESTART = '/restart'
@@ -44,6 +43,7 @@ ADD2 = '/add2!'
 ADD3 = '/add3!'
 UPDATE = '/update!'
 UPDATE2 = '/update2!'
+'''
 
 
 def SendMessageToAlwaysWin(message):
@@ -60,7 +60,7 @@ def StartTelegramForwarding():
     # Local Session
     stringsesh = '1BVtsOIQBu3LMJ7OLGqK63WxuVxgcdOm3EXqVqNANTsCC6En6KmoxsBlr59lP70lvaFTDjb_0mhyWyL5ndC5R3m-Nmo_75NyW_KPlsVPpwXxsK3CAfjQnIfOMw53X8WTbJUp98SmSmtioS1ZdY5PCFw2OZ7bBzzr_ttQpn_7z6IYhLvD5aEEGRSLoRaviT3uSgg9mKsFzbtZsGZ-R5g49Y7JleJtmqoBZPsPr_o8Uu1glHWHCcgcFv1x-ASRlaN-pf2a4dT1RAFIn30l20AVhIRw2bcrKFkhrfKJBfWPxtnuNvMnjjtix-STUGYV2UoHd6hHn2-hJ1T6JXbN-yugTCR9_ZNTZYhs='
     # Heroku session
-    stringsesh = '1BVtsOIQBuxr6ZxLuwVQyGOhCNK5d9pQj3JItDcREpmOAnlKXQjqzWHhMXRrAnS4DVZrnwTjHjH12hX-gBbC0bobd8isvh3Xxoxw5hDQFuOEQNqXIIb80HMvtq4dztayw7Mj0I3FEE0ByBEM_Kr6goGhNsRWp0zYnaAXIUgzA8VXloZT9GZJhm1_HkV0mEO3vQMfd60Z7tTDnCz5_FaL1V7vsTxVPM8NbgwI1sDIKHBZFEwd0soJzNmQLfyD97_SBGUZQmz-3uo5zZNYTJPFZZfm6E-RMkRoWmFnkMtoLGFjs9wRI5zIh-MWxerZZZ4qPjpI3J8yzTmiYcTzdNn6fAROO7w-w9VQ='
+    # stringsesh = '1BVtsOIQBuxr6ZxLuwVQyGOhCNK5d9pQj3JItDcREpmOAnlKXQjqzWHhMXRrAnS4DVZrnwTjHjH12hX-gBbC0bobd8isvh3Xxoxw5hDQFuOEQNqXIIb80HMvtq4dztayw7Mj0I3FEE0ByBEM_Kr6goGhNsRWp0zYnaAXIUgzA8VXloZT9GZJhm1_HkV0mEO3vQMfd60Z7tTDnCz5_FaL1V7vsTxVPM8NbgwI1sDIKHBZFEwd0soJzNmQLfyD97_SBGUZQmz-3uo5zZNYTJPFZZfm6E-RMkRoWmFnkMtoLGFjs9wRI5zIh-MWxerZZZ4qPjpI3J8yzTmiYcTzdNn6fAROO7w-w9VQ='
 
     client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
 
@@ -175,6 +175,26 @@ def StartTelegramForwarding():
                 await trade_stream.addtrade(newtrades)
             elif message == MENU:
                 await trade_stream.stopstream()
+
+            elif message == '/hirn':
+                with open('docs/hirn_example.txt', encoding="utf8") as f:
+                    msg = f.read()
+                    valid = hirn.valid_trade_message(msg)
+                    if valid:
+                        hir = hirn.bag(msg)
+                        await trade_stream.addtrade(hir)
+                    else:
+                        print('notvalid')
+
+            elif message == '/aw':
+                with open('docs/aw_example.txt', encoding="utf8") as f:
+                    msg = f.read()
+                    valid = always_win.valid_trade_message(msg)
+                    if valid:
+                        aw = always_win.bag(msg)
+                        await trade_stream.addtrade(aw)
+                    else:
+                        print('notval   id')
 
     # End of event handler code ____________________
     print("Launching Telegram Scraper...")

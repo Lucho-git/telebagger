@@ -3,6 +3,7 @@ from colorama import init
 from colorama import Fore, Back, Style
 import datetime
 import re
+import utility as ut
 init(strip=True)
 
 r_api_key = 'GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  # Put your own api keys here
@@ -74,7 +75,7 @@ class Trade:
         self.closed = None
         self.savestring = None
         self.real = False
-        self.trade_log = ''
+        self.trade_log = '\n'
 
     def get_price(self, fills):
         total = 0
@@ -185,7 +186,7 @@ class Trade:
             if self.conditions.new_lowest < losslimit:
                 # amount_left = amount_left - stoploss_amount
                 amount = self.conditions.stoploss[self.conditions.targetnum]
-                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(losslimit, 'loss'), 2))+'%\n'
+                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(losslimit, 'loss'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
                 self.conditions.amount_left = self.conditions.amount_left - (self.conditions.amount_left * amount/100)
                 self.conditions.trade_amounts += self.percentage_result(losslimit, 'loss') * amount/100
                 if self.conditions.amount_left == 0:
@@ -200,7 +201,7 @@ class Trade:
 
             elif self.conditions.new_highest > proflimit:
                 amount = self.conditions.stopprof[self.conditions.targetnum]
-                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%'
+                self.trade_log += '- Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
                 self.conditions.amount_left = self.conditions.amount_left - amount
                 self.conditions.trade_amounts += self.percentage_result(proflimit, 'prof') * amount/100
                 if self.conditions.amount_left == 0:
@@ -218,7 +219,7 @@ class Trade:
             losslimit = self.conditions.losstargets[self.conditions.targetnum]
             if self.conditions.new_lowest < proflimit:
                 amount = self.conditions.stopprof[self.conditions.targetnum]
-                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%'
+                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
                 self.conditions.amount_left = self.conditions.amount_left - amount
                 self.conditions.trade_amounts += self.percentage_result(proflimit, 'prof') * amount/100
                 if self.conditions.amount_left == 0:
@@ -232,7 +233,7 @@ class Trade:
                     print('shortProfit Numbers not adding to 100, error')
             elif self.conditions.new_highest > losslimit:
                 amount = self.conditions.stoploss[self.conditions.targetnum]
-                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(self.percentage_result(losslimit, 'loss'))
+                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(losslimit, 'loss'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
                 self.conditions.amount_left = self.conditions.amount_left - (self.conditions.amount_left * amount/100)
                 self.conditions.trade_amounts += self.percentage_result(losslimit, 'loss') * amount/100
                 if self.conditions.amount_left == 0:
@@ -301,13 +302,13 @@ class Trade:
         time_passed = round((k['time'] - self.time) / 3600000, 2)
         print(self.pair, leverage,direction, '--', start_time, '(', time_passed, ') hrs')
         print('_______________________________')
-        print('Buy Price:', Fore.LIGHTBLUE_EX, self.price, Style.RESET_ALL)
-        print('Lowest:', self.lowest, '|', self.percent_diff(self.lowest))
-        print('Highest:', self.highest, '|', self.percent_diff(self.highest))
-        print('Now:', k['last'], '|', self.percent_diff(now))
+        print('Buy Price:', Fore.LIGHTBLUE_EX, ut.format_float(self.price), Style.RESET_ALL)
+        print('Lowest:', ut.format_float(self.lowest), '|', self.percent_diff(self.lowest))
+        print('Highest:', ut.format_float(self.highest), '|', self.percent_diff(self.highest))
+        print('Now:', ut.format_float(k['last']), '|', self.percent_diff(now))
         print('===============================')
         if self.type == 'futures':
-            print('Targets:', Fore.RED, self.conditions.stoploss, '|', Fore.LIGHTBLUE_EX, now,'|',Fore.LIGHTGREEN_EX, self.conditions.stopprof, Style.RESET_ALL)
+            print('Targets:', Fore.RED, ut.format_float(self.conditions.stoploss), '|', Fore.LIGHTBLUE_EX, ut.format_float(now),'|',Fore.LIGHTGREEN_EX, ut.format_float(self.conditions.stopprof), Style.RESET_ALL)
             print('_______________________________')
         elif self.type == 'mfutures':
             print('NextTargets:', Fore.RED, self.conditions.losstargets[self.conditions.targetnum], '|', Fore.LIGHTBLUE_EX, now,'|',Fore.LIGHTGREEN_EX, self.conditions.proftargets[self.conditions.targetnum], Style.RESET_ALL)
@@ -315,7 +316,7 @@ class Trade:
             print('Amountleft:', self.conditions.amount_left)
             # Making List Pretty
             str_prof_targets = list(map(str, self.conditions.proftargets))
-            str_prof_targets[self.conditions.targetnum] = Fore.LIGHTBLUE_EX + str_prof_targets[self.conditions.targetnum] + Style.RESET_ALL
+            str_prof_targets[self.conditions.targetnum] = Fore.LIGHTBLUE_EX + '[' + str_prof_targets[self.conditions.targetnum]+ ']' + Style.RESET_ALL
             prof_targets = '['
             last = str_prof_targets[len(str_prof_targets)-1]
             for t in str_prof_targets:
@@ -326,7 +327,7 @@ class Trade:
             prof_targets += ']'
             # _________________
             str_loss_targets = list(map(str, self.conditions.losstargets))
-            str_loss_targets[self.conditions.targetnum] = Fore.LIGHTBLUE_EX + str_loss_targets[self.conditions.targetnum] + Style.RESET_ALL
+            str_loss_targets[self.conditions.targetnum] = Fore.LIGHTBLUE_EX + '[' + str_loss_targets[self.conditions.targetnum] + ']' + Style.RESET_ALL
             loss_targets = '['
             last = str_loss_targets[len(str_loss_targets)-1]
             for t in str_loss_targets:
@@ -346,29 +347,44 @@ class Trade:
         start_time = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%Y-%m-%d  %H:%M')
         end_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%Y-%m-%d  %H:%M')
         percent = self.strip_ansi_codes(str(self.percent_diff(self.closed)))
-        closest = ''
-        goal = ''
+
+        closest = None
+        goal = None
         if self.status == 'stopprof':
             if self.closed > self.price:
-                closest = str(self.lowest)
-                goal = str(self.conditions.stoploss)
+                closest = self.lowest
+                goal = self.conditions.stoploss
+                if self.type == 'mfutures':
+                    goal = self.conditions.losstargets[self.conditions.targetnum]
             else:
-                closest = str(self.highest)
-                goal = str(self.conditions.stopprof)
+                closest = self.highest
+                goal = self.conditions.stopprof
+                if self.type == 'mfutures':
+                    goal = self.conditions.proftargets[self.conditions.targetnum]
         elif self.status == 'stoploss':
             if self.closed < self.price:
-                closest = str(self.highest)
-                goal = str(self.conditions.stopprof)
+                closest = self.highest
+                goal = self.conditions.stopprof
+                if self.type == 'mfutures':
+                    goal = self.conditions.proftargets[self.conditions.targetnum]
             else:
-                closest = str(self.lowest)
-                goal = str(self.conditions.stoploss)
+                closest = self.lowest
+                goal = self.conditions.stoploss
+                if self.type == 'mfutures':
+                    goal = self.conditions.losstargets[self.conditions.targetnum]
 
-        savestr = ''
-        savestr += self.pair + '\n'
+        percent_closest = self.strip_ansi_codes(str(self.percent_diff(closest)))
+        percent_goal = self.strip_ansi_codes(str(self.percent_diff(goal)))
+        closest = str(closest)
+        goal = str(goal)
+
+        savestr = self.pair + '\n'
         savestr += 'TimeStarted: ' + start_time + ' | ' + end_time + '\n'
         savestr += 'Duration: ' + time_passed + ' hrs\n'
-        savestr += 'Pricechange: ' + str(self.price) + ' | ' + str(self.closed) + ' | ' + percent + '\n'
-        savestr += 'Result Window: ' + str(self.price) + ' | ' + closest + ' | ' + goal + '\n'
+        savestr += 'Pricechange: ' + percent + '\n'
+        savestr += 'Buy Price: ' + str(ut.format_float(float(self.price))) + ' |  Sell Price: ' + str(ut.format_float(float(self.closed))) + '\n'
+        savestr += 'Result Window: ' + str(ut.format_float(float(self.price))) + ' | ' + str(ut.format_float(float(closest))) + '['+percent_closest+'] | ' + str(ut.format_float(float(goal))) + '['+percent_goal+']' + '\n'
         savestr += 'Status: ' + self.status + '\n'
         savestr += 'Origin: ' + self.origin + '\n'
+
         self.savestring = savestr

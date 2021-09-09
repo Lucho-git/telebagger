@@ -17,6 +17,7 @@ def valid_trade_message(msg):
 
 def search_coin(text):
     lines = text.split('\n')
+    print(lines[0])
     pair = lines[0].split('#')[1]
     base = pair.split('/')[1]
     pair = pair.split('/')[0] + base

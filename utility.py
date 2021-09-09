@@ -1,5 +1,6 @@
 import pyrebase
 import pickle
+import numpy as np
 
 config = {  # initialising database connection
     "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
@@ -13,7 +14,6 @@ config = {  # initialising database connection
 }
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
-'''
 # Firebase Cloud Storage File Paths
 FAILED_MESSAGES = "trade_results/failed_messages/"  # Filepath
 ADD_MESSAGE = "trade_results/message_count/"  # Filepath
@@ -25,6 +25,7 @@ FAILED_MESSAGES = "heroku/trade_results/failed_messages/"  # Filepath
 ADD_MESSAGE = "heroku/trade_results/message_count/"  # Filepath
 SAVE_STREAM = "heroku/save_data/savefile"  # Path and file
 SAVE_TRADE = "heroku/trade_results/"  # Path
+'''
 
 
 def failed_message(msg, origin, e):
@@ -119,3 +120,6 @@ def save_trade(t):
         f.write('_________________________________\n\n')
     storage.child(path_on_cloud).put(path_on_local)
 
+
+def format_float(num):
+    return np.format_float_positional(num, trim='-')

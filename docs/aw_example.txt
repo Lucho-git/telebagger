@@ -1,10 +1,10 @@
 AXS/USDT SHORT ðŸ›‘
 Leverage 20x
-Entries  88.5
-Target 1 87
-Target 2 84.8
-Target 3 81.5
-Target 4 70
-Target 5 60
+Entries  72
+Target 1 70
+Target 2 69.8
+Target 3 69.7
+Target 4 70.3
+Target 5 69
 
 SL 95
