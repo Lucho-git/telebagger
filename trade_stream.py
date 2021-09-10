@@ -16,6 +16,8 @@ streamdict = {}
 reload = [False]
 active = [False]
 stop = [False]
+update = [False]
+RESTART_TIMER = 3600  # 1 hour restart delays
 
 
 # Not Error is default, must be explicitly set as error by binance
@@ -66,6 +68,18 @@ async def restart():
     active[0] = False
     twm.stop()
     reload[0] = True
+
+
+async def restart_schedule():
+    if update[0]:
+        update[0] = False
+    else:
+        update[0] = True
+    while update[0]:
+        print("Scheduled Restart")
+        await restart()
+        await streamer()
+        await asyncio.sleep(RESTART_TIMER)
 
 
 async def save(in_streamdict):
