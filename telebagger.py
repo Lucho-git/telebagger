@@ -217,7 +217,7 @@ def handler_stop_signals(sig, frame):
     sys.exit()
 
 
-signal.signal(signal.SIGTERM, handler_stop_signals)  # Intializing graceful death on heroku restart
+#signal.signal(signal.SIGTERM, handler_stop_signals)  # Intializing graceful death on heroku restart
 asyncio.run(StartTelegramForwarding())
 print('We out this bitch')
 
