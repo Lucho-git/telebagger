@@ -209,13 +209,14 @@ async def StartTelegramForwarding():
     await client.run_until_disconnected()
 
 
-async def handler_stop_signals(sig, frame):
-    await trade_stream.restart()
+def handler_stop_signals(sig, frame):
+    trade_stream.restart()
     print("Am Dying lol")
     print('Aaaaaah it hurts')
     print("Make it stop")
 
-asyncio.run(signal.signal(signal.SIGTERM, handler_stop_signals))  # Intializing graceful death on heroku restart
+
+signal.signal(signal.SIGTERM, handler_stop_signals)  # Intializing graceful death on heroku restart
 asyncio.run(StartTelegramForwarding())
 print('We out this bitch')
 
