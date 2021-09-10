@@ -6,6 +6,7 @@ from telethon.sessions import StringSession
 import requests
 import asyncio
 import signal
+import sys
 import time
 
 # Methods within this package
@@ -213,6 +214,7 @@ def handler_stop_signals(sig, frame):
     print("Am Dying lol")
     print('Aaaaaah it hurts')
     print("Make it stop")
+    sys.exit()
 
 
 signal.signal(signal.SIGTERM, handler_stop_signals)  # Intializing graceful death on heroku restart
