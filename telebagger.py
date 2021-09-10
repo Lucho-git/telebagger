@@ -46,10 +46,7 @@ UPDATE = '/update!'
 UPDATE2 = '/update2!'
 
 
-def handler_stop_signals(sig, frame):
-    print("Am Dying lol")
-    print('Aaaaaah it hurts')
-    print("Make it stop")
+
 
 
 def SendMessageToAlwaysWin(message):
@@ -210,6 +207,13 @@ async def StartTelegramForwarding():
     await client.get_dialogs()
     await trade_stream.streamer()
     await client.run_until_disconnected()
+
+
+async def handler_stop_signals(sig, frame):
+    await trade_stream.restart()
+    print("Am Dying lol")
+    print('Aaaaaah it hurts')
+    print("Make it stop")
 
 signal.signal(signal.SIGTERM, handler_stop_signals)  # Intializing graceful death on heroku restart
 asyncio.run(StartTelegramForwarding())
