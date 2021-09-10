@@ -28,7 +28,6 @@ SAVE_STREAM = "heroku/save_data/savefile"  # Path and file
 SAVE_TRADE = "heroku/trade_results/"  # Path
 
 
-
 def failed_message(msg, origin, e):
     path_on_cloud = FAILED_MESSAGES + origin + '_failed.txt'
     path_on_local = origin + '_failed.txt'

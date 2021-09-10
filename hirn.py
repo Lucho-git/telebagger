@@ -39,4 +39,7 @@ def search_coin(text):
 
     signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
     fake_trade.futures_trade(signal)
+    relative_price = abs(signal.price - entry)/entry
+    if relative_price > 0.1:
+        raise ValueError("MarketValue is more than 10% different than it's expected value")
     return [signal]
