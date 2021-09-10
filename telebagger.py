@@ -210,7 +210,6 @@ async def StartTelegramForwarding():
 
 
 def handler_stop_signals(sig, frame):
-    trade_stream.restart()
     print("Am Dying lol")
     print('Aaaaaah it hurts')
     print("Make it stop")
