@@ -391,7 +391,7 @@ class Trade:
         savestr += 'Origin: ' + self.origin + '\n'
         savestr += 'TimeStarted: ' + start_time + ' | ' + end_time + '\n'
         savestr += 'Duration: ' + time_passed + ' hrs\n'
-        savestr += '____________________________\n'
+        savestr += '================================\n'
         savestr += 'Pricechange: ' + percent + '\n'
         savestr += 'Buy Price: ' + str(ut.format_float(float(self.price))) + ' |  Sell Price: ' + str(ut.format_float(float(self.closed))) + '\n'
         savestr += 'Result Window: ' + str(ut.format_float(float(self.price))) + ' | ' + str(ut.format_float(float(closest))) + '['+percent_closest+'] | ' + str(ut.format_float(float(goal))) + '['+percent_goal+']' + '\n'

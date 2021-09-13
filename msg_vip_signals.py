@@ -3,7 +3,7 @@ import copy
 import fake_trade
 from trade_classes import Trade, Futures, STrade
 import pyrebase
-
+import utility
 # Setting up connection to Firebase, cloud storage system
 config = {
     "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
@@ -121,14 +121,23 @@ def valid_trade_message(vip_message):
 
 def search_coin(text):
     coins = []
-    path_on_cloud = "docs/binance_spot.txt"
-    path_on_cloud2 = "docs/binance_spot.txt"
-    path_on_local = "docs/binance_spot.txt"
-    path_on_local2 = "docs/binance_spot.txt"
-    storage.child(path_on_cloud).download("./", path_on_local)
-    storage.child(path_on_cloud2).download("./", path_on_local2)
-    with open(path_on_local, "r") as file:
-        for line in file:
+
+    futureslist = utility.get_binance_futures_list()
+    for line in futureslist:
+        line = line.strip()
+        coinspaces = str(line + ' ')
+        coinslash = str(line + '/')
+        coinusdt = str(line + 'USDT')
+        coinfullstop = str(line + '.')
+        coinbtc = str(line + 'BTC')
+        if (coinspaces in text) or (coinslash in text) or (coinusdt in text) or (coinfullstop in text) or (
+                coinbtc in text):
+            coins.append(line)
+    if coins:
+        coins.append('Futures')
+    else:
+        spotlist = utility.get_binance_spot_list()
+        for line in spotlist:
             line = line.strip()
             coinspaces = str(line + ' ')
             coinslash = str(line + '/')
@@ -138,24 +147,9 @@ def search_coin(text):
             if (coinspaces in text) or (coinslash in text) or (coinusdt in text) or (coinfullstop in text) or (
                     coinbtc in text):
                 coins.append(line)
-    if not coins:
-        with open(path_on_local2, "r") as file:
-            for line in file:
-                line = line.strip()
-                coinspaces = str(line + ' ')
-                coinslash = str(line + '/')
-                coinusdt = str(line + 'USDT')
-                coinfullstop = str(line + '.')
-                coinbtc = str(line + 'BTC')
-                if (coinspaces in text) or (coinslash in text) or (coinusdt in text) or (coinfullstop in text) or (
-                        coinbtc in text):
-                    coins.append(line)
-        if coins:
-            coins.append('Futures')
-        else:
-            print("No Coin Found")
-    else:
-        coins.append('Spot')
+                coins.append('Spot')
+            else:
+                print("No Coin Found")
 
     # edge cases
     if 'DATA' in coins:

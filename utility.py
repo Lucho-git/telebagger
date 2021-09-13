@@ -122,5 +122,21 @@ def save_trade(t):
     storage.child(path_on_cloud).put(path_on_local)
 
 
+def get_binance_spot_list():
+    path_on_cloud = "docs/binance_spot.txt"
+    path_on_local = "docs/binance_spot.txt"
+    storage.child(path_on_cloud).download("./", path_on_local)
+    with open(path_on_local, "r") as file:
+        return file.read().split('\n')
+
+
+def get_binance_futures_list():
+    path_on_cloud = "docs/binance_future.txt"
+    path_on_local = "docs/binance_future.txt"
+    storage.child(path_on_cloud).download("./", path_on_local)
+    with open(path_on_local, "r") as file:
+        return file.read().split('\n')
+
+
 def format_float(num):
     return np.format_float_positional(num, trim='-')

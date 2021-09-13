@@ -18,15 +18,15 @@ import trade_stream
 import fake_trade
 import utility
 import hirn
+import futures_signals
 
 init()  # Initialising colorama
 
 update = [False]
 update2 = [False]
 
-# Stream Commands Local
-'''
 
+# Stream Commands Local
 STOP = '/stop'
 STREAM = '/stream'
 RESTART = '/restart'
@@ -47,9 +47,7 @@ ADD2 = '/add2!'
 ADD3 = '/add3!'
 UPDATE = '/update!'
 UPDATE2 = '/update2!'
-
-
-
+'''
 
 
 def SendMessageToAlwaysWin(message):
@@ -79,6 +77,7 @@ async def StartTelegramForwarding():
         channel_name = utils.get_display_name(sender)
         message = str(event.raw_text)
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
+
         if sender_id == "1375168387":  # Always Win
             valid = always_win.valid_trade_message(message)
             if valid:
@@ -101,15 +100,23 @@ async def StartTelegramForwarding():
                     utility.add_message('Vip Signals', '[-]')
         elif chat.id == 1248393106:  # HIRN
             valid = hirn.valid_trade_message(message)
-            if valid:
+            if valid and not event.is_reply:
                 try:
                     hir = hirn.bag(message)
-                    failmessage = str(len(hir)) + ' Number of hirn signals being added to the trade queue'
-                    utility.failed_message(message, failmessage, 'Manual Error Message')
                     await trade_stream.addtrade(hir)
                 except Exception as e:
                     utility.failed_message(message, 'Hirn', e)
                     utility.add_message('Hirn', '[-]')
+        elif sender_id == "1350854897":  # Futures Signals
+            valid = futures_signals.valid_trade_message(message)
+            if valid:
+                try:
+                    futsig = futures_signals.bag(message)
+                    utility.add_message('Futures Signals', '[X]')
+                    await trade_stream.addtrade(futsig)
+                except Exception as e:
+                    utility.failed_message(message, 'Futures Signals', e)
+                    utility.add_message('Futures Signals', '[-]')
 
         elif chat.id == 1899129008:  # Telegram Bot
             print("Robot Section +++")
@@ -195,6 +202,16 @@ async def StartTelegramForwarding():
                     else:
                         print('notvalid')
 
+            elif message == '/futsig':
+                with open('docs/futures_signals_example.txt', encoding="utf8") as f:
+                    msg = f.read()
+                    valid = futures_signals.valid_trade_message(msg)
+                    if valid:
+                        futsig = futures_signals.bag(msg)
+                        await trade_stream.addtrade(futsig)
+                    else:
+                        print('notvalid')
+
             elif message == '/aw':
                 pass
                 with open('docs/aw_example.txt', encoding="utf8") as f:
@@ -223,6 +240,6 @@ def handler_stop_signals(sig, frame):
 
 
 # signal.signal(signal.SIGTERM, handler_stop_signals)  # Intializing graceful death on heroku restart
-asyncio.run(StartTelegramForwarding())
+asyncio.get_event_loop().run_until_complete(StartTelegramForwarding())
 print('We out this bitch')
 

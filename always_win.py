@@ -37,10 +37,8 @@ def search_coin(text):
     t4 = float(lines[6].split(' ')[2])
     t5 = float(lines[7].split(' ')[2])
     sl = float(lines[9].split(' ')[1])
-    print('pair', pair, 'direction', direction, 'entry', entry)
-    print('lev', lev)
-    print('Targets', t1, t2, t3, t4, t5)
-    print('SL',sl)
+    print('Pair|', pair, '|Direction|', direction, '|Entry|', entry, '|Stoploss|', sl, '|Leverage|', lev)
+
     signal = Trade(pair, base, 'Always Win', 'mfutures')
     signal2 = Trade(pair, base, 'Always Win2', 'mfutures')
     stoploss = [100, 100, 100, 100, 100]

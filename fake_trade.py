@@ -9,9 +9,9 @@ realclient = Client(r_api_key, r_api_secret)
 
 
 def spot_trade(trade):
-    symbol = trade.pair
+    pair = trade.pair
     base = trade.base
-    coin = symbol.replace(trade.base, '')
+    coin = pair.replace(trade.base, '')
     trade.price = float(realclient.get_symbol_ticker(symbol=trade.pair)['price'])
     trade.time = realclient.get_server_time()['serverTime']
     trade.id = trade.time
