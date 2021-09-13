@@ -385,6 +385,8 @@ class Trade:
         goal = str(goal)
 
         savestr = self.pair + '\n'
+        if self.conditions.direction:
+            savestr = self.pair + ' ['+self.conditions.direction+']\n'
         savestr += 'Status: ' + self.status.upper() + '\n'
         savestr += 'Origin: ' + self.origin + '\n'
         savestr += 'TimeStarted: ' + start_time + ' | ' + end_time + '\n'
