@@ -374,7 +374,7 @@ class Trade:
                     goal = self.conditions.proftargets[self.conditions.targetnum]
         else:
             print("THERE IS A PROBLEM!:", self.status)
-            raise Exception ValueError('Expected a different status value')
+            raise ValueError('Expected a different status value', self.status)
 
         percent_closest = self.strip_ansi_codes(str(self.percent_diff(closest)))
         percent_goal = self.strip_ansi_codes(str(self.percent_diff(goal)))
