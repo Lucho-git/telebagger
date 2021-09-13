@@ -372,6 +372,9 @@ class Trade:
                 goal = self.conditions.stopprof
                 if self.type == 'mfutures':
                     goal = self.conditions.proftargets[self.conditions.targetnum]
+        elif self.status == 'time':
+            closest = self.lowest
+            goal = self.highest
         else:
             print("THERE IS A PROBLEM!:", self.status)
             raise ValueError('Expected a different status value', self.status)

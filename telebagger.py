@@ -104,6 +104,8 @@ async def StartTelegramForwarding():
             if valid:
                 try:
                     hir = hirn.bag(message)
+                    failmessage = str(len(hir)) + ' Number of hirn signals being added to the trade queue'
+                    utility.failed_message(failmessage, 'HIRN', 'Manual Error Message')
                     await trade_stream.addtrade(hir)
                 except Exception as e:
                     utility.failed_message(message, 'Hirn', e)
