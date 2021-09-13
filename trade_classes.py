@@ -372,6 +372,9 @@ class Trade:
                 goal = self.conditions.stopprof
                 if self.type == 'mfutures':
                     goal = self.conditions.proftargets[self.conditions.targetnum]
+        else:
+            print("THERE IS A PROBLEM!:", self.status)
+            raise Exception ValueError('Expected a different status value')
 
         percent_closest = self.strip_ansi_codes(str(self.percent_diff(closest)))
         percent_goal = self.strip_ansi_codes(str(self.percent_diff(goal)))
@@ -379,12 +382,13 @@ class Trade:
         goal = str(goal)
 
         savestr = self.pair + '\n'
+        savestr += 'Status: ' + self.status.upper() + '\n'
+        savestr += 'Origin: ' + self.origin + '\n'
         savestr += 'TimeStarted: ' + start_time + ' | ' + end_time + '\n'
         savestr += 'Duration: ' + time_passed + ' hrs\n'
+        savestr += '____________________________\n'
         savestr += 'Pricechange: ' + percent + '\n'
         savestr += 'Buy Price: ' + str(ut.format_float(float(self.price))) + ' |  Sell Price: ' + str(ut.format_float(float(self.closed))) + '\n'
         savestr += 'Result Window: ' + str(ut.format_float(float(self.price))) + ' | ' + str(ut.format_float(float(closest))) + '['+percent_closest+'] | ' + str(ut.format_float(float(goal))) + '['+percent_goal+']' + '\n'
-        savestr += 'Status: ' + self.status + '\n'
-        savestr += 'Origin: ' + self.origin + '\n'
 
         self.savestring = savestr

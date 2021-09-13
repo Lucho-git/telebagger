@@ -23,8 +23,10 @@ init()  # Initialising colorama
 
 update = [False]
 update2 = [False]
-'''
+
 # Stream Commands Local
+'''
+
 STOP = '/stop'
 STREAM = '/stream'
 RESTART = '/restart'
@@ -120,7 +122,7 @@ async def StartTelegramForwarding():
             elif message == UPDATE2:
                 while update[0]:
                     await trade_stream.stopstream()
-                    await asyncio.sleep(360)
+                    await asyncio.sleep(3550)
             elif message == UPDATE:
                 ''' Restart Every Hour'''
                 if update[0]:

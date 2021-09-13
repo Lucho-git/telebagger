@@ -22,7 +22,6 @@ ADD_MESSAGE = "trade_results/message_count/"  # Filepath
 SAVE_STREAM = "save_data/savefile"  # Path and file
 SAVE_TRADE = "trade_results/"  # Path
 '''
-
 # Heroku Version
 FAILED_MESSAGES = "heroku/trade_results/failed_messages/"  # Filepath
 ADD_MESSAGE = "heroku/trade_results/message_count/"  # Filepath
