@@ -19,15 +19,26 @@ def valid_trade_message(msg):
 
 
 def search_coin(text):
-    # print(text)
+    print(text)
     text = text.replace('  ', ' ')
     text = text.replace('   ', ' ')
     lines = text.split('\n')
-    pair = lines[0].split(' ')[0]
-    base = pair.split('/')[1]
-    pair = pair.split('/')[0] + base
 
-    direction = lines[0].split(' ')[1].lower()
+    pair = ''
+    base = 'USDT'
+
+    if 'SHORT' in lines[0]:
+        pair = lines[0].split('SHORT')[0]
+        direction = 'short'
+    elif 'LONG' in lines[0]:
+        pair = lines[0].split('LONG')[0]
+        direction = 'long'
+    else:
+        raise ValueError("Short or Long not found")
+    pair = pair.replace(' ', '')
+    pair = pair.replace('/', '')
+    print(pair)
+
     lev = lines[1].split(' ')[1]
     lev = float(lev.split('x')[0])
     entry = float(lines[2].split(' ')[1])

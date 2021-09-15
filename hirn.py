@@ -1,10 +1,22 @@
 import fake_trade
 import utility
 from trade_classes import Trade, Futures, STrade
+hirn_timer = [0]
+tradeheat = [False]
 
 
-def bag(msg):
+def bag(msg, binance_wrap):
+
+    raw_server_time = binance_wrap.timenow()
+
+    if raw_server_time < hirn_timer[0]:
+        tradeheat[0] = True
+        print("Cooling Down")
+    else:
+        tradeheat[0] = False
     result = search_coin(msg)
+    tradetime = result[0].time
+    hirn_timer[0] = tradetime + 60000
     return result
 
 
@@ -32,7 +44,7 @@ def search_coin(text):
     else:
         direction = 'long'
     sl = entry - (entry/lev)
-
+    is_futures = None
     if base == 'USDT':
         futureslist = utility.get_binance_futures_list()
         is_futures = False

@@ -25,6 +25,7 @@ init()  # Initialising colorama
 update = [False]
 update2 = [False]
 
+'''
 
 # Stream Commands Local
 STOP = '/stop'
@@ -47,7 +48,6 @@ ADD2 = '/add2!'
 ADD3 = '/add3!'
 UPDATE = '/update!'
 UPDATE2 = '/update2!'
-'''
 
 
 def SendMessageToAlwaysWin(message):
@@ -212,7 +212,7 @@ async def StartTelegramForwarding():
                     else:
                         print('notvalid')
 
-            elif message == '/aw':
+            elif message == '/aw1':
                 pass
                 with open('docs/aw_example.txt', encoding="utf8") as f:
                     msg = f.read()

@@ -1,10 +1,10 @@
-AXS/USDT SHORT ðŸ›‘
+LUNA /USDT SHORT ðŸ›‘
 Leverage 20x
-Entries  72
-Target 1 70
-Target 2 69.8
-Target 3 69.7
-Target 4 70.3
-Target 5 69
+Entries  36.7
+Target 1 36.1
+Target 2 35.2
+Target 3 33.9
+Target 4 30
+Target 5 20
 
-SL 95
+SL 39
