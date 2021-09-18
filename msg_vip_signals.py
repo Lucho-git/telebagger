@@ -4,6 +4,7 @@ import fake_trade
 from trade_classes import Trade, Futures, STrade
 import pyrebase
 import utility
+import binance_wrap
 # Setting up connection to Firebase, cloud storage system
 config = {
     "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
@@ -30,7 +31,7 @@ WAIT_TIME5 = 10000 * 1000
 WAIT_TIMES = [WAIT_TIME1, WAIT_TIME2, WAIT_TIME3, WAIT_TIME4, WAIT_TIME5]
 
 
-def bag(msg, binance_wrap):
+def bag(msg):
     result = search_coin(msg)
     raw_server_time = binance_wrap.timenow()
     print(raw_server_time)

@@ -1,12 +1,15 @@
 import fake_trade
 import utility
+import binance_wrap
 from trade_classes import Trade, Futures, STrade
 hirn_timer = [0]
 tradeheat = [False]
 
+HIRN_LEVERAGE = 15
+HIRN_TRADE_PERCENT = 0.4
+HIRN_STOPLOSS_REDUCTION = 0.8
 
-def bag(msg, binance_wrap):
-
+def bag(msg):
     raw_server_time = binance_wrap.timenow()
 
     if raw_server_time < hirn_timer[0]:
@@ -32,40 +35,43 @@ def search_coin(text):
     lines = text.split('\n')
     print(lines[0])
     pair = lines[0].split('#')[1]
+    coin = pair.split('/')[0]
     base = pair.split('/')[1]
     pair = pair.split('/')[0] + base
-    lev = 1
     entry = float(lines[1].split(': ')[1])
     exit_price = lines[2].split(': ')[1]
     exit_price = float(exit_price.split(' ')[0])
     direction = ''
+    lev = 1
     if entry > exit_price:
         direction = 'short'
     else:
         direction = 'long'
-    sl = entry - (entry/lev)
     is_futures = None
     if base == 'USDT':
         futureslist = utility.get_binance_futures_list()
         is_futures = False
+        # TODO this method can identify coins within coins, e.g.  HINT contains INT,
         for f in futureslist:
-            if f in pair:
+            if f == coin:
                 is_futures = True
-                lev = 10
+                lev = HIRN_LEVERAGE
 
+    sl = entry - (entry/lev)*HIRN_STOPLOSS_REDUCTION
     print('Pair|', pair, '|Direction|', direction, '|Entry|', entry, '|Exit|', exit_price, '|Leverage|', lev)
-
     if is_futures:
         signal = Trade(pair, base, 'Hirn', 'futures')
         signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
-        fake_trade.futures_trade(signal)
+        try:
+            binance_wrap.futures_trade(signal, 1)
+        except ValueError:
+            fake_trade.futures_trade(signal)
     else:
-        sl = entry - (entry/10)
         signal = Trade(pair, base, 'Hirn', 'spot')
         signal.conditions = STrade(sl, exit_price)
         fake_trade.spot_trade(signal)
 
-    relative_price = abs(signal.price - entry)/entry
+    relative_price = abs(float(signal.price) - entry)/entry
     if relative_price > 0.1:
         raise ValueError("MarketValue is more than 10% different than it's expected value")
 

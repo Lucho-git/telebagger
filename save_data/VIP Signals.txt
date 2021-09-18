@@ -1,0 +1,318 @@
+POWRBTC
+TimeStarted: 2021-09-03  13:57 | 2021-09-03  13:59
+Duration: 0.03 hrs
+Pricechange: 7.71e-06 | 7.79e-06 | + 1.04%
+Result Window: 7.71e-06 |  | 
+Status: time
+Origin: VIP Signals
+_________________________________
+
+POWRBTC
+TimeStarted: 2021-09-03  13:57 | 2021-09-03  14:00
+Duration: 0.05 hrs
+Pricechange: 7.71e-06 | 7.74e-06 | + 0.39%
+Result Window: 7.71e-06 |  | 
+Status: time
+Origin: VIP Signals
+_________________________________
+
+POWRBTC
+TimeStarted: 2021-09-03  13:57 | 2021-09-03  14:02
+Duration: 0.08 hrs
+Pricechange: 7.71e-06 | 7.71e-06 | 0.0%
+Result Window: 7.71e-06 |  | 
+Status: time
+Origin: VIP Signals
+_________________________________
+
+POWRBTC
+TimeStarted: 2021-09-03  13:57 | 2021-09-03  14:14
+Duration: 0.28 hrs
+Pricechange: 7.71e-06 | 7.68e-06 | - 0.39%
+Result Window: 7.71e-06 |  | 
+Status: time
+Origin: VIP Signals
+_________________________________
+
+POWRBTC
+TimeStarted: 2021-09-03  13:57 | 2021-09-03  16:44
+Duration: 2.78 hrs
+Pricechange: 7.71e-06 | 7.78e-06 | + 0.91%
+Result Window: 7.71e-06 |  | 
+Status: time
+Origin: VIP Signals
+_________________________________
+
+PONDUSDT
+TimeStarted: 2021-09-06  16:18 | 2021-09-06  16:20
+Duration: 0.02 hrs
+Pricechange: 0.09926 | 0.09925 | - 0.01%
+Result Window: 0.09926 |  | 
+Status: time
+Origin: VIP Signals
+_________________________________
+
+PONDUSDT
+TimeStarted: 2021-09-06  16:19 | 2021-09-06  16:22
+Duration: 0.05 hrs
+Pricechange: 0.09926 | 0.09947 | + 0.21%
+Result Window: 0.09926 |  | 
+Status: time
+Origin: VIP Signals
+_________________________________
+
+PONDUSDT
+TimeStarted: 2021-09-06  16:19 | 2021-09-06  16:25
+Duration: 0.1 hrs
+Pricechange: 0.09926 | 0.09995 | + 0.7%
+Result Window: 0.09926 |  | 
+Status: time
+Origin: VIP Signals
+_________________________________
+
+PONDUSDT
+TimeStarted: 2021-09-06  16:18 | 2021-09-06  16:36
+Duration: 0.28 hrs
+Pricechange: 0.09926 | 0.10195 | + 2.71%
+Result Window: 0.09926 |  | 
+Status: time
+Origin: VIP Signals
+_________________________________
+
+PONDUSDT
+TimeStarted: 2021-09-06  16:19 | 2021-09-06  19:06
+Duration: 2.78 hrs
+Pricechange: 0.09926 | 0.10073 | + 1.48%
+Result Window: 0.09926 |  | 
+Status: time
+Origin: VIP Signals
+_________________________________
+
+GOBTC
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-12  16:01 | 2021-09-13  07:19
+Duration: 15.3 hrs
+____________________________
+Pricechange: 0.0%
+Buy Price: 0.00000072 |  Sell Price: 0.00000072
+Result Window: 0.00000072 | 0.00000072[0.0%] | 0.00000073[+ 1.39%]
+
+_________________________________
+
+GOBTC
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-12  16:01 | 2021-09-13  07:19
+Duration: 15.3 hrs
+____________________________
+Pricechange: 0.0%
+Buy Price: 0.00000072 |  Sell Price: 0.00000072
+Result Window: 0.00000072 | 0.00000072[0.0%] | 0.00000072[0.0%]
+
+_________________________________
+
+GOBTC
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-12  16:01 | 2021-09-13  07:19
+Duration: 15.3 hrs
+____________________________
+Pricechange: 0.0%
+Buy Price: 0.00000072 |  Sell Price: 0.00000072
+Result Window: 0.00000072 | 0.00000072[0.0%] | 0.00000072[0.0%]
+
+_________________________________
+
+GOBTC
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-12  16:01 | 2021-09-13  07:19
+Duration: 15.3 hrs
+____________________________
+Pricechange: 0.0%
+Buy Price: 0.00000072 |  Sell Price: 0.00000072
+Result Window: 0.00000072 | 0.00000072[0.0%] | 0.00000072[0.0%]
+
+_________________________________
+
+GOBTC
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-12  16:01 | 2021-09-13  07:19
+Duration: 15.3 hrs
+____________________________
+Pricechange: 0.0%
+Buy Price: 0.00000072 |  Sell Price: 0.00000072
+Result Window: 0.00000072 | 0.00000072[0.0%] | 0.00000072[0.0%]
+
+_________________________________
+
+BELUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-13  16:22 | 2021-09-13  18:08
+Duration: 1.77 hrs
+================================
+Pricechange: + 9.7%
+Buy Price: 1.939 |  Sell Price: 2.127
+Result Window: 1.939 | 1.91[- 1.5%] | 2.145[+ 10.62%]
+
+_________________________________
+
+BELUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-13  16:22 | 2021-09-13  18:08
+Duration: 1.77 hrs
+================================
+Pricechange: + 9.41%
+Buy Price: 1.944 |  Sell Price: 2.127
+Result Window: 1.944 | 1.927[- 0.87%] | 2.145[+ 10.34%]
+
+_________________________________
+
+BELUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-13  16:22 | 2021-09-13  18:08
+Duration: 1.77 hrs
+================================
+Pricechange: + 9.41%
+Buy Price: 1.944 |  Sell Price: 2.127
+Result Window: 1.944 | 1.927[- 0.87%] | 2.145[+ 10.34%]
+
+_________________________________
+
+BELUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-13  16:22 | 2021-09-13  18:08
+Duration: 1.77 hrs
+================================
+Pricechange: + 9.58%
+Buy Price: 1.941 |  Sell Price: 2.127
+Result Window: 1.941 | 1.927[- 0.72%] | 2.145[+ 10.51%]
+
+_________________________________
+
+BELUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-13  16:22 | 2021-09-13  19:09
+Duration: 2.78 hrs
+================================
+Pricechange: + 6.03%
+Buy Price: 1.941 |  Sell Price: 2.058
+Result Window: 1.941 | 1.927[- 0.72%] | 2.145[+ 10.51%]
+
+_________________________________
+
+PNTUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-14  16:14 | 2021-09-14  16:16
+Duration: 0.03 hrs
+================================
+Pricechange: + 1.55%
+Buy Price: 1.1889 |  Sell Price: 1.2073
+Result Window: 1.1889 | 1.1837[- 0.44%] | 1.2102[+ 1.79%]
+
+_________________________________
+
+PNTUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-14  16:14 | 2021-09-14  16:18
+Duration: 0.07 hrs
+================================
+Pricechange: + 1.03%
+Buy Price: 1.1845 |  Sell Price: 1.1967
+Result Window: 1.1845 | 1.1837[- 0.07%] | 1.2121[+ 2.33%]
+
+_________________________________
+
+PNTUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-14  16:14 | 2021-09-14  16:20
+Duration: 0.1 hrs
+================================
+Pricechange: - 0.35%
+Buy Price: 1.1845 |  Sell Price: 1.1804
+Result Window: 1.1845 | 1.1755[- 0.76%] | 1.2121[+ 2.33%]
+
+_________________________________
+
+PNTUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-14  16:14 | 2021-09-14  16:31
+Duration: 0.28 hrs
+================================
+Pricechange: - 0.45%
+Buy Price: 1.1889 |  Sell Price: 1.1835
+Result Window: 1.1889 | 1.1712[- 1.49%] | 1.2121[+ 1.95%]
+
+_________________________________
+
+PNTUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-14  16:14 | 2021-09-14  19:01
+Duration: 2.78 hrs
+================================
+Pricechange: - 3.83%
+Buy Price: 1.1839 |  Sell Price: 1.1386
+Result Window: 1.1839 | 1.1268[- 4.82%] | 1.2121[+ 2.38%]
+
+_________________________________
+
+DREPUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-18  00:33 | 2021-09-18  00:35
+Duration: 0.02 hrs
+================================
+Pricechange: + 0.81%
+Buy Price: 0.7562 |  Sell Price: 0.7623
+Result Window: 0.7562 | 0.7351[- 2.79%] | 0.7624[+ 0.82%]
+
+_________________________________
+
+DREPUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-18  00:33 | 2021-09-18  00:37
+Duration: 0.05 hrs
+================================
+Pricechange: + 0.25%
+Buy Price: 0.7566 |  Sell Price: 0.7585
+Result Window: 0.7566 | 0.7351[- 2.84%] | 0.7624[+ 0.77%]
+
+_________________________________
+
+DREPUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-18  00:33 | 2021-09-18  00:39
+Duration: 0.09 hrs
+================================
+Pricechange: + 0.4%
+Buy Price: 0.7566 |  Sell Price: 0.7596
+Result Window: 0.7566 | 0.7351[- 2.84%] | 0.7624[+ 0.77%]
+
+_________________________________
+
+DREPUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-09-18  00:33 | 2021-09-18  00:51
+Duration: 0.29 hrs
+================================
+Pricechange: - 0.9%
+Buy Price: 0.7562 |  Sell Price: 0.7494
+Result Window: 0.7562 | 0.7351[- 2.79%] | 0.7624[+ 0.82%]
+
+_________________________________
+

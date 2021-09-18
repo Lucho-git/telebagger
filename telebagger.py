@@ -26,7 +26,6 @@ update = [False]
 update2 = [False]
 
 '''
-
 # Stream Commands Local
 STOP = '/stop'
 STREAM = '/stream'
@@ -62,9 +61,9 @@ async def StartTelegramForwarding():
     api_id = 5747368
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
     # Local Session
-    stringsesh = '1BVtsOIQBu3LMJ7OLGqK63WxuVxgcdOm3EXqVqNANTsCC6En6KmoxsBlr59lP70lvaFTDjb_0mhyWyL5ndC5R3m-Nmo_75NyW_KPlsVPpwXxsK3CAfjQnIfOMw53X8WTbJUp98SmSmtioS1ZdY5PCFw2OZ7bBzzr_ttQpn_7z6IYhLvD5aEEGRSLoRaviT3uSgg9mKsFzbtZsGZ-R5g49Y7JleJtmqoBZPsPr_o8Uu1glHWHCcgcFv1x-ASRlaN-pf2a4dT1RAFIn30l20AVhIRw2bcrKFkhrfKJBfWPxtnuNvMnjjtix-STUGYV2UoHd6hHn2-hJ1T6JXbN-yugTCR9_ZNTZYhs='
+    # stringsesh = '1BVtsOMEBu5f3HGEkQH8045E2q2fdR2NJP6uyiA4MZWOBNMFYD5c5V_M2WV_h-B77FCXw7rovy0iXvQOJHo-r59p44vtOt-9b-BKPz2eqtV6YvadvVoJOytksl2hGdvT6iKA8AVO9BDDozxQkCNXvoYiShF3L9Mw24Pqb8l583x-xnMXKc27HhYSX19hsEZlQ0BwYujo8JPimGoJ-PBI_mKFDDpomztyvbURQah6KfTKkkAwX_jUscV7KmHb51OOCzo_gu_RG-pQPA7fy0HJr2dzGsaiEsWr4LC47ZKH0o7YiiND5y5yf8nexWr4H-JfQwvEnZIrrVd-2wep4hcNPvffJsu0OPj8='
     # Heroku session
-    stringsesh = '1BVtsOIQBuxr6ZxLuwVQyGOhCNK5d9pQj3JItDcREpmOAnlKXQjqzWHhMXRrAnS4DVZrnwTjHjH12hX-gBbC0bobd8isvh3Xxoxw5hDQFuOEQNqXIIb80HMvtq4dztayw7Mj0I3FEE0ByBEM_Kr6goGhNsRWp0zYnaAXIUgzA8VXloZT9GZJhm1_HkV0mEO3vQMfd60Z7tTDnCz5_FaL1V7vsTxVPM8NbgwI1sDIKHBZFEwd0soJzNmQLfyD97_SBGUZQmz-3uo5zZNYTJPFZZfm6E-RMkRoWmFnkMtoLGFjs9wRI5zIh-MWxerZZZ4qPjpI3J8yzTmiYcTzdNn6fAROO7w-w9VQ='
+    stringsesh = '1BVtsOMEBu8Ilh0nvQh46IPweQ_uEl2_zuuKjob1V97SY9DpFrQNP1tpAu0SnMvW5C66HLRZwwda0P7Tmn6bIqY1mNZdRYYRTimUNcoNl_s5muivUWq8ZWc4vI6TSzH2BrzLIDNzHDoRUohfhzvdQeR-39OovjesmAaJINfFvk9hlk6-iNT6ve9_a0xbW1mdHHzQXXhnqeYBBe9A1PZOJR62pPBeUeZH4UZJIhsJs1VV11njnfUzMnup9lLDDFutl8IQFMzCd6xFkQLQXXSLQul5IJ2DZpsDRrR5TcXdDEv406V4I3qjLmTd2hx9JGC_PJpgWhJ1SDaWPmP7_Ss6v9TMsh-h9G8E='
 
     client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
 
@@ -92,7 +91,7 @@ async def StartTelegramForwarding():
             valid = msg_vip_signals.valid_trade_message(message)
             if valid:
                 try:
-                    vip = msg_vip_signals.bag(message, binance_wrap)
+                    vip = msg_vip_signals.bag(message)
                     utility.add_message('Vip Signals', '[X]')
                     await trade_stream.addtrade(vip)
                 except Exception as e:
@@ -191,8 +190,7 @@ async def StartTelegramForwarding():
             elif message == MENU:
                 await trade_stream.stopstream()
 
-            elif message == '/hirn':
-                pass
+            elif message == '/hirn_real':
                 with open('docs/hirn_example.txt', encoding="utf8") as f:
                     msg = f.read()
                     valid = hirn.valid_trade_message(msg)
@@ -212,6 +210,17 @@ async def StartTelegramForwarding():
                     else:
                         print('notvalid')
 
+            elif message == '/real':
+                pair = 'ETHUSDT'
+                base = 'USDT'
+                sigal = Trade(pair, base, 'Futures Signals', 'mfutures')
+                stoploss = [1, 1, 1, 1, 1]
+                stopprof = [0.2, 0.2, 0.2, 0.2, 0.2]
+                loss_targets = [3400, 3430, 3440, 3450, 3460]
+                proftargets = [3475, 3480, 3490, 3500, 3510]
+                sigal.conditions = MFutures(stoploss, loss_targets, stopprof, proftargets, 'long', '1', 'isolation')
+                binance_wrap.mfutures_trade(sigal, 1)
+
             elif message == '/aw1':
                 pass
                 with open('docs/aw_example.txt', encoding="utf8") as f:
@@ -221,7 +230,7 @@ async def StartTelegramForwarding():
                         aw = always_win.bag(msg)
                         await trade_stream.addtrade(aw)
                     else:
-                        print('notval   id')
+                        print('notval id')
 
     # End of event handler code ____________________
     print("Launching Telegram Scraper...")
@@ -240,6 +249,6 @@ def handler_stop_signals(sig, frame):
 
 
 # signal.signal(signal.SIGTERM, handler_stop_signals)  # Intializing graceful death on heroku restart
-asyncio.get_event_loop().run_until_complete(StartTelegramForwarding())
+asyncio.run(StartTelegramForwarding())
 print('We out this bitch')
 

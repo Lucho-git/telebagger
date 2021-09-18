@@ -2,6 +2,8 @@ from binance.client import Client
 from binance.exceptions import BinanceAPIException, BinanceOrderException
 from datetime import datetime
 import math
+import time
+MIN_TRADE_VALUE = 10
 
 # Binance API Keys, TODO: Switch these to environmental variables if this code ever goes public
 r_api_key = 'GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  # Put your own api keys here
@@ -21,6 +23,213 @@ def round_decimals_down(number: float, decimals: int = 2):
         return math.floor(number)
     factor = 10 ** decimals
     return math.floor(number * factor) / factor
+
+
+def futures_trade(signal, percentage):
+    symbol = signal.pair
+    margin = 0.99
+    balance = float(realclient.futures_account_balance()[1]['withdrawAvailable'])  # Get available funds
+    if balance*margin*percentage < MIN_TRADE_VALUE:
+        print('Low Funds')
+        raise ValueError("Funds too low to take this trade")
+
+    if signal.conditions.direction == 'long':
+        side = 'BUY'
+    elif signal.conditions.direction == 'short':
+        side = 'SELL'
+    isolated = True
+    if signal.conditions.mode == 'cross':
+        isolated = False
+        try:
+            realclient.futures_change_margin_type(symbol=symbol, mode='CROSS')
+        except:
+            print('already cross')
+    else:
+        try:
+            realclient.futures_change_margin_type(symbol=symbol, mode='ISOLATED')
+        except:
+            print('already iso')
+
+    # Get futures coin precision
+    coin_precision = None
+    for i in realclient.futures_exchange_info()['symbols']:
+        if i['pair'] == symbol:
+            coin_precision = i['quantityPrecision']
+            break
+
+    # Calculate trade values
+    amount = balance*margin*percentage*signal.conditions.leverage
+    amount = str(float(round_decimals_down(amount, coin_precision)))  # Round Base amount
+    pair_price = float(realclient.get_symbol_ticker(symbol=symbol)['price'])  # Get coin price
+    q = float(amount) / pair_price  # Define trade quantities
+    q = float(round_decimals_down(q, coin_precision))  # Round trade Quantities
+
+    realclient.futures_change_leverage(symbol=symbol, leverage=signal.conditions.leverage)
+    print(balance*percentage)
+    trade_receipt = realclient.futures_create_order(symbol=symbol, side=side, type='MARKET', quantity=q, isolated=isolated)
+
+    # Move all this shit into trade_classes
+    signal.id = trade_receipt['orderId']
+    signal.receipt = realclient.futures_get_order(orderId=signal.id, symbol=symbol)
+    signal.time = signal.receipt['time']
+    signal.price = float(signal.receipt['avgPrice'])
+    signal.lowest = signal.price
+    signal.highest = signal.price
+    signal.amount = float(signal.receipt['executedQty'])
+    signal.status = 'active'
+
+    sell_orders = []
+    if side == 'BUY':
+        side = 'SELL'
+    elif side == 'SELL':
+        side = 'BUY'
+
+    trade_qty = float(trade_receipt['origQty'])
+
+    print(signal.conditions.stoploss)
+    receipt_sl = realclient.futures_create_order(symbol=symbol, side=side, type='STOP_MARKET', quantity=trade_qty, stopPrice=signal.conditions.stoploss,
+                                              timeInForce='GTC', reduceOnly=True)
+    signal.conditions.orders.append(receipt_sl)
+    receipt_tp = realclient.futures_create_order(symbol=symbol, side=side, type='LIMIT', quantity=trade_qty, price=signal.conditions.stopprof,
+                                              timeInForce='GTC', reduceOnly=True)
+    signal.conditions.orders.append(receipt_tp)
+    return signal
+
+
+def futures_update(sell_orders):
+    stop_orders = False
+    symbol = sell_orders[0]['symbol']
+    for s in sell_orders:
+        stopstatus = realclient.futures_get_order(orderId=s['orderId'], symbol=symbol)['status']
+        if stopstatus == 'filled':
+            stop_orders = True
+    if stop_orders:
+        for s in sell_orders:
+            realclient.futures_cancel_order(orderId=s['orderId'], symbol=symbol)
+
+
+def mfutures_trade(signal, percentage):
+    symbol = signal.pair
+    base = 'USDT'
+    coin = symbol.replace(base, '')
+    margin = 0.99  # Allow for margin errors
+    trade_size = percentage  # Percentage of available funds to invest
+    balance = float(realclient.futures_account_balance()[1]['withdrawAvailable'])  # Get available funds
+    amount = balance * trade_size * margin  # Define investment amount
+    base_precision = 2  # Base is always usdt, futures usdt has precision 2
+    side = ''
+    if signal.conditions.direction == 'long':
+        side = 'BUY'
+    elif signal.conditions.direction == 'short':
+        side = 'SELL'
+    isolated = True
+    if signal.conditions.mode == 'cross':
+        isolated = False
+
+    coin_precision = None
+    # Get futures coin precision
+    for i in realclient.futures_exchange_info()['symbols']:
+        if i['pair'] == symbol:
+            coin_precision = i['quantityPrecision']
+            break
+
+    amount = str(float(round_decimals_down(amount, coin_precision)))  # Round Base amount
+    pair_price = float(realclient.get_symbol_ticker(symbol=symbol)['price'])  # Get coin price
+    q = float(amount) / pair_price  # Define trade quantities
+    q = float(round_decimals_down(q, coin_precision))  # Round trade Quantities
+
+    trade1_receipt = realclient.futures_create_order(symbol=symbol, side=side, type='MARKET', quantity=q, isolated=isolated)
+    trade_time = trade1_receipt['updateTime']
+
+    ''' ABOVE is the Buying part of the trade, BELOW is setting up sell orders for takeprofit and stoploss  '''
+
+    print(trade1_receipt)
+
+    info = realclient.futures_exchange_info()['symbols'][1]
+    step_size = float(info['filters'][1]['stepSize'])
+    tick_size = float(info['filters'][0]['tickSize'])
+    trade_qty = float(trade1_receipt['origQty'])
+    units = trade_qty/step_size
+    loss_amount = trade_qty  # 100% of Trade
+
+    leverage = signal.conditions.leverage
+    proftargets = signal.conditions.proftargets
+    profit_dist = signal.conditions.stopprof
+    profit_qty = []
+    losstargets = signal.conditions.losstargets
+    stop_order_receipts = []
+
+    if side == 'BUY':
+        side = 'SELL'
+    elif side == 'SELL':
+        side = 'BUY'
+
+    # Take profit quantities math
+    tot = 0
+    for d in profit_dist:
+        qty = float(math.floor(d * units))
+        profit_qty.append(qty)
+        tot += qty
+
+    # Dealing with remainders
+    leftovers = units - tot
+    print(leftovers)
+    for x in range(int(leftovers)):
+        profit_qty[x] += 1
+
+    # Setting TP quantities
+    prof_qty = []
+    for p in profit_qty:
+        p = float(p * step_size)
+        prof_qty.append(p)
+    print(prof_qty)
+
+    # Order to Sell 100% of trade if it hits STOPLOSS
+    stoploss_receipt = realclient.futures_create_order(symbol=symbol, side=side, type='STOP_MARKET', quantity=loss_amount, stopPrice=losstargets[0], timeInForce='GTC', reduceOnly=True)
+    stop_order_receipts.append(stoploss_receipt)
+
+    for p, t in zip(prof_qty, proftargets):
+        print(p, t)
+
+        receipt = realclient.futures_create_order(symbol=symbol, side=side, type='LIMIT', quantity=p, price=t, timeInForce='GTC', reduceOnly=True)
+        stop_order_receipts.append(receipt)
+    return stop_order_receipts
+
+
+def mfutures_update(signal, stop_order_receipts):
+    cancel_stoploss = False
+    cancel_stopprof = False
+    stopstatus = realclient.futures_get_order(orderId=stop_order_receipts[0]['orderId'], symbol=signal.pair)['status']
+    if not stopstatus == 'NEW':
+        cancel_stopprof = True
+    profstatus = realclient.futures_get_order(orderId=stop_order_receipts[len(stop_order_receipts)]['orderId'], symbol=signal.pair)['status']
+    if not profstatus == 'NEW':
+        cancel_stoploss = True
+
+    if cancel_stopprof or cancel_stoploss:
+        for s in stop_order_receipts:
+            if s['orderId'] == 'NEW':
+                realclient.futures_cancel_order(orderId=s['orderId'], symbol=signal.pair)
+    else:
+        skipfirst = False
+        count = 0
+        for s in stop_order_receipts:
+            if skipfirst:
+                count += 1
+                if s['orderId'] == 'Filled':
+                    stop_order_receipts[0] = update_stoploss(signal.conditions.losstargets[count], stop_order_receipts[0])
+            skipfirst = True
+
+
+def update_stoploss(new_sl, current_order):
+    old_id = current_order['orderId']
+    symbol = current_order['symbol']
+    side = current_order['side']
+    o_type = current_order['type']
+    quantity = current_order['origQty']
+    realclient.futures_cancel_order(orderId=old_id,symbol=symbol) # Remove Old stoploss order
+    # Place updated stoploss order
+    return realclient.futures_create_order(symbol=symbol, side=side, type=o_type, quantity=quantity, stopPrice=new_sl, timeInForce='GTC', reduceOnly=True)
 
 
 # Performs a percentage market trade of any spot coin, using BTC or USDT as the base

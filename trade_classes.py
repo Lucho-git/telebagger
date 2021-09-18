@@ -19,6 +19,7 @@ class Futures:
         self.direction = direction
         self.leverage = leverage
         self.mode = mode
+        self.orders = []
 
 
 class MFutures:
