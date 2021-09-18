@@ -105,7 +105,10 @@ def futures_update(sell_orders):
             stop_orders = True
     if stop_orders:
         for s in sell_orders:
-            realclient.futures_cancel_order(orderId=s['orderId'], symbol=symbol)
+            try:
+                realclient.futures_cancel_order(orderId=s['orderId'], symbol=symbol)
+            except ValueError:
+                print('Order Already Canceled')
 
 
 def mfutures_trade(signal, percentage):
