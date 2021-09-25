@@ -7,7 +7,8 @@ tradeheat = [False]
 
 HIRN_LEVERAGE = 15
 HIRN_TRADE_PERCENT = 0.4
-HIRN_STOPLOSS_REDUCTION = 0.8
+HIRN_STOPLOSS_REDUCTION = 0.75
+
 
 def bag(msg):
     raw_server_time = binance_wrap.timenow()
@@ -63,7 +64,7 @@ def search_coin(text):
         signal = Trade(pair, base, 'Hirn', 'futures')
         signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
         try:
-            binance_wrap.futures_trade(signal, 1)
+            binance_wrap.futures_trade(signal, HIRN_TRADE_PERCENT)
         except ValueError:
             fake_trade.futures_trade(signal)
     else:
