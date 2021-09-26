@@ -5,7 +5,7 @@ from trade_classes import Trade, Futures, STrade
 hirn_timer = [0]
 tradeheat = [False]
 
-HIRN_LEVERAGE = 15
+HIRN_LEVERAGE = 10
 HIRN_TRADE_PERCENT = 0.4
 HIRN_STOPLOSS_REDUCTION = 0.75
 
