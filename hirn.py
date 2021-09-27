@@ -5,23 +5,25 @@ from trade_classes import Trade, Futures, STrade
 hirn_timer = [0]
 tradeheat = [False]
 
-HIRN_LEVERAGE = 10
-HIRN_TRADE_PERCENT = 0.4
-HIRN_STOPLOSS_REDUCTION = 0.75
+HIRN_COOLDOWN_TIME = 180000  # In milliseconds
+HIRN_LEVERAGE = 10  # Trade Leverage for Futures trades
+HIRN_TRADE_PERCENT = 0.4  # How much remaining balance should be invested on each trade
+HIRN_STOPLOSS_REDUCTION = 0.75   # Stoploss value to avoid getting liquidated
 
 
 def bag(msg):
     raw_server_time = binance_wrap.timenow()
-
     if raw_server_time < hirn_timer[0]:
         tradeheat[0] = True
         print("Cooling Down")
+        raise ValueError('Hirn Signal while Cooling Down')
     else:
         tradeheat[0] = False
-    result = search_coin(msg)
-    tradetime = result[0].time
-    hirn_timer[0] = tradetime + 60000
-    return result
+    if not tradeheat[0]:
+        result = search_coin(msg)
+        tradetime = result[0].time
+        hirn_timer[0] = tradetime + 180000
+        return result
 
 
 def valid_trade_message(msg):

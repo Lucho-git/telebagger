@@ -24,8 +24,8 @@ init()  # Initialising colorama
 
 update = [False]
 update2 = [False]
-
 '''
+
 # Stream Commands Local
 STOP = '/stop'
 STREAM = '/stream'
@@ -61,7 +61,7 @@ async def StartTelegramForwarding():
     api_id = 5747368
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
     # Local Session
-    # stringsesh = '1BVtsOMEBu5f3HGEkQH8045E2q2fdR2NJP6uyiA4MZWOBNMFYD5c5V_M2WV_h-B77FCXw7rovy0iXvQOJHo-r59p44vtOt-9b-BKPz2eqtV6YvadvVoJOytksl2hGdvT6iKA8AVO9BDDozxQkCNXvoYiShF3L9Mw24Pqb8l583x-xnMXKc27HhYSX19hsEZlQ0BwYujo8JPimGoJ-PBI_mKFDDpomztyvbURQah6KfTKkkAwX_jUscV7KmHb51OOCzo_gu_RG-pQPA7fy0HJr2dzGsaiEsWr4LC47ZKH0o7YiiND5y5yf8nexWr4H-JfQwvEnZIrrVd-2wep4hcNPvffJsu0OPj8='
+    stringsesh = '1BVtsOMEBu5f3HGEkQH8045E2q2fdR2NJP6uyiA4MZWOBNMFYD5c5V_M2WV_h-B77FCXw7rovy0iXvQOJHo-r59p44vtOt-9b-BKPz2eqtV6YvadvVoJOytksl2hGdvT6iKA8AVO9BDDozxQkCNXvoYiShF3L9Mw24Pqb8l583x-xnMXKc27HhYSX19hsEZlQ0BwYujo8JPimGoJ-PBI_mKFDDpomztyvbURQah6KfTKkkAwX_jUscV7KmHb51OOCzo_gu_RG-pQPA7fy0HJr2dzGsaiEsWr4LC47ZKH0o7YiiND5y5yf8nexWr4H-JfQwvEnZIrrVd-2wep4hcNPvffJsu0OPj8='
     # Heroku session
     stringsesh = '1BVtsOMEBu8Ilh0nvQh46IPweQ_uEl2_zuuKjob1V97SY9DpFrQNP1tpAu0SnMvW5C66HLRZwwda0P7Tmn6bIqY1mNZdRYYRTimUNcoNl_s5muivUWq8ZWc4vI6TSzH2BrzLIDNzHDoRUohfhzvdQeR-39OovjesmAaJINfFvk9hlk6-iNT6ve9_a0xbW1mdHHzQXXhnqeYBBe9A1PZOJR62pPBeUeZH4UZJIhsJs1VV11njnfUzMnup9lLDDFutl8IQFMzCd6xFkQLQXXSLQul5IJ2DZpsDRrR5TcXdDEv406V4I3qjLmTd2hx9JGC_PJpgWhJ1SDaWPmP7_Ss6v9TMsh-h9G8E='
 

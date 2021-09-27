@@ -1,10 +1,10 @@
-LUNA /USDT SHORT ðŸ›‘
+COTI/USDT SHORT 🛑
 Leverage 20x
-Entries  36.7
-Target 1 36.1
-Target 2 35.2
-Target 3 33.9
-Target 4 30
-Target 5 20
+Entries  0.547
+Target 1 0.538
+Target 2 0.525
+Target 3 0.505
+Target 4 0.45
+Target 5 0.35
 
-SL 39
+SL 0.5655

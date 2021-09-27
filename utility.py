@@ -14,9 +14,9 @@ config = {  # initialising database connection
 }
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
+'''
 
 # Firebase Cloud Storage File Paths
-'''
 FAILED_MESSAGES = "trade_results/failed_messages/"  # Filepath
 ADD_MESSAGE = "trade_results/message_count/"  # Filepath
 SAVE_STREAM = "save_data/savefile"  # Path and file
