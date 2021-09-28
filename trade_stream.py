@@ -4,6 +4,7 @@ from trade_classes import Trade, Futures
 import asyncio
 import time
 import utility
+from utility import Sleeper
 import binance_wrap
 
 twm = ThreadedWebsocketManager()
@@ -18,7 +19,7 @@ reload = [False]
 active = [False]
 stop = [False]
 update = [False]
-RESTART_TIMER = 3600  # 1 hour restart delays
+RESTART_TIMER = 3600  # 3600 == 1 hour restart delays
 
 
 # Not Error is default, must be explicitly set as error by binance
@@ -73,7 +74,7 @@ async def restart():
     reload[0] = True
 
 
-async def restart_schedule():
+async def restart_schedule(sleeper=None):
     if update[0]:
         update[0] = False
     else:
@@ -82,7 +83,8 @@ async def restart_schedule():
         print("Scheduled Restart")
         await restart()
         await streamer()
-        await asyncio.sleep(RESTART_TIMER)
+        await sleeper.sleep(RESTART_TIMER)
+    print('Ending Restart Schedule')
 
 
 async def save(in_streamdict):

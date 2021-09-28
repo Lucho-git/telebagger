@@ -11,19 +11,23 @@ HIRN_TRADE_PERCENT = 0.4  # How much remaining balance should be invested on eac
 HIRN_STOPLOSS_REDUCTION = 0.75   # Stoploss value to avoid getting liquidated
 
 
-def bag(msg):
+def cooldown():
     raw_server_time = binance_wrap.timenow()
     if raw_server_time < hirn_timer[0]:
         tradeheat[0] = True
-        print("Cooling Down")
         raise ValueError('Hirn Signal while Cooling Down')
     else:
         tradeheat[0] = False
+        hirn_timer[0] = raw_server_time + HIRN_COOLDOWN_TIME
+
+
+def bag(msg):
+    raw_server_time = binance_wrap.timenow()
+    utility.failed_message(msg, 'HIRN_DOUBLE_TEST', str(raw_server_time) + str(tradeheat[0]), '_doubleups.txt')
     if not tradeheat[0]:
         result = search_coin(msg)
-        tradetime = result[0].time
-        hirn_timer[0] = tradetime + 180000
         return result
+    return None
 
 
 def valid_trade_message(msg):

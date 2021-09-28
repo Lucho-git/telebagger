@@ -5,9 +5,11 @@ from telethon import TelegramClient, events, sync, utils
 from telethon.sessions import StringSession
 import requests
 import asyncio
+from utility import Sleeper
 import signal
 import sys
 import time
+import os
 
 # Methods within this package
 from trade_classes import Trade, Futures, MFutures
@@ -20,33 +22,38 @@ import utility
 import hirn
 import futures_signals
 
-init()  # Initialising colorama
+local = False
 
+init()  # Initialising colorama
 update = [False]
 update2 = [False]
-'''
 
-# Stream Commands Local
-STOP = '/stop'
-STREAM = '/stream'
-RESTART = '/restart'
-MENU = '/menu'
-ADD = '/add'
-ADD2 = '/add2'
-ADD3 = '/add3'
-UPDATE = '/update'
-UPDATE2 = '/update2'
-'''
-# Stream Commands Heroku Version
-STOP = '/stop!'
-STREAM = '/stream!'
-RESTART = '/restart!'
-MENU = '/menu!'
-ADD = '/add!'
-ADD2 = '/add2!'
-ADD3 = '/add3!'
-UPDATE = '/update!'
-UPDATE2 = '/update2!'
+if local:
+    # Local Telegram Session
+    stringsesh = '1BVtsOMEBu5f3HGEkQH8045E2q2fdR2NJP6uyiA4MZWOBNMFYD5c5V_M2WV_h-B77FCXw7rovy0iXvQOJHo-r59p44vtOt-9b-BKPz2eqtV6YvadvVoJOytksl2hGdvT6iKA8AVO9BDDozxQkCNXvoYiShF3L9Mw24Pqb8l583x-xnMXKc27HhYSX19hsEZlQ0BwYujo8JPimGoJ-PBI_mKFDDpomztyvbURQah6KfTKkkAwX_jUscV7KmHb51OOCzo_gu_RG-pQPA7fy0HJr2dzGsaiEsWr4LC47ZKH0o7YiiND5y5yf8nexWr4H-JfQwvEnZIrrVd-2wep4hcNPvffJsu0OPj8='
+    # Stream Commands Local
+    STOP = '/stop'
+    STREAM = '/stream'
+    RESTART = '/restart'
+    MENU = '/menu'
+    ADD = '/add'
+    ADD2 = '/add2'
+    ADD3 = '/add3'
+    UPDATE = '/update'
+    UPDATE2 = '/update2'
+else:
+    # Hosted Telegram Session
+    stringsesh = '1BVtsOMEBu8Ilh0nvQh46IPweQ_uEl2_zuuKjob1V97SY9DpFrQNP1tpAu0SnMvW5C66HLRZwwda0P7Tmn6bIqY1mNZdRYYRTimUNcoNl_s5muivUWq8ZWc4vI6TSzH2BrzLIDNzHDoRUohfhzvdQeR-39OovjesmAaJINfFvk9hlk6-iNT6ve9_a0xbW1mdHHzQXXhnqeYBBe9A1PZOJR62pPBeUeZH4UZJIhsJs1VV11njnfUzMnup9lLDDFutl8IQFMzCd6xFkQLQXXSLQul5IJ2DZpsDRrR5TcXdDEv406V4I3qjLmTd2hx9JGC_PJpgWhJ1SDaWPmP7_Ss6v9TMsh-h9G8E='
+    # Stream Commands Heroku Hosted
+    STOP = '/stop!'
+    STREAM = '/stream!'
+    RESTART = '/restart!'
+    MENU = '/menu!'
+    ADD = '/add!'
+    ADD2 = '/add2!'
+    ADD3 = '/add3!'
+    UPDATE = '/update!'
+    UPDATE2 = '/update2!'
 
 
 def SendMessageToAlwaysWin(message):
@@ -58,15 +65,16 @@ def SendMessageToAlwaysWin(message):
 
 
 async def StartTelegramForwarding():
+    global stringsesh
+
+    loop = asyncio.get_event_loop()
+    sleeper = Sleeper(loop)
+
     api_id = 5747368
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
-    # Local Session
-    stringsesh = '1BVtsOMEBu5f3HGEkQH8045E2q2fdR2NJP6uyiA4MZWOBNMFYD5c5V_M2WV_h-B77FCXw7rovy0iXvQOJHo-r59p44vtOt-9b-BKPz2eqtV6YvadvVoJOytksl2hGdvT6iKA8AVO9BDDozxQkCNXvoYiShF3L9Mw24Pqb8l583x-xnMXKc27HhYSX19hsEZlQ0BwYujo8JPimGoJ-PBI_mKFDDpomztyvbURQah6KfTKkkAwX_jUscV7KmHb51OOCzo_gu_RG-pQPA7fy0HJr2dzGsaiEsWr4LC47ZKH0o7YiiND5y5yf8nexWr4H-JfQwvEnZIrrVd-2wep4hcNPvffJsu0OPj8='
-    # Heroku session
-    stringsesh = '1BVtsOMEBu8Ilh0nvQh46IPweQ_uEl2_zuuKjob1V97SY9DpFrQNP1tpAu0SnMvW5C66HLRZwwda0P7Tmn6bIqY1mNZdRYYRTimUNcoNl_s5muivUWq8ZWc4vI6TSzH2BrzLIDNzHDoRUohfhzvdQeR-39OovjesmAaJINfFvk9hlk6-iNT6ve9_a0xbW1mdHHzQXXhnqeYBBe9A1PZOJR62pPBeUeZH4UZJIhsJs1VV11njnfUzMnup9lLDDFutl8IQFMzCd6xFkQLQXXSLQul5IJ2DZpsDRrR5TcXdDEv406V4I3qjLmTd2hx9JGC_PJpgWhJ1SDaWPmP7_Ss6v9TMsh-h9G8E='
-
     client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
 
+    # Receive Telegram Message Event Handler
     @client.on(events.NewMessage())
     async def my_event_handler(event):
 
@@ -77,7 +85,7 @@ async def StartTelegramForwarding():
         message = str(event.raw_text)
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
 
-        if sender_id == "1375168387":  # Always Win
+        if sender_id == "1375168387":  # Always Win, Signal
             valid = always_win.valid_trade_message(message)
             if valid:
                 try:
@@ -85,9 +93,9 @@ async def StartTelegramForwarding():
                     utility.add_message('Always Win', '[X]')
                     await trade_stream.addtrade(aw)
                 except Exception as e:
-                    utility.failed_message(message, 'Always Win', e)
+                    utility.failed_message(message, 'Always Win', e, '_failed.txt')
                     utility.add_message('Always Win', '[-]')
-        if chat.id == 1312345502:  # Vip Signals
+        if chat.id == 1312345502:  # Vip Signals, Signal
             valid = msg_vip_signals.valid_trade_message(message)
             if valid:
                 try:
@@ -95,18 +103,26 @@ async def StartTelegramForwarding():
                     utility.add_message('Vip Signals', '[X]')
                     await trade_stream.addtrade(vip)
                 except Exception as e:
-                    utility.failed_message(message, 'Vip Signals', e)
+                    utility.failed_message(message, 'Vip Signals', e, '_failed.txt')
                     utility.add_message('Vip Signals', '[-]')
-        elif chat.id == 1248393106:  # HIRN
+        elif chat.id == 1248393106:  # HIRN, Signal
+            try:
+                hirn.cooldown()
+            except ValueError:
+                print("Hirn Cooling Down")
             valid = hirn.valid_trade_message(message)
             if valid and not event.is_reply:
                 try:
                     hir = hirn.bag(message)
-                    await trade_stream.addtrade(hir)
+                    if hir:
+                        utility.add_message('Hirn', '[X]')
+                        await trade_stream.addtrade(hir)
+                    else:
+                        raise ValueError("No Signal / Cooling Down")
                 except Exception as e:
-                    utility.failed_message(message, 'Hirn', e)
+                    utility.failed_message(message, 'Hirn', e, '_failed.txt')
                     utility.add_message('Hirn', '[-]')
-        elif sender_id == "1350854897":  # Futures Signals
+        elif sender_id == "1350854897":  # Futures Signals, Signal
             valid = futures_signals.valid_trade_message(message)
             if valid:
                 try:
@@ -114,89 +130,44 @@ async def StartTelegramForwarding():
                     utility.add_message('Futures Signals', '[X]')
                     await trade_stream.addtrade(futsig)
                 except Exception as e:
-                    utility.failed_message(message, 'Futures Signals', e)
+                    utility.failed_message(message, 'Futures Signals', e, '_failed.txt')
                     utility.add_message('Futures Signals', '[-]')
 
         elif chat.id == 1899129008:  # Telegram Bot
             print("Robot Section +++")
-            # stream commands
+            # Bot commands
             if message == STOP:
+                await trade_stream.restart_schedule(sleeper)
+                sleeper.cancel_all_helper()
+                await asyncio.sleep(1)
                 print('Exiting....')
                 await client.disconnect()
+                print("End of lin3e")
+
+            # Stream Commands
             elif message == STREAM:
                 await trade_stream.streamer()
             elif message == RESTART:
                 await trade_stream.restart()
-            elif message == UPDATE2:
-                while update[0]:
-                    await trade_stream.stopstream()
-                    await asyncio.sleep(3550)
-            elif message == UPDATE:
-                ''' Restart Every Hour'''
-                if update[0]:
-                    update[0] = False
-                else:
-                    update[0] = True
-                print("Scheduled Restart1")
-                while update[0]:
-                    print("Scheduled Restart2")
-                    await trade_stream.restart()
-                    await trade_stream.streamer()
-                    await asyncio.sleep(3600)
-                    print("Scheduled Restart end")
-
-            elif message == ADD:  # Test Trades
-                tr0 = Trade('ETHUSDT', 'USDT', 'manual', 'futures')
-                tr0.conditions = Futures(2800, 3200, 'long', 10, 'isolation')
-                fake_trade.futures_trade(tr0)
-
-                tr1 = Trade('ETHUSDT', 'USDT', 'manual', 'futures')
-                tr1.conditions = Futures(2900, 3300, 'long', 5, 'isolation')
-                fake_trade.futures_trade(tr1)
-
-                tr2 = Trade('BTCUSDT', 'USDT', 'manual', 'futures')
-                tr2.conditions = Futures(44500, 46000, 'long', 5, 'isolation')
-                fake_trade.futures_trade(tr2)
-
-                tr3 = Trade('NANOUSDT', 'USDT', 'manual', 'futures')
-                tr3.conditions = Futures(5.5, 6, 'long', 5, 'isolation')
-                fake_trade.futures_trade(tr3)
-
-                tr4 = Trade('DOGEUSDT', 'USDT', 'manual', 'futures')
-                tr4.conditions = Futures(0.28, 0.3, 'long', 5, 'isolation')
-                fake_trade.futures_trade(tr4)
-
-                newtrades = [tr0, tr1, tr2, tr3, tr4]
-                await trade_stream.addtrade(newtrades)
-            elif message == ADD2:
-                tr0 = Trade('AVAXUSDT', 'USDT', 'Always Win', 'mfutures')
-                tr0.conditions = MFutures([100, 100, 100, 100, 100], [46, 43, 42.9, 42.3, 41.1], [50, 20, 10, 10, 10],          [42.3, 41.1, 39.6, 35, 30], 'short', 20, 'isolation')
-                tr1 = Trade('AVAXUSDT', 'USDT', 'Always Win', 'mfutures')
-                tr1.conditions = MFutures([100, 100, 100, 100, 100], [46, 43, 42.9, 42.3, 41.1], [10, 22.5, 33.75, 25.3, 8.45], [42.3, 41.1, 39.6, 35, 30], 'short', 20, 'isolation')
-                fake_trade.mfutures_trade(tr0)
-                fake_trade.mfutures_trade(tr1)
-                newtrades = [tr0, tr1]
-                await trade_stream.addtrade(newtrades)
-
-            elif message == ADD3:
-                tr2 = Trade('SNXUSDT', 'USDT', 'Always Win', 'mfutures')
-                tr2.conditions = MFutures([100, 100, 100, 100, 100], [15, 14.08, 13.7, 13.2, 12], [50, 20, 10, 10, 10], [14.08, 13.7, 13.2, 12, 10], 'short', 20, 'isolation')
-                fake_trade.mfutures_trade(tr2)
-                tr3 = Trade('LRCUSDT', 'USDT', 'Always Win', 'mfutures')
-                tr3.conditions = MFutures([100, 100, 100, 100, 100], [0.52, 0.491, 0.483, 0.471, 0.45], [30, 20, 20, 10, 10], [0.483, 0.471, 0.45, 0.35, 0.30], 'short', 20, 'isolation')
-                fake_trade.mfutures_trade(tr3)
-                newtrades = [tr2, tr3]
-                await trade_stream.addtrade(newtrades)
             elif message == MENU:
                 await trade_stream.stopstream()
 
+            # Testing Stubs, To be removed at a later stage
             elif message == '/hirn_real':
                 with open('docs/hirn_example.txt', encoding="utf8") as f:
                     msg = f.read()
+                    try:
+                        hirn.cooldown()
+                    except ValueError:
+                        print("Hirn Cooling Down")
                     valid = hirn.valid_trade_message(msg)
                     if valid:
-                        hir = hirn.bag(msg)
-                        await trade_stream.addtrade(hir)
+                        try:
+                            hir = hirn.bag(msg)
+                            await trade_stream.addtrade(hir)
+                        except Exception as e:
+                            utility.failed_message(message, 'Hirn', e, '_failed.txt')
+                            utility.add_message('Hirn', '[-]')
                     else:
                         print('notvalid')
 
@@ -237,10 +208,11 @@ async def StartTelegramForwarding():
     await client.start()
     await client.get_dialogs()
     await trade_stream.streamer()
-    await trade_stream.restart_schedule()
+    await trade_stream.restart_schedule(sleeper)
     await client.run_until_disconnected()
 
 
+# Currently non functional, want to find a way to gracefully shutdown the program when heroku calls sigterm
 def handler_stop_signals(sig, frame):
     print("Am Dying lol")
     print('Aaaaaah it hurts')
@@ -252,3 +224,5 @@ def handler_stop_signals(sig, frame):
 asyncio.run(StartTelegramForwarding())
 print('We out this bitch')
 
+os.kill(os.getpid(), signal.SIGTERM) # Not sure how this is going to react with heroku
+print('Still going')
