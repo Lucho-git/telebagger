@@ -1,9 +1,11 @@
 import fake_trade
+import time
 import utility
 import binance_wrap
 from trade_classes import Trade, Futures, STrade
 hirn_timer = [0]
 tradeheat = [False]
+first = [True]
 
 HIRN_COOLDOWN_TIME = 180000  # In milliseconds
 HIRN_LEVERAGE = 10  # Trade Leverage for Futures trades
@@ -11,7 +13,15 @@ HIRN_TRADE_PERCENT = 0.4  # How much remaining balance should be invested on eac
 HIRN_STOPLOSS_REDUCTION = 0.75   # Stoploss value to avoid getting liquidated
 
 
+def am_first():
+    first[0] = False
+
+
 def cooldown():
+    if not first[0]:
+        time.sleep(20)
+    am_first()
+
     raw_server_time = binance_wrap.timenow()
     if raw_server_time < hirn_timer[0]:
         tradeheat[0] = True
@@ -19,14 +29,21 @@ def cooldown():
     else:
         tradeheat[0] = False
         hirn_timer[0] = raw_server_time + HIRN_COOLDOWN_TIME
+        first[0] = True
 
 
 def bag(msg):
-    raw_server_time = binance_wrap.timenow()
-    utility.failed_message(msg, 'HIRN_DOUBLE_TEST', str(raw_server_time) + str(tradeheat[0]), '_doubleups.txt')
+
     if not tradeheat[0]:
         result = search_coin(msg)
+
+        raw_server_time = binance_wrap.timenow()
+        utility.failed_message(msg, 'HIRN_DOUBLE_TEST', str(raw_server_time) + str(tradeheat[0]), '_doubleups.txt')  # TODO remove later
+
         return result
+    else:
+        raw_server_time = binance_wrap.timenow()
+        utility.failed_message(msg, 'HIRN_DOUBLE_TEST', str(raw_server_time) + str(tradeheat[0]), '_doubleups.txt')  # TODO remove later
     return None
 
 

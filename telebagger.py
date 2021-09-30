@@ -106,11 +106,12 @@ async def StartTelegramForwarding():
                     utility.failed_message(message, 'Vip Signals', e, '_failed.txt')
                     utility.add_message('Vip Signals', '[-]')
         elif chat.id == 1248393106:  # HIRN, Signal
+            valid = hirn.valid_trade_message(message)
             try:
                 hirn.cooldown()
             except ValueError:
                 print("Hirn Cooling Down")
-            valid = hirn.valid_trade_message(message)
+
             if valid and not event.is_reply:
                 try:
                     hir = hirn.bag(message)
@@ -155,11 +156,11 @@ async def StartTelegramForwarding():
             elif message == '/hirn_real':
                 with open('docs/hirn_example.txt', encoding="utf8") as f:
                     msg = f.read()
+                    valid = hirn.valid_trade_message(msg)
                     try:
                         hirn.cooldown()
                     except ValueError:
                         print("Hirn Cooling Down")
-                    valid = hirn.valid_trade_message(msg)
                     if valid:
                         try:
                             hir = hirn.bag(msg)
