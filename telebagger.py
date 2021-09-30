@@ -85,7 +85,7 @@ async def StartTelegramForwarding():
         message = str(event.raw_text)
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
 
-        if sender_id == "1375168387":  # Always Win, Signal
+        if sender_id == "1548802426":  # Always Win, Signal
             valid = always_win.valid_trade_message(message)
             if valid:
                 try:
@@ -132,7 +132,6 @@ async def StartTelegramForwarding():
                 except Exception as e:
                     utility.failed_message(message, 'Futures Signals', e, '_failed.txt')
                     utility.add_message('Futures Signals', '[-]')
-
         elif chat.id == 1899129008:  # Telegram Bot
             print("Robot Section +++")
             # Bot commands
@@ -202,6 +201,10 @@ async def StartTelegramForwarding():
                         await trade_stream.addtrade(aw)
                     else:
                         print('notval id')
+        else:
+            #post = msg + '\n' + message + '\n_________________\n'
+            #utility.add_message('New Telegram Groups', post)
+            pass
 
     # End of event handler code ____________________
     print("Launching Telegram Scraper...")
