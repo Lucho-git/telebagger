@@ -88,12 +88,16 @@ def search_coin(text):
         signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
         try:
             binance_wrap.futures_trade(signal, HIRN_TRADE_PERCENT)
+            signal.bag_id = 'hirn_real'
         except ValueError:
             fake_trade.futures_trade(signal)
+            signal.bag_id = 'hirn'
+
     else:
         signal = Trade(pair, base, 'Hirn', 'spot')
         signal.conditions = STrade(sl, exit_price)
         fake_trade.spot_trade(signal)
+        signal.bag_id = 'hirn'
 
     relative_price = abs(float(signal.price) - entry)/entry
     if relative_price > 0.1:

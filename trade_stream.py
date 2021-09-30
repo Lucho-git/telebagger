@@ -168,6 +168,8 @@ def savetraderesults(in_completedtrades):
     for c in in_completedtrades[:]:
         # Save trade to database
         utility.save_trade(c)
+        if c.bag_id:
+            utility.trade_results(c)
         # Remove trade fom list
         in_completedtrades.remove(c)
     print("Recorded Trade to Database")

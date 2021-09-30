@@ -1,0 +1,26 @@
+COTIUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-09-30  18:54 | 2021-09-30  18:55
+Duration: 0.01 hrs
+================================
+Pricechange: 203.05052430886545
+Buy Price: 0.6294 |  Sell Price: 0.5655
+Result Window: 0.6294 | 0.631[- 5.08%] | 0.538[+ 290.44%]
+
+Selling 100% of COTIUSDT for 203.05%  |  TotalValue: 203.05052430886545%
+_________________________________
+
+COTIUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-09-30  19:07 | 2021-09-30  19:08
+Duration: 0.01 hrs
+================================
+Pricechange: 221.41846202233057
+Buy Price: 0.6359 |  Sell Price: 0.5655
+Result Window: 0.6359 | 0.6368[- 2.83%] | 0.538[+ 307.91%]
+
+Selling 100% of COTIUSDT for 221.42%  |  TotalValue: 221.41846202233057%
+_________________________________
+

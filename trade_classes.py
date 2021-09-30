@@ -74,9 +74,11 @@ class Trade:
         self.lowest = None
         self.highest = None
         self.closed = None
+        self.closed_diff = None
         self.savestring = None
         self.real = False
         self.trade_log = '\n'
+        self.portfolio_amount = None
 
     def get_price(self, fills):
         total = 0
@@ -355,7 +357,14 @@ class Trade:
         time_passed = str(round((k['time'] - self.time) / 3600000, 2))
         start_time = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%Y-%m-%d  %H:%M')
         end_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%Y-%m-%d  %H:%M')
-        percent = self.strip_ansi_codes(str(self.percent_diff(self.closed)))
+
+        # Percent Trade Difference Value
+        if self.type == 'mfutures':
+            self.closed_diff = self.conditions.trade_amounts
+        else:
+            self.closed_diff = self.strip_ansi_codes(self.percent_diff(self.closed))
+            self.closed_diff = self.closed_diff.replace('%', '')
+        percent = str(self.closed_diff)
 
         closest = None
         goal = None
@@ -367,7 +376,7 @@ class Trade:
                     goal = self.conditions.losstargets[self.conditions.targetnum]
             else:
                 closest = self.highest
-                goal = self.conditions.stoploww
+                goal = self.conditions.stoploss
                 if self.type == 'mfutures':
                     goal = self.conditions.losstargets[self.conditions.targetnum]
         elif self.status == 'stoploss':
@@ -394,7 +403,6 @@ class Trade:
         goal = str(goal)
 
         savestr = self.pair + '\n'
-        #if not isinstance(STrade, self.conditions):
         #    if self.conditions.direction:
         #        savestr = self.pair + ' ['+self.conditions.direction+']\n'
         savestr += 'Status: ' + self.status.upper() + '\n'

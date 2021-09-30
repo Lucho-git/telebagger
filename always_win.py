@@ -62,6 +62,8 @@ def search_coin(text):
     fake_trade.mfutures_trade(signal)
     time.sleep(1)
     fake_trade.mfutures_trade(signal2)
+    signal.bag_id = 'AW1'
+    signal2.bag_id = 'AW2'
 
     return [signal, signal2]
 

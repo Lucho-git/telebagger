@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import asyncio as aio
 
-local = False
+local = True
 
 config = {  # initialising database connection
     "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
@@ -24,12 +24,14 @@ if local:
     ADD_MESSAGE = "trade_results/message_count/"  # Filepath
     SAVE_STREAM = "save_data/savefile"  # Path and file
     SAVE_TRADE = "trade_results/"  # Path
+    RESULTS = "trade_results/juice/"  # Path
 else:
     # Heroku Version
     FAILED_MESSAGES = "heroku/trade_results/failed_messages/"  # Filepath
     ADD_MESSAGE = "heroku/trade_results/message_count/"  # Filepath
     SAVE_STREAM = "heroku/save_data/savefile"  # Path and file
     SAVE_TRADE = "heroku/trade_results/"  # Path
+    RESULTS = "heroku/trade_results/juice/"  # Path
 
 
 def failed_message(msg, origin, e, file_string):
@@ -122,6 +124,22 @@ def save_trade(t):
         f.write(str(t.savestring))
         f.write(t.trade_log)
         f.write('_________________________________\n\n')
+    storage.child(path_on_cloud).put(path_on_local)
+
+
+def trade_results(t):
+    path_on_cloud = RESULTS + t.bag_id + '.txt'
+    path_on_local = 'save_data/juice/' + t.bag_id + '.txt'
+    storage.child(path_on_cloud).download("./", path_on_local)
+
+    tradevalue = float(t.closed_diff)/100 + 1
+    tradevalue = round(tradevalue, 2)
+    with open(path_on_local, 'a') as f:
+        f.write(str(tradevalue))
+        if t.portfolio_amount:
+            f.write(' | ')
+            f.write(t.portfolio_amount)
+        f.write('\n')
     storage.child(path_on_cloud).put(path_on_local)
 
 

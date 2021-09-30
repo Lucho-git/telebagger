@@ -119,6 +119,8 @@ def mfutures_trade(signal, percentage):
     trade_size = percentage  # Percentage of available funds to invest
     balance = float(realclient.futures_account_balance()[1]['withdrawAvailable'])  # Get available funds
     amount = balance * trade_size * margin  # Define investment amount
+    signal.portfolio_amount = '[' + str(amount) + '/' + str(realclient.futures_account_balance()[1]['balance']) + ']'
+
     base_precision = 2  # Base is always usdt, futures usdt has precision 2
     side = ''
     if signal.conditions.direction == 'long':
