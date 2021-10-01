@@ -19,7 +19,7 @@ def am_first():
 
 def cooldown():
     if not first[0]:
-        time.sleep(20)
+        time.sleep(5)
     am_first()
 
     raw_server_time = binance_wrap.timenow()

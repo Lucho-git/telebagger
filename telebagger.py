@@ -85,7 +85,7 @@ async def StartTelegramForwarding():
         message = str(event.raw_text)
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
 
-        if sender_id == "1548802426":  # Always Win, Signal
+        if sender_id == "1548802426":                           # Always Win, Signal
             valid = always_win.valid_trade_message(message)
             if valid:
                 try:
@@ -96,7 +96,7 @@ async def StartTelegramForwarding():
                     utility.failed_message(message, 'Always Win', e, '_failed.txt')
                     utility.add_message('Always Win', '[-]')
 
-        if chat.id == 1312345502:  # Vip Signals, Signal
+        if chat.id == 1312345502:                               # Vip Signals, Signal
             valid = msg_vip_signals.valid_trade_message(message)
             if valid:
                 try:
@@ -107,7 +107,7 @@ async def StartTelegramForwarding():
                     utility.failed_message(message, 'Vip Signals', e, '_failed.txt')
                     utility.add_message('Vip Signals', '[-]')
 
-        elif chat.id == 1248393106:  # HIRN, Signal
+        elif chat.id == 1248393106:                             # HIRN, Signal
             valid = hirn.valid_trade_message(message)
 
             if valid and not event.is_reply:
@@ -126,7 +126,7 @@ async def StartTelegramForwarding():
                     utility.failed_message(message, 'Hirn', e, '_failed.txt')
                     utility.add_message('Hirn', '[-]')
 
-        elif sender_id == "1350854897":  # Futures Signals, Signal
+        elif sender_id == "1350854897":                         # Futures Signals, Signal
             valid = futures_signals.valid_trade_message(message)
             if valid:
                 try:
