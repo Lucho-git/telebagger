@@ -95,6 +95,7 @@ async def StartTelegramForwarding():
                 except Exception as e:
                     utility.failed_message(message, 'Always Win', e, '_failed.txt')
                     utility.add_message('Always Win', '[-]')
+
         if chat.id == 1312345502:  # Vip Signals, Signal
             valid = msg_vip_signals.valid_trade_message(message)
             if valid:
@@ -105,14 +106,15 @@ async def StartTelegramForwarding():
                 except Exception as e:
                     utility.failed_message(message, 'Vip Signals', e, '_failed.txt')
                     utility.add_message('Vip Signals', '[-]')
+
         elif chat.id == 1248393106:  # HIRN, Signal
             valid = hirn.valid_trade_message(message)
-            try:
-                hirn.cooldown()
-            except ValueError:
-                print("Hirn Cooling Down")
 
             if valid and not event.is_reply:
+                try:
+                    hirn.cooldown()
+                except ValueError:
+                    print("Hirn Cooling Down")
                 try:
                     hir = hirn.bag(message)
                     if hir:
@@ -123,6 +125,7 @@ async def StartTelegramForwarding():
                 except Exception as e:
                     utility.failed_message(message, 'Hirn', e, '_failed.txt')
                     utility.add_message('Hirn', '[-]')
+
         elif sender_id == "1350854897":  # Futures Signals, Signal
             valid = futures_signals.valid_trade_message(message)
             if valid:
@@ -133,6 +136,8 @@ async def StartTelegramForwarding():
                 except Exception as e:
                     utility.failed_message(message, 'Futures Signals', e, '_failed.txt')
                     utility.add_message('Futures Signals', '[-]')
+        # ___________________________________________________________________________________________________
+
         elif chat.id == 1899129008:  # Telegram Bot
             print("Robot Section +++")
             # Bot commands
