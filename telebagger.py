@@ -30,7 +30,7 @@ update2 = [False]
 
 if local:
     # Local Telegram Session
-    stringsesh = '1BVtsOMEBu5f3HGEkQH8045E2q2fdR2NJP6uyiA4MZWOBNMFYD5c5V_M2WV_h-B77FCXw7rovy0iXvQOJHo-r59p44vtOt-9b-BKPz2eqtV6YvadvVoJOytksl2hGdvT6iKA8AVO9BDDozxQkCNXvoYiShF3L9Mw24Pqb8l583x-xnMXKc27HhYSX19hsEZlQ0BwYujo8JPimGoJ-PBI_mKFDDpomztyvbURQah6KfTKkkAwX_jUscV7KmHb51OOCzo_gu_RG-pQPA7fy0HJr2dzGsaiEsWr4LC47ZKH0o7YiiND5y5yf8nexWr4H-JfQwvEnZIrrVd-2wep4hcNPvffJsu0OPj8='
+    stringsesh = '1BVtsOI8Bu1X0jehe3JkVrL5WA0YXfDTaBmeXMQ8Ynn1MrUGTkYDBGuoPQfRzyQiaLXK2k6mMOramuKpp2uTsTo8yAciCu93FChOnuBj0miJBFBs-lMi0UdY_Cd_74i7xxdKCM_-P-m57u3pD3l9pjZ0ciPGBfSKKVb7cXt9w75Sj9ezdyt3kJ4ItdbEYF6fcRhRynQG3TX3Zd-DgAmrTc3lWUzO7fXkCC6ujQ3BSIxlAhyMVYIhpStR5RaoJvU5hSc33dFS7g4C2yEYt-cJ_qpgjUNCSDNpx9rYDHTtilmviugi3kzwYg-gFnPQfFeBcXBV33NpWGbOyG1c7PvL3LmoxQVtDuQ4='
     # Stream Commands Local
     STOP = '/stop'
     STREAM = '/stream'
