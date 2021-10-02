@@ -223,6 +223,7 @@ class Trade:
 
         elif direction == 'short':
             print(self.conditions.targetnum)
+            print(self.conditions.proftargets)
             proflimit = self.conditions.proftargets[self.conditions.targetnum]
             losslimit = self.conditions.losstargets[self.conditions.targetnum]
             if self.conditions.new_lowest < proflimit:
