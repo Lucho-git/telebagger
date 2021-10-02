@@ -13,6 +13,7 @@ import os
 
 # Methods within this package
 from trade_classes import Trade, Futures, MFutures
+from fake_portfolio import Folio, Folios
 import msg_vip_signals
 import always_win
 import binance_wrap
@@ -73,6 +74,9 @@ async def StartTelegramForwarding():
     api_id = 5747368
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
     client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
+
+    folios = Folios()
+    folios.recover()
 
     # Receive Telegram Message Event Handler
     @client.on(events.NewMessage())
@@ -207,6 +211,19 @@ async def StartTelegramForwarding():
                         await trade_stream.addtrade(aw)
                     else:
                         print('notval id')
+
+            elif '/newport' in message:
+                split = message.split(' ')
+                port = Folio(split[1], split[2])
+                folios.add_folios(port)
+                folios.save()
+
+            elif message == '/clear_folios':
+                folios.clear_folios()
+
+            elif message == '/display_folios':
+                folios.snapshot()
+
         else:
             #post = msg + '\n' + message + '\n_________________\n'
             #utility.add_message('New Telegram Groups', post)

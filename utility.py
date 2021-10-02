@@ -23,6 +23,7 @@ if local:
     FAILED_MESSAGES = "trade_results/failed_messages/"  # Filepath
     ADD_MESSAGE = "trade_results/message_count/"  # Filepath
     SAVE_STREAM = "save_data/savefile"  # Path and file
+    SAVE_FOLIO = "save_data/savefolios" #Path and file
     SAVE_TRADE = "trade_results/"  # Path
     RESULTS = "trade_results/juice/"  # Path
 else:
@@ -30,6 +31,7 @@ else:
     FAILED_MESSAGES = "heroku/trade_results/failed_messages/"  # Filepath
     ADD_MESSAGE = "heroku/trade_results/message_count/"  # Filepath
     SAVE_STREAM = "heroku/save_data/savefile"  # Path and file
+    SAVE_FOLIO = "heroku/save_data/savefolios"  # Path and file
     SAVE_TRADE = "heroku/trade_results/"  # Path
     RESULTS = "heroku/trade_results/juice/"  # Path
 
@@ -79,32 +81,57 @@ def add_message(origin, result):
             f.write(result + '\n')
         storage.child(path_on_cloud).put(path_on_local)
 
+def pickle_save(obj, cloudpath, localpath):
+    path_on_cloud = cloudpath
+    path_on_local = localpath
+    storage.child(path_on_cloud).download("./", path_on_local)
+    try:
+        with open(path_on_local, 'wb') as stream_save_file:
+            pickle.dump(obj, stream_save_file)
+        storage.child(path_on_cloud).put(path_on_local)
+    except Exception as e:
+        print(str(e))
+        print("Unexpected Picklesave Error")
+
+
+def pickle_load(cloudpath, localpath):
+    path_on_cloud = cloudpath
+    path_on_local = localpath
+    ret_obj = None
+    storage.child(path_on_cloud).download("./", path_on_local)
+    try:
+        with open(path_on_local, 'rb') as config_dictionary_file:
+            ret_obj = pickle.load(config_dictionary_file)
+    except Exception as e:
+        print('No Save File')
+        print(str(e))
+    return ret_obj
+
 
 def save_stream(restartstream):
     path_on_cloud = SAVE_STREAM
     path_on_local = "save_data/savefile"
-    storage.child(path_on_cloud).download("./", path_on_local)
-    try:
-        with open(path_on_local, 'wb') as stream_save_file:
-            pickle.dump(restartstream, stream_save_file)
-        storage.child(path_on_cloud).put(path_on_local)
-    except Exception as e:
-        print(str(e))
-        print("Unexpected Savefile Error")
+    pickle_save(restartstream, path_on_cloud, path_on_local)
 
 
 def load_stream():
-    restartstream = None
     path_on_cloud = SAVE_STREAM
-    path_on_local = "savefile"
-    storage.child(path_on_cloud).download("./", path_on_local)
-    try:
-        with open(path_on_local, 'rb') as config_dictionary_file:
-            restartstream = pickle.load(config_dictionary_file)
-    except Exception as e:
-        print('No Save File')
-        print(str(e))
-    return restartstream
+    path_on_local = "save_data/savefile"
+    loaded = pickle_load(path_on_cloud, path_on_local)
+    return loaded
+
+
+def save_folio(folios):
+    path_on_cloud = SAVE_FOLIO
+    path_on_local = "save_data/savefolios"
+    pickle_save(folios, path_on_cloud, path_on_local)
+
+
+def load_folio():
+    path_on_cloud = SAVE_FOLIO
+    path_on_local = "save_data/savefolios"
+    folio = pickle_load(path_on_cloud, path_on_local)
+    return folio
 
 
 def save_trade(t):
