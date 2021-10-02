@@ -52,13 +52,12 @@ def search_coin(text):
 
     signal = Trade(pair, base, 'Always Win', 'mfutures')
     signal2 = Trade(pair, base, 'Always Win2', 'mfutures')
-    stoploss = [100, 100, 100, 100, 100]
     stopprof = [10, 22.5, 33.75, 25.3, 8.45]
     stopprof2 = [40, 25, 15, 10, 10]
     proftargets = [t1, t2, t3, t4, t5]
     losstargets = [sl, entry, t1, t2, t3]
-    signal.conditions = MFutures(stoploss, losstargets, stopprof, proftargets, direction, lev, 'isolation')
-    signal2.conditions = MFutures(stoploss, losstargets, stopprof2, proftargets, direction, lev, 'isolation')
+    signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
+    signal2.conditions = MFutures(losstargets, stopprof2, proftargets, direction, lev, 'isolation')
     fake_trade.mfutures_trade(signal)
     time.sleep(1)
     fake_trade.mfutures_trade(signal2)

@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import asyncio as aio
 
-local = False
+local = True
 
 config = {  # initialising database connection
     "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
@@ -80,6 +80,7 @@ def add_message(origin, result):
             f.write('==========================\n')
             f.write(result + '\n')
         storage.child(path_on_cloud).put(path_on_local)
+
 
 def pickle_save(obj, cloudpath, localpath):
     path_on_cloud = cloudpath

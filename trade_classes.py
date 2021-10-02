@@ -23,8 +23,7 @@ class Futures:
 
 
 class MFutures:
-    def __init__(self, stoploss, losstargets, stopprof, proftargets, direction, leverage, mode):
-        self.stoploss = stoploss
+    def __init__(self, losstargets, stopprof, proftargets, direction, leverage, mode):
         self.losstargets = losstargets
         self.stopprof = stopprof
         self.proftargets = proftargets
@@ -187,22 +186,15 @@ class Trade:
             proflimit = self.conditions.proftargets[self.conditions.targetnum]
 
             if self.conditions.new_lowest < losslimit:
-                # amount_left = amount_left - stoploss_amount
-                amount = self.conditions.stoploss[self.conditions.targetnum]
-                if amount > self.conditions.amount_left:
-                    amount = self.conditions.amount_left
-                self.conditions.amount_left = self.conditions.amount_left - (self.conditions.amount_left * amount/100)
+                amount = self.conditions.amount_left  # Sell All
+                self.conditions.amount_left = self.conditions.amount_left - amount
                 self.conditions.trade_amounts += self.percentage_result(losslimit, 'loss') * amount/100
                 self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(losslimit, 'loss'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
                 if self.conditions.amount_left == 0:
                     self.status = 'stoploss'
                     self.closed = losslimit
-                elif self.conditions.amount_left > 0:
-                    self.conditions.targetnum += 1
-                    self.conditions.new_highest = price
-                    self.conditions.new_lowest = price
                 else:
-                    print("longLoss Numbers not adding to 100, error")
+                    raise ValueError('Long Stoploss Numbers not adding to 100, error')
 
             elif self.conditions.new_highest > proflimit:
                 amount = self.conditions.stopprof[self.conditions.targetnum]
@@ -219,11 +211,12 @@ class Trade:
                     self.conditions.new_highest = price
                     self.conditions.new_lowest = price
                 else:
-                    print('longProfit Numbers not adding to 100, error')
+                    raise ValueError('LongProfit Numbers not adding to 100, error')
 
         elif direction == 'short':
             print(self.conditions.targetnum)
             print(self.conditions.proftargets)
+            print(self.conditions.amount_left)
             proflimit = self.conditions.proftargets[self.conditions.targetnum]
             losslimit = self.conditions.losstargets[self.conditions.targetnum]
             if self.conditions.new_lowest < proflimit:
@@ -241,23 +234,18 @@ class Trade:
                     self.conditions.new_highest = price
                     self.conditions.new_lowest = price
                 else:
-                    print('shortProfit Numbers not adding to 100, error')
+                    raise ValueError('ShortProfit Numbers not adding to 100, error')
+
             elif self.conditions.new_highest > losslimit:
-                amount = self.conditions.stoploss[self.conditions.targetnum]
-                if amount > self.conditions.amount_left:
-                    amount = self.conditions.amount_left
-                self.conditions.amount_left = self.conditions.amount_left - (self.conditions.amount_left * amount/100)
+                amount = self.conditions.amount_left
+                self.conditions.amount_left = self.conditions.amount_left - amount
                 self.conditions.trade_amounts += self.percentage_result(losslimit, 'loss') * amount/100
                 self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(losslimit, 'loss'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
                 if self.conditions.amount_left == 0:
                     self.status = 'stoploss'
                     self.closed = losslimit
-                elif self.conditions.amount_left > 0:
-                    self.conditions.targetnum += 1
-                    self.conditions.new_highest = price
-                    self.conditions.new_lowest = price
                 else:
-                    print("shortLoss Numbers not adding to 100, error")
+                    raise ValueError("ShortLoss Didn't sell entire trade Error")
 
     def update_futures(self):
         direction = self.conditions.direction
@@ -366,6 +354,10 @@ class Trade:
         else:
             self.closed_diff = self.strip_ansi_codes(self.percent_diff(self.closed))
             self.closed_diff = self.closed_diff.replace('%', '')
+            self.closed_diff = self.closed_diff.replace('+', '')
+            self.closed_diff = self.closed_diff.replace('-', '')
+            self.closed_diff = self.closed_diff.strip(' ')
+
         percent = str(self.closed_diff)
 
         closest = None
@@ -373,14 +365,18 @@ class Trade:
         if self.status == 'stopprof':
             if self.closed > self.price:
                 closest = self.lowest
-                goal = self.conditions.stoploss
                 if self.type == 'mfutures':
                     goal = self.conditions.losstargets[self.conditions.targetnum]
+                else:
+                    goal = self.conditions.stoploss
+
             else:
                 closest = self.highest
-                goal = self.conditions.stoploss
                 if self.type == 'mfutures':
                     goal = self.conditions.losstargets[self.conditions.targetnum]
+                else:
+                    goal = self.conditions.stoploss
+
         elif self.status == 'stoploss':
             if self.closed < self.price:
                 closest = self.highest

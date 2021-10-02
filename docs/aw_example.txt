@@ -1,10 +1,10 @@
-COTI/USDT SHORT 🛑
+ICX/USDT SHORT 🛑
 Leverage 20x
-Entries  0.547
-Target 1 0.538
-Target 2 0.525
-Target 3 0.505
-Target 4 0.45
-Target 5 0.35
+Entries 1.93
+Target 1 1.90
+Target 2 1.85
+Target 3 1.78
+Target 4 1.70
+Target 5 1.60
 
-SL 0.5655
+SL 2.05

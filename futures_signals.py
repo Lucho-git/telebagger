@@ -64,11 +64,10 @@ def search_coin(text):
     print('Pair|', pair, '|Direction|', direction, '|Entry|', entry, '|Leverage|', lev)
 
     signal = Trade(pair, base, 'Futures Signals', 'mfutures')
-    stoploss = [100, 100, 100, 100, 100]
     stopprof = [20, 20, 20, 20, 20]
     proftargets = [t1, t2, t3, t4, t5]
     losstargets = [sl, sl, sl, entry, entry]
-    signal.conditions = MFutures(stoploss, losstargets, stopprof, proftargets, direction, lev, 'isolation')
+    signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
     fake_trade.mfutures_trade(signal)
 
     return [signal]
