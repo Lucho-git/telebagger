@@ -78,6 +78,7 @@ class Trade:
         self.real = False
         self.trade_log = '\n'
         self.portfolio_amount = None
+        self.bag_id = None
 
     def get_price(self, fills):
         total = 0
@@ -353,12 +354,12 @@ class Trade:
             self.closed_diff = self.conditions.trade_amounts
         else:
             self.closed_diff = self.strip_ansi_codes(self.percent_diff(self.closed))
-            self.closed_diff = self.closed_diff.replace('%', '')
-            self.closed_diff = self.closed_diff.replace('+', '')
-            self.closed_diff = self.closed_diff.replace('-', '')
-            self.closed_diff = self.closed_diff.strip(' ')
 
         percent = str(self.closed_diff)
+        self.closed_diff = self.closed_diff.replace('%', '')
+        self.closed_diff = self.closed_diff.replace('+', '')
+        self.closed_diff = self.closed_diff.replace('-', '')
+        self.closed_diff = self.closed_diff.strip(' ')
 
         closest = None
         goal = None
