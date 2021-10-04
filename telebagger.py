@@ -44,7 +44,7 @@ if local:
     UPDATE2 = '/update2'
 else:
     # Hosted Telegram Session
-    stringsesh = '1BVtsOMEBu8Ilh0nvQh46IPweQ_uEl2_zuuKjob1V97SY9DpFrQNP1tpAu0SnMvW5C66HLRZwwda0P7Tmn6bIqY1mNZdRYYRTimUNcoNl_s5muivUWq8ZWc4vI6TSzH2BrzLIDNzHDoRUohfhzvdQeR-39OovjesmAaJINfFvk9hlk6-iNT6ve9_a0xbW1mdHHzQXXhnqeYBBe9A1PZOJR62pPBeUeZH4UZJIhsJs1VV11njnfUzMnup9lLDDFutl8IQFMzCd6xFkQLQXXSLQul5IJ2DZpsDRrR5TcXdDEv406V4I3qjLmTd2hx9JGC_PJpgWhJ1SDaWPmP7_Ss6v9TMsh-h9G8E='
+    stringsesh = '1BVtsOGYBu2t6OaO4arry2L6OBQy3lNP-RsyU27rfpPesJ6kMZ-mC5SfNDxQahcDL5UPWrH9clSKFA11RYHMl8RuN4mTYjq9_O5IvGaq1CNPRglT9mC4qDCH1Zg4cEfUTX_7nlnZNlh7JZ5im2UQGBTa7Sn_WA6VZH0LPOnKDBhr_oKuRbhtc6DDH86OyJVR1TrU6nNhV_R9vFgP1y0T0d9fgFSbpVeYvmWyTYHTouPoUpDHfdhY-0z7ZCoxNj8WckzhE1OM6cAgMxY9SGF3TdKKG6hSkeuOv4OChZNynYiHRBOlffDmvncQ1NUIMsZMx-hBztyDmSzRBJoIJ3KPr_oqyKLFv6RY='
     # Stream Commands Heroku Hosted
     STOP = '/stop!'
     STREAM = '/stream!'
