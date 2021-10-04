@@ -53,3 +53,14 @@ Buy Price: 0.6359 |  Sell Price: 0.5655
 Result Window: 0.6359 | 0.6368[- 2.83%] | 0.538[+ 307.91%]
 
 
+CVCUSDT
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-02  13:12 | 2021-10-03  14:22
+Duration: 25.16 hrs
+================================
+Pricechange: + 19.31%
+Buy Price: 0.4783 |  Sell Price: 0.48753705
+Result Window: 0.4783 | 0.4748[- 7.32%] | 0.4421291875[- 75.62%]
+
+

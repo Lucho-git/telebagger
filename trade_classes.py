@@ -265,13 +265,23 @@ class Trade:
                 self.status = 'stoploss'
                 self.closed = self.conditions.stoploss
 
+    def update_spot(self, k):
+        if self.lowest < self.conditions.stoploss:
+            self.status = 'stoploss'
+            self.closed = self.conditions.stoploss
+        if self.highest > self.conditions.stopprof:
+            self.status = 'stopprof'
+            self.closed = self.conditions.stopprof
+
     def update_trade(self, k):
         if k['low'] < self.lowest:
             self.lowest = k['low']
         if k['high'] > self.highest:
             self.highest = k['high']
 
-        if self.status == 'active' and self.type == 'futures':
+        if self.status == 'active' and self.type == 'spot':
+            self.update_spot()
+        elif self.status == 'active' and self.type == 'futures':
             self.update_futures()
         elif self.status == 'active' and self.type == 'mfutures':
             if k['low'] < self.conditions.new_lowest:
@@ -309,7 +319,7 @@ class Trade:
         print('Highest:', ut.format_float(self.highest), '|', self.percent_diff(self.highest))
         print('Now:', ut.format_float(k['last']), '|', self.percent_diff(now))
         print('===============================')
-        if self.type == 'futures':
+        if self.type == 'futures' or self.type == 'spot':
             print('Targets:', Fore.RED, ut.format_float(self.conditions.stoploss), '|', Fore.LIGHTBLUE_EX, ut.format_float(now),'|',Fore.LIGHTGREEN_EX, ut.format_float(self.conditions.stopprof), Style.RESET_ALL)
             print('_______________________________')
         elif self.type == 'mfutures':
