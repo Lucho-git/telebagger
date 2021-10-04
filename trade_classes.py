@@ -265,7 +265,7 @@ class Trade:
                 self.status = 'stoploss'
                 self.closed = self.conditions.stoploss
 
-    def update_spot(self, k):
+    def update_spot(self):
         if self.lowest < self.conditions.stoploss:
             self.status = 'stoploss'
             self.closed = self.conditions.stoploss
