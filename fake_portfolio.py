@@ -11,7 +11,7 @@ class Folio:
         self.avaliable_balance = starting_balance
         self.trades = []
 
-    def start_trade(self, percent, trade_id):
+    def start_trade(self, trade_id, percent):
         ft_value = self.avaliable_balance*percent
         if not ft_value > MIN_TRADE_VALUE:
             raise ValueError("Fake Trade Balance " + str(self.name) + " is Too low")
@@ -56,4 +56,20 @@ class Folios:
             snap += 'Avaliable Balance: ' + f.avaliable_balance + ' / ' + f.balance + '\n\n'
             print(snap)
 
-    #def update_folios(self):
+    def start_trade(self, trade, percent):
+        changes = False
+        for f in self.folios:
+            for b in trade.bag_id:
+                if f.name == b:
+                    f.start_trade(trade.id, percent)
+                    changes = True
+        return changes
+
+    def end_trade(self, trade, trade_return):
+        changes = False
+        for f in self.folios:
+            for b in trade.bag_id:
+                if f.name == b:
+                    f.end_trade(trade.id, trade_return)
+                    changes = True
+        return changes

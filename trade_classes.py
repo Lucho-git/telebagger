@@ -77,7 +77,6 @@ class Trade:
         self.savestring = None
         self.real = False
         self.trade_log = '\n'
-        self.portfolio_amount = None
         self.bag_id = []
 
     def get_price(self, fills):

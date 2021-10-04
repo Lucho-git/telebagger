@@ -149,12 +149,7 @@ def load_folio():
 def start_trade_folios(trade, percent):
     load_folio()
     folio = load_folio()
-    changes = False
-    for f in folio.folios:
-        for b in trade.bag_id:
-            if f.name == b:
-                f.start_trade(percent, trade.id)
-                changes = True
+    changes = folio.start_trade(trade, percent)
     if changes:
         save_folio(folio)
 
@@ -162,12 +157,7 @@ def start_trade_folios(trade, percent):
 def end_trade_folios(trade, trade_return):
     load_folio()
     folio = load_folio()
-    changes = False
-    for f in folio.folios:
-        for b in trade.bag_id:
-            if f.name == b:
-                f.end_trade(trade.id, trade_return)
-                changes = True
+    changes = folio.end_trade(trade, trade_return)
     if changes:
         save_folio(folio)
 
@@ -201,14 +191,10 @@ def trade_results(t):
     tradevalue = round(tradevalue, 2)
     with open(path_on_local, 'a') as f:
         f.write(str(tradevalue))
-        if t.portfolio_amount:
-            f.write(' | ')
-            f.write(t.portfolio_amount)
         f.write('\n')
     storage.child(path_on_cloud).put(path_on_local)
     if t.bag_id:
-        update_folio = load_folio()
-
+        end_trade_folios(t, tradevalue)
 
 
 def get_binance_spot_list():
