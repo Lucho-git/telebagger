@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import asyncio as aio
 
-local = True
+local = False
 
 config = {  # initialising database connection
     "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
