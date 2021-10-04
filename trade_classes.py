@@ -361,7 +361,7 @@ class Trade:
 
         # Percent Trade Difference Value
         if self.type == 'mfutures':
-            self.closed_diff = self.conditions.trade_amounts
+            self.closed_diff = str(self.conditions.trade_amounts)
         else:
             self.closed_diff = self.strip_ansi_codes(self.percent_diff(self.closed))
 

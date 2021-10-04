@@ -1,10 +1,10 @@
-ICX/USDT SHORT 🛑
+GALA/USDT LONG ✳️
 Leverage 20x
-Entries 1.93
-Target 1 1.90
-Target 2 1.85
-Target 3 1.78
-Target 4 1.70
-Target 5 1.60
+Entries 0.1128
+Target 1 0.1144
+Target 2 0.1175
+Target 3 0.121
+Target 4 0.135
+Target 5 0.150
 
-SL 2.05
+SL 0.104
