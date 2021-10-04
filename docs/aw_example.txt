@@ -1,10 +1,10 @@
-GALA/USDT LONG ✳️
+1000SHIB/USDT SHORT 🛑
 Leverage 20x
-Entries 0.1128
-Target 1 0.1144
-Target 2 0.1175
-Target 3 0.121
-Target 4 0.135
-Target 5 0.150
+Entries  0.0116
+Target 1 0.01145
+Target 2 0.0111
+Target 3 0.1073
+Target 4 0.0095
+Target 5 0.0090
 
-SL 0.104
+SL 0.0123

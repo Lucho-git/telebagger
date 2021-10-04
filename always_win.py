@@ -58,11 +58,8 @@ def search_coin(text):
     losstargets = [sl, entry, t1, t2, t3]
     signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
     signal2.conditions = MFutures(losstargets, stopprof2, proftargets, direction, lev, 'isolation')
-    fake_trade.mfutures_trade(signal)
-    time.sleep(1)
-    fake_trade.mfutures_trade(signal2)
-    signal.bag_id = 'AW1'
-    signal2.bag_id = 'AW2'
+    fake_trade.mfutures_trade(signal, bag_id='AW1')
+    fake_trade.mfutures_trade(signal2, bag_id='AW2')
 
     return [signal, signal2]
 

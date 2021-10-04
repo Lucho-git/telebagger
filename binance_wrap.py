@@ -1,16 +1,14 @@
-from binance.client import Client
 from binance.exceptions import BinanceAPIException, BinanceOrderException
 from datetime import datetime
 import math
 import time
+
+import utility
+
 MIN_TRADE_VALUE = 10
 
-# Binance API Keys, TODO: Switch these to environmental variables if this code ever goes public
-r_api_key = 'GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  # Put your own api keys here
-r_api_secret = 'gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032'
-
 # Binance Client Object
-realclient = Client(r_api_key, r_api_secret)
+realclient = utility.get_binance_client()
 
 
 # Rounds a decimal value down, to account for binance precision values
@@ -25,7 +23,7 @@ def round_decimals_down(number: float, decimals: int = 2):
     return math.floor(number * factor) / factor
 
 
-def futures_trade(signal, percentage):
+def futures_trade(signal, percentage, bag_id=None):
     symbol = signal.pair
     margin = 0.99
     balance = float(realclient.futures_account_balance()[1]['withdrawAvailable'])  # Get available funds
@@ -77,6 +75,8 @@ def futures_trade(signal, percentage):
     signal.highest = signal.price
     signal.amount = float(signal.receipt['executedQty'])
     signal.status = 'active'
+    if bag_id:
+        signal.bag_id.append(bag_id)
 
     sell_orders = []
     if side == 'BUY':

@@ -2,6 +2,7 @@ import pyrebase
 import pickle
 import numpy as np
 import asyncio as aio
+from binance.client import Client
 
 local = False
 
@@ -34,6 +35,16 @@ else:
     SAVE_FOLIO = "heroku/save_data/savefolios"  # Path and file
     SAVE_TRADE = "heroku/trade_results/"  # Path
     RESULTS = "heroku/trade_results/juice/"  # Path
+
+
+def get_binance_client():
+    # Binance API Keys, TODO: Switch these to environmental variables if this code ever goes public
+    r_api_key = 'GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  # Put your own api keys here
+    r_api_secret = 'gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032'
+
+    # Binance Client Object
+    realclient = Client(r_api_key, r_api_secret)
+    return realclient
 
 
 def failed_message(msg, origin, e, file_string):
@@ -135,6 +146,32 @@ def load_folio():
     return folio
 
 
+def start_trade_folios(trade, percent):
+    load_folio()
+    folio = load_folio()
+    changes = False
+    for f in folio.folios:
+        for b in trade.bag_id:
+            if f.name == b:
+                f.start_trade(percent, trade.id)
+                changes = True
+    if changes:
+        save_folio(folio)
+
+
+def end_trade_folios(trade, trade_return):
+    load_folio()
+    folio = load_folio()
+    changes = False
+    for f in folio.folios:
+        for b in trade.bag_id:
+            if f.name == b:
+                f.end_trade(trade.id, trade_return)
+                changes = True
+    if changes:
+        save_folio(folio)
+
+
 def save_trade(t):
     # Add trade result to all trades textfile
     path_on_cloud = SAVE_TRADE + 'TradeResults.txt'
@@ -169,6 +206,9 @@ def trade_results(t):
             f.write(t.portfolio_amount)
         f.write('\n')
     storage.child(path_on_cloud).put(path_on_local)
+    if t.bag_id:
+        update_folio = load_folio()
+
 
 
 def get_binance_spot_list():

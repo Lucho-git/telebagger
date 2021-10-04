@@ -86,3 +86,14 @@ Buy Price: 0.0001735 |  Sell Price: 0.00017663
 Result Window: 0.0001735 | 0.0001722[- 0.75%] | 0.00004329250000000001[- 75.05%]
 
 
+LUNABTC
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-04  13:58 | 2021-10-04  15:12
+Duration: 1.23 hrs
+================================
+Pricechange: + 1.96%
+Buy Price: 0.0009465 |  Sell Price: 0.00096507
+Result Window: 0.0009465 | 0.0009306[- 1.68%] | 0.00023653749999999994[- 75.01%]
+
+

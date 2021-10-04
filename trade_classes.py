@@ -78,7 +78,7 @@ class Trade:
         self.real = False
         self.trade_log = '\n'
         self.portfolio_amount = None
-        self.bag_id = None
+        self.bag_id = []
 
     def get_price(self, fills):
         total = 0
@@ -363,7 +363,7 @@ class Trade:
         if self.type == 'mfutures':
             self.closed_diff = str(self.conditions.trade_amounts)
         else:
-            self.closed_diff = self.strip_ansi_codes(self.percent_diff(self.closed))
+            self.closed_diff = str(self.strip_ansi_codes(self.percent_diff(self.closed)))
 
         percent = str(self.closed_diff)
         self.closed_diff = self.closed_diff.replace('%', '')
