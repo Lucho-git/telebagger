@@ -45,8 +45,8 @@ if local:
     UPDATE2 = '/update2'
     ALWAYS_WIN_SIGNAL = '/aw'
     NEW_PORTFOLIO = '/newport'
-    CLEAR_PORTFOLIOS = 'clear_folios'
-    DISPLAY_PORTFOLIOS = 'display_folios'
+    CLEAR_PORTFOLIOS = '/clear_folios'
+    DISPLAY_PORTFOLIOS = '/display_folios'
 else:
     # Hosted Telegram Session
     stringsesh = '1BVtsOGYBu2t6OaO4arry2L6OBQy3lNP-RsyU27rfpPesJ6kMZ-mC5SfNDxQahcDL5UPWrH9clSKFA11RYHMl8RuN4mTYjq9_O5IvGaq1CNPRglT9mC4qDCH1Zg4cEfUTX_7nlnZNlh7JZ5im2UQGBTa7Sn_WA6VZH0LPOnKDBhr_oKuRbhtc6DDH86OyJVR1TrU6nNhV_R9vFgP1y0T0d9fgFSbpVeYvmWyTYHTouPoUpDHfdhY-0z7ZCoxNj8WckzhE1OM6cAgMxY9SGF3TdKKG6hSkeuOv4OChZNynYiHRBOlffDmvncQ1NUIMsZMx-hBztyDmSzRBJoIJ3KPr_oqyKLFv6RY='
@@ -62,8 +62,8 @@ else:
     UPDATE2 = '/update2!'
     ALWAYS_WIN_SIGNAL = '/aw!'
     NEW_PORTFOLIO = '/newport!'
-    CLEAR_PORTFOLIOS = 'clear_folios!'
-    DISPLAY_PORTFOLIOS = 'display_folios!'
+    CLEAR_PORTFOLIOS = '/clear_folios!'
+    DISPLAY_PORTFOLIOS = '/display_folios!'
 
 
 def SendMessageToAlwaysWin(message):
@@ -233,6 +233,7 @@ async def StartTelegramForwarding():
             elif message == DISPLAY_PORTFOLIOS:
                 folios.recover()
                 if folios.folios:
+                    print('Folios:')
                     folios.snapshot()
                 else:
                     print('Folios is empty')
