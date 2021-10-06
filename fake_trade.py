@@ -12,7 +12,7 @@ def spot_trade(trade, bag_id=None, percent=None):
     trade.highest = trade.price
     trade.status = 'active'
     if bag_id and percent:
-        trade.bag_id.extend(bag_id)
+        trade.bag_id.append(bag_id)
         utility.start_trade_folios(trade, percent)
 
 
@@ -23,8 +23,9 @@ def futures_trade(trade, bag_id=None, percent=None):
     trade.lowest = trade.price
     trade.highest = trade.price
     trade.status = 'active'
+    print('debug 2')
     if bag_id and percent:
-        trade.bag_id.extend(bag_id)
+        trade.bag_id.append(bag_id)
         utility.start_trade_folios(trade, percent)
 
 
@@ -35,6 +36,7 @@ def mfutures_trade(trade, bag_id=None, percent=None):
     trade.lowest = trade.price
     trade.highest = trade.price
     trade.status = 'active'
+    print(bag_id, percent)
     if bag_id and percent:
-        trade.bag_id.extend(bag_id)
+        trade.bag_id.append(bag_id)
         utility.start_trade_folios(trade, percent)

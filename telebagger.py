@@ -2,6 +2,7 @@
 from colorama import init
 from colorama import Fore, Back, Style
 from telethon import TelegramClient, events, sync, utils
+from binance.exceptions import BinanceAPIException, BinanceOrderException
 from telethon.sessions import StringSession
 import requests
 import asyncio
@@ -42,6 +43,10 @@ if local:
     ADD3 = '/add3'
     UPDATE = '/update'
     UPDATE2 = '/update2'
+    ALWAYS_WIN_SIGNAL = '/aw'
+    NEW_PORTFOLIO = '/newport'
+    CLEAR_PORTFOLIOS = 'clear_folios'
+    DISPLAY_PORTFOLIOS = 'display_folios'
 else:
     # Hosted Telegram Session
     stringsesh = '1BVtsOGYBu2t6OaO4arry2L6OBQy3lNP-RsyU27rfpPesJ6kMZ-mC5SfNDxQahcDL5UPWrH9clSKFA11RYHMl8RuN4mTYjq9_O5IvGaq1CNPRglT9mC4qDCH1Zg4cEfUTX_7nlnZNlh7JZ5im2UQGBTa7Sn_WA6VZH0LPOnKDBhr_oKuRbhtc6DDH86OyJVR1TrU6nNhV_R9vFgP1y0T0d9fgFSbpVeYvmWyTYHTouPoUpDHfdhY-0z7ZCoxNj8WckzhE1OM6cAgMxY9SGF3TdKKG6hSkeuOv4OChZNynYiHRBOlffDmvncQ1NUIMsZMx-hBztyDmSzRBJoIJ3KPr_oqyKLFv6RY='
@@ -55,6 +60,10 @@ else:
     ADD3 = '/add3!'
     UPDATE = '/update!'
     UPDATE2 = '/update2!'
+    ALWAYS_WIN_SIGNAL = '/aw!'
+    NEW_PORTFOLIO = '/newport!'
+    CLEAR_PORTFOLIOS = 'clear_folios!'
+    DISPLAY_PORTFOLIOS = 'display_folios!'
 
 
 def SendMessageToAlwaysWin(message):
@@ -162,7 +171,7 @@ async def StartTelegramForwarding():
                 await trade_stream.stopstream()
 
             # Testing Stubs, To be removed at a later stage
-            elif message == '/hirn_real':
+            elif message == '/hirn!':
                 with open('docs/hirn_example.txt', encoding="utf8") as f:
                     msg = f.read()
                     valid = hirn.valid_trade_message(msg)
@@ -201,7 +210,7 @@ async def StartTelegramForwarding():
                 sigal.conditions = MFutures(stoploss, loss_targets, stopprof, proftargets, 'long', '1', 'isolation')
                 binance_wrap.mfutures_trade(sigal, 1)
 
-            elif message == '/aw1':
+            elif message == ALWAYS_WIN_SIGNAL:
                 pass
                 with open('docs/aw_example.txt', encoding="utf8") as f:
                     msg = f.read()
@@ -212,17 +221,21 @@ async def StartTelegramForwarding():
                     else:
                         print('notval id')
 
-            elif '/newport' in message:
+            elif NEW_PORTFOLIO in message:
                 split = message.split(' ')
                 port = Folio(split[1], split[2])
                 folios.add_folios(port)
                 folios.save()
 
-            elif message == '/clear_folios':
+            elif message == CLEAR_PORTFOLIOS:
                 folios.clear_folios()
 
-            elif message == '/display_folios':
-                folios.snapshot()
+            elif message == DISPLAY_PORTFOLIOS:
+                folios.recover()
+                if folios.folios:
+                    folios.snapshot()
+                else:
+                    print('Folios is empty')
 
         else:
             #post = msg + '\n' + message + '\n_________________\n'

@@ -2,6 +2,7 @@ import time
 import fake_trade
 from trade_classes import Trade, MFutures
 
+AW_TRADE_PERCENTAGE = 0.4
 
 def bag(msg):
     result = search_coin(msg)
@@ -58,8 +59,8 @@ def search_coin(text):
     losstargets = [sl, entry, t1, t2, t3]
     signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
     signal2.conditions = MFutures(losstargets, stopprof2, proftargets, direction, lev, 'isolation')
-    fake_trade.mfutures_trade(signal, bag_id='AW1')
-    fake_trade.mfutures_trade(signal2, bag_id='AW2')
+    fake_trade.mfutures_trade(signal, bag_id='AW1', percent=AW_TRADE_PERCENTAGE)
+    fake_trade.mfutures_trade(signal2, bag_id='AW2', percent=AW_TRADE_PERCENTAGE)
 
     return [signal, signal2]
 

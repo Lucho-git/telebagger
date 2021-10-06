@@ -3,6 +3,7 @@ import pickle
 import numpy as np
 import asyncio as aio
 from binance.client import Client
+from fake_portfolio import Folio, Folios
 
 local = False
 
@@ -143,14 +144,17 @@ def load_folio():
     path_on_cloud = SAVE_FOLIO
     path_on_local = "save_data/savefolios"
     folio = pickle_load(path_on_cloud, path_on_local)
+    if not folio:
+        print('return empty folio')
+        folio = None
     return folio
 
 
 def start_trade_folios(trade, percent):
-    load_folio()
     folio = load_folio()
     changes = folio.start_trade(trade, percent)
     if changes:
+        print('Saving')
         save_folio(folio)
 
 

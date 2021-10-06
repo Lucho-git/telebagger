@@ -4,10 +4,11 @@ import utility
 import binance_wrap
 from trade_classes import Trade, Futures, STrade
 hirn_timer = [0]
+last_pair = ['']
 tradeheat = [False]
 first = [True]
 
-HIRN_COOLDOWN_TIME = 10000  # In milliseconds
+HIRN_COOLDOWN_TIME = 60000  # In milliseconds
 HIRN_LEVERAGE = 10  # Trade Leverage for Futures trades
 HIRN_TRADE_PERCENT = 0.4  # How much remaining balance should be invested on each trade
 HIRN_STOPLOSS_REDUCTION = 0.75   # Stoploss value to avoid getting liquidated
@@ -34,16 +35,29 @@ def cooldown():
 
 def bag(msg):
 
+    print('message recieved', tradeheat[0])
     if not tradeheat[0]:
         result = search_coin(msg)
+        print("secucess trades !!!!!!!!!!!!")
 
         raw_server_time = binance_wrap.timenow()
         utility.failed_message(msg, 'HIRN_DOUBLE_TEST', str(raw_server_time) + str(tradeheat[0]), '_doubleups.txt')  # TODO remove later
-
+        last_pair[0] = get_pair(msg)
+        print("secucess trades ")
+        print(last_pair[0])
         return result
     else:
         raw_server_time = binance_wrap.timenow()
         utility.failed_message(msg, 'HIRN_DOUBLE_TEST', str(raw_server_time) + str(tradeheat[0]), '_doubleups.txt')  # TODO remove later
+        duplicate = get_pair(msg)
+        print('compared')
+        print(duplicate)
+        print(last_pair[0])
+        if not last_pair[0] == duplicate:
+            result = search_coin(msg)
+            return result
+        else:
+            print('Duplicate Message')
     return None
 
 
@@ -53,6 +67,15 @@ def valid_trade_message(msg):
         return True
     else:
         return False
+
+
+def get_pair(text):
+    lines = text.split('\n')
+    print(lines[0])
+    pair = lines[0].split('#')[1]
+    base = pair.split('/')[1]
+    pair = pair.split('/')[0] + base
+    return pair
 
 
 def search_coin(text):
@@ -89,7 +112,10 @@ def search_coin(text):
         try:
             binance_wrap.futures_trade(signal, HIRN_TRADE_PERCENT, bag_id='hirn_real')
         except ValueError:
+            print('Trading')
             fake_trade.futures_trade(signal, bag_id='port1', percent=HIRN_TRADE_PERCENT)
+            print('Trading2')
+
 
     else:
         signal = Trade(pair, base, 'Hirn', 'spot')

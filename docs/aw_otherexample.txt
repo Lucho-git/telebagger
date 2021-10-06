@@ -1,0 +1,15 @@
+LUNA/USDT SHORT 🛑
+Leverage 20x
+Entries 48
+Target 1 47.2
+Target 2 46.0
+Target 3 44.4
+Target 4 40
+Target 5 35
+
+SL 51.2
+
+
+[<fake_portfolio.Folio object at 0x000001F7676C4190>]
+
+<fake_portfolio.Folios object at 0x0000019F7F503790>
