@@ -1,0 +1,156 @@
+COTIUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-09-30  18:54 | 2021-09-30  18:55
+Duration: 0.01 hrs
+================================
+Pricechange: 203.05052430886545
+Buy Price: 0.6294 |  Sell Price: 0.5655
+Result Window: 0.6294 | 0.631[- 5.08%] | 0.538[+ 290.44%]
+
+Selling 100% of COTIUSDT for 203.05%  |  TotalValue: 203.05052430886545%
+_________________________________
+
+COTIUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-09-30  19:07 | 2021-09-30  19:08
+Duration: 0.01 hrs
+================================
+Pricechange: 221.41846202233057
+Buy Price: 0.6359 |  Sell Price: 0.5655
+Result Window: 0.6359 | 0.6368[- 2.83%] | 0.538[+ 307.91%]
+
+Selling 100% of COTIUSDT for 221.42%  |  TotalValue: 221.41846202233057%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-07  22:57 | 2021-10-07  22:59
+Duration: 0.02 hrs
+================================
+Pricechange: 39.64757709251095
+Buy Price: 45.4 |  Sell Price: 44.5
+Result Window: 45.4 | 45.52[- 5.29%] | 43[+ 105.73%]
+
+Selling 100% of LUNAUSDT for 39.65%  |  TotalValue: 39.64757709251095%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-07  23:03 | 2021-10-07  23:04
+Duration: 0.01 hrs
+================================
+Pricechange: 51.66374781085813
+Buy Price: 45.68 |  Sell Price: 44.5
+Result Window: 45.68 | 46.12[- 19.26%] | 43[+ 117.34%]
+
+Selling 100% of LUNAUSDT for 51.66%  |  TotalValue: 51.66374781085813%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-07  23:13 | 2021-10-07  23:14
+Duration: 0.01 hrs
+================================
+Pricechange: 70.66984608714513
+Buy Price: 46.13 |  Sell Price: 44.5
+Result Window: 46.13 | 46.17[- 1.73%] | 43[+ 135.7%]
+
+Selling 100% of LUNAUSDT for 70.67%  |  TotalValue: 70.66984608714513%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-07  23:13 | 2021-10-07  23:14
+Duration: 0.0 hrs
+================================
+Pricechange: 66.47838366282863
+Buy Price: 46.03 |  Sell Price: 44.5
+Result Window: 46.03 | 46.17[- 6.08%] | 43[+ 131.65%]
+
+Selling 100% of LUNAUSDT for 66.48%  |  TotalValue: 66.47838366282863%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-07  23:19 | 2021-10-07  23:20
+Duration: 0.01 hrs
+================================
+Pricechange: 74.84317542721163
+Buy Price: 46.23 |  Sell Price: 44.5
+Result Window: 46.23 | 46.32[- 3.89%] | 43[+ 139.74%]
+
+Selling 100% of LUNAUSDT for 74.84%  |  TotalValue: 74.84317542721163%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-07  23:25 | 2021-10-07  23:27
+Duration: 0.02 hrs
+================================
+Pricechange: 66.05823554976111
+Buy Price: 46.02 |  Sell Price: 44.5
+Result Window: 46.02 | 46.09[- 3.04%] | 43[+ 131.25%]
+
+Selling 100% of LUNAUSDT for 66.06%  |  TotalValue: 66.05823554976111%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-07  23:45 | 2021-10-07  23:46
+Duration: 0.01 hrs
+================================
+Pricechange: 70.25151777970501
+Buy Price: 46.12 |  Sell Price: 44.5
+Result Window: 46.12 | 46.24[- 5.2%] | 43[+ 135.3%]
+
+Selling 100% of LUNAUSDT for 70.25%  |  TotalValue: 70.25151777970501%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-07  23:46 | 2021-10-07  23:47
+Duration: 0.0 hrs
+================================
+Pricechange: 72.75877003031613
+Buy Price: 46.18 |  Sell Price: 44.5
+Result Window: 46.18 | 46.26[- 3.46%] | 43[+ 137.72%]
+
+Selling 100% of LUNAUSDT for 72.76%  |  TotalValue: 72.75877003031613%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-07  23:50 | 2021-10-07  23:51
+Duration: 0.0 hrs
+================================
+Pricechange: 68.99544369711448
+Buy Price: 46.09 |  Sell Price: 44.5
+Result Window: 46.09 | 46.21[- 5.21%] | 43[+ 134.09%]
+
+Selling 100% of LUNAUSDT for 69.0%  |  TotalValue: 68.99544369711448%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-07  23:55 | 2021-10-07  23:56
+Duration: 0.01 hrs
+================================
+Pricechange: 46.960719771779694
+Buy Price: 45.57 |  Sell Price: 44.5
+Result Window: 45.57 | 45.83[- 11.41%] | 43[+ 112.79%]
+
+Selling 100% of LUNAUSDT for 46.96%  |  TotalValue: 46.960719771779694%
+_________________________________
+

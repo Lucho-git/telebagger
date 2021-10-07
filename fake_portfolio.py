@@ -12,11 +12,9 @@ class Folio:
         self.trades = []
 
     def start_trade(self, trade_id, percent):
-        ft_value = float(self.avaliable_balance)*float(percent)
+        ft_value = round(float(self.avaliable_balance)*float(percent), 2)
         if not ft_value > MIN_TRADE_VALUE:
             raise ValueError("Fake Trade Balance " + str(self.name) + " is Too low")
-        print(self.avaliable_balance)
-        print(ft_value)
         self.avaliable_balance -= ft_value
         trade = [trade_id, ft_value]
         self.trades.append(trade)
@@ -25,10 +23,15 @@ class Folio:
         for t in self.trades:
             if t[0] == trade_id:
                 ft_value = t[1]
+                # Adjust portfolio figures
                 return_val = return_val * ft_value
                 self.avaliable_balance += return_val
-                self.balance += return_val
+                self.balance = self.balance - ft_value + return_val
                 self.trades.remove(t)
+
+                # Round off Folios balances
+                self.avaliable_balance = round(self.avaliable_balance, 2)
+                self.balance = round(self.balance, 2)
 
     def snapshot(self):
         snap = ''
@@ -57,7 +60,6 @@ class Folios:
             self.folios = recovered_folios.folios
         else:
             self.folios = []
-        print('recovered folios', self.folios)
 
     def save(self):
         utility.save_folio(self)
@@ -72,11 +74,8 @@ class Folios:
 
     def start_trade(self, trade, percent):
         changes = False
-        print('Folio1')
-        print(len(self.folios))
         for f in self.folios:
             for b in trade.bag_id:
-                print(b, 'vs ', f.name)
                 if f.name == b:
                     f.start_trade(trade.id, percent)
                     changes = True

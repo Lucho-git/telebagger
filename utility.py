@@ -145,7 +145,6 @@ def load_folio():
     path_on_local = "save_data/savefolios"
     folio = pickle_load(path_on_cloud, path_on_local)
     if not folio:
-        print('return empty folio')
         folio = None
     return folio
 
@@ -187,16 +186,18 @@ def save_trade(t):
 
 
 def trade_results(t):
-    path_on_cloud = RESULTS + t.bag_id + '.txt'
-    path_on_local = 'save_data/juice/' + t.bag_id + '.txt'
-    storage.child(path_on_cloud).download("./", path_on_local)
+    for b in t.bag_id:
+        path_on_cloud = RESULTS + b + '.txt'
+        path_on_local = 'save_data/juice/' + b + '.txt'
+        storage.child(path_on_cloud).download("./", path_on_local)
 
-    tradevalue = float(t.closed_diff)/100 + 1
-    tradevalue = round(tradevalue, 2)
-    with open(path_on_local, 'a') as f:
-        f.write(str(tradevalue))
-        f.write('\n')
-    storage.child(path_on_cloud).put(path_on_local)
+        tradevalue = float(t.closed_diff)/100 + 1
+        tradevalue = round(tradevalue, 2)
+        with open(path_on_local, 'a') as f:
+            f.write(str(tradevalue))
+            f.write('\n')
+        storage.child(path_on_cloud).put(path_on_local)
+
     if t.bag_id:
         end_trade_folios(t, tradevalue)
 

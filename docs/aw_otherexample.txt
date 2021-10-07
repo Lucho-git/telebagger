@@ -10,6 +10,14 @@ Target 5 35
 SL 51.2
 
 
-[<fake_portfolio.Folio object at 0x000001F7676C4190>]
 
-<fake_portfolio.Folios object at 0x0000019F7F503790>
+1000SHIB/USDT SHORT 🛑
+Leverage 20x
+Entries  0.0228
+Target 1 0.0224
+Target 2 0.0218
+Target 3 0.0210
+Target 4 0.0190
+Target 5 0.0180
+
+SL 0.0244

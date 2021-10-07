@@ -1,0 +1,13 @@
+1000SHIB/USDT SHORT 🛑
+Leverage 20x
+Entries  0.0344
+Target 1 0.0338
+Target 2 0.03302
+Target 3 0.0318
+Target 4 0.0270
+Target 5 0.0200
+
+SL 0.0365
+__________________________
+APIError(code=-1121): Invalid symbol.
+
