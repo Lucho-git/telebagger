@@ -8,7 +8,7 @@ last_pair = ['']
 tradeheat = [False]
 first = [True]
 
-HIRN_COOLDOWN_TIME = 60000  # In milliseconds
+HIRN_COOLDOWN_TIME = 8000  # In milliseconds
 HIRN_LEVERAGE = 10  # Trade Leverage for Futures trades
 HIRN_TRADE_PERCENT = 0.4  # How much remaining balance should be invested on each trade
 HIRN_STOPLOSS_REDUCTION = 0.75   # Stoploss value to avoid getting liquidated
@@ -120,7 +120,7 @@ def search_coin(text):
     else:
         signal = Trade(pair, base, 'Hirn', 'spot')
         signal.conditions = STrade(sl, exit_price)
-        fake_trade.spot_trade(signal, bag_id='port1', percent=HIRN_TRADE_PERCENT)
+        fake_trade.spot_trade(signal, bag_id='port2', percent=HIRN_TRADE_PERCENT)
 
     relative_price = abs(float(signal.price) - entry)/entry
     if relative_price > 0.1:

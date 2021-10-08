@@ -1,0 +1,60 @@
+LTOUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-10-08  00:59 | 2021-10-08  01:01
+Duration: 0.03 hrs
+================================
+Pricechange: - 0.21%
+Buy Price: 0.2797 |  Sell Price: 0.2791
+Result Window: 0.2797 | 0.2769[- 1.0%] | 0.2818[+ 0.75%]
+
+_________________________________
+
+LTOUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-10-08  00:59 | 2021-10-08  01:03
+Duration: 0.06 hrs
+================================
+Pricechange: + 0.61%
+Buy Price: 0.2791 |  Sell Price: 0.2808
+Result Window: 0.2791 | 0.2769[- 0.79%] | 0.2837[+ 1.65%]
+
+_________________________________
+
+LTOUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-10-08  00:59 | 2021-10-08  01:05
+Duration: 0.09 hrs
+================================
+Pricechange: + 1.54%
+Buy Price: 0.2786 |  Sell Price: 0.2829
+Result Window: 0.2786 | 0.2769[- 0.61%] | 0.2837[+ 1.83%]
+
+_________________________________
+
+LTOUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-10-08  00:59 | 2021-10-08  01:17
+Duration: 0.29 hrs
+================================
+Pricechange: - 0.68%
+Buy Price: 0.2791 |  Sell Price: 0.2772
+Result Window: 0.2791 | 0.2748[- 1.54%] | 0.2837[+ 1.65%]
+
+_________________________________
+
+LTOUSDT
+Status: TIME
+Origin: VIP Signals
+TimeStarted: 2021-10-08  00:59 | 2021-10-08  03:47
+Duration: 2.79 hrs
+================================
+Pricechange: + 0.79%
+Buy Price: 0.2789 |  Sell Price: 0.2811
+Result Window: 0.2789 | 0.2748[- 1.47%] | 0.2866[+ 2.76%]
+
+_________________________________
+
