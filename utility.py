@@ -20,12 +20,19 @@ config = {  # initialising database connection
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
 
+FAILED_MESSAGES_L = 'trade_results/failed_messages/'
+ADD_MESSAGE_L = 'trade_results/message_count/'
+SAVE_STREAM_L = 'save_data/savefile'
+SAVE_FOLIO_L = "save_data/savefolios"
+SAVE_TRADE_L = "trade_results/"
+RESULTS_L = "trade_results/juice/"
+
 if local:
     # Firebase Cloud Storage File Paths
     FAILED_MESSAGES = "trade_results/failed_messages/"  # Filepath
     ADD_MESSAGE = "trade_results/message_count/"  # Filepath
     SAVE_STREAM = "save_data/savefile"  # Path and file
-    SAVE_FOLIO = "save_data/savefolios" #Path and file
+    SAVE_FOLIO = "save_data/savefolios"  # Path and file
     SAVE_TRADE = "trade_results/"  # Path
     RESULTS = "trade_results/juice/"  # Path
 else:
@@ -50,7 +57,7 @@ def get_binance_client():
 
 def failed_message(msg, origin, e, file_string):
     path_on_cloud = FAILED_MESSAGES + origin + file_string
-    path_on_local = origin + '_failed.txt'
+    path_on_local = FAILED_MESSAGES_L + origin + '_failed.txt'
     storage.child(path_on_cloud).download("./", path_on_local)
     e = str(e)
 
@@ -78,7 +85,7 @@ def failed_message(msg, origin, e, file_string):
 
 def add_message(origin, result):
     path_on_cloud = ADD_MESSAGE + origin + '_count.txt'
-    path_on_local = origin + '_count.txt'
+    path_on_local = ADD_MESSAGE_L + origin + '_count.txt'
     storage.child(path_on_cloud).download("./", path_on_local)
     try:
         with open(path_on_local, 'a', encoding="utf8") as f:
@@ -123,26 +130,26 @@ def pickle_load(cloudpath, localpath):
 
 def save_stream(restartstream):
     path_on_cloud = SAVE_STREAM
-    path_on_local = "save_data/savefile"
+    path_on_local = SAVE_STREAM_L
     pickle_save(restartstream, path_on_cloud, path_on_local)
 
 
 def load_stream():
     path_on_cloud = SAVE_STREAM
-    path_on_local = "save_data/savefile"
+    path_on_local = SAVE_STREAM_L
     loaded = pickle_load(path_on_cloud, path_on_local)
     return loaded
 
 
 def save_folio(folios):
     path_on_cloud = SAVE_FOLIO
-    path_on_local = "save_data/savefolios"
+    path_on_local = SAVE_FOLIO_L
     pickle_save(folios, path_on_cloud, path_on_local)
 
 
 def load_folio():
     path_on_cloud = SAVE_FOLIO
-    path_on_local = "save_data/savefolios"
+    path_on_local = SAVE_FOLIO_L
     folio = pickle_load(path_on_cloud, path_on_local)
     if not folio:
         folio = None
@@ -168,15 +175,15 @@ def end_trade_folios(trade, trade_return):
 def save_trade(t):
     # Add trade result to all trades textfile
     path_on_cloud = SAVE_TRADE + 'TradeResults.txt'
-    path_on_local = "save_data/TradeResults.txt"
+    path_on_local = SAVE_TRADE_L + 'TradeResults.txt'
     storage.child(path_on_cloud).download("./", path_on_local)
-    with open('save_data/TradeResults.txt', 'a', encoding="utf8") as f:
+    with open(path_on_local, 'a', encoding="utf8") as f:
         f.write(str(t.savestring))
         f.write('\n\n')
     storage.child(path_on_cloud).put(path_on_local)
     # Add trade result to specific trade textfile
     path_on_cloud = SAVE_TRADE + t.origin + ".txt"
-    path_on_local = "save_data/" + t.origin + ".txt"
+    path_on_local = SAVE_TRADE_L + t.origin + ".txt"
     storage.child(path_on_cloud).download("./", path_on_local)
     with open(path_on_local, 'a', encoding="utf8") as f:
         f.write(str(t.savestring))
@@ -188,7 +195,7 @@ def save_trade(t):
 def trade_results(t):
     for b in t.bag_id:
         path_on_cloud = RESULTS + b + '.txt'
-        path_on_local = 'save_data/juice/' + b + '.txt'
+        path_on_local = RESULTS_L + b + '.txt'
         storage.child(path_on_cloud).download("./", path_on_local)
 
         tradevalue = float(t.closed_diff)/100 + 1
