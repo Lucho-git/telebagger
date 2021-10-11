@@ -1,10 +1,10 @@
-1000SHIB/USDT SHORT 🛑
+LUNA/USDT SHORT 🛑
 Leverage 20x
-Entries  0.0228
-Target 1 0.0224
-Target 2 0.0218
-Target 3 0.0210
-Target 4 0.0190
-Target 5 0.0180
+Entries 38.2
+Target 1 38
+Target 2 37
+Target 3 36
+Target 4 35
+Target 5 34
 
-SL 0.0244
+SL 39.5
