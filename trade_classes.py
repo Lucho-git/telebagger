@@ -2,7 +2,6 @@ from binance.client import Client
 from colorama import init
 from colorama import Fore, Back, Style
 import datetime
-import re
 import utility as ut
 init(strip=True)
 
@@ -20,6 +19,7 @@ class Futures:
         self.leverage = leverage
         self.mode = mode
         self.orders = []
+
 
 
 class MFutures:
@@ -94,6 +94,15 @@ class Trade:
         self.fee = totalfees
         return total
 
+    def init_trade_futures(self, in_id, receipt):
+        self.id = in_id
+        self.time = receipt['time']
+        self.price = float(receipt['avgPrice'])
+        self.lowest = self.price
+        self.highest = self.price
+        self.amount = float(receipt['executedQty'])
+        self.status = 'active'
+
     def init_trade_vals(self, receipt):
         self.receipt = receipt
         fills = receipt['fills']
@@ -103,9 +112,6 @@ class Trade:
             self.status = 'Completed'
             self.amount = receipt['executedQty']
         self.numtrades += 1
-
-    def strip_ansi_codes(self, s):
-        return re.sub('\033\\[([0-9]+)(;[0-9]+)*m', '', s)
 
     def percent_diff(self, now):
         diff = float(now) - self.price
@@ -148,18 +154,6 @@ class Trade:
         snapshot += 'Status: ' + self.status + '\n'
         snapshot += 'Number Trades: ' + str(self.numtrades) + '\n'
         snapshot += 'Signal Origin: ' + self.origin + '\n'
-        return snapshot
-
-    def trade_diff(self, trade1, trade2):
-        price_diff = trade2.price - trade1.price
-        value_diff = str(price_diff * trade2.price)
-        perc_diff = str(round(price_diff / trade2.price, 3))
-        trade_time = str(trade2.time - trade1.time)
-        snapshot = 'Bought ' + trade1.pair + ' at ' + str(trade1.price) + ' | Sold at ' + str(trade2.price) + '\n'
-        snapshot += 'Trade Value of ' + value_diff + '\n'
-        snapshot += 'Percentage ' + perc_diff + '\n'
-        snapshot += 'Trading fees ' + str(trade1.fee + trade2.fee) + '\n'
-        snapshot += 'Trade time ' + trade_time
         return snapshot
 
     def __repr__(self):
@@ -362,12 +356,12 @@ class Trade:
         if self.type == 'mfutures':
             self.closed_diff = str(self.conditions.trade_amounts)
         else:
-            self.closed_diff = str(self.strip_ansi_codes(self.percent_diff(self.closed)))
+            self.closed_diff = ut.strip_ansi_codes(self.percent_diff(self.closed))
 
         percent = str(self.closed_diff)
         self.closed_diff = self.closed_diff.replace('%', '')
         self.closed_diff = self.closed_diff.replace('+', '')
-        self.closed_diff = self.closed_diff.strip(' ')
+        self.closed_diff = self.closed_diff.replacte(' ', '')
 
         closest = None
         goal = None
@@ -404,8 +398,8 @@ class Trade:
             print("THERE IS A PROBLEM!:", self.status)
             raise ValueError('Expected a different status value', self.status)
 
-        percent_closest = self.strip_ansi_codes(str(self.percent_diff(closest)))
-        percent_goal = self.strip_ansi_codes(str(self.percent_diff(goal)))
+        percent_closest = ut.strip_ansi_codes(str(self.percent_diff(closest)))
+        percent_goal = ut.strip_ansi_codes(str(self.percent_diff(goal)))
         closest = str(closest)
         goal = str(goal)
 

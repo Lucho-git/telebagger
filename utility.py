@@ -2,6 +2,7 @@ import pyrebase
 import pickle
 import numpy as np
 import asyncio as aio
+import re
 from binance.client import Client
 from fake_portfolio import Folio, Folios
 
@@ -229,6 +230,10 @@ def format_float(num):
     return np.format_float_positional(num, trim='-')
 
 
+def strip_ansi_codes(s):
+    return re.sub('\033\\[([0-9]+)(;[0-9]+)*m', '', s)
+
+
 class Sleeper:
     # Group sleep calls allowing instant cancellation of all
     def __init__(self, loop):
@@ -260,3 +265,6 @@ class Sleeper:
         await aio.wait(self.tasks)
         self.tasks -= cancelled
         return len(cancelled)
+
+
+

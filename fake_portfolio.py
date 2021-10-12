@@ -67,7 +67,7 @@ class Folios:
     def snapshot(self):
         print(self.folios)
         for f in self.folios:
-            snap = '\n' + f.name + ': $' + str(f.balance) + '\n'
+            snap = '\n' + f.name + ': $' + str(f.starting_balance) + '\n'
             snap += 'Avaliable Balance: ' + str(f.avaliable_balance) + ' / ' + str(f.balance) + '\n'
             snap += f.snapshot() + '\n'
             print(snap)

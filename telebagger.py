@@ -108,6 +108,13 @@ async def StartTelegramForwarding():
                 except Exception as e:
                     utility.failed_message(message, 'Always Win', e, '_failed.txt')
                     utility.add_message('Always Win', '[-]')
+            else:
+                try:
+                    valid2 = always_win.valid_trade_message(message)
+                except ValueError:
+                    print("Problem with PreSignal Validation")
+                if valid2:
+                    print("PreSignal Message")
 
         if chat.id == 1312345502:                               # Vip Signals, Signal
             valid = msg_vip_signals.valid_trade_message(message)
@@ -220,6 +227,10 @@ async def StartTelegramForwarding():
                         await trade_stream.addtrade(aw)
                     else:
                         print('notval id')
+            elif message == '/pre_aw':
+                with open('docs/pre_aw_example.txt', encoding="utf8") as f:
+                    msg = f.read()
+                    valid2 = always_win.valid_trade_message_2(msg)
 
             elif NEW_PORTFOLIO in message:
                 split = message.split(' ')

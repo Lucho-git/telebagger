@@ -46,7 +46,7 @@ def futures_trade(signal, percentage, bag_id=None):
         try:
             realclient.futures_change_margin_type(symbol=symbol, mode='ISOLATED')
         except:
-            print('already iso')
+            print('Already Isolated')
 
     # Get futures coin precision
     coin_precision = None
@@ -67,14 +67,9 @@ def futures_trade(signal, percentage, bag_id=None):
     trade_receipt = realclient.futures_create_order(symbol=symbol, side=side, type='MARKET', quantity=q, isolated=isolated)
 
     # Move all this shit into trade_classes
-    signal.id = trade_receipt['orderId']
-    signal.receipt = realclient.futures_get_order(orderId=signal.id, symbol=symbol)
-    signal.time = signal.receipt['time']
-    signal.price = float(signal.receipt['avgPrice'])
-    signal.lowest = signal.price
-    signal.highest = signal.price
-    signal.amount = float(signal.receipt['executedQty'])
-    signal.status = 'active'
+    trade_id = trade_receipt['orderId']
+    receipt = realclient.futures_get_order(orderId=trade_id, symbol=symbol)
+    signal.init_trade_futures(trade_id, receipt)
     if bag_id:
         signal.bag_id.append(bag_id)
 
@@ -93,6 +88,58 @@ def futures_trade(signal, percentage, bag_id=None):
     receipt_tp = realclient.futures_create_order(symbol=symbol, side=side, type='LIMIT', quantity=trade_qty, price=signal.conditions.stopprof,
                                               timeInForce='GTC', reduceOnly=True)
     signal.conditions.orders.append(receipt_tp)
+    return signal
+
+
+def futures_trade_no_orders(signal, percentage, bag_id=None):
+    symbol = signal.pair
+    margin = 0.99
+    balance = float(realclient.futures_account_balance()[1]['withdrawAvailable'])  # Get available funds
+    if balance*margin*percentage < MIN_TRADE_VALUE:
+        print('Low Funds')
+        raise ValueError("Funds too low to take this trade")
+
+    if signal.conditions.direction == 'long':
+        side = 'BUY'
+    elif signal.conditions.direction == 'short':
+        side = 'SELL'
+    isolated = True
+    if signal.conditions.mode == 'cross':
+        isolated = False
+        try:
+            realclient.futures_change_margin_type(symbol=symbol, mode='CROSS')
+        except:
+            print('already cross')
+    else:
+        try:
+            realclient.futures_change_margin_type(symbol=symbol, mode='ISOLATED')
+        except:
+            print('Already Isolated')
+
+    # Get futures coin precision
+    coin_precision = None
+    for i in realclient.futures_exchange_info()['symbols']:
+        if i['pair'] == symbol:
+            coin_precision = i['quantityPrecision']
+            break
+
+    # Calculate trade values
+    amount = balance*margin*percentage*signal.conditions.leverage
+    amount = str(float(round_decimals_down(amount, coin_precision)))  # Round Base amount
+    pair_price = float(realclient.get_symbol_ticker(symbol=symbol)['price'])  # Get coin price
+    q = float(amount) / pair_price  # Define trade quantities
+    q = float(round_decimals_down(q, coin_precision))  # Round trade Quantities
+
+    realclient.futures_change_leverage(symbol=symbol, leverage=signal.conditions.leverage)
+    print(balance*percentage)
+    trade_receipt = realclient.futures_create_order(symbol=symbol, side=side, type='MARKET', quantity=q, isolated=isolated)
+
+    # Move all this shit into trade_classes
+    trade_id = trade_receipt['orderId']
+    receipt = realclient.futures_get_order(orderId=trade_id, symbol=symbol)
+    signal.init_trade_futures(trade_id, receipt)
+    if bag_id:
+        signal.bag_id.append(bag_id)
     return signal
 
 
