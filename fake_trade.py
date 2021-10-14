@@ -4,7 +4,7 @@ import utility
 realclient = utility.get_binance_client()
 
 
-def spot_trade(trade, bag_id=None, percent=None):
+def fake_trade(trade, bag_id=None, percent=None):
     trade.price = float(realclient.get_symbol_ticker(symbol=trade.pair)['price'])
     trade.time = realclient.get_server_time()['serverTime']
     trade.id = trade.time
@@ -16,7 +16,7 @@ def spot_trade(trade, bag_id=None, percent=None):
         utility.start_trade_folios(trade, percent)
 
 
-def futures_trade(trade, bag_id=None, percent=None):
+def fake_trade_copy (trade, bag_id=None, percent=None):
     trade.price = float(realclient.get_symbol_ticker(symbol=trade.pair)['price'])
     trade.time = realclient.futures_time()['serverTime']
     trade.id = trade.time

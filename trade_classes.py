@@ -402,7 +402,7 @@ class Trade:
         closest = str(closest)
         goal = str(goal)
 
-        savestr = self.pair + ' | ' + self.id + '\n'
+        savestr = self.pair + ' | ' + str(self.id) + '\n'
         #    if self.conditions.direction:
         #        savestr = self.pair + ' ['+self.conditions.direction+']\n'
         savestr += 'Status: ' + self.status.upper() + '\n'

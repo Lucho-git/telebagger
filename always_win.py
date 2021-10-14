@@ -46,7 +46,7 @@ def valid_trade_message_2(msg):
             pair = l1[1].upper() + 'USDT'
             base = 'USDT'
             signal = Trade(pair, base, 'Always Win', 'futures')
-            fake_trade.futures_trade(signal, percent=AW_TRADE_PERCENTAGE)
+            fake_trade.futures_trade(signal, percent=AW_TRADE_PERCENTAGE, bag_id='AW1')
             AW_WAIT_SIGNAL[0] = signal
             # AW_WAIT_SIGNAL[0] = binance_wrap.futures_trade_no_orders(signal, AW_TRADE_PERCENTAGE, 'AW1')
             print('Signal Incoming:', pair)
