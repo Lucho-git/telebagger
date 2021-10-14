@@ -113,7 +113,7 @@ def search_coin(text):
             binance_wrap.futures_trade(signal, HIRN_TRADE_PERCENT, bag_id='hirn_real')
         except ValueError:
             print('Trading')
-            fake_trade.futures_trade(signal, bag_id='port1', percent=HIRN_TRADE_PERCENT)
+            fake_trade.fake_trade(signal, bag_id='port1', percent=HIRN_TRADE_PERCENT)
             print('Trading2')
 
 
