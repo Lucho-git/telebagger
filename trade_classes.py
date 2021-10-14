@@ -21,7 +21,6 @@ class Futures:
         self.orders = []
 
 
-
 class MFutures:
     def __init__(self, losstargets, stopprof, proftargets, direction, leverage, mode):
         self.losstargets = losstargets
@@ -403,7 +402,7 @@ class Trade:
         closest = str(closest)
         goal = str(goal)
 
-        savestr = self.pair + '\n'
+        savestr = self.pair + ' | ' + self.id + '\n'
         #    if self.conditions.direction:
         #        savestr = self.pair + ' ['+self.conditions.direction+']\n'
         savestr += 'Status: ' + self.status.upper() + '\n'

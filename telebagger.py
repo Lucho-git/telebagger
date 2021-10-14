@@ -24,7 +24,7 @@ import utility
 import hirn
 import futures_signals
 
-local = False
+local = utility.is_local()
 
 init()  # Initialising colorama
 update = [False]

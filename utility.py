@@ -6,7 +6,7 @@ import re
 from binance.client import Client
 from fake_portfolio import Folio, Folios
 
-local = False
+local = [False]
 
 config = {  # initialising database connection
     "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
@@ -54,6 +54,10 @@ def get_binance_client():
     # Binance Client Object
     realclient = Client(r_api_key, r_api_secret)
     return realclient
+
+
+def is_local():
+    return local[0]
 
 
 def failed_message(msg, origin, e, file_string):
