@@ -360,7 +360,7 @@ class Trade:
         percent = str(self.closed_diff)
         self.closed_diff = self.closed_diff.replace('%', '')
         self.closed_diff = self.closed_diff.replace('+', '')
-        self.closed_diff = self.closed_diff.replacte(' ', '')
+        self.closed_diff = self.closed_diff.replace(' ', '')
 
         closest = None
         goal = None
