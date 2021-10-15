@@ -43,6 +43,7 @@ if local:
     ADD3 = '/add3'
     UPDATE = '/update'
     UPDATE2 = '/update2'
+    PRE_AW = '/pre_aw'
     ALWAYS_WIN_SIGNAL = '/aw'
     NEW_PORTFOLIO = '/newport'
     CLEAR_PORTFOLIOS = '/clear_folios'
@@ -60,6 +61,7 @@ else:
     ADD3 = '/add3!'
     UPDATE = '/update!'
     UPDATE2 = '/update2!'
+    PRE_AW = '/pre_aw!'
     ALWAYS_WIN_SIGNAL = '/aw!'
     NEW_PORTFOLIO = '/newport!'
     CLEAR_PORTFOLIOS = '/clear_folios!'
@@ -227,16 +229,17 @@ async def StartTelegramForwarding():
                         await trade_stream.addtrade(aw)
                     else:
                         print('notval id')
-            elif message == '/pre_aw':
+            elif message == PRE_AW:
                 with open('docs/pre_aw_example.txt', encoding="utf8") as f:
                     msg = f.read()
-                    valid2 = always_win.valid_trade_message_2(msg)
+                    always_win.valid_trade_message_2(msg)
 
             elif NEW_PORTFOLIO in message:
                 split = message.split(' ')
-                port = Folio(split[1], split[2])
-                folios.add_folios(port)
-                folios.save()
+                if NEW_PORTFOLIO == split[0]:
+                    port = Folio(split[1], split[2])
+                    folios.add_folios(port)
+                    folios.save()
 
             elif message == CLEAR_PORTFOLIOS:
                 folios.clear_folios()

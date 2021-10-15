@@ -18,7 +18,9 @@ def bag(msg):
                 print("Add sell orders to trade")
                 AW_WAIT_SIGNAL[0] = None
             else:
-                print("PROBLEMS???")
+                print("Different Signal Than was Expected")
+                # TODO sell the signal already bought
+                AW_WAIT_SIGNAL[0] = None
         else:
             result = signal_trade(info)
     else:
@@ -100,17 +102,16 @@ def add_orders(info, signal):
     t4 = info[8]
     t5 = info[9]
 
-    stopprof = [40, 25, 15, 10, 10]
+    stopprof = [10, 22.5, 33.75, 25.3, 8.45]
+    stopprof2 = [40, 25, 15, 10, 10]
     proftargets = [t1, t2, t3, t4, t5]
     losstargets = [sl, entry, t1, t2, t3]
-
-    fake_trade.fake_trade(signal, percent=AW_TRADE_PERCENTAGE, bag_id='AW1')
 
     copy_signal = Trade(signal.pair, signal.base, 'Always Win2', 'mfutures')
     copy_signal = fake_trade.fake_trade_copy(copy_signal, signal, percent=AW_TRADE_PERCENTAGE, bag_id='AW2')
 
     signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
-    copy_signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
+    copy_signal.conditions = MFutures(losstargets, stopprof2, proftargets, direction, lev, 'isolation')
     signal.type = 'mfutures'
     return [signal, copy_signal]
 

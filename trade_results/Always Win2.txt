@@ -288,3 +288,65 @@ Selling 10% of DENTUSDT for 14559.03%  |  TotalValue: 15918.165259148862%
 Selling 10% of DENTUSDT for 12903.13%  |  TotalValue: 17208.478224871662%
 _________________________________
 
+DENTUSDT | 1634237914309
+Status: STOPPROF
+Origin: Always Win2
+TimeStarted: 2021-10-14  18:58 | 2021-10-14  19:03
+Duration: 0.07 hrs
+================================
+Pricechange: 17047.61904761905
+Buy Price: 0.00609 |  Sell Price: 0.045
+Result Window: 0.00609 | 0.00605[+ 13.14%] | 0.058[- 17047.62%]
+
+Selling 40% of DENTUSDT for 18361.25%  |  TotalValue: 7344.499178981938%
+Selling 25% of DENTUSDT for 17704.43%  |  TotalValue: 11770.607553366175%
+Selling 15% of DENTUSDT for 17047.62%  |  TotalValue: 14327.750410509032%
+Selling 10% of DENTUSDT for 14420.36%  |  TotalValue: 15769.786535303778%
+Selling 10% of DENTUSDT for 12778.33%  |  TotalValue: 17047.61904761905%
+_________________________________
+
+KEEPUSDT | 1634282531510
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-15  07:22 | 2021-10-15  07:29
+Duration: 0.11 hrs
+================================
+Pricechange: 34.13595413595437
+Buy Price: 0.6105 |  Sell Price: 0.604
+Result Window: 0.6105 | 0.6167[- 20.31%] | 0.5798[+ 100.57%]
+
+Selling 40% of KEEPUSDT for 53.4%  |  TotalValue: 21.359541359541478%
+Selling 60% of KEEPUSDT for 21.29%  |  TotalValue: 34.13595413595437%
+_________________________________
+
+KEEPUSDT | 1634282536367
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-15  15:22 | 2021-10-15  15:29
+Duration: 0.11 hrs
+================================
+Pricechange: 29.293924466338314
+Buy Price: 0.609 |  Sell Price: 0.604
+Result Window: 0.609 | 0.6167[- 25.29%] | 0.5798[+ 95.89%]
+
+Selling 40% of KEEPUSDT for 48.6%  |  TotalValue: 19.441707717569834%
+Selling 60% of KEEPUSDT for 16.42%  |  TotalValue: 29.293924466338314%
+_________________________________
+
+DENTUSDT | 1634285729891
+Status: STOPPROF
+Origin: Always Win2
+TimeStarted: 2021-10-15  16:15 | 2021-10-15  16:20
+Duration: 0.08 hrs
+================================
+Pricechange: 18251.396648044694
+Buy Price: 0.005728 |  Sell Price: 0.045
+Result Window: 0.005728 | 0.005629[+ 34.57%] | 0.058[- 18251.4%]
+
+Selling 40% of DENTUSDT for 19648.04%  |  TotalValue: 7859.217877094972%
+Selling 25% of DENTUSDT for 18949.72%  |  TotalValue: 12596.648044692738%
+Selling 15% of DENTUSDT for 18251.4%  |  TotalValue: 15334.357541899442%
+Selling 10% of DENTUSDT for 15458.1%  |  TotalValue: 16880.167597765365%
+Selling 10% of DENTUSDT for 13712.29%  |  TotalValue: 18251.396648044694%
+_________________________________
+

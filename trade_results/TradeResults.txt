@@ -746,3 +746,91 @@ Buy Price: 0.006039 |  Sell Price: 0.045
 Result Window: 0.006039 | 0.00603[+ 2.98%] | 0.058[- 17208.48%]
 
 
+DENTUSDT | 1634237912924
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-14  18:58 | 2021-10-14  19:03
+Duration: 0.07 hrs
+================================
+Pricechange: 16301.313628899838
+Buy Price: 0.00609 |  Sell Price: 0.045
+Result Window: 0.00609 | 0.00605[+ 13.14%] | 0.058[- 17047.62%]
+
+
+DENTUSDT | 1634237914309
+Status: STOPPROF
+Origin: Always Win2
+TimeStarted: 2021-10-14  18:58 | 2021-10-14  19:03
+Duration: 0.07 hrs
+================================
+Pricechange: 17047.61904761905
+Buy Price: 0.00609 |  Sell Price: 0.045
+Result Window: 0.00609 | 0.00605[+ 13.14%] | 0.058[- 17047.62%]
+
+
+KEEPUSDT | 1634282529725
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-15  07:22 | 2021-10-15  07:29
+Duration: 0.11 hrs
+================================
+Pricechange: 29.346405228758208
+Buy Price: 0.612 |  Sell Price: 0.604
+Result Window: 0.612 | 0.6167[- 15.36%] | 0.5798[+ 105.23%]
+
+
+KEEPUSDT | 1634282530116
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-15  15:22 | 2021-10-15  15:29
+Duration: 0.11 hrs
+================================
+Pricechange: 29.02435038404975
+Buy Price: 0.6119 |  Sell Price: 0.604
+Result Window: 0.6119 | 0.6167[- 15.69%] | 0.5798[+ 104.92%]
+
+
+KEEPUSDT | 1634282531510
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-15  07:22 | 2021-10-15  07:29
+Duration: 0.11 hrs
+================================
+Pricechange: 34.13595413595437
+Buy Price: 0.6105 |  Sell Price: 0.604
+Result Window: 0.6105 | 0.6167[- 20.31%] | 0.5798[+ 100.57%]
+
+
+KEEPUSDT | 1634282536367
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-15  15:22 | 2021-10-15  15:29
+Duration: 0.11 hrs
+================================
+Pricechange: 29.293924466338314
+Buy Price: 0.609 |  Sell Price: 0.604
+Result Window: 0.609 | 0.6167[- 25.29%] | 0.5798[+ 95.89%]
+
+
+DENTUSDT | 1634285729890
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-15  16:15 | 2021-10-15  16:20
+Duration: 0.08 hrs
+================================
+Pricechange: 18251.396648044694
+Buy Price: 0.005728 |  Sell Price: 0.045
+Result Window: 0.005728 | 0.005629[+ 34.57%] | 0.058[- 18251.4%]
+
+
+DENTUSDT | 1634285729891
+Status: STOPPROF
+Origin: Always Win2
+TimeStarted: 2021-10-15  16:15 | 2021-10-15  16:20
+Duration: 0.08 hrs
+================================
+Pricechange: 18251.396648044694
+Buy Price: 0.005728 |  Sell Price: 0.045
+Result Window: 0.005728 | 0.005629[+ 34.57%] | 0.058[- 18251.4%]
+
+
