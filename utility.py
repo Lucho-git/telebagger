@@ -28,7 +28,7 @@ SAVE_FOLIO_L = "save_data/savefolios"
 SAVE_TRADE_L = "trade_results/"
 RESULTS_L = "trade_results/juice/"
 
-if local:
+if local[0]:
     # Firebase Cloud Storage File Paths
     FAILED_MESSAGES = "trade_results/failed_messages/"  # Filepath
     ADD_MESSAGE = "trade_results/message_count/"  # Filepath
