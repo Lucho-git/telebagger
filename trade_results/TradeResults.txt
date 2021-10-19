@@ -834,3 +834,135 @@ Buy Price: 0.005728 |  Sell Price: 0.045
 Result Window: 0.005728 | 0.005629[+ 34.57%] | 0.058[- 18251.4%]
 
 
+DENTUSDT | 1634288444704
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-15  17:00 | 2021-10-15  17:05
+Duration: 0.07 hrs
+================================
+Pricechange: 18132.767341040464
+Buy Price: 0.005536 |  Sell Price: 0.045
+Result Window: 0.005536 | 0.005478[+ 20.95%] | 0.058[- 18953.76%]
+
+
+DENTUSDT | 1634288444705
+Status: STOPPROF
+Origin: Always Win2
+TimeStarted: 2021-10-15  17:00 | 2021-10-15  17:05
+Duration: 0.07 hrs
+================================
+Pricechange: 18953.757225433525
+Buy Price: 0.005536 |  Sell Price: 0.045
+Result Window: 0.005536 | 0.005478[+ 20.95%] | 0.058[- 18953.76%]
+
+
+TRBUSDT | 1634382169281
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-16  19:02 | 2021-10-16  19:05
+Duration: 0.04 hrs
+================================
+Pricechange: + 18.41%
+Buy Price: 54.72 |  Sell Price: 55.7272716
+Result Window: 54.72 | 54.58[- 2.56%] | 50.5369865[- 76.44%]
+
+
+TRBUSDT | 1634382182480
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-16  19:03 | 2021-10-16  19:05
+Duration: 0.03 hrs
+================================
+Pricechange: + 20.65%
+Buy Price: 54.6 |  Sell Price: 55.7272716
+Result Window: 54.6 | 54.6[+ 0.0%] | 50.5369865[- 74.41%]
+
+
+KEEPUSDT | 1634417344079
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-17  04:49 | 2021-10-17  08:07
+Duration: 3.3 hrs
+================================
+Pricechange: -1.9493177387914242
+Buy Price: 1.026 |  Sell Price: 1.03
+Result Window: 1.026 | 0.9044[+ 237.04%] | 0.097[+ 1810.92%]
+
+
+KEEPUSDT | 1634417412722
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-17  04:50 | 2021-10-17  08:07
+Duration: 3.28 hrs
+================================
+Pricechange: -1.5729453401492588
+Buy Price: 1.0172 |  Sell Price: 1.03
+Result Window: 1.0172 | 0.9044[+ 221.79%] | 0.097[+ 1809.28%]
+
+
+BTSUSDT | 1634468877863
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-17  19:07 | 2021-10-17  22:18
+Duration: 3.17 hrs
+================================
+Pricechange: + 19.03%
+Buy Price: 0.0514 |  Sell Price: 0.05237833
+Result Window: 0.0514 | 0.05064[- 14.79%] | 0.047499952500000005[- 75.88%]
+
+
+BTSUSDT | 1634468995976
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-17  19:09 | 2021-10-17  22:18
+Duration: 3.13 hrs
+================================
+Pricechange: + 19.83%
+Buy Price: 0.05136 |  Sell Price: 0.05237833
+Result Window: 0.05136 | 0.05064[- 14.02%] | 0.047499952500000005[- 75.16%]
+
+
+FTMUSDT | 1634643584918
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-19  19:39 | 2021-10-20  00:47
+Duration: 5.12 hrs
+================================
+Pricechange: -4.031097034264429
+Buy Price: 2.4311 |  Sell Price: 2.44
+Result Window: 2.4311 | 2.3701[+ 50.18%] | 2.34[+ 74.95%]
+
+
+FTMUSDT | 1634643653936
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-19  19:40 | 2021-10-20  00:47
+Duration: 5.1 hrs
+================================
+Pricechange: 2.636783124588078
+Buy Price: 2.4272 |  Sell Price: 2.44
+Result Window: 2.4272 | 2.3701[+ 47.05%] | 2.34[+ 71.85%]
+
+
+BTCUSDT | 1634651496547
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-19  21:51 | 2021-10-20  01:01
+Duration: 3.16 hrs
+================================
+Pricechange: -7.3384927473562644
+Buy Price: 62901.2 |  Sell Price: 63200
+Result Window: 62901.2 | 61322.22[+ 50.21%] | 60672[+ 70.88%]
+
+
+BTCUSDT | 1634651566211
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-19  21:52 | 2021-10-20  01:01
+Duration: 3.14 hrs
+================================
+Pricechange: 0.9987382352829801
+Buy Price: 62959.44 |  Sell Price: 63200
+Result Window: 62959.44 | 61322.22[+ 52.01%] | 60672[+ 72.66%]
+
+

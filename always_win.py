@@ -60,6 +60,7 @@ def search_coin(text):
     print(text)
     text = text.replace('  ', ' ')
     text = text.replace('   ', ' ')
+    text = text.replace('\n\n', '\n')
     lines = text.split('\n')
 
     pair = ''
@@ -85,7 +86,7 @@ def search_coin(text):
     t3 = float(lines[5].split(' ')[2])
     t4 = float(lines[6].split(' ')[2])
     t5 = float(lines[7].split(' ')[2])
-    sl = float(lines[9].split(' ')[1])
+    sl = float(lines[8].split(' ')[1])
     print('Pair|', pair, '|Direction|', direction, '|Entry|', entry, '|Stoploss|', sl, '|Leverage|', lev)
     return [pair, base, direction,lev, entry, t1, t2, t3, t4, t5, sl]
 
@@ -138,8 +139,8 @@ def signal_trade(info):
     losstargets = [sl, entry, t1, t2, t3]
     signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
     signal2.conditions = MFutures(losstargets, stopprof2, proftargets, direction, lev, 'isolation')
-    fake_trade.fake_trade(signal, bag_id='AW1', percent=AW_TRADE_PERCENTAGE)
     fake_trade.fake_trade(signal2, bag_id='AW2', percent=AW_TRADE_PERCENTAGE)
+    fake_trade.fake_trade(signal, bag_id='AW1', percent=AW_TRADE_PERCENTAGE)
 
     return [signal, signal2]
 

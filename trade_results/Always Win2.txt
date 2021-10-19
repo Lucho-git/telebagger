@@ -350,3 +350,62 @@ Selling 10% of DENTUSDT for 15458.1%  |  TotalValue: 16880.167597765365%
 Selling 10% of DENTUSDT for 13712.29%  |  TotalValue: 18251.396648044694%
 _________________________________
 
+DENTUSDT | 1634288444705
+Status: STOPPROF
+Origin: Always Win2
+TimeStarted: 2021-10-15  17:00 | 2021-10-15  17:05
+Duration: 0.07 hrs
+================================
+Pricechange: 18953.757225433525
+Buy Price: 0.005536 |  Sell Price: 0.045
+Result Window: 0.005536 | 0.005478[+ 20.95%] | 0.058[- 18953.76%]
+
+Selling 40% of DENTUSDT for 20398.84%  |  TotalValue: 8159.537572254335%
+Selling 25% of DENTUSDT for 19676.3%  |  TotalValue: 13078.612716763006%
+Selling 15% of DENTUSDT for 18953.76%  |  TotalValue: 15921.676300578034%
+Selling 10% of DENTUSDT for 16063.58%  |  TotalValue: 17528.034682080925%
+Selling 10% of DENTUSDT for 14257.23%  |  TotalValue: 18953.757225433525%
+_________________________________
+
+KEEPUSDT | 1634417412722
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-17  04:50 | 2021-10-17  08:07
+Duration: 3.28 hrs
+================================
+Pricechange: -1.5729453401492588
+Buy Price: 1.0172 |  Sell Price: 1.03
+Result Window: 1.0172 | 0.9044[+ 221.79%] | 0.097[+ 1809.28%]
+
+Selling 40% of KEEPUSDT for 33.82%  |  TotalValue: 13.527329925285178%
+Selling 60% of KEEPUSDT for -25.17%  |  TotalValue: -1.5729453401492588%
+_________________________________
+
+FTMUSDT | 1634643653936
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-19  19:40 | 2021-10-20  00:47
+Duration: 5.1 hrs
+================================
+Pricechange: 2.636783124588078
+Buy Price: 2.4272 |  Sell Price: 2.44
+Result Window: 2.4272 | 2.3701[+ 47.05%] | 2.34[+ 71.85%]
+
+Selling 40% of FTMUSDT for 22.41%  |  TotalValue: 8.965062623599247%
+Selling 60% of FTMUSDT for -10.55%  |  TotalValue: 2.636783124588078%
+_________________________________
+
+BTCUSDT | 1634651566211
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-19  21:52 | 2021-10-20  01:01
+Duration: 3.14 hrs
+================================
+Pricechange: 0.9987382352829801
+Buy Price: 62959.44 |  Sell Price: 63200
+Result Window: 62959.44 | 61322.22[+ 52.01%] | 60672[+ 72.66%]
+
+Selling 40% of BTCUSDT for 13.96%  |  TotalValue: 5.5837853703908715%
+Selling 60% of BTCUSDT for -7.64%  |  TotalValue: 0.9987382352829801%
+_________________________________
+

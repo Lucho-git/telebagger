@@ -55,11 +55,16 @@ class Folios:
         print("Cleared all folios")
 
     def recover(self):
+        print('folios 1')
         recovered_folios = utility.load_folio()
+        print('folios 2')
         if recovered_folios:
             self.folios = recovered_folios.folios
+            print('folios 3')
+
         else:
             self.folios = []
+            print('folios 3')
 
     def save(self):
         utility.save_folio(self)

@@ -123,7 +123,10 @@ def pickle_load(cloudpath, localpath):
     path_on_cloud = cloudpath
     path_on_local = localpath
     ret_obj = None
+    print('pickle1')
+    print(path_on_local, '__', path_on_cloud)
     storage.child(path_on_cloud).download("./", path_on_local)
+    print('pickle2')
     try:
         with open(path_on_local, 'rb') as config_dictionary_file:
             ret_obj = pickle.load(config_dictionary_file)
@@ -155,7 +158,9 @@ def save_folio(folios):
 def load_folio():
     path_on_cloud = SAVE_FOLIO
     path_on_local = SAVE_FOLIO_L
+    print('Utility 1')
     folio = pickle_load(path_on_cloud, path_on_local)
+    print('Utility 2')
     if not folio:
         folio = None
     return folio

@@ -207,9 +207,6 @@ class Trade:
                     raise ValueError('LongProfit Numbers not adding to 100, error')
 
         elif direction == 'short':
-            print(self.conditions.targetnum)
-            print(self.conditions.proftargets)
-            print(self.conditions.amount_left)
             proflimit = self.conditions.proftargets[self.conditions.targetnum]
             losslimit = self.conditions.losstargets[self.conditions.targetnum]
             if self.conditions.new_lowest < proflimit:

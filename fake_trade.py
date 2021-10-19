@@ -28,17 +28,3 @@ def fake_trade_copy(new_trade, old_trade, bag_id=None, percent=None):
         utility.start_trade_folios(new_trade, percent)
     return new_trade
 
-
-def mfutures_trade(trade, bag_id=None, percent=None):
-    trade.price = float(realclient.get_symbol_ticker(symbol=trade.pair)['price'])
-    trade.time = realclient.futures_time()['serverTime']
-    trade.id = trade.time
-    trade.lowest = trade.price
-    trade.highest = trade.price
-    trade.status = 'active'
-    print(bag_id, percent)
-    if bag_id and percent:
-        trade.bag_id.append(bag_id)
-        utility.start_trade_folios(trade, percent)
-
-

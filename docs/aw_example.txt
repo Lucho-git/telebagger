@@ -1,10 +1,11 @@
-DENT/USDT SHORT 🛑
-Leverage 20x
-Entries  0.063
-Target 1 0.062
-Target 2 0.060
-Target 3 0.058
-Target 4 0.050
-Target 5 0.045
+DYDX/USDT LONG âœ³ï¸
 
-SL 0.067
+Leverage 20x
+Entries 20.1
+Target 1 20.4
+Target 2 20.9
+Target 3 21.6
+Target 4 22.8
+Target 5 24.00
+
+SL 18.6
