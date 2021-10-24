@@ -35,6 +35,7 @@ class MFutures:
         self.trade_amounts = 0
         self.new_lowest = 99999999999999
         self.new_highest = 0
+        self.orders = []
 
 
 class MTrade:
