@@ -477,3 +477,33 @@ Selling 10% of BTCUSDT for 12.12%  |  TotalValue: 1.2120595473536184%
 Selling 90% of BTCUSDT for -9.5%  |  TotalValue: -7.3384927473562644%
 _________________________________
 
+SHIBUSDT | 1635074837315
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-24  19:27 | 2021-10-24  19:33
+Duration: 0.1 hrs
+================================
+Pricechange: 1927937.7736805715
+Buy Price: 0.00004339 |  Sell Price: 0.035
+Result Window: 0.00004339 | 0.00004263[+ 35.03%] | 0.04[- 1841742.8%]
+
+Selling 65% of SHIBUSDT for 1980023.51%  |  TotalValue: 1287015.2800184374%
+Selling 15% of SHIBUSDT for 1924711.22%  |  TotalValue: 1575721.9635860797%
+Selling 10% of SHIBUSDT for 1841742.8%  |  TotalValue: 1759896.2433740492%
+Selling 5% of SHIBUSDT for 1749555.66%  |  TotalValue: 1847374.0262733349%
+Selling 5% of SHIBUSDT for 1611274.95%  |  TotalValue: 1927937.7736805715%
+_________________________________
+
+DYDXUSDT | 1635153724127
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-25  17:22 | 2021-10-25  17:23
+Duration: 0.02 hrs
+================================
+Pricechange: 7.013757755597656
+Buy Price: 18.535 |  Sell Price: 18.6
+Result Window: 18.535 | 18.528[- 0.76%] | 20.4[+ 201.24%]
+
+Selling 100% of DYDXUSDT for 7.01%  |  TotalValue: 7.013757755597656%
+_________________________________
+

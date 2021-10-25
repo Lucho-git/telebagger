@@ -1,0 +1,264 @@
+CVCUSDT
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-02  13:12 | 2021-10-03  14:22
+Duration: 25.16 hrs
+================================
+Pricechange: + 19.31%
+Buy Price: 0.4783 |  Sell Price: 0.48753705
+Result Window: 0.4783 | 0.4748[- 7.32%] | 0.4421291875[- 75.62%]
+
+_________________________________
+
+SRMBTC
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-02  05:10 | 2021-10-04  04:57
+Duration: 47.78 hrs
+================================
+Pricechange: + 1.8%
+Buy Price: 0.0001735 |  Sell Price: 0.00017663
+Result Window: 0.0001735 | 0.0001722[- 0.75%] | 0.00004329250000000001[- 75.05%]
+
+_________________________________
+
+SRMBTC
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-02  13:10 | 2021-10-04  13:00
+Duration: 47.83 hrs
+================================
+Pricechange: + 1.8%
+Buy Price: 0.0001735 |  Sell Price: 0.00017663
+Result Window: 0.0001735 | 0.0001722[- 0.75%] | 0.00004329250000000001[- 75.05%]
+
+_________________________________
+
+LUNABTC
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-04  13:58 | 2021-10-04  15:12
+Duration: 1.23 hrs
+================================
+Pricechange: + 1.96%
+Buy Price: 0.0009465 |  Sell Price: 0.00096507
+Result Window: 0.0009465 | 0.0009306[- 1.68%] | 0.00023653749999999994[- 75.01%]
+
+_________________________________
+
+DODOBTC
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-08  14:15 | 2021-10-08  14:58
+Duration: 0.7 hrs
+================================
+Pricechange: + 1.82%
+Buy Price: 0.00002685 |  Sell Price: 0.00002734
+Result Window: 0.00002685 | 0.00002667[- 0.67%] | 0.0000067[- 75.05%]
+
+_________________________________
+
+DODOBTC
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-08  14:15 | 2021-10-08  18:47
+Duration: 4.52 hrs
+================================
+Pricechange: + 1.82%
+Buy Price: 0.00002685 |  Sell Price: 0.00002734
+Result Window: 0.00002685 | 0.00002667[- 0.67%] | 0.0000067[- 75.05%]
+
+_________________________________
+
+STMXUSDT
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-08  14:06 | 2021-10-08  21:23
+Duration: 7.27 hrs
+================================
+Pricechange: + 13.96%
+Buy Price: 0.03904 |  Sell Price: 0.03958495
+Result Window: 0.03904 | 0.03711[- 49.44%] | 0.03589811225[- 80.48%]
+
+_________________________________
+
+STMXUSDT
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-08  14:06 | 2021-10-08  21:23
+Duration: 7.27 hrs
+================================
+Pricechange: + 13.96%
+Buy Price: 0.03904 |  Sell Price: 0.03958495
+Result Window: 0.03904 | 0.03711[- 49.44%] | 0.03589811225[- 80.48%]
+
+_________________________________
+
+STMXUSDT
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-08  14:06 | 2021-10-08  21:23
+Duration: 7.27 hrs
+================================
+Pricechange: + 13.96%
+Buy Price: 0.03904 |  Sell Price: 0.03958495
+Result Window: 0.03904 | 0.03711[- 49.44%] | 0.03589811225[- 80.48%]
+
+_________________________________
+
+STMXUSDT
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-08  14:06 | 2021-10-08  21:23
+Duration: 7.27 hrs
+================================
+Pricechange: + 13.96%
+Buy Price: 0.03904 |  Sell Price: 0.03958495
+Result Window: 0.03904 | 0.03711[- 49.44%] | 0.03589811225[- 80.48%]
+
+_________________________________
+
+STMXUSDT
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-08  14:06 | 2021-10-08  21:23
+Duration: 7.27 hrs
+================================
+Pricechange: + 13.96%
+Buy Price: 0.03904 |  Sell Price: 0.03958495
+Result Window: 0.03904 | 0.03711[- 49.44%] | 0.03589811225[- 80.48%]
+
+_________________________________
+
+STMXUSDT
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-08  14:06 | 2021-10-08  21:23
+Duration: 7.27 hrs
+================================
+Pricechange: + 13.96%
+Buy Price: 0.03904 |  Sell Price: 0.03958495
+Result Window: 0.03904 | 0.03711[- 49.44%] | 0.03589811225[- 80.48%]
+
+_________________________________
+
+STMXUSDT
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-08  14:06 | 2021-10-08  21:23
+Duration: 7.27 hrs
+================================
+Pricechange: + 13.96%
+Buy Price: 0.03904 |  Sell Price: 0.03958495
+Result Window: 0.03904 | 0.03711[- 49.44%] | 0.03589811225[- 80.48%]
+
+_________________________________
+
+STMXUSDT
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-08  14:06 | 2021-10-08  21:23
+Duration: 7.27 hrs
+================================
+Pricechange: + 13.96%
+Buy Price: 0.03904 |  Sell Price: 0.03958495
+Result Window: 0.03904 | 0.03711[- 49.44%] | 0.03589811225[- 80.48%]
+
+_________________________________
+
+STMXUSDT
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-08  14:06 | 2021-10-08  21:23
+Duration: 7.27 hrs
+================================
+Pricechange: + 13.96%
+Buy Price: 0.03904 |  Sell Price: 0.03958495
+Result Window: 0.03904 | 0.03711[- 49.44%] | 0.03589811225[- 80.48%]
+
+_________________________________
+
+STMXUSDT
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-08  14:06 | 2021-10-08  21:23
+Duration: 7.27 hrs
+================================
+Pricechange: + 13.96%
+Buy Price: 0.03904 |  Sell Price: 0.03958495
+Result Window: 0.03904 | 0.03711[- 49.44%] | 0.03589811225[- 80.48%]
+
+_________________________________
+
+TRBUSDT | 1634382169281
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-16  19:02 | 2021-10-16  19:05
+Duration: 0.04 hrs
+================================
+Pricechange: + 18.41%
+Buy Price: 54.72 |  Sell Price: 55.7272716
+Result Window: 54.72 | 54.58[- 2.56%] | 50.5369865[- 76.44%]
+
+_________________________________
+
+TRBUSDT | 1634382182480
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-16  19:03 | 2021-10-16  19:05
+Duration: 0.03 hrs
+================================
+Pricechange: + 20.65%
+Buy Price: 54.6 |  Sell Price: 55.7272716
+Result Window: 54.6 | 54.6[+ 0.0%] | 50.5369865[- 74.41%]
+
+_________________________________
+
+BTSUSDT | 1634468877863
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-17  19:07 | 2021-10-17  22:18
+Duration: 3.17 hrs
+================================
+Pricechange: + 19.03%
+Buy Price: 0.0514 |  Sell Price: 0.05237833
+Result Window: 0.0514 | 0.05064[- 14.79%] | 0.047499952500000005[- 75.88%]
+
+_________________________________
+
+BTSUSDT | 1634468995976
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-17  19:09 | 2021-10-17  22:18
+Duration: 3.13 hrs
+================================
+Pricechange: + 19.83%
+Buy Price: 0.05136 |  Sell Price: 0.05237833
+Result Window: 0.05136 | 0.05064[- 14.02%] | 0.047499952500000005[- 75.16%]
+
+_________________________________
+
+ZECUSDT | 1634642897005
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-19  19:28 | 2021-10-24  16:55
+Duration: 117.45 hrs
+================================
+Pricechange: + 16.12%
+Buy Price: 145.9 |  Sell Price: 148.252104
+Result Window: 145.9 | 139.9[- 41.12%] | 134.44431[- 78.52%]
+
+_________________________________
+
+KSMUSDT | 1635093765055
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-25  00:42 | 2021-10-25  17:16
+Duration: 16.55 hrs
+================================
+Pricechange: + 21.02%
+Buy Price: 398 |  Sell Price: 406.36596
+Result Window: 398 | 398[+ 0.0%] | 368.51815[- 74.08%]
+
+_________________________________
+

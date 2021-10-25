@@ -966,3 +966,69 @@ Buy Price: 62959.44 |  Sell Price: 63200
 Result Window: 62959.44 | 61322.22[+ 52.01%] | 60672[+ 72.66%]
 
 
+ZECUSDT | 1634642897005
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-19  19:28 | 2021-10-24  16:55
+Duration: 117.45 hrs
+================================
+Pricechange: + 16.12%
+Buy Price: 145.9 |  Sell Price: 148.252104
+Result Window: 145.9 | 139.9[- 41.12%] | 134.44431[- 78.52%]
+
+
+SHIBUSDT | 1635074837315
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-24  19:27 | 2021-10-24  19:33
+Duration: 0.1 hrs
+================================
+Pricechange: 1927937.7736805715
+Buy Price: 0.00004339 |  Sell Price: 0.035
+Result Window: 0.00004339 | 0.00004263[+ 35.03%] | 0.04[- 1841742.8%]
+
+
+SHIBUSDT | 1635074767765
+Status: STOPPROF
+Origin: Always Win2
+TimeStarted: 2021-10-24  19:26 | 2021-10-24  19:33
+Duration: 0.11 hrs
+================================
+Pricechange: 1881352.4684270949
+Buy Price: 0.00004355 |  Sell Price: 0.035
+Result Window: 0.00004355 | 0.00004263[+ 42.25%] | 0.04[- 1834969.0%]
+
+
+KSMUSDT | 1635093765055
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-10-25  00:42 | 2021-10-25  17:16
+Duration: 16.55 hrs
+================================
+Pricechange: + 21.02%
+Buy Price: 398 |  Sell Price: 406.36596
+Result Window: 398 | 398[+ 0.0%] | 368.51815[- 74.08%]
+
+
+DYDXUSDT | 1635153724127
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-25  17:22 | 2021-10-25  17:23
+Duration: 0.02 hrs
+================================
+Pricechange: 7.013757755597656
+Buy Price: 18.535 |  Sell Price: 18.6
+Result Window: 18.535 | 18.528[- 0.76%] | 20.4[+ 201.24%]
+
+
+DYDXUSDT | 1635153656774
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2021-10-25  17:20 | 2021-10-25  17:23
+Duration: 0.03 hrs
+================================
+Pricechange: 5.60707353892637
+Buy Price: 18.548 |  Sell Price: 18.6
+Result Window: 18.548 | 18.528[- 2.16%] | 20.4[+ 199.7%]
+
+

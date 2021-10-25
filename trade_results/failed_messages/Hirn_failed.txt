@@ -276,3 +276,15 @@ module 'fake_trade' has no attribute 'spot_trade'
 __________________________
 module 'fake_trade' has no attribute 'spot_trade'
 
+💱 Buy #RUNE/BTC
+❇️ Buy Price: 0.00011892 
+☑️ Sell Price: 0.00012130 +2.00%
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+💱 Buy #RUNE/BTC
+❇️ Buy Price: 0.00011892 
+☑️ Sell Price: 0.00012130 +2.00%
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
