@@ -1,0 +1,509 @@
+COTIUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-09-30  18:48 | 2021-09-30  18:49
+Duration: 0.01 hrs
+================================
+Pricechange: 207.89098399619715
+Buy Price: 0.6311 |  Sell Price: 0.5655
+Result Window: 0.6311 | 0.632[- 2.85%] | 0.538[+ 295.04%]
+
+Selling 100% of COTIUSDT for 207.89%  |  TotalValue: 207.89098399619715%
+_________________________________
+
+COTIUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-09-30  18:54 | 2021-09-30  18:55
+Duration: 0.01 hrs
+================================
+Pricechange: 203.05052430886545
+Buy Price: 0.6294 |  Sell Price: 0.5655
+Result Window: 0.6294 | 0.631[- 5.08%] | 0.538[+ 290.44%]
+
+Selling 100% of COTIUSDT for 203.05%  |  TotalValue: 203.05052430886545%
+_________________________________
+
+COTIUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-09-30  19:07 | 2021-09-30  19:08
+Duration: 0.01 hrs
+================================
+Pricechange: 221.41846202233057
+Buy Price: 0.6359 |  Sell Price: 0.5655
+Result Window: 0.6359 | 0.6368[- 2.83%] | 0.538[+ 307.91%]
+
+Selling 100% of COTIUSDT for 221.42%  |  TotalValue: 221.41846202233057%
+_________________________________
+
+FTMUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  13:26 | 2021-10-07  13:35
+Duration: 0.13 hrs
+================================
+Pricechange: -13.770127706829676
+Buy Price: 1.801 |  Sell Price: 1.816
+Result Window: 1.801 | 1.7652[+ 39.76%] | 1.75[+ 56.64%]
+
+Selling 10% of FTMUSDT for 12.22%  |  TotalValue: 1.2215435868961577%
+Selling 90% of FTMUSDT for -16.66%  |  TotalValue: -13.770127706829676%
+_________________________________
+
+FTMUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  13:26 | 2021-10-07  13:35
+Duration: 0.13 hrs
+================================
+Pricechange: -13.770127706829676
+Buy Price: 1.801 |  Sell Price: 1.816
+Result Window: 1.801 | 1.7652[+ 39.76%] | 1.75[+ 56.64%]
+
+Selling 10% of FTMUSDT for 12.22%  |  TotalValue: 1.2215435868961577%
+Selling 90% of FTMUSDT for -16.66%  |  TotalValue: -13.770127706829676%
+_________________________________
+
+FTMUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  13:26 | 2021-10-07  13:35
+Duration: 0.13 hrs
+================================
+Pricechange: -13.770127706829676
+Buy Price: 1.801 |  Sell Price: 1.816
+Result Window: 1.801 | 1.7652[+ 39.76%] | 1.75[+ 56.64%]
+
+Selling 10% of FTMUSDT for 12.22%  |  TotalValue: 1.2215435868961577%
+Selling 90% of FTMUSDT for -16.66%  |  TotalValue: -13.770127706829676%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  22:57 | 2021-10-07  22:59
+Duration: 0.02 hrs
+================================
+Pricechange: 40.07927769213815
+Buy Price: 45.41 |  Sell Price: 44.5
+Result Window: 45.41 | 45.52[- 4.84%] | 43[+ 106.14%]
+
+Selling 100% of LUNAUSDT for 40.08%  |  TotalValue: 40.07927769213815%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  22:57 | 2021-10-07  22:59
+Duration: 0.02 hrs
+================================
+Pricechange: 40.07927769213815
+Buy Price: 45.41 |  Sell Price: 44.5
+Result Window: 45.41 | 45.52[- 4.84%] | 43[+ 106.14%]
+
+Selling 100% of LUNAUSDT for 40.08%  |  TotalValue: 40.07927769213815%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  23:03 | 2021-10-07  23:04
+Duration: 0.02 hrs
+================================
+Pricechange: 51.66374781085813
+Buy Price: 45.68 |  Sell Price: 44.5
+Result Window: 45.68 | 46.12[- 19.26%] | 43[+ 117.34%]
+
+Selling 100% of LUNAUSDT for 51.66%  |  TotalValue: 51.66374781085813%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  23:13 | 2021-10-07  23:14
+Duration: 0.01 hrs
+================================
+Pricechange: 71.50595882990244
+Buy Price: 46.15 |  Sell Price: 44.5
+Result Window: 46.15 | 46.17[- 0.87%] | 43[+ 136.51%]
+
+Selling 100% of LUNAUSDT for 71.51%  |  TotalValue: 71.50595882990244%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  23:13 | 2021-10-07  23:14
+Duration: 0.0 hrs
+================================
+Pricechange: 69.83300802428973
+Buy Price: 46.11 |  Sell Price: 44.5
+Result Window: 46.11 | 46.17[- 2.6%] | 43[+ 134.89%]
+
+Selling 100% of LUNAUSDT for 69.83%  |  TotalValue: 69.83300802428973%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  23:19 | 2021-10-07  23:20
+Duration: 0.02 hrs
+================================
+Pricechange: 76.09165585819275
+Buy Price: 46.26 |  Sell Price: 44.5
+Result Window: 46.26 | 46.32[- 2.59%] | 43[+ 140.94%]
+
+Selling 100% of LUNAUSDT for 76.09%  |  TotalValue: 76.09165585819275%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  23:25 | 2021-10-07  23:27
+Duration: 0.02 hrs
+================================
+Pricechange: 66.47838366282863
+Buy Price: 46.03 |  Sell Price: 44.5
+Result Window: 46.03 | 46.09[- 2.61%] | 43[+ 131.65%]
+
+Selling 100% of LUNAUSDT for 66.48%  |  TotalValue: 66.47838366282863%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  23:45 | 2021-10-07  23:46
+Duration: 0.01 hrs
+================================
+Pricechange: 71.92374350086641
+Buy Price: 46.16 |  Sell Price: 44.5
+Result Window: 46.16 | 46.24[- 3.47%] | 43[+ 136.92%]
+
+Selling 100% of LUNAUSDT for 71.92%  |  TotalValue: 71.92374350086641%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  23:46 | 2021-10-07  23:47
+Duration: 0.01 hrs
+================================
+Pricechange: 74.0099545552911
+Buy Price: 46.21 |  Sell Price: 44.5
+Result Window: 46.21 | 46.26[- 2.16%] | 43[+ 138.93%]
+
+Selling 100% of LUNAUSDT for 74.01%  |  TotalValue: 74.0099545552911%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  23:50 | 2021-10-07  23:51
+Duration: 0.0 hrs
+================================
+Pricechange: 69.41431670282002
+Buy Price: 46.1 |  Sell Price: 44.5
+Result Window: 46.1 | 46.21[- 4.77%] | 43[+ 134.49%]
+
+Selling 100% of LUNAUSDT for 69.41%  |  TotalValue: 69.41431670282002%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-07  23:55 | 2021-10-07  23:56
+Duration: 0.01 hrs
+================================
+Pricechange: 47.38920579201396
+Buy Price: 45.58 |  Sell Price: 44.5
+Result Window: 45.58 | 45.83[- 10.97%] | 43[+ 113.21%]
+
+Selling 100% of LUNAUSDT for 47.39%  |  TotalValue: 47.38920579201396%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-11  18:56 | 2021-10-11  18:57
+Duration: 0.01 hrs
+================================
+Pricechange: -0.500125031257715
+Buy Price: 39.99 |  Sell Price: 40
+Result Window: 39.99 | 39.98[+ 0.5%] | 38[+ 99.52%]
+
+Selling 100% of LUNAUSDT for -0.5%  |  TotalValue: -0.500125031257715%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-11  19:26 | 2021-10-11  19:27
+Duration: 0.0 hrs
+================================
+Pricechange: 26.815077156589986
+Buy Price: 39.53 |  Sell Price: 39
+Result Window: 39.53 | 39.59[- 3.04%] | 38[+ 77.41%]
+
+Selling 100% of LUNAUSDT for 26.82%  |  TotalValue: 26.815077156589986%
+_________________________________
+
+LUNAUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-11  19:28 | 2021-10-11  19:32
+Duration: 0.06 hrs
+================================
+Pricechange: -8.11359026369187
+Buy Price: 39.44 |  Sell Price: 39.6
+Result Window: 39.44 | 39.4[+ 2.03%] | 38[+ 73.02%]
+
+Selling 100% of LUNAUSDT for -8.11%  |  TotalValue: -8.11359026369187%
+_________________________________
+
+FTMUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-08  23:38 | 2021-10-12  00:06
+Duration: 72.46 hrs
+================================
+Pricechange: 65.99088547212409
+Buy Price: 2.3479 |  Sell Price: 2.294
+Result Window: 2.3479 | 2.3638[- 13.54%] | 1.9[+ 381.53%]
+
+Selling 10% of FTMUSDT for 5.2%  |  TotalValue: 0.519613271434047%
+Selling 22.5% of FTMUSDT for 45.91%  |  TotalValue: 10.850121385067517%
+Selling 33.75% of FTMUSDT for 117.47%  |  TotalValue: 50.495123301673885%
+Selling 33.75% of FTMUSDT for 45.91%  |  TotalValue: 65.99088547212409%
+_________________________________
+
+FTMUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-12  01:31 | 2021-10-12  03:02
+Duration: 1.51 hrs
+================================
+Pricechange: 0.7836649397014441
+Buy Price: 2.2969 |  Sell Price: 2.3
+Result Window: 2.2969 | 2.243[+ 46.93%] | 2.2[+ 84.37%]
+
+Selling 10% of FTMUSDT for 32.13%  |  TotalValue: 3.213026252775494%
+Selling 90% of FTMUSDT for -2.7%  |  TotalValue: 0.7836649397014441%
+_________________________________
+
+BTCUSDT
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-12  04:00 | 2021-10-12  16:26
+Duration: 12.43 hrs
+================================
+Pricechange: -2.846852399844389
+Buy Price: 57431.85 |  Sell Price: 57600
+Result Window: 57431.85 | 56588.05[+ 29.38%] | 55296[+ 74.38%]
+
+Selling 10% of BTCUSDT for 24.23%  |  TotalValue: 2.423219868417954%
+Selling 90% of BTCUSDT for -5.86%  |  TotalValue: -2.846852399844389%
+_________________________________
+
+DENTUSDT | 1634223090079
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-14  14:51 | 2021-10-14  14:56
+Duration: 0.08 hrs
+================================
+Pricechange: 15953.447164948455
+Buy Price: 0.006208 |  Sell Price: 0.045
+Result Window: 0.006208 | 0.00615[+ 18.69%] | 0.058[- 16685.57%]
+
+Selling 10% of DENTUSDT for 17974.23%  |  TotalValue: 1797.4226804123714%
+Selling 22.5% of DENTUSDT for 17329.9%  |  TotalValue: 5696.649484536083%
+Selling 33.75% of DENTUSDT for 16685.57%  |  TotalValue: 11328.028350515466%
+Selling 25.3% of DENTUSDT for 14108.25%  |  TotalValue: 14897.41494845361%
+Selling 8.45% of DENTUSDT for 12497.42%  |  TotalValue: 15953.447164948455%
+_________________________________
+
+DENTUSDT | 1634233398359
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-15  01:43 | 2021-10-15  01:48
+Duration: 0.08 hrs
+================================
+Pricechange: 16376.751854905197
+Buy Price: 0.006065 |  Sell Price: 0.045
+Result Window: 0.006065 | 0.00602[+ 14.84%] | 0.058[- 17126.13%]
+
+Selling 10% of DENTUSDT for 18445.18%  |  TotalValue: 1844.5177246496287%
+Selling 22.5% of DENTUSDT for 17785.66%  |  TotalValue: 5846.290189612531%
+Selling 33.75% of DENTUSDT for 17126.13%  |  TotalValue: 11626.36026380874%
+Selling 25.3% of DENTUSDT for 14488.05%  |  TotalValue: 15291.835943940645%
+Selling 8.45% of DENTUSDT for 12839.24%  |  TotalValue: 16376.751854905197%
+_________________________________
+
+DENTUSDT | 1634237246490
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-15  02:47 | 2021-10-15  02:52
+Duration: 0.08 hrs
+================================
+Pricechange: 16455.870177181652
+Buy Price: 0.006039 |  Sell Price: 0.045
+Result Window: 0.006039 | 0.00603[+ 2.98%] | 0.058[- 17208.48%]
+
+Selling 10% of DENTUSDT for 18533.2%  |  TotalValue: 1853.320086106971%
+Selling 22.5% of DENTUSDT for 17870.84%  |  TotalValue: 5874.258983275376%
+Selling 33.75% of DENTUSDT for 17208.48%  |  TotalValue: 11682.120384169564%
+Selling 25.3% of DENTUSDT for 14559.03%  |  TotalValue: 15365.555721145885%
+Selling 8.45% of DENTUSDT for 12903.13%  |  TotalValue: 16455.870177181652%
+_________________________________
+
+DENTUSDT | 1634237912924
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-14  18:58 | 2021-10-14  19:03
+Duration: 0.07 hrs
+================================
+Pricechange: 16301.313628899838
+Buy Price: 0.00609 |  Sell Price: 0.045
+Result Window: 0.00609 | 0.00605[+ 13.14%] | 0.058[- 17047.62%]
+
+Selling 10% of DENTUSDT for 18361.25%  |  TotalValue: 1836.1247947454845%
+Selling 22.5% of DENTUSDT for 17704.43%  |  TotalValue: 5819.622331691298%
+Selling 33.75% of DENTUSDT for 17047.62%  |  TotalValue: 11573.193760262728%
+Selling 25.3% of DENTUSDT for 14420.36%  |  TotalValue: 15221.545155993434%
+Selling 8.45% of DENTUSDT for 12778.33%  |  TotalValue: 16301.313628899838%
+_________________________________
+
+KEEPUSDT | 1634282529725
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-15  07:22 | 2021-10-15  07:29
+Duration: 0.11 hrs
+================================
+Pricechange: 29.346405228758208
+Buy Price: 0.612 |  Sell Price: 0.604
+Result Window: 0.612 | 0.6167[- 15.36%] | 0.5798[+ 105.23%]
+
+Selling 10% of KEEPUSDT for 58.17%  |  TotalValue: 5.8169934640523016%
+Selling 90% of KEEPUSDT for 26.14%  |  TotalValue: 29.346405228758208%
+_________________________________
+
+KEEPUSDT | 1634282530116
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-15  15:22 | 2021-10-15  15:29
+Duration: 0.11 hrs
+================================
+Pricechange: 29.02435038404975
+Buy Price: 0.6119 |  Sell Price: 0.604
+Result Window: 0.6119 | 0.6167[- 15.69%] | 0.5798[+ 104.92%]
+
+Selling 10% of KEEPUSDT for 57.85%  |  TotalValue: 5.785259029253162%
+Selling 90% of KEEPUSDT for 25.82%  |  TotalValue: 29.02435038404975%
+_________________________________
+
+DENTUSDT | 1634285729890
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-15  16:15 | 2021-10-15  16:20
+Duration: 0.08 hrs
+================================
+Pricechange: 18251.396648044694
+Buy Price: 0.005728 |  Sell Price: 0.045
+Result Window: 0.005728 | 0.005629[+ 34.57%] | 0.058[- 18251.4%]
+
+Selling 40% of DENTUSDT for 19648.04%  |  TotalValue: 7859.217877094972%
+Selling 25% of DENTUSDT for 18949.72%  |  TotalValue: 12596.648044692738%
+Selling 15% of DENTUSDT for 18251.4%  |  TotalValue: 15334.357541899442%
+Selling 10% of DENTUSDT for 15458.1%  |  TotalValue: 16880.167597765365%
+Selling 10% of DENTUSDT for 13712.29%  |  TotalValue: 18251.396648044694%
+_________________________________
+
+DENTUSDT | 1634288444704
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-15  17:00 | 2021-10-15  17:05
+Duration: 0.07 hrs
+================================
+Pricechange: 18132.767341040464
+Buy Price: 0.005536 |  Sell Price: 0.045
+Result Window: 0.005536 | 0.005478[+ 20.95%] | 0.058[- 18953.76%]
+
+Selling 10% of DENTUSDT for 20398.84%  |  TotalValue: 2039.8843930635837%
+Selling 22.5% of DENTUSDT for 19676.3%  |  TotalValue: 6467.052023121388%
+Selling 33.75% of DENTUSDT for 18953.76%  |  TotalValue: 12863.945086705204%
+Selling 25.3% of DENTUSDT for 16063.58%  |  TotalValue: 16928.031791907517%
+Selling 8.45% of DENTUSDT for 14257.23%  |  TotalValue: 18132.767341040464%
+_________________________________
+
+KEEPUSDT | 1634417344079
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-17  04:49 | 2021-10-17  08:07
+Duration: 3.3 hrs
+================================
+Pricechange: -1.9493177387914242
+Buy Price: 1.026 |  Sell Price: 1.03
+Result Window: 1.026 | 0.9044[+ 237.04%] | 0.097[+ 1810.92%]
+
+Selling 10% of KEEPUSDT for 50.68%  |  TotalValue: 5.068226120857704%
+Selling 90% of KEEPUSDT for -7.8%  |  TotalValue: -1.9493177387914242%
+_________________________________
+
+FTMUSDT | 1634643584918
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-19  19:39 | 2021-10-20  00:47
+Duration: 5.12 hrs
+================================
+Pricechange: -4.031097034264429
+Buy Price: 2.4311 |  Sell Price: 2.44
+Result Window: 2.4311 | 2.3701[+ 50.18%] | 2.34[+ 74.95%]
+
+Selling 10% of FTMUSDT for 25.59%  |  TotalValue: 2.5585126074616356%
+Selling 90% of FTMUSDT for -7.32%  |  TotalValue: -4.031097034264429%
+_________________________________
+
+BTCUSDT | 1634651496547
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-19  21:51 | 2021-10-20  01:01
+Duration: 3.16 hrs
+================================
+Pricechange: -7.3384927473562644
+Buy Price: 62901.2 |  Sell Price: 63200
+Result Window: 62901.2 | 61322.22[+ 50.21%] | 60672[+ 70.88%]
+
+Selling 10% of BTCUSDT for 12.12%  |  TotalValue: 1.2120595473536184%
+Selling 90% of BTCUSDT for -9.5%  |  TotalValue: -7.3384927473562644%
+_________________________________
+
+SHIBUSDT | 1635074837315
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-24  19:27 | 2021-10-24  19:33
+Duration: 0.1 hrs
+================================
+Pricechange: 1927937.7736805715
+Buy Price: 0.00004339 |  Sell Price: 0.035
+Result Window: 0.00004339 | 0.00004263[+ 35.03%] | 0.04[- 1841742.8%]
+
+Selling 65% of SHIBUSDT for 1980023.51%  |  TotalValue: 1287015.2800184374%
+Selling 15% of SHIBUSDT for 1924711.22%  |  TotalValue: 1575721.9635860797%
+Selling 10% of SHIBUSDT for 1841742.8%  |  TotalValue: 1759896.2433740492%
+Selling 5% of SHIBUSDT for 1749555.66%  |  TotalValue: 1847374.0262733349%
+Selling 5% of SHIBUSDT for 1611274.95%  |  TotalValue: 1927937.7736805715%
+_________________________________
+
+DYDXUSDT | 1635153724127
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-25  17:22 | 2021-10-25  17:23
+Duration: 0.02 hrs
+================================
+Pricechange: 7.013757755597656
+Buy Price: 18.535 |  Sell Price: 18.6
+Result Window: 18.535 | 18.528[- 0.76%] | 20.4[+ 201.24%]
+
+Selling 100% of DYDXUSDT for 7.01%  |  TotalValue: 7.013757755597656%
+_________________________________
+

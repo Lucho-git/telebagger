@@ -1,0 +1,46 @@
+LUNA/USDT SHORT 🛑
+Leverage 20x
+Entries 48
+Target 1 47.2
+Target 2 46.0
+Target 3 44.4
+Target 4 40
+Target 5 35
+
+SL 51.2
+
+
+
+1000SHIB/USDT SHORT 🛑
+Leverage 20x
+Entries  0.0228
+Target 1 0.0224
+Target 2 0.0218
+Target 3 0.0210
+Target 4 0.0190
+Target 5 0.0180
+
+SL 0.0244
+
+
+DENT/USDT SHORT 🛑
+Leverage 20x
+Entries  0.063
+Target 1 0.062
+Target 2 0.060
+Target 3 0.058
+Target 4 0.050
+Target 5 0.045
+
+SL 0.067
+
+BEL/USDT SHORT 🛑
+Leverage 20x
+Entries  3.52
+Target 1 3.46
+Target 2 3.37
+Target 3 3.25
+Target 4 2.90
+Target 5 2.500
+
+SL 3.7
