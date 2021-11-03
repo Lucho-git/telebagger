@@ -45,7 +45,7 @@ def futures_trade_no_orders(signal, percentage, bag_id=None):
     balance = float(realclient.futures_account_balance()[1]['withdrawAvailable'])  # Get available funds
     if balance*margin*percentage < MIN_TRADE_VALUE:
         print('Low Funds')
-        raise ValueError("Funds too low to take this trade")
+        raise ValueError("Funds too low to take this trade, Balance: " + str(balance))
 
     if signal.conditions.direction == 'long':
         side = 'BUY'
@@ -214,6 +214,11 @@ def mfutures_trade(signal, percentage):
     trade_size = percentage  # Percentage of available funds to invest
     balance = float(realclient.futures_account_balance()[1]['withdrawAvailable'])  # Get available funds
     amount = balance * trade_size * margin  # Define investment amount
+
+    if amount < MIN_TRADE_VALUE:
+        print('Low Funds')
+        raise ValueError("Funds too low to take this trade, Balance: " + str(balance))
+
     signal.portfolio_amount = '[' + str(amount) + '/' + str(realclient.futures_account_balance()[1]['balance']) + ']'
 
     base_precision = 2  # Base is always usdt, futures usdt has precision 2

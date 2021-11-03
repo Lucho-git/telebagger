@@ -507,3 +507,17 @@ Result Window: 18.535 | 18.528[- 0.76%] | 20.4[+ 201.24%]
 Selling 100% of DYDXUSDT for 7.01%  |  TotalValue: 7.013757755597656%
 _________________________________
 
+SANDUSDT | 1635944201797
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-03  20:56 | 2021-11-03  21:04
+Duration: 0.12 hrs
+================================
+Pricechange: 2.783115764363
+Buy Price: 3.0182 |  Sell Price: 3.04
+Result Window: 3.0182 | 2.97[+ 31.94%] | 2.91[+ 71.7%]
+
+Selling 65% of SANDUSDT for 12.06%  |  TotalValue: 7.839109402955496%
+Selling 35% of SANDUSDT for -14.45%  |  TotalValue: 2.783115764363%
+_________________________________
+

@@ -30,11 +30,9 @@ init()  # Initialising colorama
 update = [False]
 update2 = [False]
 
-print('step1')
-
 if local:
     # Local Telegram Session
-    stringsesh = '1BVtsOGYBu7hocvoyzqBmRALD8c4MuSJNsBc_sGgFxw4KCc8sKZPCt1jw_ImmKKxXA55rqRyays4deNLkWgEtRO83BjFtB3dDWM_RNnHyenivcOxUwJDSdx8aIJwzeWkQekH37JYy6MqfhvKEXERwXXbdI8U1G1TlMLN6HwgzumiByHlBIMunVoWM75jFE5HJwX8qazJquBJRj2oFDutrk149H4Ouz-NMFgEocFATPPULsZtusrfZ5PztWcPoIMQ5zQIce_tVAFcF-EJ8T7Je3lO5jNxAQd-wYeYzW8G3vveZwyQrwDphQsbcry62gKUNx9tywZqr1XR8drDU_UQdsVoS6ShCE6k='
+    stringsesh = '1BVtsOJEBuzzZQ-O2BIsgWcUfS_ZXmJF2mPAlPmAUaCarcopkPY3kmWm9RmIDfkEl71R7LPMWFua2aL9Lf5i-nJ-qiO7k0GQ1isA45cwnGXVF53wfFmwi7oG7TMAKEEjinC0zz_awWmawpQtonaUMUFNCyjf7zFrAZ-A20nUKYy4EwuMdaOsV3H-ugZnutqahxgByZRnNmHjrP9jalgQn8DCf5cDC3nSItTJHP_OuH1QfXPu7MCoU6GOcyM63dU2BeEhLiR0YKXwPRdYGiHvuvZ0M8DVjd6lYfwflxFd3IKOlIg7R9ir_WkhhjrUCgDgnCykCHGwMXtap-7YVpN05agcl-EQxxhQ='
     # Stream Commands Local
     STOP = '/stop'
     STREAM = '/stream'
@@ -52,8 +50,9 @@ if local:
     DISPLAY_PORTFOLIOS = '/display_folios'
 else:
     # Hosted Telegram Session
-    stringsesh = '1BVtsOGYBu2t6OaO4arry2L6OBQy3lNP-RsyU27rfpPesJ6kMZ-mC5SfNDxQahcDL5UPWrH9clSKFA11RYHMl8RuN4mTYjq9_O5IvGaq1CNPRglT9mC4qDCH1Zg4cEfUTX_7nlnZNlh7JZ5im2UQGBTa7Sn_WA6VZH0LPOnKDBhr_oKuRbhtc6DDH86OyJVR1TrU6nNhV_R9vFgP1y0T0d9fgFSbpVeYvmWyTYHTouPoUpDHfdhY-0z7ZCoxNj8WckzhE1OM6cAgMxY9SGF3TdKKG6hSkeuOv4OChZNynYiHRBOlffDmvncQ1NUIMsZMx-hBztyDmSzRBJoIJ3KPr_oqyKLFv6RY='
+    stringsesh = '1BVtsOJEBuw5_wjvpcl72vb_KFrG6S54BY6H3WHfV8_Xg4j-z21Bm34P5NiqO98MifyYN9bF4ZqCeGgGhgZdC87nZHxhSBzQ3IgVXyzmZTkqMRayUaq_KbFDltzfyy-ykgG6re7H7Hey6EC9lxSTSKVYiiCevlD5Kie35HM7pDRXd-UVDlcI4atjQlqnnYW5QN1lKcbzPk5mHGCCHf8sti38OeDQU94y4x13OmqBa6K9U8skO8WAFLaDQ3silE1wdKRhwV0ssfoqtxxacJnCRIYdM1C9qV_3mOkCpUs0J4X7629b3AxCVgdRlE-ypQX4B9rhQpk9AWozKV118eMfDhOW4I5Bzz-k='
     # Stream Commands Heroku Hosted
+    #Backup:1BVtsOJEBuzPKndfyOcR8Db9PCaurB8JH7jyBTy8H2ur2WZMoPlqEki0GOPEfgnWjXptA40uN1OK3QL8yGCF4CEWbfsBdUvk1b8zhdo0ZF42vSNKgyz6mrupuEKZ9OmQxgXWSHx66vjM70le782D-z8dnreaVxmmSsrMxkU3GCjyQE2fHRZZp2-9njfZMNAVczYimmK2QzHhvvFHpDxXBgJ4WxZp3hg5FICpBo05fy7xc9Y5xV_ZZpRwwixjy0iZOo8o1ZbvLx7AFC8g-RvFWYHK8ZJVJcjp8KyXc95tBQxtdDbRv6EDxVUEQROLH5C5apM9laK-pZQp_LUc5FiGX_nT0iRBrVg4=
     STOP = '/stop!'
     STREAM = '/stream!'
     RESTART = '/restart!'
@@ -68,7 +67,7 @@ else:
     NEW_PORTFOLIO = '/newport!'
     CLEAR_PORTFOLIOS = '/clear_folios!'
     DISPLAY_PORTFOLIOS = '/display_folios!'
-print('step2')
+
 
 def SendMessageToAlwaysWin(message):
     if '/USDT' in message:
@@ -80,22 +79,16 @@ def SendMessageToAlwaysWin(message):
 
 async def StartTelegramForwarding():
     global stringsesh
-    print('step4')
 
     loop = asyncio.get_event_loop()
     sleeper = Sleeper(loop)
-    print('step5')
 
     api_id = 5747368
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
     client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
-    print('step6')
 
     folios = Folios()
-    print('step7    ')
-
     folios.recover()
-    print('step8    ')
 
     # Receive Telegram Message Event Handler
     @client.on(events.NewMessage())
@@ -283,7 +276,6 @@ def handler_stop_signals(sig, frame):
 
 
 # signal.signal(signal.SIGTERM, handler_stop_signals)  # Intializing graceful death on heroku restart
-print('step3')
 asyncio.run(StartTelegramForwarding())
 print('We out this bitch')
 

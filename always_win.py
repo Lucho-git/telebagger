@@ -8,7 +8,7 @@ AW_TRADE_PERCENTAGE_REAL = 0.4
 AW_STOPLOSS_REDUCTION = 0.75
 AW_WAIT_SIGNAL = [None]
 AW_WAIT_SIGNAL_REAL = [None]
-AW_REAL = [True]
+AW_REAL = [False]
 
 
 def add_real_orders(info):
@@ -69,10 +69,12 @@ def add_fake_orders(info):
 def bag(msg):
     #TODO Fix up this spagetti block
     if valid_trade_message(msg):
-        print('Valid Message')
+        print('Valid Message d')
         info = search_coin(msg)
-        print(AW_WAIT_SIGNAL[0])
+        print('Here', AW_WAIT_SIGNAL[0])
+        print(AW_REAL[0])
         if AW_REAL[0]:
+            print(AW_WAIT_SIGNAL_REAL[0])
             if AW_WAIT_SIGNAL_REAL[0]:
                 print(len(AW_WAIT_SIGNAL))
                 print(AW_WAIT_SIGNAL)
@@ -86,7 +88,7 @@ def bag(msg):
                     AW_WAIT_SIGNAL_REAL[0] = None
                     result = signal_trade(info)
             else:
-                result = signal_trade(info)
+                result = signal_trade_real(info)
 
         elif AW_WAIT_SIGNAL[0]:
             if info[0] == AW_WAIT_SIGNAL[0].pair:
@@ -170,7 +172,7 @@ def search_coin(text):
     t5 = float(lines[7].split(' ')[2])
     sl = float(lines[8].split(' ')[1])
     print('Pair|', pair, '|Direction|', direction, '|Entry|', entry, '|Stoploss|', sl, '|Leverage|', lev)
-    return [pair, base, direction,lev, entry, t1, t2, t3, t4, t5, sl]
+    return [pair, base, direction, lev, entry, t1, t2, t3, t4, t5, sl]
 
 
 # TODO Later need to allow for multiple signals, so can track different sell percentages
@@ -193,7 +195,7 @@ def signal_trade(info):
     signal = Trade(pair, base, 'Always Win', 'mfutures')
     signal2 = Trade(pair, base, 'Always Win2', 'mfutures')
     stopprof = [65, 15, 10, 5, 5]
-    stopprof2 = [45, 20, 15, 10, 10]
+    stopprof2 = [50, 30, 10, 5, 5]
     proftargets = [t1, t2, t3, t4, t5]
     losstargets = [sl, entry, t1, t2, t3]
     signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
@@ -202,6 +204,31 @@ def signal_trade(info):
     fake_trade.fake_trade(signal, bag_id='AW1', percent=AW_TRADE_PERCENTAGE)
 
     return [signal, signal2]
+
+
+def signal_trade_real(info):
+    pair = info[0]
+    base = info[1]
+    direction = info[2]
+    lev = info[3]
+    entry = info[4]
+    sl = info[10]
+
+    t1 = info[5]
+    t2 = info[6]
+    t3 = info[7]
+    t4 = info[8]
+    t5 = info[9]
+
+    signal = Trade(pair, base, 'Always Win Real', 'mfutures')
+    stopprof = [50, 30, 10, 5, 5]
+    proftargets = [t1, t2, t3, t4, t5]
+    losstargets = [sl, entry, t1, t2, t3]
+    signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
+    binance_wrap.mfutures_trade(signal, AW_TRADE_PERCENTAGE)
+
+    return [signal]
+
 
 
 '''
