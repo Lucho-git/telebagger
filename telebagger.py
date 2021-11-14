@@ -48,6 +48,9 @@ if local:
     NEW_PORTFOLIO = '/newport'
     CLEAR_PORTFOLIOS = '/clear_folios'
     DISPLAY_PORTFOLIOS = '/display_folios'
+    SNAPSHOT = '/snapshot'
+    CLOSE_FUTURES = '/close_futures'
+
 else:
     # Hosted Telegram Session
     stringsesh = '1BVtsOJEBuw5_wjvpcl72vb_KFrG6S54BY6H3WHfV8_Xg4j-z21Bm34P5NiqO98MifyYN9bF4ZqCeGgGhgZdC87nZHxhSBzQ3IgVXyzmZTkqMRayUaq_KbFDltzfyy-ykgG6re7H7Hey6EC9lxSTSKVYiiCevlD5Kie35HM7pDRXd-UVDlcI4atjQlqnnYW5QN1lKcbzPk5mHGCCHf8sti38OeDQU94y4x13OmqBa6K9U8skO8WAFLaDQ3silE1wdKRhwV0ssfoqtxxacJnCRIYdM1C9qV_3mOkCpUs0J4X7629b3AxCVgdRlE-ypQX4B9rhQpk9AWozKV118eMfDhOW4I5Bzz-k='
@@ -67,6 +70,8 @@ else:
     NEW_PORTFOLIO = '/newport!'
     CLEAR_PORTFOLIOS = '/clear_folios!'
     DISPLAY_PORTFOLIOS = '/display_folios!'
+    SNAPSHOT = '/snapshot!'
+    CLOSE_FUTURES = '/close_futures!'
 
 
 def SendMessageToAlwaysWin(message):
@@ -221,7 +226,6 @@ async def StartTelegramForwarding():
                 binance_wrap.mfutures_trade(sigal, 1)
 
             elif message == ALWAYS_WIN_SIGNAL:
-                pass
                 with open('docs/aw_example.txt', encoding="utf8") as f:
                     msg = f.read()
                     valid = always_win.valid_trade_message(msg)
@@ -253,9 +257,16 @@ async def StartTelegramForwarding():
                 else:
                     print('Folios is empty')
 
+            elif message == SNAPSHOT:
+                print(binance_wrap.futures_snapshot())
+
+            elif message == CLOSE_FUTURES:
+                binance_wrap.close_all_futures()
         else:
-            #post = msg + '\n' + message + '\n_________________\n'
-            #utility.add_message('New Telegram Groups', post)
+            # Unrecognized Telegram Channels
+
+            # post = msg + '\n' + message + '\n_________________\n'
+            # utility.add_message('New Telegram Groups', post)
             pass
 
     # End of event handler code ____________________
@@ -279,5 +290,5 @@ def handler_stop_signals(sig, frame):
 asyncio.run(StartTelegramForwarding())
 print('We out this bitch')
 
-os.kill(os.getpid(), signal.SIGTERM) # Not sure how this is going to react with heroku
+os.kill(os.getpid(), signal.SIGTERM)  # Not sure how this is going to react with heroku
 print('Still going')

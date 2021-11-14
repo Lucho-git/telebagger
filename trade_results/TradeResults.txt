@@ -1054,3 +1054,234 @@ Buy Price: 3.0093 |  Sell Price: 3.04
 Result Window: 3.0093 | 2.97[+ 26.12%] | 2.91[+ 66.0%]
 
 
+SANDUSDT | 2809984637
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-04  17:05 | 2021-11-04  17:11
+Duration: 0.09 hrs
+================================
+Pricechange: -15.579521173679847
+Buy Price: 2.97185 |  Sell Price: 3.02
+Result Window: 2.97185 | 2.9622[+ 6.49%] | 2.89[+ 55.08%]
+
+
+SANDUSDT | 2818148278
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-04  21:24 | 2021-11-04  21:27
+Duration: 0.03 hrs
+================================
+Pricechange: -3.329304874435343
+Buy Price: 3.00363 |  Sell Price: 3.02
+Result Window: 3.00363 | 2.9949[+ 5.81%] | 2.89[+ 75.66%]
+
+
+SANDUSDT | 2818562925
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-04  21:31 | 2021-11-04  21:33
+Duration: 0.03 hrs
+================================
+Pricechange: 16.485165000016423
+Buy Price: 3.03303 |  Sell Price: 3.02
+Result Window: 3.03303 | 3.0561[- 15.21%] | 2.89[+ 94.31%]
+
+
+MANAUSDT | 1445330836
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-06  16:27 | 2021-11-06  16:28
+Duration: 0.0 hrs
+================================
+Pricechange: 0
+Buy Price: 2.8677 |  Sell Price: 3.25
+Result Window: 2.8677 | 2.8571[+ 1.48%] | 3.053[- 25.85%]
+
+
+MANAUSDT | 1445383899
+Status: STOPPROF
+Origin: Always Win Real
+TimeStarted: 2021-11-06  16:29 | 2021-11-06  16:30
+Duration: 0.0 hrs
+================================
+Pricechange: 0
+Buy Price: 2.8631 |  Sell Price: 0
+Result Window: 2.8631 | 2.8631[+ 0.0%] | 3.25[- 54.05%]
+
+
+MANAUSDT | 1448193255
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-06  18:00 | 2021-11-06  18:04
+Duration: 0.07 hrs
+================================
+Pricechange: 0
+Buy Price: 2.9237 |  Sell Price: 3.05
+Result Window: 2.9237 | 2.9001[+ 3.23%] | 2.8128[+ 15.17%]
+
+
+MANAUSDT | 1448418509
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-06  18:09 | 2021-11-06  18:17
+Duration: 0.13 hrs
+================================
+Pricechange: 0
+Buy Price: 2.9189 |  Sell Price: 3.05
+Result Window: 2.9189 | 2.9086[+ 1.41%] | 2.8128[+ 14.54%]
+
+
+MANAUSDT | 1448738005
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-06  18:20 | 2021-11-06  18:22
+Duration: 0.02 hrs
+================================
+Pricechange: 0
+Buy Price: 2.9675 |  Sell Price: 3.02
+Result Window: 2.9675 | 2.9526[+ 2.01%] | 2.8328[+ 18.16%]
+
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+None
+
+IOTXUSDT | 505028754
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-13  18:33 | 2021-11-13  18:41
+Duration: 0.13 hrs
+================================
+Pricechange: 0.31
+Buy Price: 0.19751 |  Sell Price: 0.2
+Result Window: 0.19751 | 0.19535[10.94] | 0.16016[189.1]
+
+
+IOTXUSDT | 505221558
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-13  18:49 | 2021-11-13  18:53
+Duration: 0.06 hrs
+================================
+Pricechange: -0.39
+Buy Price: 0.19465 |  Sell Price: 0.2
+Result Window: 0.19465 | 0.19343[6.27] | 0.16016[177.19]
+
+
+IOTXUSDT | 505517503
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-13  19:17 | 2021-11-13  19:20
+Duration: 0.04 hrs
+================================
+Pricechange: -0.13
+Buy Price: 0.19383 |  Sell Price: 0.19491
+Result Window: 0.19383 | 0.19333[+ 2.58%] | 0.16016[+ 173.71%]
+
+
+IOTXUSDT | 505918803
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-13  19:40 | 2021-11-13  19:46
+Duration: 0.08 hrs
+================================
+Pricechange: 3.02
+Buy Price: 0.2004 |  Sell Price: 0.20036
+Result Window: 0.2004 | 0.20238[- 9.88%] | 0.17017[+ 150.85%]
+
+
+IOTXUSDT | 506161356
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-13  19:50 | 2021-11-13  19:53
+Duration: 0.05 hrs
+================================
+Pricechange: 0
+Buy Price: 0.20312 |  Sell Price: 0.20135
+Result Window: 0.20312 | 0.20313[- 0.05%] | 0.19219[+ 53.81%]
+
+
+IOTXUSDT | 506232692
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-13  19:53 | 2021-11-13  19:58
+Duration: 0.08 hrs
+================================
+Pricechange: 1.64
+Buy Price: 0.20153 |  Sell Price: 0.19889
+Result Window: 0.20153 | 0.20182[- 1.44%] | 0.16016[+ 205.28%]
+
+
+IOTXUSDT | 506400017
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-13  20:03 | 2021-11-13  20:07
+Duration: 0.07 hrs
+================================
+Pricechange: -0.49
+Buy Price: 0.19764 |  Sell Price: 0.19872
+Result Window: 0.19764 | 0.19646[+ 5.97%] | 0.16016[+ 189.64%]
+
+
+IOTXUSDT | 506485229
+Status: STOPLOSS
+Origin: Always Win Real
+TimeStarted: 2021-11-13  20:08 | 2021-11-13  20:12
+Duration: 0.06 hrs
+================================
+Pricechange: -0.04
+Buy Price: 0.19888 |  Sell Price: 0.19846
+Result Window: 0.19888 | 0.19899[- 0.55%] | 0.16016[+ 194.69%]
+
+
+IOTXUSDT | 508274642
+Status: MANUAL
+Origin: Always Win Real
+TimeStarted: 2021-11-13  20:55 | 2021-11-13  20:58
+Duration: 0.05 hrs
+================================
+Pricechange: -0.34
+Buy Price: 0.22753 |  Sell Price: 0.22918
+Result Window: 0.22753 | 0.22551[+ 8.88%] | 0.19819[+ 128.95%]
+
+

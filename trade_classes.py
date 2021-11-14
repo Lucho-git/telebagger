@@ -3,11 +3,9 @@ from colorama import init
 from colorama import Fore, Back, Style
 import datetime
 import utility as ut
+import binance_wrap
 init(strip=True)
-
-r_api_key = 'GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  # Put your own api keys here
-r_api_secret = 'gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032'
-client = Client(r_api_key, r_api_secret)
+client = ut.get_binance_client()
 
 
 class Futures:
@@ -22,7 +20,7 @@ class Futures:
 
 
 class MFutures:
-    def __init__(self, losstargets, stopprof, proftargets, direction, leverage, mode):
+    def __init__(self, direction, leverage, losstargets=None, stopprof=None, proftargets=None, mode=None, expected_entry=None):
         self.losstargets = losstargets
         self.stopprof = stopprof
         self.proftargets = proftargets
@@ -36,6 +34,8 @@ class MFutures:
         self.new_lowest = 99999999999999
         self.new_highest = 0
         self.orders = []
+        self.filled_orders = []
+        self.expected_entry = expected_entry
 
 
 class MTrade:
@@ -54,7 +54,7 @@ class STrade:
 
 
 class Trade:
-    def __init__(self, pair, base, origin, in_type):
+    def __init__(self, pair, base, origin, in_type, in_message=None):
         self.pair = pair.upper()
         self.base = base.upper()
         self.status = 'Pre_Trade'
@@ -73,11 +73,13 @@ class Trade:
         self.lowest = None
         self.highest = None
         self.closed = None
+        self.latest = None
         self.closed_diff = None
         self.savestring = None
         self.real = False
         self.trade_log = '\n'
         self.bag_id = []
+        self.trade_message = in_message
 
     def get_price(self, fills):
         total = 0
@@ -100,8 +102,12 @@ class Trade:
         self.price = float(receipt['avgPrice'])
         self.lowest = self.price
         self.highest = self.price
+        self.latest = self.price
         self.amount = float(receipt['executedQty'])
         self.status = 'active'
+        self.receipt = receipt
+        #TODO sort out if this is Futures and Mfutures or only Futures
+        # self.conditions.filled_orders.append(receipt)
 
     def init_trade_vals(self, receipt):
         self.receipt = receipt
@@ -119,6 +125,39 @@ class Trade:
             percentage = round((diff / self.price * 100), 2)
             if diff < 0:
                 percentage = percentage*-1
+                percentage = round(percentage, 2)
+            elif diff > 0:
+                percentage = round(percentage, 2)
+            else:
+                percentage = round(percentage, 2)
+            return percentage
+        elif self.type == 'futures' or self.type == 'mfutures':
+            percentage = diff / self.price * 100 * self.conditions.leverage
+            if diff < 0:
+                if self.conditions.direction == 'short':
+                    percentage = percentage * -1
+                    percentage = round(percentage, 2)
+                elif self.conditions.direction == 'long':
+                    percentage = round(percentage, 2)
+            elif diff > 0:
+                if self.conditions.direction == 'short':
+                    percentage = percentage * -1
+                    percentage = round(percentage, 2)
+                elif self.conditions.direction == 'long':
+                    percentage = round(percentage, 2)
+            else:
+                percentage = round(percentage, 2)
+            return percentage
+        else:
+            raise ValueError('Trade Type Error')
+
+    # todo have a style percentages module here
+    def style_percent_diff(self, now):
+        if self.type == 'spot':
+            diff = float(now) - self.price
+            percentage = round((diff / self.price * 100), 2)
+            if diff < 0:
+                percentage = percentage*-1
                 percentage = Fore.RED + "- " + str(round(percentage, 2)) + "%" + Style.RESET_ALL
             elif diff > 0:
                 percentage = Fore.LIGHTGREEN_EX + "+ " + str(round(percentage, 2)) + "%" + Style.RESET_ALL
@@ -126,24 +165,24 @@ class Trade:
                 percentage = Fore.LIGHTBLUE_EX + str(round(percentage, 2)) + "%" + Style.RESET_ALL
             return percentage
         elif self.type == 'futures' or self.type == 'mfutures':
-            percentage = diff / self.price * 100 * self.conditions.leverage
-            if diff < 0:
+            percent = self.percent_diff(now)
+            if percent < 0:
                 if self.conditions.direction == 'short':
-                    percentage = percentage*-1
-                    percentage = Fore.LIGHTGREEN_EX + "+ " + str(round(percentage, 2)) + "%" + Style.RESET_ALL
+                    percent = percent*-1
+                    percent = Fore.RED + "- " + str(round(percent, 2)) + "%" + Style.RESET_ALL
                 elif self.conditions.direction == 'long':
-                    percentage = percentage * -1
-                    percentage = Fore.RED + "- " + str(round(percentage, 2)) + "%" + Style.RESET_ALL
-            elif diff > 0:
+                    percent = percent*-1
+                    percent = Fore.RED + "- " + str(round(percent, 2)) + "%" + Style.RESET_ALL
+            elif percent > 0:
                 if self.conditions.direction == 'short':
-                    percentage = Fore.RED + "- " + str(round(percentage, 2)) + "%" + Style.RESET_ALL
+                    percent = Fore.LIGHTGREEN_EX + "+ " + str(round(percent, 2)) + "%" + Style.RESET_ALL
                 elif self.conditions.direction == 'long':
-                    percentage = Fore.LIGHTGREEN_EX + "+ " + str(round(percentage, 2)) + "%" + Style.RESET_ALL
+                    percent = Fore.LIGHTGREEN_EX + "+ " + str(round(percent, 2)) + "%" + Style.RESET_ALL
             else:
-                percentage = Fore.LIGHTBLUE_EX + "+ " + str(round(percentage, 2)) + "%" + Style.RESET_ALL
-            return percentage
+                percent = Fore.LIGHTBLUE_EX + "+ " + str(round(percent, 2)) + "%" + Style.RESET_ALL
+            return percent
         else:
-            print("WRONG TYPEEE")
+            raise ValueError('Trade Type Error')
 
     def snapshot(self):
         snapshot = 'SnapShot: \n'
@@ -174,69 +213,104 @@ class Trade:
         return percentage
 
     def update_mfutures(self, price):
-        direction = self.conditions.direction
-        if direction == 'long':
-            losslimit = self.conditions.losstargets[self.conditions.targetnum]
-            proflimit = self.conditions.proftargets[self.conditions.targetnum]
+        if self.conditions.orders:
+            # Real Trade
+            print('Real Update')
+            if binance_wrap.mfutures_update(self):
+                self.conditions.targetnum = len(self.conditions.filled_orders) - 1
 
-            if self.conditions.new_lowest < losslimit:
-                amount = self.conditions.amount_left  # Sell All
-                self.conditions.amount_left = self.conditions.amount_left - amount
-                self.conditions.trade_amounts += self.percentage_result(losslimit, 'loss') * amount/100
-                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(losslimit, 'loss'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
-                if self.conditions.amount_left == 0:
-                    self.status = 'stoploss'
-                    self.closed = losslimit
-                else:
-                    raise ValueError('Long Stoploss Numbers not adding to 100, error')
+                filled = []
+                first = None
+                for o in self.conditions.filled_orders:
+                    if o['status'] == 'FILLED':
+                        if not o['reduceOnly']:
+                            first = o
+                        elif o['reduceOnly']:
+                            filled.append(o)
 
-            elif self.conditions.new_highest > proflimit:
-                amount = self.conditions.stopprof[self.conditions.targetnum]
-                if amount > self.conditions.amount_left:
+                starting_amount = float(first['executedQty'])
+                trade_log = '\nBought ' + str(starting_amount) + ' of ' + self.pair + ' for ' + first['avgPrice'] + '\n\n'
+
+                amountleft = starting_amount
+                tradeamounts = 0
+
+                for f in filled:
+                    reduce = float(f['executedQty'])
+                    amountleft = amountleft - reduce
+                    tradeamount = self.percent_diff(f['avgPrice']) * (reduce/starting_amount)
+                    tradeamounts += tradeamount
+                    trade_log += 'Sold ' + str(reduce) + ' [' + str(round((reduce/starting_amount*100),2)) + '%] of ' + self.pair + ' for ' + f['avgPrice'] + ' [' + str(round(tradeamount, 2)) + '%]\n'
+                trade_log += 'Overall Sold [' + str(starting_amount-amountleft) + '/' + str(starting_amount) + '] with a Price difference of ' + str(round(tradeamounts, 2)) + '\n'
+
+                self.conditions.amount_left = round(amountleft/starting_amount * 100, 2)
+                self.conditions.trade_amounts = round(tradeamounts, 2)
+                self.trade_log = trade_log
+
+        else:
+            # Fake Trade
+            direction = self.conditions.direction
+            if direction == 'long':
+                losslimit = self.conditions.losstargets[self.conditions.targetnum]
+                proflimit = self.conditions.proftargets[self.conditions.targetnum]
+
+                if self.conditions.new_lowest < losslimit:
+                    amount = self.conditions.amount_left  # Sell All
+                    self.conditions.amount_left = self.conditions.amount_left - amount
+                    self.conditions.trade_amounts += self.percentage_result(losslimit, 'loss') * amount/100
+                    self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(losslimit, 'loss'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
+                    if self.conditions.amount_left == 0:
+                        self.status = 'stoploss'
+                        self.closed = losslimit
+                    else:
+                        raise ValueError('Long Stoploss Numbers not adding to 100, error')
+
+                elif self.conditions.new_highest > proflimit:
+                    amount = self.conditions.stopprof[self.conditions.targetnum]
+                    if amount > self.conditions.amount_left:
+                        amount = self.conditions.amount_left
+                    self.conditions.amount_left = self.conditions.amount_left - amount
+                    self.conditions.trade_amounts += self.percentage_result(proflimit, 'prof') * amount/100
+                    self.trade_log += '- Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
+                    if self.conditions.amount_left == 0:
+                        self.status = 'stopprof'
+                        self.closed = proflimit
+                    elif self.conditions.amount_left > 0:
+                        self.conditions.targetnum += 1
+                        self.conditions.new_highest = price
+                        self.conditions.new_lowest = price
+                    else:
+                        raise ValueError('LongProfit Numbers not adding to 100, error')
+
+            elif direction == 'short':
+                proflimit = self.conditions.proftargets[self.conditions.targetnum]
+                losslimit = self.conditions.losstargets[self.conditions.targetnum]
+                if self.conditions.new_lowest < proflimit:
+                    amount = self.conditions.stopprof[self.conditions.targetnum]
+                    if amount > self.conditions.amount_left:
+                        amount = self.conditions.amount_left
+                    self.conditions.amount_left = self.conditions.amount_left - amount
+                    self.conditions.trade_amounts += self.percentage_result(proflimit, 'prof') * amount/100
+                    self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
+                    if self.conditions.amount_left == 0:
+                        self.status = 'stopprof'
+                        self.closed = proflimit
+                    elif self.conditions.amount_left > 0:
+                        self.conditions.targetnum += 1
+                        self.conditions.new_highest = price
+                        self.conditions.new_lowest = price
+                    else:
+                        raise ValueError('ShortProfit Numbers not adding to 100, error')
+
+                elif self.conditions.new_highest > losslimit:
                     amount = self.conditions.amount_left
-                self.conditions.amount_left = self.conditions.amount_left - amount
-                self.conditions.trade_amounts += self.percentage_result(proflimit, 'prof') * amount/100
-                self.trade_log += '- Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
-                if self.conditions.amount_left == 0:
-                    self.status = 'stopprof'
-                    self.closed = proflimit
-                elif self.conditions.amount_left > 0:
-                    self.conditions.targetnum += 1
-                    self.conditions.new_highest = price
-                    self.conditions.new_lowest = price
-                else:
-                    raise ValueError('LongProfit Numbers not adding to 100, error')
-
-        elif direction == 'short':
-            proflimit = self.conditions.proftargets[self.conditions.targetnum]
-            losslimit = self.conditions.losstargets[self.conditions.targetnum]
-            if self.conditions.new_lowest < proflimit:
-                amount = self.conditions.stopprof[self.conditions.targetnum]
-                if amount > self.conditions.amount_left:
-                    amount = self.conditions.amount_left
-                self.conditions.amount_left = self.conditions.amount_left - amount
-                self.conditions.trade_amounts += self.percentage_result(proflimit, 'prof') * amount/100
-                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(proflimit, 'prof'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
-                if self.conditions.amount_left == 0:
-                    self.status = 'stopprof'
-                    self.closed = proflimit
-                elif self.conditions.amount_left > 0:
-                    self.conditions.targetnum += 1
-                    self.conditions.new_highest = price
-                    self.conditions.new_lowest = price
-                else:
-                    raise ValueError('ShortProfit Numbers not adding to 100, error')
-
-            elif self.conditions.new_highest > losslimit:
-                amount = self.conditions.amount_left
-                self.conditions.amount_left = self.conditions.amount_left - amount
-                self.conditions.trade_amounts += self.percentage_result(losslimit, 'loss') * amount/100
-                self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(losslimit, 'loss'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
-                if self.conditions.amount_left == 0:
-                    self.status = 'stoploss'
-                    self.closed = losslimit
-                else:
-                    raise ValueError("ShortLoss Didn't sell entire trade Error")
+                    self.conditions.amount_left = self.conditions.amount_left - amount
+                    self.conditions.trade_amounts += self.percentage_result(losslimit, 'loss') * amount/100
+                    self.trade_log += 'Selling ' + str(amount) + '% of ' + self.pair + ' for ' + str(round(self.percentage_result(losslimit, 'loss'), 2))+'%  |  TotalValue: ' + str(self.conditions.trade_amounts) + '%\n'
+                    if self.conditions.amount_left == 0:
+                        self.status = 'stoploss'
+                        self.closed = losslimit
+                    else:
+                        raise ValueError("ShortLoss Didn't sell entire trade Error")
 
     def update_futures(self):
         direction = self.conditions.direction
@@ -263,12 +337,16 @@ class Trade:
             self.status = 'stopprof'
             self.closed = self.conditions.stopprof
 
+    # Trade Updates start here
     def update_trade(self, k):
+        # Updating trade price values
+        self.latest = k['last']
         if k['low'] < self.lowest:
             self.lowest = k['low']
         if k['high'] > self.highest:
             self.highest = k['high']
 
+        # Making updates and adjustments based on type of trade
         if self.status == 'active' and self.type == 'spot':
             self.update_spot()
         elif self.status == 'active' and self.type == 'futures':
@@ -288,26 +366,35 @@ class Trade:
                 self.closed = k['last']
 
         if not self.status == 'active':
-            self.trade_complete(k)
-            print(self.savestring)
+            if self.receipt:
+                print('Real Trade Completed')
+                self.closed = k['last']
+                self.trade_complete(k)
+            else:
+                print('Fake Trade Completed')
+                self.trade_complete(k)
+                print(self.savestring)
 
     def update_snapshot(self, k):
         now = float(k['last'])
         leverage = ''
         direction = ''
+        coin_name = self.pair
         if self.type == 'mfutures' or self.type == 'futures':
             leverage = '[' + str(self.conditions.leverage) + 'x]'
             direction = '['+self.conditions.direction+']'
+            if self.conditions.orders:
+                coin_name = '*' + self.pair + '*'
 
         print('\n')
         start_time = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%Y-%m-%d_%H:%M')
         time_passed = round((k['time'] - self.time) / 3600000, 2)
-        print(self.pair, leverage,direction, '--', start_time, '(', time_passed, ') hrs')
+        print(coin_name, leverage, direction, '--', start_time, '(', time_passed, ') hrs')
         print('_______________________________')
         print('Buy Price:', Fore.LIGHTBLUE_EX, ut.format_float(self.price), Style.RESET_ALL)
-        print('Lowest:', ut.format_float(self.lowest), '|', self.percent_diff(self.lowest))
-        print('Highest:', ut.format_float(self.highest), '|', self.percent_diff(self.highest))
-        print('Now:', ut.format_float(k['last']), '|', self.percent_diff(now))
+        print('Lowest:', ut.format_float(self.lowest), '|', self.style_percent_diff(self.lowest))
+        print('Highest:', ut.format_float(self.highest), '|', self.style_percent_diff(self.highest))
+        print('Now:', ut.format_float(k['last']), '|', self.style_percent_diff(now))
         print('===============================')
         if self.type == 'futures' or self.type == 'spot':
             print('Targets:', Fore.RED, ut.format_float(self.conditions.stoploss), '|', Fore.LIGHTBLUE_EX, ut.format_float(now),'|',Fore.LIGHTGREEN_EX, ut.format_float(self.conditions.stopprof), Style.RESET_ALL)
@@ -353,7 +440,7 @@ class Trade:
         if self.type == 'mfutures':
             self.closed_diff = str(self.conditions.trade_amounts)
         else:
-            self.closed_diff = ut.strip_ansi_codes(self.percent_diff(self.closed))
+            self.closed_diff = ut.strip_ansi_codes(self.style_percent_diff(self.closed))
 
         percent = str(self.closed_diff)
         self.closed_diff = self.closed_diff.replace('%', '')
@@ -388,6 +475,14 @@ class Trade:
                 goal = self.conditions.stopprof
                 if self.type == 'mfutures':
                     goal = self.conditions.proftargets[self.conditions.targetnum]
+
+        elif self.status == 'manual':
+            print('Trade closed manually')
+            closest = self.lowest
+            goal = self.conditions.stopprof
+            if self.type == 'mfutures':
+                goal = self.conditions.proftargets[self.conditions.targetnum]
+
         elif self.status == 'time':
             closest = self.lowest
             goal = self.highest
@@ -395,8 +490,8 @@ class Trade:
             print("THERE IS A PROBLEM!:", self.status)
             raise ValueError('Expected a different status value', self.status)
 
-        percent_closest = ut.strip_ansi_codes(str(self.percent_diff(closest)))
-        percent_goal = ut.strip_ansi_codes(str(self.percent_diff(goal)))
+        percent_closest = ut.strip_ansi_codes(str(self.style_percent_diff(closest)))
+        percent_goal = ut.strip_ansi_codes(str(self.style_percent_diff(goal)))
         closest = str(closest)
         goal = str(goal)
 

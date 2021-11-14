@@ -47,7 +47,7 @@ class Folios:
     def add_folios(self, in_folios):
         print(self.folios)
         self.folios.append(in_folios)
-        print('Created Folio', self.folios[0].name)
+        print('Created Folio', in_folios)
 
     def clear_folios(self):
         self.folios = []

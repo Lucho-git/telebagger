@@ -73,3 +73,59 @@ Targets : 10-50% in short term😊
 __________________________
 module 'fake_trade' has no attribute 'spot_trade'
 
+BEAM is building privacy based #DeFi and #NFT products which are confidential fast and easy to use. Technically it's forming a bullish descending triangle on 1D timeframe and holding above a horizontal demand zone with MACD indicating a bullish crossover. Don't forget to build in your position as quick profit is expected from the coin very soon😊
+
+Targets : 1380-1550-1780-2300
+
+Stop if 1D close below 1046sat
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+BEAM/USDT is lying on a strong horizontal demand zone after breaking out the major resistance of symmetrical triangle and now it's ready for the big move up😊🚀
+
+Targets : 10-50% in short term.
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+WTC is building an ecosystem that melds blockchain, RFID technology, and IoT (Internet of Things). It's one the strong fundamental project with very low Mcap and now gaining strength. Currently breakout falling wedge retested successfully at the horizontal demand zone. Now look ready to moon. build your position before big move for handsome profit😊
+
+
+Targets: 1900-2100-2600-3300
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+WTC/USDT Breakout symmetrical triangle retested successfully and now MACD is gaining bullish strength and it's ready to pump hard from the rock bottom support 😊🚀
+
+
+Targets: 10-50% in short term.
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+DATABTC forming a falling wedge pattern with MACD indicating bullish crossover and lying above a horizontal demand zone. Breakout is expected very soon so build in your position before it's too late 🚀
+
+Targets : 270-300-400-650-750
+
+Stop if 1D close below 200sat
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+STRAX is one of the top old school alts with very strong team and great vision so potential is very huge. Technically it is on strong support and always Pump hard from this level so now is the right time to get in for massive profit in short term😊🚀
+
+Target : 3600-3800-4200-5000
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+STRAX/USDT Breakout symmetrical triangle retested successfully, RSI in the oversold region while MACD crossover is showing bullish momentum. We can expect a good bounce from here now🚀
+
+Targets: $2.33-2.55-3-3.5
+
+Stop if 1D close below $1.93
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+Loom network is building an ecosystem of blockchains to sustain the next generation of DeFi protocol, NFT’s and high-performance multichain dapps. Layer2 protocols will be the future and LOOM is very undervalued. Technically LOOM/BTC breakout falling wedge at 1D TF, retested successfully. It is lying on strong rock bottom support. Stochastic is giving a buying signal and we can expect a good upward move from here 😊🚀
+
+Targets: 185-205-235-280-300
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+

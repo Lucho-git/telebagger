@@ -48,8 +48,14 @@ else:
 
 def get_binance_client():
     # Binance API Keys, TODO: Switch these to environmental variables if this code ever goes public
+
+    # Lachs Binance Acc
     r_api_key = 'GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  # Put your own api keys here
     r_api_secret = 'gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032'
+
+    # Dads Binance Acc
+    r_api_key = 'hWQABbUYYwhonkS6FN8LtCr7QRhtAsj1IwbpbuXWGhbdHn9nRbVe5tZDzyMQrfsp'
+    r_api_secret = 'G9HH87QyzZtjmUUjfAxsQQJkcDLOwGRCiL3oyL85p7IoBeKD68JMwjPxmBl3Fm6K'
 
     # Binance Client Object
     realclient = Client(r_api_key, r_api_secret)
@@ -201,14 +207,15 @@ def trade_results(t):
     for b in t.bag_id:
         path_on_cloud = RESULTS + b + '.txt'
         path_on_local = RESULTS_L + b + '.txt'
-        storage.child(path_on_cloud).download("./", path_on_local)
+        if t.closed_diff:
+            storage.child(path_on_cloud).download("./", path_on_local)
 
-        tradevalue = float(t.closed_diff)/100 + 1
-        tradevalue = round(tradevalue, 2)
-        with open(path_on_local, 'a') as f:
-            f.write(str(tradevalue))
-            f.write('\n')
-        storage.child(path_on_cloud).put(path_on_local)
+            tradevalue = float(t.closed_diff)/100 + 1
+            tradevalue = round(tradevalue, 2)
+            with open(path_on_local, 'a') as f:
+                f.write(str(tradevalue))
+                f.write('\n')
+            storage.child(path_on_cloud).put(path_on_local)
 
     if t.bag_id:
         end_trade_folios(t, tradevalue)

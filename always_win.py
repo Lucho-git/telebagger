@@ -6,9 +6,10 @@ from trade_classes import Trade, MFutures
 AW_TRADE_PERCENTAGE = 0.4
 AW_TRADE_PERCENTAGE_REAL = 0.4
 AW_STOPLOSS_REDUCTION = 0.75
+AW_LEV = 10
 AW_WAIT_SIGNAL = [None]
 AW_WAIT_SIGNAL_REAL = [None]
-AW_REAL = [False]
+AW_REAL = [True]
 
 
 def add_real_orders(info):
@@ -16,12 +17,11 @@ def add_real_orders(info):
 
     direction = info[2]
     lev = info[3]
+    lev = AW_LEV
+    # STUB
+
     entry = info[4]
     sl = info[10]
-    if direction == 'LONG':
-        sl = signal.price - (signal.price / lev) * AW_STOPLOSS_REDUCTION
-    else:
-        sl = signal.price + (signal.price / lev) * AW_STOPLOSS_REDUCTION
 
     t1 = info[5]
     t2 = info[6]
@@ -34,10 +34,11 @@ def add_real_orders(info):
     proftargets = [t1, t2, t3, t4, t5]
     losstargets = [sl, entry, t1, t2, t3]
 
-    signal.conditions = MFutures(losstargets, stopprof2, proftargets, direction, lev, 'isolation')
-    signal.condtitions.orders = binance_wrap.futures_trade_add_orders(signal.receipt, signal.conditions)
+    signal.conditions = MFutures(direction, lev, losstargets, stopprof2, proftargets, 'isolation', entry)
+    binance_wrap.futures_trade_add_orders(signal)
+    print(signal.conditions.orders)
     signal.type = 'mfutures'
-    return signal
+    return [signal]
 
 
 def add_fake_orders(info):
@@ -60,14 +61,14 @@ def add_fake_orders(info):
     copy_signal = Trade(signal.pair, signal.base, 'Always Win2', 'mfutures')
     copy_signal = fake_trade.fake_trade_copy(copy_signal, signal, percent=AW_TRADE_PERCENTAGE, bag_id='AW2')
 
-    signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
-    copy_signal.conditions = MFutures(losstargets, stopprof2, proftargets, direction, lev, 'isolation')
+    signal.conditions = MFutures(direction, lev, losstargets, stopprof, proftargets, 'isolation', entry)
+    copy_signal.conditions = MFutures(losstargets, stopprof2, proftargets, direction, lev, 'isolation', entry)
     signal.type = 'mfutures'
     return [signal, copy_signal]
 
 
 def bag(msg):
-    #TODO Fix up this spagetti block
+    # TODO Fix up this spagetti block
     if valid_trade_message(msg):
         print('Valid Message d')
         info = search_coin(msg)
@@ -76,9 +77,8 @@ def bag(msg):
         if AW_REAL[0]:
             print(AW_WAIT_SIGNAL_REAL[0])
             if AW_WAIT_SIGNAL_REAL[0]:
-                print(len(AW_WAIT_SIGNAL))
-                print(AW_WAIT_SIGNAL)
                 if info[0] == AW_WAIT_SIGNAL_REAL[0].pair:
+                    print('Adding Real Orders')
                     result = add_real_orders(info)
                     print("Add sell orders to trade")
                     AW_WAIT_SIGNAL_REAL[0] = None
@@ -128,13 +128,14 @@ def valid_trade_message_2(msg):
             base = 'USDT'
 
             signal = Trade(pair, base, 'Always Win', 'futures')
+            signal.conditions = MFutures(l1[0], AW_LEV)
+            print(signal)
             if AW_REAL[0]:
-                binance_wrap.futures_trade_no_orders(signal, percentage=AW_TRADE_PERCENTAGE_REAL, bag_id='AW_Real')
+                binance_wrap.futures_trade_no_orders(signal, AW_TRADE_PERCENTAGE_REAL, bag_id='AW_Real')
                 AW_WAIT_SIGNAL_REAL[0] = signal
             else:
                 fake_trade.fake_trade(signal, percent=AW_TRADE_PERCENTAGE, bag_id='AW1')
             AW_WAIT_SIGNAL[0] = signal
-            # AW_WAIT_SIGNAL[0] = binance_wrap.futures_trade_no_orders(signal, AW_TRADE_PERCENTAGE, 'AW1')
             print('Signal Incoming:', pair)
             return True
     return False
@@ -164,6 +165,7 @@ def search_coin(text):
 
     lev = lines[1].split(' ')[1]
     lev = float(lev.split('x')[0])
+    lev = AW_LEV
     entry = float(lines[2].split(' ')[1])
     t1 = float(lines[3].split(' ')[2])
     t2 = float(lines[4].split(' ')[2])
@@ -183,6 +185,9 @@ def signal_trade(info):
     base = info[1]
     direction = info[2]
     lev = info[3]
+    lev = AW_LEV
+    # STUB
+
     entry = info[4]
     sl = info[10]
 
@@ -198,8 +203,8 @@ def signal_trade(info):
     stopprof2 = [50, 30, 10, 5, 5]
     proftargets = [t1, t2, t3, t4, t5]
     losstargets = [sl, entry, t1, t2, t3]
-    signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
-    signal2.conditions = MFutures(losstargets, stopprof2, proftargets, direction, lev, 'isolation')
+    signal.conditions = MFutures(direction, lev, losstargets, stopprof, proftargets, 'isolation', entry)
+    signal2.conditions = MFutures(direction, lev, losstargets, stopprof2, proftargets, 'isolation', entry)
     fake_trade.fake_trade(signal2, bag_id='AW2', percent=AW_TRADE_PERCENTAGE)
     fake_trade.fake_trade(signal, bag_id='AW1', percent=AW_TRADE_PERCENTAGE)
 
@@ -211,6 +216,9 @@ def signal_trade_real(info):
     base = info[1]
     direction = info[2]
     lev = info[3]
+    lev = AW_LEV
+    # STUB
+
     entry = info[4]
     sl = info[10]
 
@@ -222,13 +230,13 @@ def signal_trade_real(info):
 
     signal = Trade(pair, base, 'Always Win Real', 'mfutures')
     stopprof = [50, 30, 10, 5, 5]
+
     proftargets = [t1, t2, t3, t4, t5]
     losstargets = [sl, entry, t1, t2, t3]
-    signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
-    binance_wrap.mfutures_trade(signal, AW_TRADE_PERCENTAGE)
+    signal.conditions = MFutures(direction, lev, losstargets, stopprof, proftargets, 'isolation', entry)
+    binance_wrap.mfutures_trade(signal, AW_TRADE_PERCENTAGE, bag_id='AW_REAL')
 
     return [signal]
-
 
 
 '''

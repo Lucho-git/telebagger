@@ -23,60 +23,331 @@ def round_decimals_down(number: float, decimals: int = 2):
     return math.floor(number * factor) / factor
 
 
-def change_margin_type(type):
+def change_margin_type(in_type, symbol):
     isolated = True
-    if type == 'cross':
+    if in_type == 'cross':
         isolated = False
         try:
-            realclient.futures_change_margin_type(symbol=symbol, mode='CROSS')
-        except:
-            print('Already cross')
-    else:
+            realclient.futures_change_margin_type(symbol=symbol, marginType='CROSSED')
+        except Exception as e:
+            print(e)
+    elif in_type == 'isolated':
+        print('Changing', symbol, ' to mode: Isolated')
         try:
-            realclient.futures_change_margin_type(symbol=symbol, mode='ISOLATED')
-        except:
-            print('Already Isolated')
+            realclient.futures_change_margin_type(symbol=symbol, marginType='ISOLATED')
+        except Exception as e:
+            print(e)
+    else:
+        print('Unreachable code')
+
     return isolated
 
 
-def futures_trade_no_orders(signal, percentage, bag_id=None):
-    symbol = signal.pair
-    margin = 0.99
-    balance = float(realclient.futures_account_balance()[1]['withdrawAvailable'])  # Get available funds
-    if balance*margin*percentage < MIN_TRADE_VALUE:
-        print('Low Funds')
-        raise ValueError("Funds too low to take this trade, Balance: " + str(balance))
-
-    if signal.conditions.direction == 'long':
-        side = 'BUY'
-    elif signal.conditions.direction == 'short':
-        side = 'SELL'
-    isolated = change_margin_type(signal.conditions.mode)
-
-    # Get futures coin precision
+def get_coin_precision(symbol):
     coin_precision = None
+    # Get futures coin precision
     for i in realclient.futures_exchange_info()['symbols']:
         if i['pair'] == symbol:
             coin_precision = i['quantityPrecision']
             break
+    return coin_precision
 
-    # Calculate trade values
-    amount = balance*margin*percentage*signal.conditions.leverage
-    amount = str(float(round_decimals_down(amount, coin_precision)))  # Round Base amount
-    pair_price = float(realclient.get_symbol_ticker(symbol=symbol)['price'])  # Get coin price
-    q = float(amount) / pair_price  # Define trade quantities
-    q = float(round_decimals_down(q, coin_precision))  # Round trade Quantities
 
-    realclient.futures_change_leverage(symbol=symbol, leverage=signal.conditions.leverage)
-    print(balance*percentage)
-    trade_receipt = realclient.futures_create_order(symbol=symbol, side=side, type='MARKET', quantity=q, isolated=isolated)
+def get_price_precision(symbol):
+    symbol_info = realclient.get_symbol_info(symbol)
+    for f in symbol_info['filters']:
+        if f['filterType'] == 'PRICE_FILTER':
+            tick_size = str(f['tickSize'])
+    split = tick_size.split('.')
+    split = split[1].split('1')
+    price_precision = len(split[0]) + 1
+    print('TickPrecision', price_precision)
+    return price_precision
 
-    # Move all this shit into trade_classes
+
+def no_liquidate(signal):
+    price = signal.price
+    current_sl = signal.conditions.losstargets[0]
+    for f in realclient.futures_exchange_info()['symbols']:
+        if f['pair'] == signal.pair:
+            price_precision = f['pricePrecision']
+
+    margin = 0.75
+    if signal.conditions.direction.upper() == 'LONG':
+        price = price - (price/signal.conditions.leverage) * margin
+        if not (price > current_sl):
+            price = current_sl
+    else:
+        price = price + (price/signal.conditions.leverage) * margin
+        if not (price < current_sl):
+            price = current_sl
+    price = float(round_decimals_down(price, price_precision))
+    return price
+
+
+def mfutures_reduce_orders(signal):
+    reduction_percentage = 0.999
+    addition_percentage = 1+1-reduction_percentage
+    price_precision = get_price_precision(signal.pair)
+
+    new_proftargets = []
+    if signal.conditions.direction == 'long':
+        for p in signal.conditions.proftargets:
+            p = p*reduction_percentage
+            p = float(round_decimals_down(p, price_precision))
+            new_proftargets.append(p)
+    elif signal.conditions.direction == 'short':
+        for p in signal.conditions.proftargets:
+            p = p*addition_percentage
+            p = float(round_decimals_down(p, price_precision))
+            new_proftargets.append(p)
+    print(new_proftargets)
+
+    signal.conditions.proftargets = new_proftargets
+
+
+def mfutures_optimize_targets(signal):
+    print('preTargets', signal.conditions.proftargets)
+    print('Optimizing Results.....')
+    price = signal.price
+    entry = signal.conditions.expected_entry
+    targets = signal.conditions.proftargets
+    t1 = targets[0]
+    t2 = targets[1]
+    if signal.conditions.direction.upper() == 'SHORT':
+
+        if (price-t1) < (entry-t1)/2:
+            newprice = (t1+t1+t2)/3
+            signal.conditions.proftargets[0] = newprice
+            print('Optimized T1')
+
+    elif signal.conditions.direction.upper() == 'LONG':
+        print('dif1', price-entry)
+        print('dif2', (t1-entry)/2)
+        if (price-entry) > (t1-entry)/2:
+            newprice = (t1+t1+t2)/3
+            signal.conditions.proftargets[0] = newprice
+            print('Optimized T1')
+
+
+def mfutures_fix_zeros(signal):
+    price = signal.price
+    entry = signal.conditions.expected_entry
+    # if difference between entry is greater than 50%, see if we can fix a 0 count error
+    absolute_diff = abs((entry-price)/entry)*100
+    zero_value = [None, None]
+    if absolute_diff > 50:
+        # abnormal entry price
+        # try different 0 values
+        for x in range(4):
+            test_entry = entry / (10**x)
+            test_entry2 = entry * (10**x)
+            diff = abs((test_entry - price)/test_entry)*100
+            diff2 = abs((test_entry2 - price)/test_entry2)*100
+            print('testentry', test_entry, 'price', price, 'diff', diff)
+            print('testentry2', test_entry2, 'price', price, 'diff2', diff2)
+            if diff < absolute_diff:
+                print('Wrong number of Zeros Divide')
+                absolute_diff = diff
+                zero_value[0] = x
+                zero_value[1] = 'divide'
+                signal.conditions.expected_entry = entry/10**x
+
+            if diff2 < absolute_diff:
+                print('Wrong number of Zeros Multiply')
+                absolute_diff = diff2
+                zero_value[0] = x
+                zero_value[1] = 'multi'
+                signal.conditions.expected_entry = entry*10**x
+
+        if zero_value[0]:
+            print('Adjust other values')
+            print(zero_value)
+            adjustment = 10 ** (zero_value[0])
+            if zero_value[1] == 'multi':
+                new_targets = []
+                for x in signal.conditions.proftargets:
+                    j = x*adjustment
+                    print('from ', x, 'to', j)
+                    new_targets.append(j)
+                signal.conditions.proftargets = new_targets
+            elif zero_value[1] == 'divide':
+                new_targets = []
+                for x in signal.conditions.proftargets:
+                    j = x/adjustment
+                    new_targets.append(j)
+                signal.conditions.proftargets = new_targets
+            print('After adjustments', signal.conditions.proftargets)
+
+            bad_signal = False
+            for f in range(len(signal.conditions.proftargets)-1):
+                firsttarget = signal.conditions.proftargets[f]
+                secondtarget = signal.conditions.proftargets[f+1]
+                target_diff = abs((firsttarget-secondtarget)/firsttarget)*100
+                print('targetdiff', target_diff)
+                if target_diff > 50:
+                    raise ValueError('Problem Resolving target values')
+        else:
+            raise ValueError('Entry Value difference too large')
+
+    print('Entry diff', round(absolute_diff, 2))
+
+
+def futures_trade_no_orders(signal, trade_size, bag_id=None):
+    # Stop 100% margin errors
+    if trade_size == 1:
+        trade_size = 0.99
+
+    # Retrieve futures balance
+    balance = None
+    balances = realclient.futures_account_balance()
+    for b in balances:
+        if b['asset'] == 'USDT':
+            balance = float(b['withdrawAvailable'])
+            print('Balance = ', balance)
+
+    # Define investment amount
+    amount = balance * trade_size
+    # Cancel trade if low funds
+    if amount < MIN_TRADE_VALUE:
+        print('Low Funds')
+        raise ValueError("Funds too low to take this trade, Balance: " + str(balance))
+
+    # Portfolios String, can remove
+    signal.portfolio_amount = '[' + str(amount) + '/' + str(realclient.futures_account_balance()[1]['balance']) + ']'
+
+    # Define buying direction
+    side = ''
+    if signal.conditions.direction.upper() == 'LONG':
+        side = 'BUY'
+    elif signal.conditions.direction.upper() == 'SHORT':
+        side = 'SELL'
+
+    isolated = True
+    change_margin_type('isolated', signal.pair)
+    for f in realclient.futures_exchange_info()['symbols']:
+        if f['pair'] == signal.pair:
+            pass
+    # Get futures coin precision
+    coin_precision = None
+    for i in realclient.futures_exchange_info()['symbols']:
+        if i['pair'] == signal.pair:
+            coin_precision = i['quantityPrecision']
+            break
+
+    # Set Trade Leverage
+    realclient.futures_change_leverage(symbol=signal.pair, leverage=int(signal.conditions.leverage))
+
+    pair_price = float(realclient.get_symbol_ticker(symbol=signal.pair)['price'])  # Get coin price
+    q = amount*signal.conditions.leverage / pair_price  # Define trade quantities
+    q = round_decimals_down(q, coin_precision)  # Round trade Quantities
+
+    # BUY Order
+    trade_receipt = realclient.futures_create_order(symbol=signal.pair, side=side, type='MARKET', quantity=q, isolated=isolated)
+    trade_time = trade_receipt['updateTime']
+
     trade_id = trade_receipt['orderId']
-    receipt = realclient.futures_get_order(orderId=trade_id, symbol=symbol)
+    receipt = realclient.futures_get_order(orderId=trade_id, symbol=signal.pair)
     signal.init_trade_futures(trade_id, receipt)
+
+    # Add receipt to filled orders
+    signal.conditions.filled_orders.append(receipt)
+
     if bag_id:
         signal.bag_id.append(bag_id)
+
+    return True
+
+
+def futures_trade_add_orders(signal):
+    # Set Initial Stoploss just above liquidation, or the given SL if it is closer
+    liquidation_sl = no_liquidate(signal)
+    signal.conditions.losstargets[0] = liquidation_sl
+
+    coin_precision = get_coin_precision(signal.pair)
+    trade_qty = float(signal.receipt['origQty'])
+
+    units = trade_qty
+    step = 1/(10**coin_precision)
+
+    if not coin_precision == 0:
+        units = int(trade_qty / step)
+    print('Units:', units)
+
+    # If signal is posted with incorrect zeros, will try to fix it up
+    mfutures_fix_zeros(signal)
+    # Adjust target values, if signal comes too late compared to the price
+    mfutures_optimize_targets(signal)
+    # Slightly increase/reduce proftargets, to stay ahead of exact values and others
+    mfutures_reduce_orders(signal)
+
+    # Get profittargets, target distribution and losstargets,
+    proftargets = signal.conditions.proftargets
+    profit_dist = signal.conditions.stopprof
+    profit_qty = []
+    losstargets = signal.conditions.losstargets
+    stop_order_receipts = []
+
+    # Switch from buying to selling, or from shorting to rebuying
+    if signal.conditions.direction == 'short':
+        side = 'BUY'
+    elif signal.conditions.direction == 'long':
+        side = 'SELL'
+
+    # Take profit quantities math
+    tot = 0
+    for d in profit_dist:
+        qty = float(math.floor((d * units)/100))
+        profit_qty.append(qty)
+        tot += qty
+
+    # Dealing with remainders, first add a unit remainder to any targets with 0 qty, afterwards place front to back
+    leftovers = units - tot
+    for x in range(int(leftovers)):
+        allocated = False
+        i = 0
+        while not allocated and i < len(profit_qty):
+            if not (profit_qty[i] > 0):
+                profit_qty[i] += 1
+                allocated = True
+            else:
+                i += 1
+        if not allocated:
+            profit_qty[x] += 1
+
+    # Setting TakeProfit quantities
+    prof_qty = []
+    for p in profit_qty:
+        if not coin_precision == 0:
+            p = round((float(p) * float(step)), coin_precision)
+        prof_qty.append(p)
+    profit_qty = prof_qty
+    print(profit_qty)
+
+    # Order to Sell 100% of trade if it hits STOPLOSS
+    stoploss_receipt = realclient.futures_create_order(symbol=signal.pair, side=side, type='STOP_MARKET', quantity=trade_qty, stopPrice=losstargets[0], timeInForce='GTC', reduceOnly=True)
+    # Record Pending Order
+    stop_order_receipts.append(stoploss_receipt)
+
+    # Place a take profit order for each target
+    # P is for price, T is for target
+    for p, t in zip(profit_qty, proftargets):
+        if p > 0:
+            # Place reduce order
+            receipt = realclient.futures_create_order(symbol=signal.pair, side=side, type='LIMIT', quantity=p, price=t, timeInForce='GTC', reduceOnly=True)
+            # Record orders placed
+            stop_order_receipts.append(receipt)
+        else:
+            print('Quantity too small to place order')
+            # If a target has no quantity to sell, don't place the order
+
+    # Record all orders
+    signal.conditions.orders = stop_order_receipts
+
+
+def mfutures_trade(signal, trade_size, bag_id=None):
+    futures_trade_no_orders(signal, trade_size, bag_id=bag_id)
+    futures_trade_add_orders(signal)
 
 
 def futures_trade(signal, percentage, bag_id=None):
@@ -87,9 +358,9 @@ def futures_trade(signal, percentage, bag_id=None):
         print('Low Funds')
         raise ValueError("Funds too low to take this trade")
 
-    if signal.conditions.direction == 'long':
+    if signal.conditions.direction.upper() == 'LONG':
         side = 'BUY'
-    elif signal.conditions.direction == 'short':
+    elif signal.conditions.direction.upper() == 'SHORT':
         side = 'SELL'
 
     isolated = change_margin_type(signal.conditions.mode)
@@ -109,7 +380,6 @@ def futures_trade(signal, percentage, bag_id=None):
     q = float(round_decimals_down(q, coin_precision))  # Round trade Quantities
 
     realclient.futures_change_leverage(symbol=symbol, leverage=signal.conditions.leverage)
-    print(balance*percentage)
     trade_receipt = realclient.futures_create_order(symbol=symbol, side=side, type='MARKET', quantity=q, isolated=isolated)
 
     # Move all this shit into trade_classes
@@ -127,7 +397,6 @@ def futures_trade(signal, percentage, bag_id=None):
 
     trade_qty = float(trade_receipt['origQty'])
 
-    print(signal.conditions.stoploss)
     receipt_sl = realclient.futures_create_order(symbol=symbol, side=side, type='STOP_MARKET', quantity=trade_qty, stopPrice=signal.conditions.stoploss,
                                               timeInForce='GTC', reduceOnly=True)
     signal.conditions.orders.append(receipt_sl)
@@ -135,60 +404,6 @@ def futures_trade(signal, percentage, bag_id=None):
                                               timeInForce='GTC', reduceOnly=True)
     signal.conditions.orders.append(receipt_tp)
     return signal
-
-
-def futures_trade_add_orders(receipt, conditions):
-
-    info = realclient.futures_exchange_info()['symbols'][1]
-    step_size = float(info['filters'][1]['stepSize'])
-    tick_size = float(info['filters'][0]['tickSize'])
-
-    trade_qty = float(receipt['origQty'])
-    units = trade_qty/step_size
-    loss_amount = trade_qty  # 100% of Trade
-
-    leverage = conditions.leverage
-    proftargets = conditions.proftargets
-    profit_dist = conditions.stopprof
-    profit_qty = []
-    losstargets = conditions.losstargets
-    stop_order_receipts = []
-
-    if conditions.direction == 'SHORT':
-        side = 'BUY'
-    elif conditions.direction == 'LONG':
-        side = 'SELL'
-
-    # Take profit quantities math
-    tot = 0
-    for d in profit_dist:
-        qty = float(math.floor(d * units))
-        profit_qty.append(qty)
-        tot += qty
-
-    # Dealing with remainders
-    leftovers = units - tot
-    print(leftovers)
-    for x in range(int(leftovers)):
-        profit_qty[x] += 1
-
-    # Setting TP quantities
-    prof_qty = []
-    for p in profit_qty:
-        p = float(p * step_size)
-        prof_qty.append(p)
-    print(prof_qty)
-
-    # Order to Sell 100% of trade if it hits STOPLOSS
-    stoploss_receipt = realclient.futures_create_order(symbol=symbol, side=side, type='STOP_MARKET', quantity=loss_amount, stopPrice=losstargets[0], timeInForce='GTC', reduceOnly=True)
-    stop_order_receipts.append(stoploss_receipt)
-
-    for p, t in zip(prof_qty, proftargets):
-        print(p, t)
-
-        receipt = realclient.futures_create_order(symbol=symbol, side=side, type='LIMIT', quantity=p, price=t, timeInForce='GTC', reduceOnly=True)
-        stop_order_receipts.append(receipt)
-    return stop_order_receipts
 
 
 def futures_update(sell_orders):
@@ -206,138 +421,91 @@ def futures_update(sell_orders):
                 print('Order Already Canceled')
 
 
-def mfutures_trade(signal, percentage):
-    symbol = signal.pair
-    base = 'USDT'
-    coin = symbol.replace(base, '')
-    margin = 0.99  # Allow for margin errors
-    trade_size = percentage  # Percentage of available funds to invest
-    balance = float(realclient.futures_account_balance()[1]['withdrawAvailable'])  # Get available funds
-    amount = balance * trade_size * margin  # Define investment amount
-
-    if amount < MIN_TRADE_VALUE:
-        print('Low Funds')
-        raise ValueError("Funds too low to take this trade, Balance: " + str(balance))
-
-    signal.portfolio_amount = '[' + str(amount) + '/' + str(realclient.futures_account_balance()[1]['balance']) + ']'
-
-    base_precision = 2  # Base is always usdt, futures usdt has precision 2
-    side = ''
-    if signal.conditions.direction == 'long':
-        side = 'BUY'
-    elif signal.conditions.direction == 'short':
-        side = 'SELL'
-    isolated = True
-    if signal.conditions.mode == 'cross':
-        isolated = False
-
-    coin_precision = None
-    # Get futures coin precision
-    for i in realclient.futures_exchange_info()['symbols']:
-        if i['pair'] == symbol:
-            coin_precision = i['quantityPrecision']
-            break
-
-    amount = str(float(round_decimals_down(amount, coin_precision)))  # Round Base amount
-    pair_price = float(realclient.get_symbol_ticker(symbol=symbol)['price'])  # Get coin price
-    q = float(amount) / pair_price  # Define trade quantities
-    q = float(round_decimals_down(q, coin_precision))  # Round trade Quantities
-
-    trade1_receipt = realclient.futures_create_order(symbol=symbol, side=side, type='MARKET', quantity=q, isolated=isolated)
-    trade_time = trade1_receipt['updateTime']
-
-    ''' ABOVE is the Buying part of the trade, BELOW is setting up sell orders for takeprofit and stoploss  '''
-
-    print(trade1_receipt)
-
-    info = realclient.futures_exchange_info()['symbols'][1]
-    step_size = float(info['filters'][1]['stepSize'])
-    tick_size = float(info['filters'][0]['tickSize'])
-    trade_qty = float(trade1_receipt['origQty'])
-    units = trade_qty/step_size
-    loss_amount = trade_qty  # 100% of Trade
-
-    leverage = signal.conditions.leverage
-    proftargets = signal.conditions.proftargets
-    profit_dist = signal.conditions.stopprof
-    profit_qty = []
-    losstargets = signal.conditions.losstargets
-    stop_order_receipts = []
-
-    if side == 'BUY':
-        side = 'SELL'
-    elif side == 'SELL':
-        side = 'BUY'
-
-    # Take profit quantities math
-    tot = 0
-    for d in profit_dist:
-        qty = float(math.floor(d * units))
-        profit_qty.append(qty)
-        tot += qty
-
-    # Dealing with remainders
-    leftovers = units - tot
-    print(leftovers)
-    for x in range(int(leftovers)):
-        profit_qty[x] += 1
-
-    # Setting TP quantities
-    prof_qty = []
-    for p in profit_qty:
-        p = float(p * step_size)
-        prof_qty.append(p)
-    print(prof_qty)
-
-    # Order to Sell 100% of trade if it hits STOPLOSS
-    stoploss_receipt = realclient.futures_create_order(symbol=symbol, side=side, type='STOP_MARKET', quantity=loss_amount, stopPrice=losstargets[0], timeInForce='GTC', reduceOnly=True)
-    stop_order_receipts.append(stoploss_receipt)
-
-    for p, t in zip(prof_qty, proftargets):
-        print(p, t)
-
-        receipt = realclient.futures_create_order(symbol=symbol, side=side, type='LIMIT', quantity=p, price=t, timeInForce='GTC', reduceOnly=True)
-        stop_order_receipts.append(receipt)
-    return stop_order_receipts
-
-
 def update_stoploss(new_sl, current_order):
     old_id = current_order['orderId']
     symbol = current_order['symbol']
     side = current_order['side']
     o_type = current_order['type']
-    quantity = current_order['origQty'] #TODO check if this is selling the correct quantity or if reduce_only handles it
+    quantity = current_order['origQty']
     # Remove Old stoploss order
-    realclient.futures_cancel_order(orderId=old_id,symbol=symbol)
+    realclient.futures_cancel_order(orderId=old_id, symbol=symbol)
     # Place updated stoploss order
-    return realclient.futures_create_order(symbol=symbol, side=side, type=o_type, quantity=quantity, stopPrice=new_sl, timeInForce='GTC', reduceOnly=True)
+    print('Cancled and new sl price', new_sl)
+    new_order = realclient.futures_create_order(symbol=symbol, side=side, type=o_type, quantity=quantity, stopPrice=new_sl, timeInForce='GTC', reduceOnly=True)
+    return new_order
 
 
+# Performs a multi exit futures trade, based on a signals object data
 def mfutures_update(signal):
+    # Boolean which represents an update has occured
+    changes = False
+    # Get current Orders
     stop_order_receipts = signal.conditions.orders
-    cancel_stoploss = False
-    cancel_stopprof = False
-    stopstatus = realclient.futures_get_order(orderId=stop_order_receipts[0]['orderId'], symbol=signal.pair)['status']
+
+    if signal.status == 'active':
+        # Checks if the last profit target order has completed
+        proforder = realclient.futures_get_order(orderId=stop_order_receipts[len(stop_order_receipts)-1]['orderId'], symbol=signal.pair)
+        profstatus = proforder['status']
+        if not profstatus == 'NEW':
+            signal.conditions.filled_orders.append(proforder)
+            # If all profit targets are hit, cancel the stoploss order
+            stoporder = realclient.futures_get_order(orderId=stop_order_receipts[0]['orderId'], symbol=signal.pair)
+            stopstatus = stoporder['status']
+            o_id = stoporder['orderId']
+            if stopstatus == 'NEW':
+                realclient.futures_cancel_order(orderId=o_id, symbol=signal.pair)
+
+            # Order closed because all profits hit
+            if profstatus == 'FILLED':
+                signal.status = 'stopprof'
+                signal.closed = float(proforder['stopPrice'])
+                print('W W W W W W W W w W')
+            # Order closed manually through binance
+            elif profstatus == 'EXPIRED':
+                signal.status = 'manual'
+                signal.closed = float(signal.latest)
+            changes = True
+
+        else:
+            # Check to see if any profit targets have been hit, and if they have update the stoploss to a new target
+            skipfirst = False
+            count = 0
+            for s in stop_order_receipts:
+                order = realclient.futures_get_order(orderId=s['orderId'], symbol=signal.pair)
+                if skipfirst:
+                    count += 1
+                    if order['status'] == 'FILLED':
+                        # Recording Order Details
+                        signal.conditions.filled_orders.append(order)
+                        # Removing Order from active orders
+                        for o in signal.conditions.orders:
+                            if o['orderId'] == order['orderId']:
+                                signal.conditions.orders.remove(o)
+                        print('Saved and removed an order')
+                        stop_order_receipts[0] = update_stoploss(signal.conditions.losstargets[len(signal.conditions.filled_orders)-1], stop_order_receipts[0])
+                        changes = True
+                skipfirst = True
+
+    # Checks if the stoploss target has been completed
+    stoporder = realclient.futures_get_order(orderId=stop_order_receipts[0]['orderId'], symbol=signal.pair)
+    stopstatus = stoporder['status']
     if not stopstatus == 'NEW':
-        cancel_stopprof = True
-    profstatus = realclient.futures_get_order(orderId=stop_order_receipts[len(stop_order_receipts)]['orderId'], symbol=signal.pair)['status']
-    if not profstatus == 'NEW':
-        cancel_stoploss = True
+        # Record Filled order
+        signal.conditions.filled_orders.append(stoporder)
+        # Remove order from active orders
+        for o in signal.conditions.orders:
+            if o['orderId'] == stoporder['orderId']:
+                signal.conditions.orders.remove(o)
+        # Remove the rest of active orders
+        for o in signal.conditions.orders[:]:
+            signal.conditions.orders.remove(o)
 
-    if cancel_stopprof or cancel_stoploss:
-        for s in stop_order_receipts:
-            if s['orderId'] == 'NEW':
-                realclient.futures_cancel_order(orderId=s['orderId'], symbol=signal.pair)
-    else:
-        skipfirst = False
-        count = 0
-        for s in stop_order_receipts:
-            if skipfirst:
-                count += 1
-                if s['orderId'] == 'Filled':
-                    stop_order_receipts[0] = update_stoploss(signal.conditions.losstargets[count], stop_order_receipts[0])
-            skipfirst = True
-
+        if signal.status == 'active':
+            signal.status = 'stoploss'
+            signal.closed = float(stoporder['stopPrice'])
+            print('Stopping ', signal.pair, ' at stopPrice:', signal.closed)
+        changes = True
+    return changes
 
 # Performs a percentage market trade of any spot coin, using BTC or USDT as the base
 def market_trade(signal, percentage, buying):
@@ -459,6 +627,26 @@ def datetimenow():
     return server_time
 
 
+def percentage_diff(past, future, lev, direction):
+    if future == '0':
+        return '0'
+    percentage = str(abs((float(future) - float(past)) / float(future) * 100 * int(lev)))
+    if percentage == '0':
+        return percentage
+    percentage = str(round(float(percentage), 2))
+    if direction == 'LONG':
+        if future > past:
+            percentage = '\033[92m' + percentage + '%' + '\033[0m'
+        else:
+            percentage = '\033[91m' + '-' + percentage + '%' + '\033[0m'
+    if direction == 'SHORT':
+        if future > past:
+            percentage = '\033[91m' + '-' + percentage + '%' + '\033[0m'
+        else:
+            percentage = '\033[92m' + percentage + '%' + '\033[0m'
+    return percentage
+
+
 # Print out a viewable snapshot of current futures account state
 def futures_snapshot():
     # get futures info
@@ -467,30 +655,26 @@ def futures_snapshot():
 
     for t in tangibles:
         if float(t["balance"]) > 0:
-            print(t['asset'], "Balance: ", t['balance'])
+            print(str('\n' + t['asset']), "Balance: ", t['balance'])
             if 'withdrawAvailable' in t:
                 perc_withdraw = float(t['withdrawAvailable']) / float(t['balance']) * 100
                 print('   Avaliable: ', t["withdrawAvailable"], '\033[94m', round(perc_withdraw, 2), '%', '\033[0m')
 
+    pos = '\n---------------------'
+
     # get futures positions
     positions = realclient.futures_position_information()
     for p in positions:
-        if (float(p['positionAmt']) > 0) or (float(p['positionAmt']) < 0):
-            # print(p)
-            # Determine if position is in profit or loss
-            gain = True
-            if float(p['unRealizedProfit']) < 0:
-                gain = False
-
+        direction = None
+        if float(p['positionAmt']) > 0:
+            direction = 'LONG'
+        elif float(p['positionAmt']) < 0:
+            direction = 'SHORT'
+        if direction:
             # Calculate percentage profit or loss
-            percentage = str(abs((float(p['markPrice']) - float(p['entryPrice'])) / float(p['markPrice']) * 100 * int(
-                p['leverage'])))
-            if gain:
-                percentage = '\033[92m' + percentage + '\033[0m'
-            elif not gain:
-                percentage = '\033[91m' + '-' + percentage + '\033[0m'
+            percentage = percentage_diff(p['entryPrice'], p['markPrice'], p['leverage'], direction)
 
-            pos = "\nPair: " + p['symbol']
+            pos += "\nPair: " + p['symbol']
 
             if p['marginType'] == 'isolated':
                 staked_and_pnl = float(p['isolatedWallet']) + float(p['unRealizedProfit'])
@@ -500,7 +684,8 @@ def futures_snapshot():
                 pos += "\nStaked: " + str(staked)
                 staked_and_pnl = staked + float(p['unRealizedProfit'])
             else:
-                print("Problem checking margin Type")
+                raise ValueError('Unexpected margin Type')
+
             pos += "\nCurrent: " + str(staked_and_pnl)
             pos += "\n\nAmount: " + p['positionAmt']
             pos += "\nEntry: " + p['entryPrice']
@@ -508,11 +693,53 @@ def futures_snapshot():
             pos += "\nLeverage: " + p['leverage']
 
             pos += "\n\nPNL: " + p['unRealizedProfit']
-            pos += "\nPNL Percent: " + str(percentage) + ' %'
-            pos += "\nStop Loss: " + "gotta add that shit"
-            pos += "\nTake Profit: " + "repeat above"
+            pos += "\nPNL Percent: " + str(percentage)
+
+            open_orders = realclient.futures_get_open_orders()
+            position_orders = []
+            for o in open_orders:
+                if o['symbol'] == p['symbol']:
+                    position_orders.append(o)
+
+            takeprofit = ''
+            stoploss = ''
+            for o in position_orders:
+                if o['origType'] == 'STOP_MARKET':
+                    stoploss = str(o['stopPrice']) + '  [' + percentage_diff(p['entryPrice'], o['stopPrice'], p['leverage'], direction)+']'
+                elif o['origType'] == 'LIMIT':
+                    takeprofit += '\n' + str(o['price']) + '  [' + percentage_diff(p['entryPrice'], o['price'], p['leverage'], direction)+']'
+
+            pos += "\n\nTake Profits: " + str(takeprofit)
+            pos += "\nStop Loss: " + str(stoploss) + '\n'
+
             pos += "\nLIQ: " + p['liquidationPrice']
             pos += "\nType: " + p['marginType']
             pos += "\n---------------------"
             retstring += pos
-        return retstring
+    return retstring
+
+
+def close_all_futures():
+    orders = realclient.futures_get_open_orders()
+    print('Canceling Orders...')
+    for o in orders:
+        o_id = o['orderId']
+        o_sym = o['symbol']
+        try:
+            realclient.futures_cancel_order(orderId=o_id, symbol=o_sym)
+        except Exception as e:
+            print(e)
+
+    print('Reducing Positions...')
+    positions = realclient.futures_position_information()
+    for p in positions:
+        if (float(p['positionAmt']) > 0) or (float(p['positionAmt']) < 0):
+            amount = float(p['positionAmt'])
+            if amount < 0:
+                side = 'BUY'
+            elif amount > 0:
+                side = 'SELL'
+
+            amount = float(str(p['positionAmt']).replace('-', ''))
+            realclient.futures_create_order(symbol=p['symbol'], side=side, type='MARKET', quantity=amount, reduceOnly=True)
+    print('Clean Futures Account')

@@ -288,3 +288,63 @@ module 'fake_trade' has no attribute 'spot_trade'
 __________________________
 module 'fake_trade' has no attribute 'spot_trade'
 
+💱 Buy #MATIC/BTC
+❇️ Buy Price: 0.00003145 
+☑️ Sell Price: 0.00003208 +2.00%
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+💱 Buy #MATIC/BTC
+❇️ Buy Price: 0.00003145 
+☑️ Sell Price: 0.00003208 +2.00%
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+💱 Buy #AVAX/BTC
+❇️ Buy Price: 0.00141171 
+☑️ Sell Price: 0.00143994 +2.00%
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+💱 Buy #AVAX/BTC
+❇️ Buy Price: 0.00141171 
+☑️ Sell Price: 0.00143994 +2.00%
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+💱 Buy #QTUM/BTC
+❇️ Buy Price: 0.00025976 
+☑️ Sell Price: 0.00026496 +2.00%
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+💱 Buy #QTUM/BTC
+❇️ Buy Price: 0.00025976 
+☑️ Sell Price: 0.00026496 +2.00%
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+💱 Buy #ZEN/BTC
+❇️ Buy Price: 0.00148248 
+☑️ Sell Price: 0.00151213 +2.00%
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+💱 Buy #ZEN/BTC
+❇️ Buy Price: 0.00148248 
+☑️ Sell Price: 0.00151213 +2.00%
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+💱 Buy #RUNE/BTC
+❇️ Buy Price: 0.00019479 
+☑️ Sell Price: 0.00019869 +2.00%
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+💱 Buy #RUNE/BTC
+❇️ Buy Price: 0.00019479 
+☑️ Sell Price: 0.00019869 +2.00%
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
