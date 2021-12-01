@@ -16,7 +16,6 @@ import os
 from trade_classes import Trade, Futures, MFutures
 from fake_portfolio import Folio, Folios
 import msg_vip_signals
-import always_win
 import binance_wrap
 import trade_stream
 import fake_trade
@@ -53,9 +52,8 @@ if local:
 
 else:
     # Hosted Telegram Session
-    stringsesh = '1BVtsOJEBuw5_wjvpcl72vb_KFrG6S54BY6H3WHfV8_Xg4j-z21Bm34P5NiqO98MifyYN9bF4ZqCeGgGhgZdC87nZHxhSBzQ3IgVXyzmZTkqMRayUaq_KbFDltzfyy-ykgG6re7H7Hey6EC9lxSTSKVYiiCevlD5Kie35HM7pDRXd-UVDlcI4atjQlqnnYW5QN1lKcbzPk5mHGCCHf8sti38OeDQU94y4x13OmqBa6K9U8skO8WAFLaDQ3silE1wdKRhwV0ssfoqtxxacJnCRIYdM1C9qV_3mOkCpUs0J4X7629b3AxCVgdRlE-ypQX4B9rhQpk9AWozKV118eMfDhOW4I5Bzz-k='
+    stringsesh = '1BVtsOJEBuzPKndfyOcR8Db9PCaurB8JH7jyBTy8H2ur2WZMoPlqEki0GOPEfgnWjXptA40uN1OK3QL8yGCF4CEWbfsBdUvk1b8zhdo0ZF42vSNKgyz6mrupuEKZ9OmQxgXWSHx66vjM70le782D-z8dnreaVxmmSsrMxkU3GCjyQE2fHRZZp2-9njfZMNAVczYimmK2QzHhvvFHpDxXBgJ4WxZp3hg5FICpBo05fy7xc9Y5xV_ZZpRwwixjy0iZOo8o1ZbvLx7AFC8g-RvFWYHK8ZJVJcjp8KyXc95tBQxtdDbRv6EDxVUEQROLH5C5apM9laK-pZQp_LUc5FiGX_nT0iRBrVg4='
     # Stream Commands Heroku Hosted
-    #Backup:1BVtsOJEBuzPKndfyOcR8Db9PCaurB8JH7jyBTy8H2ur2WZMoPlqEki0GOPEfgnWjXptA40uN1OK3QL8yGCF4CEWbfsBdUvk1b8zhdo0ZF42vSNKgyz6mrupuEKZ9OmQxgXWSHx66vjM70le782D-z8dnreaVxmmSsrMxkU3GCjyQE2fHRZZp2-9njfZMNAVczYimmK2QzHhvvFHpDxXBgJ4WxZp3hg5FICpBo05fy7xc9Y5xV_ZZpRwwixjy0iZOo8o1ZbvLx7AFC8g-RvFWYHK8ZJVJcjp8KyXc95tBQxtdDbRv6EDxVUEQROLH5C5apM9laK-pZQp_LUc5FiGX_nT0iRBrVg4=
     STOP = '/stop!'
     STREAM = '/stream!'
     RESTART = '/restart!'
@@ -107,33 +105,9 @@ async def StartTelegramForwarding():
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
 
         if sender_id == "1548802426":                           # Always Win, Signal
-            valid = always_win.valid_trade_message(message)
-            if valid:
-                try:
-                    aw = always_win.bag(message)
-                    utility.add_message('Always Win', '[X]')
-                    await trade_stream.addtrade(aw)
-                except Exception as e:
-                    utility.failed_message(message, 'Always Win', e, '_failed.txt')
-                    utility.add_message('Always Win', '[-]')
-            else:
-                try:
-                    valid2 = always_win.valid_trade_message(message)
-                except ValueError:
-                    print("Problem with PreSignal Validation")
-                if valid2:
-                    print("PreSignal Message")
-
+            pass
         if chat.id == 1312345502:                               # Vip Signals, Signal
-            valid = msg_vip_signals.valid_trade_message(message)
-            if valid:
-                try:
-                    vip = msg_vip_signals.bag(message)
-                    utility.add_message('Vip Signals', '[X]')
-                    await trade_stream.addtrade(vip)
-                except Exception as e:
-                    utility.failed_message(message, 'Vip Signals', e, '_failed.txt')
-                    utility.add_message('Vip Signals', '[-]')
+            pass
 
         elif chat.id == 1248393106:                             # HIRN, Signal
             valid = hirn.valid_trade_message(message)
@@ -153,17 +127,6 @@ async def StartTelegramForwarding():
                 except Exception as e:
                     utility.failed_message(message, 'Hirn', e, '_failed.txt')
                     utility.add_message('Hirn', '[-]')
-
-        elif sender_id == "1350854897":                         # Futures Signals, Signal
-            valid = futures_signals.valid_trade_message(message)
-            if valid:
-                try:
-                    futsig = futures_signals.bag(message)
-                    utility.add_message('Futures Signals', '[X]')
-                    await trade_stream.addtrade(futsig)
-                except Exception as e:
-                    utility.failed_message(message, 'Futures Signals', e, '_failed.txt')
-                    utility.add_message('Futures Signals', '[-]')
         # ___________________________________________________________________________________________________
 
         elif chat.id == 1899129008:  # Telegram Bot
@@ -224,20 +187,6 @@ async def StartTelegramForwarding():
                 proftargets = [3475, 3480, 3490, 3500, 3510]
                 sigal.conditions = MFutures(stoploss, loss_targets, stopprof, proftargets, 'long', '1', 'isolation')
                 binance_wrap.mfutures_trade(sigal, 1)
-
-            elif message == ALWAYS_WIN_SIGNAL:
-                with open('docs/aw_example.txt', encoding="utf8") as f:
-                    msg = f.read()
-                    valid = always_win.valid_trade_message(msg)
-                    if valid:
-                        aw = always_win.bag(msg)
-                        await trade_stream.addtrade(aw)
-                    else:
-                        print('notval id')
-            elif message == PRE_AW:
-                with open('docs/pre_aw_example.txt', encoding="utf8") as f:
-                    msg = f.read()
-                    always_win.valid_trade_message_2(msg)
 
             elif NEW_PORTFOLIO in message:
                 split = message.split(' ')

@@ -55,13 +55,13 @@ def get_binance_client():
     r_api_key = 'GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  # Put your own api keys here
     r_api_secret = 'gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032'
 
-    # Ellas Binance Acc
-    r_api_key = 'lQaHpUmEKPEDpquVPpF9WkKfiUNGl6jf6XGTQ6K6KSOOZaa70xN9qbUK3A5Q10DX'
-    r_api_secret = 'gxLJI8vbMonUHkIDHIBRnQkDrkEKXPz0xOdHHNDYGRSelwqJTjytt2REDKY1zxyG'
-
     # Dads Binance Acc
     r_api_key = 'hWQABbUYYwhonkS6FN8LtCr7QRhtAsj1IwbpbuXWGhbdHn9nRbVe5tZDzyMQrfsp'
     r_api_secret = 'G9HH87QyzZtjmUUjfAxsQQJkcDLOwGRCiL3oyL85p7IoBeKD68JMwjPxmBl3Fm6K'
+
+    # Ellas Binance Acc
+    r_api_key = 'lQaHpUmEKPEDpquVPpF9WkKfiUNGl6jf6XGTQ6K6KSOOZaa70xN9qbUK3A5Q10DX'
+    r_api_secret = 'gxLJI8vbMonUHkIDHIBRnQkDrkEKXPz0xOdHHNDYGRSelwqJTjytt2REDKY1zxyG'
 
     # Binance Client Object
     realclient = Client(r_api_key, r_api_secret)
