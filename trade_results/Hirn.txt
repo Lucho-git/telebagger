@@ -262,3 +262,51 @@ Result Window: 398 | 398[+ 0.0%] | 368.51815[- 74.08%]
 
 _________________________________
 
+KNCUSDT | 1636953360825
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-11-15  13:16 | 2021-11-15  20:00
+Duration: 6.73 hrs
+================================
+Pricechange: + 20.48%
+Buy Price: 1.891 |  Sell Price: 1.9297278
+Result Window: 1.891 | 1.869[- 11.63%] | 1.74999825[- 74.56%]
+
+_________________________________
+
+KNCUSDT | 1636953373884
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-11-15  13:16 | 2021-11-15  20:00
+Duration: 6.73 hrs
+================================
+Pricechange: + 22.1%
+Buy Price: 1.888 |  Sell Price: 1.9297278
+Result Window: 1.888 | 1.869[- 10.06%] | 1.74999825[- 73.09%]
+
+_________________________________
+
+SXPUSDT | 1637050484876
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-11-16  16:14 | 2021-11-16  16:21
+Duration: 0.1 hrs
+================================
+Pricechange: + 17.02%
+Buy Price: 2.811 |  Sell Price: 2.858856
+Result Window: 2.811 | 2.803[- 2.85%] | 2.59259[- 77.7%]
+
+_________________________________
+
+SXPUSDT | 1637050498310
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2021-11-16  16:14 | 2021-11-16  16:21
+Duration: 0.1 hrs
+================================
+Pricechange: + 12.34%
+Buy Price: 2.824 |  Sell Price: 2.858856
+Result Window: 2.824 | 2.803[- 7.44%] | 2.59259[- 81.94%]
+
+_________________________________
+

@@ -6,7 +6,7 @@ import re
 from binance.client import Client
 from fake_portfolio import Folio, Folios
 
-local = [False]
+local = [True]
 
 config = {  # initialising database connection
     "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
@@ -20,6 +20,8 @@ config = {  # initialising database connection
 }
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
+unique_id = 'heroku'  # heroku, lach, tom, cozza
+
 
 FAILED_MESSAGES_L = 'trade_results/failed_messages/'
 ADD_MESSAGE_L = 'trade_results/message_count/'
@@ -38,12 +40,12 @@ if local[0]:
     RESULTS = "trade_results/juice/"  # Path
 else:
     # Heroku Version
-    FAILED_MESSAGES = "heroku/trade_results/failed_messages/"  # Filepath
-    ADD_MESSAGE = "heroku/trade_results/message_count/"  # Filepath
-    SAVE_STREAM = "heroku/save_data/savefile"  # Path and file
-    SAVE_FOLIO = "heroku/save_data/savefolios"  # Path and file
-    SAVE_TRADE = "heroku/trade_results/"  # Path
-    RESULTS = "heroku/trade_results/juice/"  # Path
+    FAILED_MESSAGES = unique_id + "/trade_results/failed_messages/"  # Filepath
+    ADD_MESSAGE = unique_id + "/trade_results/message_count/"  # Filepath
+    SAVE_STREAM = unique_id + "/save_data/savefile"  # Path and file
+    SAVE_FOLIO = unique_id + "/save_data/savefolios"  # Path and file
+    SAVE_TRADE = unique_id + "/trade_results/"  # Path
+    RESULTS = unique_id + "/trade_results/juice/"  # Path
 
 
 def get_binance_client():
@@ -52,6 +54,10 @@ def get_binance_client():
     # Lachs Binance Acc
     r_api_key = 'GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  # Put your own api keys here
     r_api_secret = 'gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032'
+
+    # Ellas Binance Acc
+    r_api_key = 'lQaHpUmEKPEDpquVPpF9WkKfiUNGl6jf6XGTQ6K6KSOOZaa70xN9qbUK3A5Q10DX'
+    r_api_secret = 'gxLJI8vbMonUHkIDHIBRnQkDrkEKXPz0xOdHHNDYGRSelwqJTjytt2REDKY1zxyG'
 
     # Dads Binance Acc
     r_api_key = 'hWQABbUYYwhonkS6FN8LtCr7QRhtAsj1IwbpbuXWGhbdHn9nRbVe5tZDzyMQrfsp'

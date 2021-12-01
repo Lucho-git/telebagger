@@ -233,14 +233,23 @@ class Trade:
 
                 amountleft = starting_amount
                 tradeamounts = 0
+                tradetotal = 0
 
                 for f in filled:
                     reduce = float(f['executedQty'])
                     amountleft = amountleft - reduce
-                    tradeamount = self.percent_diff(f['avgPrice']) * (reduce/starting_amount)
+                    if self.conditions.direction.upper == 'LONG':
+                        actual_dollar_value = reduce * (f['avgPrice'] - self.price)
+                        tradetotal += actual_dollar_value
+                    elif self.conditions.direction.upper == 'SHORT':
+                        actual_dollar_value = reduce * (self.price - f['avgPrice'])
+
+                    diff = self.percent_diff(f['avgPrice'])
+                    trade_percentage = reduce/starting_amount
+                    tradeamount = diff * trade_percentage
                     tradeamounts += tradeamount
-                    trade_log += 'Sold ' + str(reduce) + ' [' + str(round((reduce/starting_amount*100),2)) + '%] of ' + self.pair + ' for ' + f['avgPrice'] + ' [' + str(round(tradeamount, 2)) + '%]\n'
-                trade_log += 'Overall Sold [' + str(starting_amount-amountleft) + '/' + str(starting_amount) + '] with a Price difference of ' + str(round(tradeamounts, 2)) + '\n'
+                    trade_log += 'Sold ' + str(reduce) + ' [' + str(round((reduce/starting_amount*100),2)) + '%] of ' + self.pair + ' for ' + f['avgPrice'] + ' [' + str(round(tradeamount, 2)) + '%]  $' + str(actual_dollar_value) + ''\n'
+                trade_log += 'Overall Sold [' + str(starting_amount-amountleft) + '/' + str(starting_amount) + '] with a Price difference of ' + str(round(tradeamounts, 2)) + '  [$' + str(tradetotal) + '\n'
 
                 self.conditions.amount_left = round(amountleft/starting_amount * 100, 2)
                 self.conditions.trade_amounts = round(tradeamounts, 2)
