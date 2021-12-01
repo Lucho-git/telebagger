@@ -248,7 +248,7 @@ class Trade:
                     trade_percentage = reduce/starting_amount
                     tradeamount = diff * trade_percentage
                     tradeamounts += tradeamount
-                    trade_log += 'Sold ' + str(reduce) + ' [' + str(round((reduce/starting_amount*100),2)) + '%] of ' + self.pair + ' for ' + f['avgPrice'] + ' [' + str(round(tradeamount, 2)) + '%]  $' + str(actual_dollar_value) + ''\n'
+                    trade_log += 'Sold ' + str(reduce) + ' [' + str(round((reduce/starting_amount*100),2)) + '%] of ' + self.pair + ' for ' + f['avgPrice'] + ' [' + str(round(tradeamount, 2)) + '%]  $' + str(actual_dollar_value) + '\n'
                 trade_log += 'Overall Sold [' + str(starting_amount-amountleft) + '/' + str(starting_amount) + '] with a Price difference of ' + str(round(tradeamounts, 2)) + '  [$' + str(tradetotal) + '\n'
 
                 self.conditions.amount_left = round(amountleft/starting_amount * 100, 2)
