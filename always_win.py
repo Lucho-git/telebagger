@@ -9,7 +9,7 @@ AW_STOPLOSS_REDUCTION = 0.75
 AW_LEV = 10
 AW_WAIT_SIGNAL = [None]
 AW_WAIT_SIGNAL_REAL = [None]
-AW_REAL = [True]
+AW_REAL = [False]
 
 
 def add_real_orders(info):
