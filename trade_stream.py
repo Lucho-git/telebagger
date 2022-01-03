@@ -4,7 +4,6 @@ from trade_classes import Trade, Futures
 import asyncio
 import time
 import utility
-from utility import Sleeper
 import binance_wrap
 
 twm = ThreadedWebsocketManager()
@@ -42,8 +41,7 @@ def coin_trade_data(msg):
         key = stream['symbol'].lower() + '@' + e + '_' + i
 
         for u in streamdict[key]:
-            if u.receipt:
-                binance_wrap.futures_update(u.conditions.orders)
+            # updates trade every minute
             u.update_trade(stream)
             u.update_snapshot(stream)
             if not u.status == 'active':

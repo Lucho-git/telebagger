@@ -372,3 +372,87 @@ module 'fake_trade' has no attribute 'spot_trade'
 __________________________
 module 'fake_trade' has no attribute 'spot_trade'
 
+/hirn
+__________________________
+change_margin_type() missing 1 required positional argument: 'symbol'
+
+/hirn
+__________________________
+'Futures' object has no attribute 'filled_orders'
+
+/hirn
+__________________________
+'Futures' object has no attribute 'filled_orders'
+
+/hirn
+__________________________
+APIError(code=-1111): Precision is over the maximum defined for this asset.
+
+/hirn
+__________________________
+APIError(code=-1111): Precision is over the maximum defined for this asset.
+
+/hirn
+__________________________
+APIError(code=-1111): Precision is over the maximum defined for this asset.
+
+/hirn
+__________________________
+APIError(code=-1102): A mandatory parameter was not sent, was empty/null, or malformed.
+
+/hirn
+__________________________
+APIError(code=-1102): A mandatory parameter was not sent, was empty/null, or malformed.
+
+/hirn
+__________________________
+APIError(code=-1102): A mandatory parameter was not sent, was empty/null, or malformed.
+
+/hirn
+__________________________
+APIError(code=-1111): Precision is over the maximum defined for this asset.
+
+/hirn
+__________________________
+APIError(code=-1111): Precision is over the maximum defined for this asset.
+
+/hirn
+__________________________
+APIError(code=-1111): Precision is over the maximum defined for this asset.
+
+/hirn
+__________________________
+APIError(code=-1111): Precision is over the maximum defined for this asset.
+
+/hirn
+__________________________
+'NoneType' object has no attribute 'start_trade'
+
+/hirn
+__________________________
+'NoneType' object has no attribute 'start_trade'
+
+/hirn
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+/hirn
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+/hirn
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+/hirn
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+/hirn
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+
+/hirn
+__________________________
+module 'fake_trade' has no attribute 'spot_trade'
+

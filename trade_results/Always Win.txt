@@ -530,3 +530,45 @@ _________________________________
 None
 _________________________________
 
+ONEUSDT | 1641116340278
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2022-01-02  17:39 | 2022-01-02  20:26
+Duration: 2.78 hrs
+================================
+Pricechange: 1042.7222343761396
+Buy Price: 0.27426 |  Sell Price: 0.2757
+Result Window: 0.27426 | 0.26749[+ 24.68%] | 0.264[+ 37.41%]
+
+Selling 65% of ONEUSDT for 1607.02%  |  TotalValue: 1044.559906657916%
+Selling 35% of ONEUSDT for -5.25%  |  TotalValue: 1042.7222343761396%
+_________________________________
+
+ONEUSDT | 1641116340278
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2022-01-02  17:39 | 2022-01-02  22:51
+Duration: 5.2 hrs
+================================
+Pricechange: 1042.7222343761396
+Buy Price: 0.27426 |  Sell Price: 0.2757
+Result Window: 0.27426 | 0.27148[+ 10.14%] | 0.264[+ 37.41%]
+
+Selling 65% of ONEUSDT for 1607.02%  |  TotalValue: 1044.559906657916%
+Selling 35% of ONEUSDT for -5.25%  |  TotalValue: 1042.7222343761396%
+_________________________________
+
+ONEUSDT | 1641116340278
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2022-01-02  17:39 | 2022-01-02  22:54
+Duration: 5.25 hrs
+================================
+Pricechange: 1042.7222343761396
+Buy Price: 0.27426 |  Sell Price: 0.2757
+Result Window: 0.27426 | 0.27148[+ 10.14%] | 0.264[+ 37.41%]
+
+Selling 65% of ONEUSDT for 1607.02%  |  TotalValue: 1044.559906657916%
+Selling 35% of ONEUSDT for -5.25%  |  TotalValue: 1042.7222343761396%
+_________________________________
+

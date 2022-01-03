@@ -453,3 +453,45 @@ Selling 50% of SANDUSDT for 6.18%  |  TotalValue: 3.0904196989333355%
 Selling 50% of SANDUSDT for -20.4%  |  TotalValue: -7.111288339480897%
 _________________________________
 
+ONEUSDT | 1641116335474
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2022-01-02  17:38 | 2022-01-02  20:26
+Duration: 2.78 hrs
+================================
+Pricechange: 800.794779248241
+Buy Price: 0.27429 |  Sell Price: 0.2757
+Result Window: 0.27429 | 0.26749[+ 24.79%] | 0.264[+ 37.52%]
+
+Selling 50% of ONEUSDT for 1606.73%  |  TotalValue: 803.3650515877357%
+Selling 50% of ONEUSDT for -5.14%  |  TotalValue: 800.794779248241%
+_________________________________
+
+ONEUSDT | 1641116335474
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2022-01-02  17:38 | 2022-01-02  22:51
+Duration: 5.2 hrs
+================================
+Pricechange: 800.794779248241
+Buy Price: 0.27429 |  Sell Price: 0.2757
+Result Window: 0.27429 | 0.27148[+ 10.24%] | 0.264[+ 37.52%]
+
+Selling 50% of ONEUSDT for 1606.73%  |  TotalValue: 803.3650515877357%
+Selling 50% of ONEUSDT for -5.14%  |  TotalValue: 800.794779248241%
+_________________________________
+
+ONEUSDT | 1641116335474
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2022-01-02  17:38 | 2022-01-02  22:54
+Duration: 5.25 hrs
+================================
+Pricechange: 800.794779248241
+Buy Price: 0.27429 |  Sell Price: 0.2757
+Result Window: 0.27429 | 0.27148[+ 10.24%] | 0.264[+ 37.52%]
+
+Selling 50% of ONEUSDT for 1606.73%  |  TotalValue: 803.3650515877357%
+Selling 50% of ONEUSDT for -5.14%  |  TotalValue: 800.794779248241%
+_________________________________
+

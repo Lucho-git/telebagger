@@ -1329,3 +1329,80 @@ Buy Price: 2.824 |  Sell Price: 2.858856
 Result Window: 2.824 | 2.803[- 7.44%] | 2.59259[- 81.94%]
 
 
+ONEUSDT | 1641116340278
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2022-01-02  17:39 | 2022-01-02  20:26
+Duration: 2.78 hrs
+================================
+Pricechange: 1042.7222343761396
+Buy Price: 0.27426 |  Sell Price: 0.2757
+Result Window: 0.27426 | 0.26749[+ 24.68%] | 0.264[+ 37.41%]
+
+
+ONEUSDT | 1641116335474
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2022-01-02  17:38 | 2022-01-02  20:26
+Duration: 2.78 hrs
+================================
+Pricechange: 800.794779248241
+Buy Price: 0.27429 |  Sell Price: 0.2757
+Result Window: 0.27429 | 0.26749[+ 24.79%] | 0.264[+ 37.52%]
+
+
+ONEUSDT | 1641116340278
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2022-01-02  17:39 | 2022-01-02  22:51
+Duration: 5.2 hrs
+================================
+Pricechange: 1042.7222343761396
+Buy Price: 0.27426 |  Sell Price: 0.2757
+Result Window: 0.27426 | 0.27148[+ 10.14%] | 0.264[+ 37.41%]
+
+
+ONEUSDT | 1641116335474
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2022-01-02  17:38 | 2022-01-02  22:51
+Duration: 5.2 hrs
+================================
+Pricechange: 800.794779248241
+Buy Price: 0.27429 |  Sell Price: 0.2757
+Result Window: 0.27429 | 0.27148[+ 10.24%] | 0.264[+ 37.52%]
+
+
+ONEUSDT | 1641116340278
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2022-01-02  17:39 | 2022-01-02  22:54
+Duration: 5.25 hrs
+================================
+Pricechange: 1042.7222343761396
+Buy Price: 0.27426 |  Sell Price: 0.2757
+Result Window: 0.27426 | 0.27148[+ 10.14%] | 0.264[+ 37.41%]
+
+
+ONEUSDT | 1641116335474
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2022-01-02  17:38 | 2022-01-02  22:54
+Duration: 5.25 hrs
+================================
+Pricechange: 800.794779248241
+Buy Price: 0.27429 |  Sell Price: 0.2757
+Result Window: 0.27429 | 0.27148[+ 10.24%] | 0.264[+ 37.52%]
+
+
+QTUMUSDT | 1641200861785
+Status: MANUAL
+Origin: Hirn
+TimeStarted: 2022-01-03  17:07 | 2022-01-03  17:09
+Duration: 0.02 hrs
+================================
+Pricechange: - 1.17%
+Buy Price: 9.376 |  Sell Price: 9.365
+Result Window: 9.376 | 9.359[- 1.81%] | 9.373[- 0.32%]
+
+

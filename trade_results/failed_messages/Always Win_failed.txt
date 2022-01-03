@@ -164,3 +164,16 @@ SL 1.2
 __________________________
 Funds too low to take this trade, Balance: 18.5622105
 
+LUNA/USDT SHORT 🛑
+Leverage 20x
+Entries 91.8
+Target 1 90.4
+Target 2 88.1
+Target 3 84.9
+Target 4 70.0
+Target 5 60.0
+
+SL 98.5
+__________________________
+'NoneType' object has no attribute 'start_trade'
+

@@ -45,6 +45,7 @@ if local:
     UPDATE2 = '/update2'
     PRE_AW = '/pre_aw'
     ALWAYS_WIN_SIGNAL = '/aw'
+    HIRN_SIGNAL = '/hirn'
     NEW_PORTFOLIO = '/newport'
     CLEAR_PORTFOLIOS = '/clear_folios'
     DISPLAY_PORTFOLIOS = '/display_folios'
@@ -55,7 +56,7 @@ else:
     # Hosted Telegram Session
     stringsesh = '1BVtsOJEBuw5_wjvpcl72vb_KFrG6S54BY6H3WHfV8_Xg4j-z21Bm34P5NiqO98MifyYN9bF4ZqCeGgGhgZdC87nZHxhSBzQ3IgVXyzmZTkqMRayUaq_KbFDltzfyy-ykgG6re7H7Hey6EC9lxSTSKVYiiCevlD5Kie35HM7pDRXd-UVDlcI4atjQlqnnYW5QN1lKcbzPk5mHGCCHf8sti38OeDQU94y4x13OmqBa6K9U8skO8WAFLaDQ3silE1wdKRhwV0ssfoqtxxacJnCRIYdM1C9qV_3mOkCpUs0J4X7629b3AxCVgdRlE-ypQX4B9rhQpk9AWozKV118eMfDhOW4I5Bzz-k='
     # Stream Commands Heroku Hosted
-    #Backup:1BVtsOJEBuzPKndfyOcR8Db9PCaurB8JH7jyBTy8H2ur2WZMoPlqEki0GOPEfgnWjXptA40uN1OK3QL8yGCF4CEWbfsBdUvk1b8zhdo0ZF42vSNKgyz6mrupuEKZ9OmQxgXWSHx66vjM70le782D-z8dnreaVxmmSsrMxkU3GCjyQE2fHRZZp2-9njfZMNAVczYimmK2QzHhvvFHpDxXBgJ4WxZp3hg5FICpBo05fy7xc9Y5xV_ZZpRwwixjy0iZOo8o1ZbvLx7AFC8g-RvFWYHK8ZJVJcjp8KyXc95tBQxtdDbRv6EDxVUEQROLH5C5apM9laK-pZQp_LUc5FiGX_nT0iRBrVg4=
+    # Backup:1BVtsOJEBuzPKndfyOcR8Db9PCaurB8JH7jyBTy8H2ur2WZMoPlqEki0GOPEfgnWjXptA40uN1OK3QL8yGCF4CEWbfsBdUvk1b8zhdo0ZF42vSNKgyz6mrupuEKZ9OmQxgXWSHx66vjM70le782D-z8dnreaVxmmSsrMxkU3GCjyQE2fHRZZp2-9njfZMNAVczYimmK2QzHhvvFHpDxXBgJ4WxZp3hg5FICpBo05fy7xc9Y5xV_ZZpRwwixjy0iZOo8o1ZbvLx7AFC8g-RvFWYHK8ZJVJcjp8KyXc95tBQxtdDbRv6EDxVUEQROLH5C5apM9laK-pZQp_LUc5FiGX_nT0iRBrVg4=
     STOP = '/stop!'
     STREAM = '/stream!'
     RESTART = '/restart!'
@@ -107,6 +108,7 @@ async def StartTelegramForwarding():
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
 
         if sender_id == "1548802426":                           # Always Win, Signal
+            await client.send_message(1576065688, event.message)
             valid = always_win.valid_trade_message(message)
             if valid:
                 try:
@@ -186,7 +188,7 @@ async def StartTelegramForwarding():
                 await trade_stream.stopstream()
 
             # Testing Stubs, To be removed at a later stage
-            elif message == '/hirn!':
+            elif message == HIRN_SIGNAL:
                 with open('docs/hirn_example.txt', encoding="utf8") as f:
                     msg = f.read()
                     valid = hirn.valid_trade_message(msg)

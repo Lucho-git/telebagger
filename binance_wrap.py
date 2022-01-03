@@ -11,6 +11,18 @@ MIN_TRADE_VALUE = 10
 realclient = utility.get_binance_client()
 
 
+# Get futures balance
+def get_futures_balance():
+    # Retrieve futures balance
+    balance = None
+    balances = realclient.futures_account_balance()
+    for b in balances:
+        if b['asset'] == 'USDT':
+            balance = float(b['withdrawAvailable'])
+            print('Balance = ', balance)
+    return balance
+
+
 # Rounds a decimal value down, to account for binance precision values
 def round_decimals_down(number: float, decimals: int = 2):
     if not isinstance(decimals, int):
@@ -67,7 +79,14 @@ def get_price_precision(symbol):
 
 def no_liquidate(signal):
     price = signal.price
-    current_sl = signal.conditions.losstargets[0]
+    if signal.type == 'mfutures':
+        current_sl = signal.conditions.losstargets[0]
+    elif signal.type == 'futures':
+        current_sl = signal.conditions.stoploss
+    else:
+        print("Can't Identify Signal Type")
+        current_sl = 0
+
     for f in realclient.futures_exchange_info()['symbols']:
         if f['pair'] == signal.pair:
             price_precision = f['pricePrecision']
@@ -199,12 +218,7 @@ def futures_trade_no_orders(signal, trade_size, bag_id=None):
         trade_size = 0.99
 
     # Retrieve futures balance
-    balance = None
-    balances = realclient.futures_account_balance()
-    for b in balances:
-        if b['asset'] == 'USDT':
-            balance = float(b['withdrawAvailable'])
-            print('Balance = ', balance)
+    balance = get_futures_balance()
 
     # Define investment amount
     amount = balance * trade_size
@@ -255,11 +269,46 @@ def futures_trade_no_orders(signal, trade_size, bag_id=None):
 
     if bag_id:
         signal.bag_id.append(bag_id)
+    print("Made Futures Order")
 
     return True
 
 
 def futures_trade_add_orders(signal):
+    # Set Initial Stoploss just above liquidation, or the given SL if it is closer
+    liquidation_sl = no_liquidate(signal)
+    signal.conditions.stoploss = liquidation_sl
+
+    # Set price precision
+    price_precision = get_price_precision(signal.pair)
+    signal.conditions.stopprof = round(signal.conditions.stopprof, price_precision)
+    trade_qty = float(signal.receipt['origQty'])
+    stop_order_receipts = []
+
+    # Switch from buying to selling, or from shorting to rebuying
+    if signal.conditions.direction == 'short':
+        side = 'BUY'
+    elif signal.conditions.direction == 'long':
+        side = 'SELL'
+
+    # Order to Sell 100% of trade if it hits STOPLOSS
+    print(signal.pair, side, trade_qty, signal.conditions.stoploss)
+    stoploss_receipt = realclient.futures_create_order(symbol=signal.pair, side=side, type='STOP_MARKET', quantity=trade_qty, stopPrice=signal.conditions.stoploss, timeInForce='GTC', reduceOnly=True)
+    # Record Pending Order
+    stop_order_receipts.append(stoploss_receipt)
+
+    print(signal.pair, side, trade_qty, signal.conditions.stopprof)
+    # Place the take profit order
+    receipt = realclient.futures_create_order(symbol=signal.pair, side=side, type='LIMIT', quantity=trade_qty, price=signal.conditions.stopprof, timeInForce='GTC', reduceOnly=True)
+
+    # Record orders placed
+    stop_order_receipts.append(receipt)
+    # Record all orders
+    signal.conditions.orders = stop_order_receipts
+    print('Completed Futures Sell Orders')
+
+
+def mfutures_trade_add_orders(signal):
     # Set Initial Stoploss just above liquidation, or the given SL if it is closer
     liquidation_sl = no_liquidate(signal)
     signal.conditions.losstargets[0] = liquidation_sl
@@ -347,78 +396,42 @@ def futures_trade_add_orders(signal):
 
 def mfutures_trade(signal, trade_size, bag_id=None):
     futures_trade_no_orders(signal, trade_size, bag_id=bag_id)
-    futures_trade_add_orders(signal)
+    mfutures_trade_add_orders(signal)
 
 
-def futures_trade(signal, percentage, bag_id=None):
-    symbol = signal.pair
-    margin = 0.99
-    balance = float(realclient.futures_account_balance()[1]['withdrawAvailable'])  # Get available funds
-    if balance*margin*percentage < MIN_TRADE_VALUE:
-        print('Low Funds')
-        raise ValueError("Funds too low to take this trade")
-
-    if signal.conditions.direction.upper() == 'LONG':
-        side = 'BUY'
-    elif signal.conditions.direction.upper() == 'SHORT':
-        side = 'SELL'
-
-    isolated = change_margin_type(signal.conditions.mode)
-
-    # Get futures coin precision
-    coin_precision = None
-    for i in realclient.futures_exchange_info()['symbols']:
-        if i['pair'] == symbol:
-            coin_precision = i['quantityPrecision']
-            break
-
-    # Calculate trade values
-    amount = balance*margin*percentage*signal.conditions.leverage
-    amount = str(float(round_decimals_down(amount, coin_precision)))  # Round Base amount
-    pair_price = float(realclient.get_symbol_ticker(symbol=symbol)['price'])  # Get coin price
-    q = float(amount) / pair_price  # Define trade quantities
-    q = float(round_decimals_down(q, coin_precision))  # Round trade Quantities
-
-    realclient.futures_change_leverage(symbol=symbol, leverage=signal.conditions.leverage)
-    trade_receipt = realclient.futures_create_order(symbol=symbol, side=side, type='MARKET', quantity=q, isolated=isolated)
-
-    # Move all this shit into trade_classes
-    trade_id = trade_receipt['orderId']
-    receipt = realclient.futures_get_order(orderId=trade_id, symbol=symbol)
-    signal.init_trade_futures(trade_id, receipt)
-    if bag_id:
-        signal.bag_id.append(bag_id)
-
-    sell_orders = []
-    if side == 'BUY':
-        side = 'SELL'
-    elif side == 'SELL':
-        side = 'BUY'
-
-    trade_qty = float(trade_receipt['origQty'])
-
-    receipt_sl = realclient.futures_create_order(symbol=symbol, side=side, type='STOP_MARKET', quantity=trade_qty, stopPrice=signal.conditions.stoploss,
-                                              timeInForce='GTC', reduceOnly=True)
-    signal.conditions.orders.append(receipt_sl)
-    receipt_tp = realclient.futures_create_order(symbol=symbol, side=side, type='LIMIT', quantity=trade_qty, price=signal.conditions.stopprof,
-                                              timeInForce='GTC', reduceOnly=True)
-    signal.conditions.orders.append(receipt_tp)
-    return signal
-
-
-def futures_update(sell_orders):
+# Checks to see if any of the signals orders have been filled, and if they have then update the signal status
+def futures_update(signal):
+    sell_orders = signal.conditions.orders
     stop_orders = False
     symbol = sell_orders[0]['symbol']
-    for s in sell_orders:
-        stopstatus = realclient.futures_get_order(orderId=s['orderId'], symbol=symbol)['status']
-        if stopstatus == 'filled':
-            stop_orders = True
+    stoplossstatus = realclient.futures_get_order(orderId=sell_orders[0]['orderId'], symbol=symbol)['status']
+    stopprofstatus = realclient.futures_get_order(orderId=sell_orders[1]['orderId'], symbol=symbol)['status']
+
+    # todo too many if statements here, I think can handle this with 2 if statements
+    if stoplossstatus == 'FILLED':
+        stop_orders = True
+        signal.status = 'stoploss'
+        signal.closed = float(realclient.futures_get_order(orderId=sell_orders[0]['orderId'], symbol=symbol)['stopPrice'])
+    elif stoplossstatus == 'EXPIRED':
+        print('Changing ')
+        stop_orders = True
+        signal.status = 'manual'
+    elif stopprofstatus == 'FILLED':
+        stop_orders = True
+        signal.status = 'stopprof'
+        signal.closed = float(realclient.futures_get_order(orderId=sell_orders[1]['orderId'], symbol=symbol)['stopPrice'])
+    elif stopprofstatus == 'EXPIRED':
+        stop_orders = True
+        signal.status = 'manual'
     if stop_orders:
         for s in sell_orders:
-            try:
-                realclient.futures_cancel_order(orderId=s['orderId'], symbol=symbol)
-            except ValueError:
-                print('Order Already Canceled')
+            if realclient.futures_get_order(orderId=s['orderId'], symbol=symbol)['status'] == 'NEW':
+                try:
+                    realclient.futures_cancel_order(orderId=s['orderId'], symbol=symbol)
+                except ValueError:
+                    print('Order Already Canceled')
+        return True
+    return False
 
 
 def update_stoploss(new_sl, current_order):
@@ -462,7 +475,7 @@ def mfutures_update(signal):
                 print('W W W W W W W W w W')
             # Order closed manually through binance
             elif profstatus == 'EXPIRED':
-                signal.status = 'manual'
+                signal.status = 'stoploss'
                 signal.closed = float(signal.latest)
             changes = True
 

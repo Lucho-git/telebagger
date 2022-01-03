@@ -17,6 +17,7 @@ class Futures:
         self.leverage = leverage
         self.mode = mode
         self.orders = []
+        self.filled_orders = []
 
 
 class MFutures:
@@ -322,21 +323,27 @@ class Trade:
                         raise ValueError("ShortLoss Didn't sell entire trade Error")
 
     def update_futures(self):
-        direction = self.conditions.direction
-        if direction == 'long':
-            if self.lowest < self.conditions.stoploss:
-                self.status = 'stoploss'
-                self.closed = self.conditions.stoploss
-            if self.highest > self.conditions.stopprof:
-                self.status = 'stopprof'
-                self.closed = self.conditions.stopprof
-        elif direction == 'short':
-            if self.lowest < self.conditions.stopprof:
-                self.status = 'stopprof'
-                self.closed = self.conditions.stopprof
-            if self.highest > self.conditions.stoploss:
-                self.status = 'stoploss'
-                self.closed = self.conditions.stoploss
+        if self.conditions.orders:
+            # Real Trade
+            print('Real Update')
+            if binance_wrap.futures_update(self):
+                pass
+                # can do trade log here
+        else:
+            if self.conditions.direction == 'long':
+                if self.lowest < self.conditions.stoploss:
+                    self.status = 'stoploss'
+                    self.closed = self.conditions.stoploss
+                if self.highest > self.conditions.stopprof:
+                    self.status = 'stopprof'
+                    self.closed = self.conditions.stopprof
+            elif self.condtions.direction == 'short':
+                if self.lowest < self.conditions.stopprof:
+                    self.status = 'stopprof'
+                    self.closed = self.conditions.stopprof
+                if self.highest > self.conditions.stoploss:
+                    self.status = 'stoploss'
+                    self.closed = self.conditions.stoploss
 
     def update_spot(self):
         if self.lowest < self.conditions.stoploss:

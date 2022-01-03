@@ -7,6 +7,7 @@ hirn_timer = [0]
 last_pair = ['']
 tradeheat = [False]
 first = [True]
+HIRN_REAL = [True]
 
 HIRN_COOLDOWN_TIME = 8000  # In milliseconds
 HIRN_LEVERAGE = 10  # Trade Leverage for Futures trades
@@ -106,17 +107,25 @@ def search_coin(text):
 
     sl = entry - (entry/lev)*HIRN_STOPLOSS_REDUCTION
     print('Pair|', pair, '|Direction|', direction, '|Entry|', entry, '|Exit|', exit_price, '|Leverage|', lev)
-    if is_futures:
+    if is_futures and HIRN_REAL[0]:
         signal = Trade(pair, base, 'Hirn', 'futures')
         signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
         try:
-            binance_wrap.futures_trade(signal, HIRN_TRADE_PERCENT, bag_id='hirn_real')
-        except ValueError:
-            print('Trading')
-            fake_trade.fake_trade(signal, bag_id='port1', percent=HIRN_TRADE_PERCENT)
-            print('Trading2')
+            binance_wrap.futures_trade_no_orders(signal, HIRN_TRADE_PERCENT, bag_id='hirn_real')
+            binance_wrap.futures_trade_add_orders(signal)
+            # add orders
+        except ValueError as e:
+            print('Exception in Hirn Real Trade')
+            print(e)
+        finally:
+            print('Starting Fake Trade')
+            fake_trade.fake_trade(signal, bag_id='hirn_real_copy', percent=HIRN_TRADE_PERCENT)
+            print('Completed Fake Trade')
 
-
+    elif is_futures:
+        signal = Trade(pair, base, 'Hirn', 'futures')
+        signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
+        fake_trade.fake_trade(signal, bag_id='port1', percent=HIRN_TRADE_PERCENT)
     else:
         signal = Trade(pair, base, 'Hirn', 'spot')
         signal.conditions = STrade(sl, exit_price)

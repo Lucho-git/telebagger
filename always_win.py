@@ -35,7 +35,7 @@ def add_real_orders(info):
     losstargets = [sl, entry, t1, t2, t3]
 
     signal.conditions = MFutures(direction, lev, losstargets, stopprof2, proftargets, 'isolation', entry)
-    binance_wrap.futures_trade_add_orders(signal)
+    binance_wrap.mfutures_trade_add_orders(signal)
     print(signal.conditions.orders)
     signal.type = 'mfutures'
     return [signal]
