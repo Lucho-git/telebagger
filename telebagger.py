@@ -68,6 +68,7 @@ else:
     UPDATE2 = '/update2!'
     PRE_AW = '/pre_aw!'
     ALWAYS_WIN_SIGNAL = '/aw!'
+    HIRN_SIGNAL = '/hirn!'
     NEW_PORTFOLIO = '/newport!'
     CLEAR_PORTFOLIOS = '/clear_folios!'
     DISPLAY_PORTFOLIOS = '/display_folios!'
