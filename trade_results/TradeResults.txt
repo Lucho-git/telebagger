@@ -1406,3 +1406,36 @@ Buy Price: 9.376 |  Sell Price: 9.365
 Result Window: 9.376 | 9.359[- 1.81%] | 9.373[- 0.32%]
 
 
+SNXUSDT | 1641281097386
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2022-01-04  15:24 | 2022-01-04  16:14
+Duration: 0.82 hrs
+================================
+Pricechange: 9.437666526433954
+Buy Price: 7.131 |  Sell Price: 7.13
+Result Window: 7.131 | 7.2[- 9.68%] | 6.85[+ 39.41%]
+
+
+SNXUSDT | 1641281094106
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2022-01-04  15:24 | 2022-01-04  16:14
+Duration: 0.82 hrs
+================================
+Pricechange: 7.292104894124314
+Buy Price: 7.131 |  Sell Price: 7.13
+Result Window: 7.131 | 7.2[- 9.68%] | 6.85[+ 39.41%]
+
+
+LINAUSDT | 1641452358270
+Status: MANUAL
+Origin: Hirn
+TimeStarted: 2022-01-06  14:59 | 2022-01-06  15:03
+Duration: 0.06 hrs
+================================
+Pricechange: - 3.1%
+Buy Price: 0.0419 |  Sell Price: 0.04177
+Result Window: 0.0419 | 0.04166[- 5.73%] | 0.04439[+ 59.43%]
+
+

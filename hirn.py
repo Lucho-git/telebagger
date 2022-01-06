@@ -36,17 +36,18 @@ def cooldown():
 
 def bag(msg):
 
-    print('message recieved', tradeheat[0])
+    print('message recieved: Tradeheat?', tradeheat[0])
     if not tradeheat[0]:
-        result = search_coin(msg)
-        print("secucess trades !!!!!!!!!!!!")
+        try:
+            result = search_coin(msg)
+            last_pair[0] = get_pair(msg)
+            print("secucess trades ")
+            print(last_pair[0])
+            return result
+        except ValueError as e:
+            print('Exception in Hirn Signal')
+            print(e)
 
-        raw_server_time = binance_wrap.timenow()
-        utility.failed_message(msg, 'HIRN_DOUBLE_TEST', str(raw_server_time) + str(tradeheat[0]), '_doubleups.txt')  # TODO remove later
-        last_pair[0] = get_pair(msg)
-        print("secucess trades ")
-        print(last_pair[0])
-        return result
     else:
         raw_server_time = binance_wrap.timenow()
         utility.failed_message(msg, 'HIRN_DOUBLE_TEST', str(raw_server_time) + str(tradeheat[0]), '_doubleups.txt')  # TODO remove later
@@ -55,8 +56,12 @@ def bag(msg):
         print(duplicate)
         print(last_pair[0])
         if not last_pair[0] == duplicate:
-            result = search_coin(msg)
-            return result
+            try:
+                result = search_coin(msg)
+                return result
+            except ValueError as e:
+                print('Exception in Hirn Signal')
+                print(e)
         else:
             print('Duplicate Message')
     return None
@@ -107,11 +112,13 @@ def search_coin(text):
 
     sl = entry - (entry/lev)*HIRN_STOPLOSS_REDUCTION
     print('Pair|', pair, '|Direction|', direction, '|Entry|', entry, '|Exit|', exit_price, '|Leverage|', lev)
+    print(is_futures)
+    print(HIRN_REAL[0])
     if is_futures and HIRN_REAL[0]:
         signal = Trade(pair, base, 'Hirn', 'futures')
         signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
         try:
-            binance_wrap.futures_trade_no_orders(signal, HIRN_TRADE_PERCENT, bag_id='hirn_real')
+            binance_wrap.futures_trade_no_orders(signal, HIRN_TRADE_PERCENT)
             binance_wrap.futures_trade_add_orders(signal)
             # add orders
         except ValueError as e:
@@ -119,20 +126,24 @@ def search_coin(text):
             print(e)
         finally:
             print('Starting Fake Trade')
-            fake_trade.fake_trade(signal, bag_id='hirn_real_copy', percent=HIRN_TRADE_PERCENT)
+            fake_trade.fake_trade(signal, percent=HIRN_TRADE_PERCENT)
             print('Completed Fake Trade')
-
     elif is_futures:
+        print('Starting Fake Trade')
         signal = Trade(pair, base, 'Hirn', 'futures')
         signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
-        fake_trade.fake_trade(signal, bag_id='port1', percent=HIRN_TRADE_PERCENT)
+        fake_trade.fake_trade(signal, percent=HIRN_TRADE_PERCENT)
     else:
         signal = Trade(pair, base, 'Hirn', 'spot')
         signal.conditions = STrade(sl, exit_price)
-        fake_trade.spot_trade(signal, bag_id='port2', percent=HIRN_TRADE_PERCENT)
+        fake_trade.spot_trade(signal, percent=HIRN_TRADE_PERCENT)
 
     relative_price = abs(float(signal.price) - entry)/entry
+
     if relative_price > 0.1:
         raise ValueError("MarketValue is more than 10% different than it's expected value")
+
+    print('Returning:')
+    print(signal)
 
     return [signal]

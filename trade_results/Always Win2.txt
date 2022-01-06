@@ -495,3 +495,17 @@ Selling 50% of ONEUSDT for 1606.73%  |  TotalValue: 803.3650515877357%
 Selling 50% of ONEUSDT for -5.14%  |  TotalValue: 800.794779248241%
 _________________________________
 
+SNXUSDT | 1641281094106
+Status: STOPLOSS
+Origin: Always Win2
+TimeStarted: 2022-01-04  15:24 | 2022-01-04  16:14
+Duration: 0.82 hrs
+================================
+Pricechange: 7.292104894124314
+Buy Price: 7.131 |  Sell Price: 7.13
+Result Window: 7.131 | 7.2[- 9.68%] | 6.85[+ 39.41%]
+
+Selling 50% of SNXUSDT for 14.44%  |  TotalValue: 7.221988500911558%
+Selling 50% of SNXUSDT for 0.14%  |  TotalValue: 7.292104894124314%
+_________________________________
+

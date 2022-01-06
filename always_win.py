@@ -59,7 +59,7 @@ def add_fake_orders(info):
     losstargets = [sl, entry, t1, t2, t3]
 
     copy_signal = Trade(signal.pair, signal.base, 'Always Win2', 'mfutures')
-    copy_signal = fake_trade.fake_trade_copy(copy_signal, signal, percent=AW_TRADE_PERCENTAGE, bag_id='AW2')
+    copy_signal = fake_trade.fake_trade_copy(copy_signal, signal, percent=AW_TRADE_PERCENTAGE)
 
     signal.conditions = MFutures(direction, lev, losstargets, stopprof, proftargets, 'isolation', entry)
     copy_signal.conditions = MFutures(losstargets, stopprof2, proftargets, direction, lev, 'isolation', entry)
@@ -131,10 +131,10 @@ def valid_trade_message_2(msg):
             signal.conditions = MFutures(l1[0], AW_LEV)
             print(signal)
             if AW_REAL[0]:
-                binance_wrap.futures_trade_no_orders(signal, AW_TRADE_PERCENTAGE_REAL, bag_id='AW_Real')
+                binance_wrap.futures_trade_no_orders(signal, AW_TRADE_PERCENTAGE_REAL)
                 AW_WAIT_SIGNAL_REAL[0] = signal
             else:
-                fake_trade.fake_trade(signal, percent=AW_TRADE_PERCENTAGE, bag_id='AW1')
+                fake_trade.fake_trade(signal, percent=AW_TRADE_PERCENTAGE)
             AW_WAIT_SIGNAL[0] = signal
             print('Signal Incoming:', pair)
             return True
@@ -205,8 +205,8 @@ def signal_trade(info):
     losstargets = [sl, entry, t1, t2, t3]
     signal.conditions = MFutures(direction, lev, losstargets, stopprof, proftargets, 'isolation', entry)
     signal2.conditions = MFutures(direction, lev, losstargets, stopprof2, proftargets, 'isolation', entry)
-    fake_trade.fake_trade(signal2, bag_id='AW2', percent=AW_TRADE_PERCENTAGE)
-    fake_trade.fake_trade(signal, bag_id='AW1', percent=AW_TRADE_PERCENTAGE)
+    fake_trade.fake_trade(signal2, percent=AW_TRADE_PERCENTAGE)
+    fake_trade.fake_trade(signal, percent=AW_TRADE_PERCENTAGE)
 
     return [signal, signal2]
 
@@ -234,7 +234,7 @@ def signal_trade_real(info):
     proftargets = [t1, t2, t3, t4, t5]
     losstargets = [sl, entry, t1, t2, t3]
     signal.conditions = MFutures(direction, lev, losstargets, stopprof, proftargets, 'isolation', entry)
-    binance_wrap.mfutures_trade(signal, AW_TRADE_PERCENTAGE, bag_id='AW_REAL')
+    binance_wrap.mfutures_trade(signal, AW_TRADE_PERCENTAGE)
 
     return [signal]
 

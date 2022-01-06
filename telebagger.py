@@ -125,7 +125,6 @@ async def StartTelegramForwarding():
                     print("Problem with PreSignal Validation")
                 if valid2:
                     print("PreSignal Message")
-
         if chat.id == 1312345502:                               # Vip Signals, Signal
             valid = msg_vip_signals.valid_trade_message(message)
             if valid:
@@ -199,7 +198,9 @@ async def StartTelegramForwarding():
                     if valid:
                         try:
                             hir = hirn.bag(msg)
-                            await trade_stream.addtrade(hir)
+                            if hir:
+                                await trade_stream.addtrade(hir)
+                                utility.add_message('Hirn', '[-]')
                         except Exception as e:
                             utility.failed_message(message, 'Hirn', e, '_failed.txt')
                             utility.add_message('Hirn', '[-]')
@@ -226,6 +227,16 @@ async def StartTelegramForwarding():
                 proftargets = [3475, 3480, 3490, 3500, 3510]
                 sigal.conditions = MFutures(stoploss, loss_targets, stopprof, proftargets, 'long', '1', 'isolation')
                 binance_wrap.mfutures_trade(sigal, 1)
+
+            elif message == '/past':
+                msgs = await client.get_messages('HIRN_CRYPTO', limit=100)
+                if msgs is not None:
+                    print("Messages:\n---------")
+                    for msg in msgs:
+                        print(msg)
+                        print(msg.chat_id)
+                        print(msg.message)
+                        print('______________________')
 
             elif message == ALWAYS_WIN_SIGNAL:
                 with open('docs/aw_example.txt', encoding="utf8") as f:

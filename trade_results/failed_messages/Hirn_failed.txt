@@ -456,3 +456,67 @@ module 'fake_trade' has no attribute 'spot_trade'
 __________________________
 module 'fake_trade' has no attribute 'spot_trade'
 
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+Fake Trade Balance port1 is Too low
+
+/hirn
+__________________________
+Fake Trade Balance port1 is Too low
+
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+MarketValue is more than 10% different than it's expected value
+
+/hirn
+__________________________
+'NoneType' object is not iterable
+

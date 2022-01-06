@@ -179,6 +179,7 @@ def start_trade_folios(trade, percent):
     if changes:
         print('Saving')
         save_folio(folio)
+        print('saved')
 
 
 def end_trade_folios(trade, trade_return):
