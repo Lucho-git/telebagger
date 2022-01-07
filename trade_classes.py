@@ -74,7 +74,10 @@ class Trade:
         self.lowest = None
         self.highest = None
         self.closed = None
-        self.latest = None
+        self.latest_price = None
+        self.latest_update = None
+        self.largest_update = 0
+        self.corruption_chance = False
         self.closed_diff = None
         self.savestring = None
         self.real = False
@@ -103,7 +106,7 @@ class Trade:
         self.price = float(receipt['avgPrice'])
         self.lowest = self.price
         self.highest = self.price
-        self.latest = self.price
+        self.latest_price = self.price
         self.amount = float(receipt['executedQty'])
         self.status = 'active'
         self.receipt = receipt
@@ -355,8 +358,17 @@ class Trade:
 
     # Trade Updates start here
     def update_trade(self, k):
-        # Updating trade price values
-        self.latest = k['last']
+        # Updates latest update information (Tracks if there is a large window of no updates - like if the program went down)
+        if self.latest_update:
+            update_time_diff = int(k['time']) - int(self.latest_update)
+            if update_time_diff > self.largest_update:
+                self.largest_update = update_time_diff
+                if self.largest_update > 600000:  # 10 minutes
+                    self.corruption_chance = True
+        self.latest_update = k['time']
+
+        # Updating latest trade price values
+        self.latest_price = k['last']
         if k['low'] < self.lowest:
             self.lowest = k['low']
         if k['high'] > self.highest:
@@ -447,6 +459,22 @@ class Trade:
             print('Profit Targets:', prof_targets, ' | ', 'StopLoss Targets', loss_targets)
             print('_______________________________')
 
+    # Basic Trade Overview for tradestream
+    def overview(self):
+        time_started = None
+        latest_update = None
+        if self.latest_update:
+            time_started = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%Y-%m-%d  %H:%M')
+            latest_update = datetime.datetime.fromtimestamp(float(self.latest_update) / 1000).strftime('%Y-%m-%d  %H:%M')
+
+        ov_string = ''
+        ov_string += 'Trade: ' + self.pair + ' | ' + str(self.id) + '\n'
+        ov_string += 'TimeStarted: ' + time_started + ' | ' + latest_update + '\n'
+        ov_string += 'Status: ' + self.status + '\n'
+
+        return ov_string
+
+    # Creates an End of Trade string
     def trade_complete(self, k):
         time_passed = str(round((k['time'] - self.time) / 3600000, 2))
         start_time = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%Y-%m-%d  %H:%M')
@@ -522,5 +550,7 @@ class Trade:
         savestr += 'Pricechange: ' + percent + '\n'
         savestr += 'Buy Price: ' + str(ut.format_float(float(self.price))) + ' |  Sell Price: ' + str(ut.format_float(float(self.closed))) + '\n'
         savestr += 'Result Window: ' + str(ut.format_float(float(self.price))) + ' | ' + str(ut.format_float(float(closest))) + '['+percent_closest+'] | ' + str(ut.format_float(float(goal))) + '['+percent_goal+']' + '\n'
+        if self.corruption_chance:
+            savestr += '*Possibly Corrupt Trade* | Largest Update = ' + str(self.largest_update/60000) + ' Minutes'
 
         self.savestring = savestr

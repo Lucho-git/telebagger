@@ -30,6 +30,8 @@ init()  # Initialising colorama
 update = [False]
 update2 = [False]
 
+chat_ids = []
+
 if local:
     # Local Telegram Session
     stringsesh = '1BVtsOJEBuzzZQ-O2BIsgWcUfS_ZXmJF2mPAlPmAUaCarcopkPY3kmWm9RmIDfkEl71R7LPMWFua2aL9Lf5i-nJ-qiO7k0GQ1isA45cwnGXVF53wfFmwi7oG7TMAKEEjinC0zz_awWmawpQtonaUMUFNCyjf7zFrAZ-A20nUKYy4EwuMdaOsV3H-ugZnutqahxgByZRnNmHjrP9jalgQn8DCf5cDC3nSItTJHP_OuH1QfXPu7MCoU6GOcyM63dU2BeEhLiR0YKXwPRdYGiHvuvZ0M8DVjd6lYfwflxFd3IKOlIg7R9ir_WkhhjrUCgDgnCykCHGwMXtap-7YVpN05agcl-EQxxhQ='
@@ -126,7 +128,7 @@ async def StartTelegramForwarding():
                     print("Problem with PreSignal Validation")
                 if valid2:
                     print("PreSignal Message")
-        if chat.id == 1312345502:                               # Vip Signals, Signal
+        if sender.id == '1312345502':                               # Vip Signals, Signal
             valid = msg_vip_signals.valid_trade_message(message)
             if valid:
                 try:
@@ -137,7 +139,13 @@ async def StartTelegramForwarding():
                     utility.failed_message(message, 'Vip Signals', e, '_failed.txt')
                     utility.add_message('Vip Signals', '[-]')
 
-        elif chat.id == 1248393106:                             # HIRN, Signal
+        elif sender.id == '1248393106':                             # HIRN, Signal
+            print("HIRN MESSAAAGGEEGE")
+            post = 'real hirn message log' + str(chat.id)
+            utility.add_message('real hirn message log', post)
+            # todo remove utility logs above once finished debugging
+
+            print('Hirn Message')
             valid = hirn.valid_trade_message(message)
 
             if valid and not event.is_reply:
@@ -189,6 +197,9 @@ async def StartTelegramForwarding():
 
             # Testing Stubs, To be removed at a later stage
             elif message == HIRN_SIGNAL:
+                post = 'fake hirn message log' + str(chat.id)
+                utility.add_message('fake hirn message log', post)
+                # todo remove utility logs above once finished debugging
                 with open('docs/hirn_example.txt', encoding="utf8") as f:
                     msg = f.read()
                     valid = hirn.valid_trade_message(msg)
@@ -207,6 +218,9 @@ async def StartTelegramForwarding():
                             utility.add_message('Hirn', '[-]')
                     else:
                         print('notvalid')
+
+            elif message == '/status':
+                trade_stream.stream_status()
 
             elif message == '/futsig':
                 with open('docs/futures_signals_example.txt', encoding="utf8") as f:
@@ -230,7 +244,7 @@ async def StartTelegramForwarding():
                 binance_wrap.mfutures_trade(sigal, 1)
 
             elif message == '/past':
-                msgs = await client.get_messages('HIRN_CRYPTO', limit=100)
+                msgs = await client.get_messages('HIRN_CRYPTO', limit=5)
                 if msgs is not None:
                     print("Messages:\n---------")
                     for msg in msgs:
@@ -277,11 +291,16 @@ async def StartTelegramForwarding():
             elif message == CLOSE_FUTURES:
                 binance_wrap.close_all_futures()
         else:
-            # Unrecognized Telegram Channels
+            recognized = False
+            for i in chat_ids:
+                if i == chat.id:
+                    recognized = True
 
-            # post = msg + '\n' + message + '\n_________________\n'
-            # utility.add_message('New Telegram Groups', post)
-            pass
+            # Unrecognized Telegram Channels
+            if not recognized:
+                post = msg + '\n' + message + '\n' + str(sender.id) + '|' + str(chat.id) + '\n_________________\n'
+                utility.add_message('New Telegram Groups', post)
+                print(post)
 
     # End of event handler code ____________________
     print("Launching Telegram Scraper...")
