@@ -110,6 +110,9 @@ async def StartTelegramForwarding():
         message = str(event.raw_text)
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
 
+        post = msg + '\n' + message + '\n' + str(sender.id) + '|' + str(chat.id) + '\n_________________\n'
+        utility.add_message('ALL Telegram Groups', post)
+
         if sender_id == "1548802426":                           # Always Win, Signal
             await client.send_message(1576065688, event.message)
             valid = always_win.valid_trade_message(message)

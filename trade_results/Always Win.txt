@@ -418,41 +418,67 @@ Selling 10% of DENTUSDT for 15458.1%  |  TotalValue: 16880.167597765365%
 Selling 10% of DENTUSDT for 13712.29%  |  TotalValue: 18251.396648044694%
 _________________________________
 
-DENTUSDT | 1634288444704
-Status: STOPPROF
+KEEPUSDT | 1634293899378
+Status: STOPLOSS
 Origin: Always Win
-TimeStarted: 2021-10-15  17:00 | 2021-10-15  17:05
+TimeStarted: 2021-10-15  10:31 | 2021-10-15  10:36
 Duration: 0.07 hrs
 ================================
-Pricechange: 18132.767341040464
-Buy Price: 0.005536 |  Sell Price: 0.045
-Result Window: 0.005536 | 0.005478[+ 20.95%] | 0.058[- 18953.76%]
+Pricechange: -44.59950296310463
+Buy Price: 1.0462 |  Sell Price: 1.1
+Result Window: 1.0462 | 1.0219[+ 46.45%] | 1.04[+ 11.85%]
 
-Selling 10% of DENTUSDT for 20398.84%  |  TotalValue: 2039.8843930635837%
-Selling 22.5% of DENTUSDT for 19676.3%  |  TotalValue: 6467.052023121388%
-Selling 33.75% of DENTUSDT for 18953.76%  |  TotalValue: 12863.945086705204%
-Selling 25.3% of DENTUSDT for 16063.58%  |  TotalValue: 16928.031791907517%
-Selling 8.45% of DENTUSDT for 14257.23%  |  TotalValue: 18132.767341040464%
+Selling 10% of KEEPUSDT for 102.85%  |  TotalValue: 10.284840374689365%
+Selling 22.5% of KEEPUSDT for 64.61%  |  TotalValue: 24.82316956604859%
+Selling 67.5% of KEEPUSDT for -102.85%  |  TotalValue: -44.59950296310463%
 _________________________________
 
-KEEPUSDT | 1634417344079
+KEEPUSDT | 1634417343942
 Status: STOPLOSS
 Origin: Always Win
-TimeStarted: 2021-10-17  04:49 | 2021-10-17  08:07
+TimeStarted: 2021-10-16  20:49 | 2021-10-17  00:07
 Duration: 3.3 hrs
 ================================
-Pricechange: -1.9493177387914242
-Buy Price: 1.026 |  Sell Price: 1.03
-Result Window: 1.026 | 0.9044[+ 237.04%] | 0.097[+ 1810.92%]
+Pricechange: 0.38940809968821455
+Buy Price: 1.0272 |  Sell Price: 1.03
+Result Window: 1.0272 | 0.9044[+ 239.1%] | 0.097[+ 1811.14%]
 
-Selling 10% of KEEPUSDT for 50.68%  |  TotalValue: 5.068226120857704%
-Selling 90% of KEEPUSDT for -7.8%  |  TotalValue: -1.9493177387914242%
+Selling 10% of KEEPUSDT for 52.96%  |  TotalValue: 5.295950155763219%
+Selling 90% of KEEPUSDT for -5.45%  |  TotalValue: 0.38940809968821455%
 _________________________________
 
-FTMUSDT | 1634643584918
+FTMUSDT | 1634489896985
 Status: STOPLOSS
 Origin: Always Win
-TimeStarted: 2021-10-19  19:39 | 2021-10-20  00:47
+TimeStarted: 2021-10-17  16:58 | 2021-10-17  19:38
+Duration: 2.66 hrs
+================================
+Pricechange: -3.03174671921684
+Buy Price: 2.3089 |  Sell Price: 2.316
+Result Window: 2.3089 | 2.2433[+ 56.82%] | 2.22[+ 77.01%]
+
+Selling 10% of FTMUSDT for 25.03%  |  TotalValue: 2.50335657672486%
+Selling 90% of FTMUSDT for -6.15%  |  TotalValue: -3.03174671921684%
+_________________________________
+
+AXSUSDT | 1634447696074
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-17  05:14 | 2021-10-17  21:42
+Duration: 16.45 hrs
+================================
+Pricechange: -0.9657947686116612
+Buy Price: 124.25 |  Sell Price: 124.5
+Result Window: 124.25 | 121.61[+ 42.49%] | 119.5[+ 76.46%]
+
+Selling 10% of AXSUSDT for 26.56%  |  TotalValue: 2.6559356136821015%
+Selling 90% of AXSUSDT for -4.02%  |  TotalValue: -0.9657947686116612%
+_________________________________
+
+FTMUSDT | 1634643584439
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-19  11:39 | 2021-10-19  16:47
 Duration: 5.12 hrs
 ================================
 Pricechange: -4.031097034264429
@@ -463,119 +489,694 @@ Selling 10% of FTMUSDT for 25.59%  |  TotalValue: 2.5585126074616356%
 Selling 90% of FTMUSDT for -7.32%  |  TotalValue: -4.031097034264429%
 _________________________________
 
-BTCUSDT | 1634651496547
+BTCUSDT | 1634651495769
 Status: STOPLOSS
 Origin: Always Win
-TimeStarted: 2021-10-19  21:51 | 2021-10-20  01:01
+TimeStarted: 2021-10-19  13:51 | 2021-10-19  17:01
 Duration: 3.16 hrs
 ================================
-Pricechange: -7.3384927473562644
-Buy Price: 62901.2 |  Sell Price: 63200
-Result Window: 62901.2 | 61322.22[+ 50.21%] | 60672[+ 70.88%]
+Pricechange: -6.901385840238118
+Buy Price: 62914.9 |  Sell Price: 63200
+Result Window: 62914.9 | 61322.22[+ 50.63%] | 60672[+ 71.3%]
 
-Selling 10% of BTCUSDT for 12.12%  |  TotalValue: 1.2120595473536184%
-Selling 90% of BTCUSDT for -9.5%  |  TotalValue: -7.3384927473562644%
+Selling 10% of BTCUSDT for 12.55%  |  TotalValue: 1.2553465077430035%
+Selling 90% of BTCUSDT for -9.06%  |  TotalValue: -6.901385840238118%
 _________________________________
 
-SHIBUSDT | 1635074837315
+1INCHUSDT | 1634729404957
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-20  11:30 | 2021-10-20  16:23
+Duration: 4.88 hrs
+================================
+Pricechange: -141.90093708166006
+Buy Price: 3.735 |  Sell Price: 4
+Result Window: 3.735 | 3.717[+ 9.64%] | 3.7[+ 18.74%]
+
+Selling 100% of 1INCHUSDT for -141.9%  |  TotalValue: -141.90093708166006%
+_________________________________
+
+SOLUSDT | 1634755223077
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-20  18:40 | 2021-10-20  20:59
+Duration: 2.31 hrs
+================================
+Pricechange: -5.782352260899634
+Buy Price: 172.94 |  Sell Price: 173.7
+Result Window: 172.94 | 169.92[+ 34.93%] | 166.7[+ 72.16%]
+
+Selling 10% of SOLUSDT for 21.28%  |  TotalValue: 2.1279056320111063%
+Selling 90% of SOLUSDT for -8.79%  |  TotalValue: -5.782352260899634%
+_________________________________
+
+SOLUSDT | 1634801644104
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-21  07:34 | 2021-10-21  12:00
+Duration: 4.43 hrs
+================================
+Pricechange: 2.994652406417124
+Buy Price: 187 |  Sell Price: 187
+Result Window: 187 | 183.15[+ 41.18%] | 179.5[+ 80.21%]
+
+Selling 10% of SOLUSDT for 29.95%  |  TotalValue: 2.994652406417124%
+Selling 90% of SOLUSDT for 0.0%  |  TotalValue: 2.994652406417124%
+_________________________________
+
+ENJUSDT | 1634801864761
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-21  07:37 | 2021-10-21  13:33
+Duration: 5.92 hrs
+================================
+Pricechange: -2.1917808219179316
+Buy Price: 1.825 |  Sell Price: 1.83
+Result Window: 1.825 | 1.776[+ 53.7%] | 1.75[+ 82.19%]
+
+Selling 10% of ENJUSDT for 27.4%  |  TotalValue: 2.739726027397251%
+Selling 90% of ENJUSDT for -5.48%  |  TotalValue: -2.1917808219179316%
+_________________________________
+
+OCEANUSDT | 1634885238245
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-22  06:47 | 2021-10-22  06:59
+Duration: 0.2 hrs
+================================
+Pricechange: -23.489577822452453
+Buy Price: 0.9451 |  Sell Price: 0.958
+Result Window: 0.9451 | 0.9399[+ 11.0%] | 0.919[+ 55.23%]
+
+Selling 10% of OCEANUSDT for 10.79%  |  TotalValue: 1.0792508729235222%
+Selling 90% of OCEANUSDT for -27.3%  |  TotalValue: -23.489577822452453%
+_________________________________
+
+SOLUSDT | 1634910962002
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-22  13:56 | 2021-10-22  15:00
+Duration: 1.07 hrs
+================================
+Pricechange: 20.788785934901295
+Buy Price: 210.45 |  Sell Price: 209.5
+Result Window: 210.45 | 210.68[- 2.19%] | 196.7[+ 130.67%]
+
+Selling 10% of SOLUSDT for 9.03%  |  TotalValue: 0.9028272748871358%
+Selling 22.5% of SOLUSDT for 61.3%  |  TotalValue: 14.694701829413129%
+Selling 67.5% of SOLUSDT for 9.03%  |  TotalValue: 20.788785934901295%
+_________________________________
+
+SHIBUSDT | 1635331661074
 Status: STOPPROF
 Origin: Always Win
-TimeStarted: 2021-10-24  19:27 | 2021-10-24  19:33
-Duration: 0.1 hrs
+TimeStarted: 2021-10-27  10:47 | 2021-10-27  10:52
+Duration: 0.07 hrs
 ================================
-Pricechange: 1927937.7736805715
-Buy Price: 0.00004339 |  Sell Price: 0.035
-Result Window: 0.00004339 | 0.00004263[+ 35.03%] | 0.04[- 1841742.8%]
+Pricechange: 1913140.5258386221
+Buy Price: 0.00005515 |  Sell Price: 0.04
+Result Window: 0.00005515 | 0.0000549[+ 9.07%] | 0.0512[- 1854754.31%]
 
-Selling 65% of SHIBUSDT for 1980023.51%  |  TotalValue: 1287015.2800184374%
-Selling 15% of SHIBUSDT for 1924711.22%  |  TotalValue: 1575721.9635860797%
-Selling 10% of SHIBUSDT for 1841742.8%  |  TotalValue: 1759896.2433740492%
-Selling 5% of SHIBUSDT for 1749555.66%  |  TotalValue: 1847374.0262733349%
-Selling 5% of SHIBUSDT for 1611274.95%  |  TotalValue: 1927937.7736805715%
+Selling 65% of SHIBUSDT for 1974427.92%  |  TotalValue: 1283378.1504986403%
+Selling 15% of SHIBUSDT for 1923657.3%  |  TotalValue: 1571926.745240254%
+Selling 10% of SHIBUSDT for 1854754.31%  |  TotalValue: 1757402.175883953%
+Selling 5% of SHIBUSDT for 1666177.7%  |  TotalValue: 1840711.0607434271%
+Selling 5% of SHIBUSDT for 1448589.3%  |  TotalValue: 1913140.5258386221%
 _________________________________
 
-DYDXUSDT | 1635153724127
+SHIBUSDT | 1635358054064
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-27  18:07 | 2021-10-27  18:12
+Duration: 0.07 hrs
+================================
+Pricechange: 1884541.586645
+Buy Price: 0.00006769 |  Sell Price: 0.045
+Result Window: 0.00006769 | 0.00006748[+ 6.2%] | 0.0621[- 1832835.28%]
+
+Selling 65% of SHIBUSDT for 1951021.13%  |  TotalValue: 1268163.7317181272%
+Selling 15% of SHIBUSDT for 1903746.79%  |  TotalValue: 1553725.749741469%
+Selling 10% of SHIBUSDT for 1832835.28%  |  TotalValue: 1737009.2775890094%
+Selling 5% of SHIBUSDT for 1623055.4%  |  TotalValue: 1818162.0475698041%
+Selling 5% of SHIBUSDT for 1327590.78%  |  TotalValue: 1884541.586645%
+_________________________________
+
+DOGEUSDT | 1635408472179
 Status: STOPLOSS
 Origin: Always Win
-TimeStarted: 2021-10-25  17:22 | 2021-10-25  17:23
+TimeStarted: 2021-10-28  08:07 | 2021-10-28  09:52
+Duration: 1.74 hrs
+================================
+Pricechange: 51.02981862895773
+Buy Price: 0.3253 |  Sell Price: 0.303
+Result Window: 0.3253 | 0.3263[- 6.15%] | 0.28[+ 278.51%]
+
+Selling 65% of DOGEUSDT for 14.14%  |  TotalValue: 9.191515524131447%
+Selling 15% of DOGEUSDT for 69.47%  |  TotalValue: 19.612665232093306%
+Selling 10% of DOGEUSDT for 137.1%  |  TotalValue: 33.32308638180126%
+Selling 5% of DOGEUSDT for 217.03%  |  TotalValue: 44.17460805410375%
+Selling 5% of DOGEUSDT for 137.1%  |  TotalValue: 51.02981862895773%
+_________________________________
+
+SHIBUSDT | 1635417139810
+Status: STOPPROF
+Origin: Always Win
+TimeStarted: 2021-10-28  10:32 | 2021-10-28  10:37
+Duration: 0.08 hrs
+================================
+Pricechange: 1901217.0856988372
+Buy Price: 0.00007398 |  Sell Price: 0.05
+Result Window: 0.00007398 | 0.000073[+ 26.49%] | 0.068[- 1836334.69%]
+
+Selling 65% of SHIBUSDT for 1971506.35%  |  TotalValue: 1281479.1294944577%
+Selling 15% of SHIBUSDT for 1917437.69%  |  TotalValue: 1569094.7823736141%
+Selling 10% of SHIBUSDT for 1836334.69%  |  TotalValue: 1752728.2508786155%
+Selling 5% of SHIBUSDT for 1620060.02%  |  TotalValue: 1833731.2516896455%
+Selling 5% of SHIBUSDT for 1349716.68%  |  TotalValue: 1901217.0856988372%
+_________________________________
+
+MANAUSDT | 1635509589306
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-29  12:13 | 2021-10-29  12:20
+Duration: 0.11 hrs
+================================
+Pricechange: 16.566265060240976
+Buy Price: 1.328 |  Sell Price: 1.33
+Result Window: 1.328 | 1.3[+ 42.17%] | 1.27[+ 87.35%]
+
+Selling 65% of MANAUSDT for 27.11%  |  TotalValue: 17.620481927710856%
+Selling 35% of MANAUSDT for -3.01%  |  TotalValue: 16.566265060240976%
+_________________________________
+
+MANAUSDT | 1635511291512
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-29  12:41 | 2021-10-29  12:47
+Duration: 0.09 hrs
+================================
+Pricechange: 12.437115707099075
+Buy Price: 1.4312 |  Sell Price: 1.428
+Result Window: 1.4312 | 1.44[- 12.3%] | 1.34[+ 127.45%]
+
+Selling 65% of MANAUSDT for 4.47%  |  TotalValue: 2.9066517607602846%
+Selling 15% of MANAUSDT for 57.57%  |  TotalValue: 11.542761319172833%
+Selling 20% of MANAUSDT for 4.47%  |  TotalValue: 12.437115707099075%
+_________________________________
+
+SANDUSDT | 1635614523166
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-30  17:22 | 2021-10-30  18:01
+Duration: 0.65 hrs
+================================
+Pricechange: 24.0216736905479
+Buy Price: 1.661 |  Sell Price: 1.705
+Result Window: 1.661 | 1.6147[+ 55.75%] | 1.6[+ 73.45%]
+
+Selling 65% of SANDUSDT for 52.98%  |  TotalValue: 34.43708609271526%
+Selling 15% of SANDUSDT for 1.2%  |  TotalValue: 34.617700180614136%
+Selling 20% of SANDUSDT for -52.98%  |  TotalValue: 24.0216736905479%
+_________________________________
+
+GALAUSDT | 1635618312075
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-10-30  18:25 | 2021-10-30  22:24
+Duration: 3.98 hrs
+================================
+Pricechange: 11.485575626853676
+Buy Price: 0.11127 |  Sell Price: 0.1116
+Result Window: 0.11127 | 0.1054[+ 105.51%] | 0.104[+ 130.67%]
+
+Selling 65% of GALAUSDT for 5.93%  |  TotalValue: 3.855486654084786%
+Selling 15% of GALAUSDT for 58.78%  |  TotalValue: 12.671879212725917%
+Selling 20% of GALAUSDT for -5.93%  |  TotalValue: 11.485575626853676%
+_________________________________
+
+DYDXUSDT | 1635745329378
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-01  05:42 | 2021-11-01  07:04
+Duration: 1.36 hrs
+================================
+Pricechange: 9.088327179778359
+Buy Price: 17.605 |  Sell Price: 17.6
+Result Window: 17.605 | 17.86[- 28.97%] | 16.5[+ 125.53%]
+
+Selling 65% of DYDXUSDT for 0.57%  |  TotalValue: 0.369213291678427%
+Selling 15% of DYDXUSDT for 57.37%  |  TotalValue: 8.974723090031151%
+Selling 20% of DYDXUSDT for 0.57%  |  TotalValue: 9.088327179778359%
+_________________________________
+
+SANDUSDT | 1635767443525
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-01  11:50 | 2021-11-01  11:52
 Duration: 0.02 hrs
 ================================
-Pricechange: 7.013757755597656
-Buy Price: 18.535 |  Sell Price: 18.6
-Result Window: 18.535 | 18.528[- 0.76%] | 20.4[+ 201.24%]
+Pricechange: 14.260415695777699
+Buy Price: 2.1458 |  Sell Price: 2.15
+Result Window: 2.1458 | 2.1045[+ 38.49%] | 2.06[+ 79.97%]
 
-Selling 100% of DYDXUSDT for 7.01%  |  TotalValue: 7.013757755597656%
+Selling 65% of SANDUSDT for 24.05%  |  TotalValue: 15.6305340665485%
+Selling 35% of SANDUSDT for -3.91%  |  TotalValue: 14.260415695777699%
 _________________________________
 
-SANDUSDT | 1635944201797
+LRCUSDT | 1635855528669
 Status: STOPLOSS
 Origin: Always Win
-TimeStarted: 2021-11-03  20:56 | 2021-11-03  21:04
-Duration: 0.12 hrs
+TimeStarted: 2021-11-02  12:18 | 2021-11-02  12:29
+Duration: 0.17 hrs
 ================================
-Pricechange: 2.783115764363
-Buy Price: 3.0182 |  Sell Price: 3.04
-Result Window: 3.0182 | 2.97[+ 31.94%] | 2.91[+ 71.7%]
+Pricechange: -10.884460896274735
+Buy Price: 1.2697 |  Sell Price: 1.29
+Result Window: 1.2697 | 1.258[+ 18.43%] | 1.23[+ 62.53%]
 
-Selling 65% of SANDUSDT for 12.06%  |  TotalValue: 7.839109402955496%
-Selling 35% of SANDUSDT for -14.45%  |  TotalValue: 2.783115764363%
+Selling 65% of LRCUSDT for 0.47%  |  TotalValue: 0.3071591714577908%
+Selling 35% of LRCUSDT for -31.98%  |  TotalValue: -10.884460896274735%
 _________________________________
 
-None
-_________________________________
-
-None
-_________________________________
-
-None
-_________________________________
-
-ONEUSDT | 1641116340278
+CHRUSDT | 1635857737670
 Status: STOPLOSS
 Origin: Always Win
-TimeStarted: 2022-01-02  17:39 | 2022-01-02  20:26
+TimeStarted: 2021-11-02  12:55 | 2021-11-02  13:39
+Duration: 0.72 hrs
+================================
+Pricechange: -9.224124633657233
+Buy Price: 0.6483 |  Sell Price: 0.66
+Result Window: 0.6483 | 0.631[+ 53.37%] | 0.63[+ 56.46%]
+
+Selling 65% of CHRUSDT for 5.24%  |  TotalValue: 3.4089156254820994%
+Selling 35% of CHRUSDT for -36.09%  |  TotalValue: -9.224124633657233%
+_________________________________
+
+SANDUSDT | 1635881254232
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-02  19:27 | 2021-11-02  20:10
+Duration: 0.71 hrs
+================================
+Pricechange: 59.045432179760645
+Buy Price: 3.0485 |  Sell Price: 2.91
+Result Window: 3.0485 | 3.0653[- 11.02%] | 2.4[+ 425.46%]
+
+Selling 65% of SANDUSDT for 31.82%  |  TotalValue: 20.6823027718551%
+Selling 15% of SANDUSDT for 90.86%  |  TotalValue: 34.311956700016495%
+Selling 10% of SANDUSDT for 156.47%  |  TotalValue: 49.958996227653046%
+Selling 10% of SANDUSDT for 90.86%  |  TotalValue: 59.045432179760645%
+_________________________________
+
+SANDUSDT | 1635999150195
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-04  04:12 | 2021-11-04  06:28
+Duration: 2.26 hrs
+================================
+Pricechange: 21.3921451751771
+Buy Price: 3.0198 |  Sell Price: 3.02
+Result Window: 3.0198 | 2.9483[+ 47.35%] | 2.89[+ 85.97%]
+
+Selling 65% of SANDUSDT for 32.98%  |  TotalValue: 21.43850586131525%
+Selling 35% of SANDUSDT for -0.13%  |  TotalValue: 21.3921451751771%
+_________________________________
+
+LUNAUSDT | 1635974364683
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-03  21:19 | 2021-11-04  08:27
+Duration: 11.13 hrs
+================================
+Pricechange: 8.532778355879175
+Buy Price: 48.05 |  Sell Price: 48.3
+Result Window: 48.05 | 47.32[+ 30.39%] | 46.3[+ 72.84%]
+
+Selling 65% of LUNAUSDT for 18.73%  |  TotalValue: 12.174817898022777%
+Selling 35% of LUNAUSDT for -10.41%  |  TotalValue: 8.532778355879175%
+_________________________________
+
+LUNAUSDT | 1635974364683
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-03  21:19 | 2021-11-04  18:11
+Duration: 20.86 hrs
+================================
+Pricechange: 8.532778355879175
+Buy Price: 48.05 |  Sell Price: 48.3
+Result Window: 48.05 | 47.49[+ 23.31%] | 46.3[+ 72.84%]
+
+Selling 65% of LUNAUSDT for 18.73%  |  TotalValue: 12.174817898022777%
+Selling 35% of LUNAUSDT for -10.41%  |  TotalValue: 8.532778355879175%
+_________________________________
+
+OMGUSDT | 1636066499227
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-04  22:54 | 2021-11-05  01:13
+Duration: 2.3 hrs
+================================
+Pricechange: -94.01709401709428
+Buy Price: 18.72 |  Sell Price: 19.6
+Result Window: 18.72 | 18.2[+ 55.56%] | 18.2[+ 55.56%]
+
+Selling 100% of OMGUSDT for -94.02%  |  TotalValue: -94.01709401709428%
+_________________________________
+
+LUNAUSDT | 1636066031058
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-04  22:47 | 2021-11-05  03:16
+Duration: 4.48 hrs
+================================
+Pricechange: 7.340158392891809
+Buy Price: 51.77 |  Sell Price: 52.1
+Result Window: 51.77 | 50.97[+ 30.91%] | 50[+ 68.38%]
+
+Selling 65% of LUNAUSDT for 18.16%  |  TotalValue: 11.802202047518017%
+Selling 35% of LUNAUSDT for -12.75%  |  TotalValue: 7.340158392891809%
+_________________________________
+
+ICPUSDT | 1636114488112
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-05  12:14 | 2021-11-05  12:40
+Duration: 0.42 hrs
+================================
+Pricechange: 9.97314921365555
+Buy Price: 52.14 |  Sell Price: 52.4
+Result Window: 52.14 | 50.86[+ 49.1%] | 50.3[+ 70.58%]
+
+Selling 65% of ICPUSDT for 20.71%  |  TotalValue: 13.463751438434961%
+Selling 35% of ICPUSDT for -9.97%  |  TotalValue: 9.97314921365555%
+_________________________________
+
+MANAUSDT | 1636178474611
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-06  06:01 | 2021-11-06  09:32
+Duration: 3.51 hrs
+================================
+Pricechange: 47.653620223087316
+Buy Price: 3.0302 |  Sell Price: 2.97
+Result Window: 3.0302 | 3.0381[- 5.21%] | 2.79[+ 158.54%]
+
+Selling 65% of MANAUSDT for 39.73%  |  TotalValue: 25.826678107055457%
+Selling 15% of MANAUSDT for 92.54%  |  TotalValue: 39.706950036301016%
+Selling 20% of MANAUSDT for 39.73%  |  TotalValue: 47.653620223087316%
+_________________________________
+
+XEMUSDT | 1636188870744
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-06  08:54 | 2021-11-06  10:02
+Duration: 1.13 hrs
+================================
+Pricechange: 5.036630036629941
+Buy Price: 0.2184 |  Sell Price: 0.217
+Result Window: 0.2184 | 0.2238[+ 49.45%] | 0.225[+ 60.44%]
+
+- Selling 65% of XEMUSDT for 14.65%  |  TotalValue: 9.523809523809467%
+Selling 35% of XEMUSDT for -12.82%  |  TotalValue: 5.036630036629941%
+_________________________________
+
+BNBUSDT | 1636091752418
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-05  05:55 | 2021-11-06  20:03
+Duration: 38.12 hrs
+================================
+Pricechange: -134.83146067415737
+Buy Price: 587.4 |  Sell Price: 627
+Result Window: 587.4 | 587[+ 1.36%] | 580[+ 25.2%]
+
+Selling 100% of BNBUSDT for -134.83%  |  TotalValue: -134.83146067415737%
+_________________________________
+
+LINAUSDT | 1636268537965
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-07  07:02 | 2021-11-07  07:18
+Duration: 0.26 hrs
+================================
+Pricechange: -1.9899332787077881
+Buy Price: 0.08543 |  Sell Price: 0.0845
+Result Window: 0.08543 | 0.0867[+ 29.73%] | 0.088[+ 60.17%]
+
+- Selling 65% of LINAUSDT for 8.66%  |  TotalValue: 5.630340629755283%
+Selling 35% of LINAUSDT for -21.77%  |  TotalValue: -1.9899332787077881%
+_________________________________
+
+ALICEUSDT | 1636358001613
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-08  07:53 | 2021-11-08  08:33
+Duration: 0.66 hrs
+================================
+Pricechange: 27.45465916197624
+Buy Price: 15.99 |  Sell Price: 16.4
+Result Window: 15.99 | 15.97[- 2.5%] | 17.5[+ 188.87%]
+
+- Selling 65% of ALICEUSDT for 5.0%  |  TotalValue: 3.2520325203252782%
+- Selling 15% of ALICEUSDT for 51.28%  |  TotalValue: 10.944340212632941%
+- Selling 10% of ALICEUSDT for 113.82%  |  TotalValue: 22.32645403377113%
+Selling 10% of ALICEUSDT for 51.28%  |  TotalValue: 27.45465916197624%
+_________________________________
+
+LRCUSDT | 1636392764881
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-08  17:32 | 2021-11-08  17:44
+Duration: 0.19 hrs
+================================
+Pricechange: 12.211892843390872
+Buy Price: 1.8179 |  Sell Price: 1.825
+Result Window: 1.8179 | 1.7914[+ 29.15%] | 1.752[+ 72.5%]
+
+Selling 65% of LRCUSDT for 22.99%  |  TotalValue: 14.945816601573346%
+Selling 35% of LRCUSDT for -7.81%  |  TotalValue: 12.211892843390872%
+_________________________________
+
+HNTUSDT | 1636435935309
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-09  05:32 | 2021-11-09  05:44
+Duration: 0.2 hrs
+================================
+Pricechange: 11.933174224343647
+Buy Price: 50.28 |  Sell Price: 50.5
+Result Window: 50.28 | 49.35[+ 36.99%] | 48.4[+ 74.78%]
+
+Selling 65% of HNTUSDT for 23.07%  |  TotalValue: 14.996022275258508%
+Selling 35% of HNTUSDT for -8.75%  |  TotalValue: 11.933174224343647%
+_________________________________
+
+LRCUSDT | 1636462536431
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-09  12:55 | 2021-11-09  13:04
+Duration: 0.14 hrs
+================================
+Pricechange: -113.27134404057473
+Buy Price: 2.366 |  Sell Price: 2.5
+Result Window: 2.366 | 2.3512[+ 12.51%] | 2.34[+ 21.98%]
+
+Selling 100% of LRCUSDT for -113.27%  |  TotalValue: -113.27134404057473%
+_________________________________
+
+LRCUSDT | 1636463839496
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-09  13:17 | 2021-11-09  15:30
+Duration: 2.21 hrs
+================================
+Pricechange: 29.0726817042607
+Buy Price: 2.394 |  Sell Price: 2.35
+Result Window: 2.394 | 2.45[- 46.78%] | 1.8[+ 496.24%]
+
+Selling 65% of LRCUSDT for 13.37%  |  TotalValue: 8.688387635756063%
+Selling 15% of LRCUSDT for 36.76%  |  TotalValue: 14.202172096908951%
+Selling 10% of LRCUSDT for 111.95%  |  TotalValue: 25.39682539682544%
+Selling 10% of LRCUSDT for 36.76%  |  TotalValue: 29.0726817042607%
+_________________________________
+
+IOTXUSDT | 1636514155804
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-10  03:15 | 2021-11-10  03:25
+Duration: 0.15 hrs
+================================
+Pricechange: 2233.452979181623
+Buy Price: 0.1393 |  Sell Price: 0.14
+Result Window: 0.1393 | 0.13615[+ 45.23%] | 0.134[+ 76.09%]
+
+Selling 65% of IOTXUSDT for 3441.49%  |  TotalValue: 2236.9705671213214%
+Selling 35% of IOTXUSDT for -10.05%  |  TotalValue: 2233.452979181623%
+_________________________________
+
+EGLDUSDT | 1636545820742
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-10  12:03 | 2021-11-10  13:12
+Duration: 1.14 hrs
+================================
+Pricechange: 10.737810930309752
+Buy Price: 332.47 |  Sell Price: 334
+Result Window: 332.47 | 327.79[+ 28.15%] | 320.6[+ 71.4%]
+
+Selling 65% of EGLDUSDT for 21.48%  |  TotalValue: 13.959154209402545%
+Selling 35% of EGLDUSDT for -9.2%  |  TotalValue: 10.737810930309752%
+_________________________________
+
+CHRUSDT | 1636555299752
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-10  14:41 | 2021-11-10  14:43
+Duration: 0.02 hrs
+================================
+Pricechange: -10.088495575221247
+Buy Price: 1.13 |  Sell Price: 1.15
+Result Window: 1.13 | 1.12[+ 17.7%] | 1.104[+ 46.02%]
+
+Selling 65% of CHRUSDT for 3.54%  |  TotalValue: 2.3008849557522146%
+Selling 35% of CHRUSDT for -35.4%  |  TotalValue: -10.088495575221247%
+_________________________________
+
+CHRUSDT | 1636554615089
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-10  14:30 | 2021-11-10  15:45
+Duration: 1.25 hrs
+================================
+Pricechange: 15.330188679245289
+Buy Price: 1.1024 |  Sell Price: 1.105
+Result Window: 1.1024 | 1.0722[+ 54.79%] | 1.06[+ 76.92%]
+
+Selling 65% of CHRUSDT for 26.12%  |  TotalValue: 16.981132075471663%
+Selling 35% of CHRUSDT for -4.72%  |  TotalValue: 15.330188679245289%
+_________________________________
+
+IOTXUSDT | 1636572527838
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-10  19:28 | 2021-11-10  20:20
+Duration: 0.85 hrs
+================================
+Pricechange: 75.81687019661469
+Buy Price: 0.21209 |  Sell Price: 0.196
+Result Window: 0.21209 | 0.215[- 27.44%] | 0.17[+ 396.91%]
+
+Selling 65% of IOTXUSDT for 38.57%  |  TotalValue: 25.069545947475195%
+Selling 15% of IOTXUSDT for 85.72%  |  TotalValue: 37.927295016266726%
+Selling 10% of IOTXUSDT for 151.73%  |  TotalValue: 53.100099014569324%
+Selling 5% of IOTXUSDT for 302.61%  |  TotalValue: 68.23046819746338%
+Selling 5% of IOTXUSDT for 151.73%  |  TotalValue: 75.81687019661469%
+_________________________________
+
+IOTXUSDT | 1636572527838
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-10  19:28 | 2021-11-10  22:37
+Duration: 3.14 hrs
+================================
+Pricechange: 75.81687019661469
+Buy Price: 0.21209 |  Sell Price: 0.196
+Result Window: 0.21209 | 0.215[- 27.44%] | 0.17[+ 396.91%]
+
+Selling 65% of IOTXUSDT for 38.57%  |  TotalValue: 25.069545947475195%
+Selling 15% of IOTXUSDT for 85.72%  |  TotalValue: 37.927295016266726%
+Selling 10% of IOTXUSDT for 151.73%  |  TotalValue: 53.100099014569324%
+Selling 5% of IOTXUSDT for 302.61%  |  TotalValue: 68.23046819746338%
+Selling 5% of IOTXUSDT for 151.73%  |  TotalValue: 75.81687019661469%
+_________________________________
+
+ATAUSDT | 1636670465085
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-11  22:41 | 2021-11-11  23:31
+Duration: 0.83 hrs
+================================
+Pricechange: 9.542596473924277
+Buy Price: 1.6222 |  Sell Price: 1.627
+Result Window: 1.6222 | 1.576[+ 56.96%] | 1.528[+ 116.14%]
+
+Selling 65% of ATAUSDT for 5.92%  |  TotalValue: 3.8466280360004252%
+Selling 15% of ATAUSDT for 45.86%  |  TotalValue: 10.726174331155176%
+Selling 20% of ATAUSDT for -5.92%  |  TotalValue: 9.542596473924277%
+_________________________________
+
+IOTXUSDT | 1636808099513
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-13  12:54 | 2021-11-13  12:58
+Duration: 0.05 hrs
+================================
+Pricechange: 6.322167098388663
+Buy Price: 0.22777 |  Sell Price: 0.229
+Result Window: 0.22777 | 0.22551[+ 19.84%] | 0.22[+ 68.23%]
+
+Selling 65% of IOTXUSDT for 15.54%  |  TotalValue: 10.102296175966949%
+Selling 35% of IOTXUSDT for -10.8%  |  TotalValue: 6.322167098388663%
+_________________________________
+
+KEEPUSDT | 1636835855445
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-13  20:37 | 2021-11-13  20:43
+Duration: 0.09 hrs
+================================
+Pricechange: 14.368432339695346
+Buy Price: 0.9326 |  Sell Price: 0.935
+Result Window: 0.9326 | 0.9162[+ 35.17%] | 0.897[+ 76.35%]
+
+Selling 65% of KEEPUSDT for 24.88%  |  TotalValue: 16.169847737507965%
+Selling 35% of KEEPUSDT for -5.15%  |  TotalValue: 14.368432339695346%
+_________________________________
+
+KEEPUSDT | 1636838529803
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-13  21:22 | 2021-11-13  21:32
+Duration: 0.16 hrs
+================================
+Pricechange: -138.40213840213858
+Buy Price: 1.0101 |  Sell Price: 1.08
+Result Window: 1.0101 | 1.0088[+ 2.57%] | 0.997[+ 25.94%]
+
+Selling 100% of KEEPUSDT for -138.4%  |  TotalValue: -138.40213840213858%
+_________________________________
+
+AVAXUSDT | 1636846076576
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2021-11-13  23:27 | 2021-11-14  06:01
+Duration: 6.55 hrs
+================================
+Pricechange: 17.33866830819749
+Buy Price: 97.47 |  Sell Price: 97.6
+Result Window: 97.47 | 94.6[+ 58.89%] | 93.6[+ 79.41%]
+
+Selling 65% of AVAXUSDT for 28.11%  |  TotalValue: 18.272288909408086%
+Selling 35% of AVAXUSDT for -2.67%  |  TotalValue: 17.33866830819749%
+_________________________________
+
+ONEUSDT | 1641116337296
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2022-01-02  09:38 | 2022-01-02  12:26
 Duration: 2.78 hrs
 ================================
-Pricechange: 1042.7222343761396
-Buy Price: 0.27426 |  Sell Price: 0.2757
-Result Window: 0.27426 | 0.26749[+ 24.68%] | 0.264[+ 37.41%]
+Pricechange: 1042.8691244575723
+Buy Price: 0.27423 |  Sell Price: 0.2757
+Result Window: 0.27423 | 0.26749[+ 24.58%] | 0.264[+ 37.3%]
 
-Selling 65% of ONEUSDT for 1607.02%  |  TotalValue: 1044.559906657916%
-Selling 35% of ONEUSDT for -5.25%  |  TotalValue: 1042.7222343761396%
+Selling 65% of ONEUSDT for 1607.3%  |  TotalValue: 1044.7452868030487%
+Selling 35% of ONEUSDT for -5.36%  |  TotalValue: 1042.8691244575723%
 _________________________________
 
-ONEUSDT | 1641116340278
+SNXUSDT | 1641281094956
 Status: STOPLOSS
 Origin: Always Win
-TimeStarted: 2022-01-02  17:39 | 2022-01-02  22:51
-Duration: 5.2 hrs
-================================
-Pricechange: 1042.7222343761396
-Buy Price: 0.27426 |  Sell Price: 0.2757
-Result Window: 0.27426 | 0.27148[+ 10.14%] | 0.264[+ 37.41%]
-
-Selling 65% of ONEUSDT for 1607.02%  |  TotalValue: 1044.559906657916%
-Selling 35% of ONEUSDT for -5.25%  |  TotalValue: 1042.7222343761396%
-_________________________________
-
-ONEUSDT | 1641116340278
-Status: STOPLOSS
-Origin: Always Win
-TimeStarted: 2022-01-02  17:39 | 2022-01-02  22:54
-Duration: 5.25 hrs
-================================
-Pricechange: 1042.7222343761396
-Buy Price: 0.27426 |  Sell Price: 0.2757
-Result Window: 0.27426 | 0.27148[+ 10.14%] | 0.264[+ 37.41%]
-
-Selling 65% of ONEUSDT for 1607.02%  |  TotalValue: 1044.559906657916%
-Selling 35% of ONEUSDT for -5.25%  |  TotalValue: 1042.7222343761396%
-_________________________________
-
-SNXUSDT | 1641281097386
-Status: STOPLOSS
-Origin: Always Win
-TimeStarted: 2022-01-04  15:24 | 2022-01-04  16:14
+TimeStarted: 2022-01-04  07:24 | 2022-01-04  08:14
 Duration: 0.82 hrs
 ================================
 Pricechange: 9.437666526433954
@@ -584,5 +1185,49 @@ Result Window: 7.131 | 7.2[- 9.68%] | 6.85[+ 39.41%]
 
 Selling 65% of SNXUSDT for 14.44%  |  TotalValue: 9.388585051185025%
 Selling 35% of SNXUSDT for 0.14%  |  TotalValue: 9.437666526433954%
+_________________________________
+
+ANTUSDT | 1641469710894
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2022-01-06  11:48 | 2022-01-06  12:40
+Duration: 0.86 hrs
+================================
+Pricechange: 17.75932899691883
+Buy Price: 11.684 |  Sell Price: 11.52
+Result Window: 11.684 | 11.709[- 2.14%] | 10.8[+ 75.66%]
+
+Selling 65% of ANTUSDT for 14.04%  |  TotalValue: 9.123587812393%
+Selling 15% of ANTUSDT for 38.86%  |  TotalValue: 14.952071208490214%
+Selling 20% of ANTUSDT for 14.04%  |  TotalValue: 17.75932899691883%
+_________________________________
+
+ATOMUSDT | 1641567112134
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2022-01-07  14:51 | 2022-01-07  15:14
+Duration: 0.37 hrs
+================================
+Pricechange: 6.147065646021794
+Buy Price: 43.11 |  Sell Price: 43.3
+Result Window: 43.11 | 42.51[+ 13.92%] | 41.5[+ 37.35%]
+
+Selling 65% of ATOMUSDT for 11.83%  |  TotalValue: 7.6896311760612095%
+Selling 35% of ATOMUSDT for -4.41%  |  TotalValue: 6.147065646021794%
+_________________________________
+
+ONEUSDT | 1641567370084
+Status: STOPLOSS
+Origin: Always Win
+TimeStarted: 2022-01-07  22:56 | 2022-01-07  23:55
+Duration: 0.98 hrs
+================================
+Pricechange: 19.07525155873815
+Buy Price: 0.32398 |  Sell Price: 0.319
+Result Window: 0.32398 | 0.32556[- 4.88%] | 0.299[+ 77.1%]
+
+Selling 65% of ONEUSDT for 15.37%  |  TotalValue: 9.99135749120313%
+Selling 15% of ONEUSDT for 40.06%  |  TotalValue: 16.000987715291032%
+Selling 20% of ONEUSDT for 15.37%  |  TotalValue: 19.07525155873815%
 _________________________________
 
