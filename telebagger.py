@@ -1,7 +1,7 @@
 # 3rd Party libs
 from colorama import init
 from colorama import Fore, Back, Style
-from telethon import TelegramClient, events, sync, utils
+from telethon import TelegramClient, events, sync, utils, tl
 from binance.exceptions import BinanceAPIException, BinanceOrderException
 from telethon.sessions import StringSession
 import requests
@@ -24,6 +24,10 @@ import utility
 import hirn
 import futures_signals
 
+import logging
+logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
+                    level=logging.WARNING)
+
 local = utility.is_local()
 
 init()  # Initialising colorama
@@ -34,7 +38,7 @@ chat_ids = []
 
 if local:
     # Local Telegram Session
-    stringsesh = '1BVtsOJEBuzzZQ-O2BIsgWcUfS_ZXmJF2mPAlPmAUaCarcopkPY3kmWm9RmIDfkEl71R7LPMWFua2aL9Lf5i-nJ-qiO7k0GQ1isA45cwnGXVF53wfFmwi7oG7TMAKEEjinC0zz_awWmawpQtonaUMUFNCyjf7zFrAZ-A20nUKYy4EwuMdaOsV3H-ugZnutqahxgByZRnNmHjrP9jalgQn8DCf5cDC3nSItTJHP_OuH1QfXPu7MCoU6GOcyM63dU2BeEhLiR0YKXwPRdYGiHvuvZ0M8DVjd6lYfwflxFd3IKOlIg7R9ir_WkhhjrUCgDgnCykCHGwMXtap-7YVpN05agcl-EQxxhQ='
+    stringsesh = '1BVtsOIYBu3-mW8LWNklskWf4ubCwmoTJCMtaTn1yotapoMDSnukfzWHHy0VZdOu5THq8Z8dvfLZ-3QYoqZW7sFja_0uk_ovCdQTOhdzUu72KMnSoqxntyvytcfYQyfVdt1UV7V1d4Zhxy9WlMJEl3IcEeWbCyruidkkVGs4n1cW_vh__Li3PvHfKTuJA5EeZ58KNp1LzmDC-G66T8chUqU-RKHdFt2RT6NEQL-6zJLYyq_VTMgRiv-8HtfEs2OOyI-rsVsOwHC-p7_794gPk_B14HQ02zoWne_QZNesgc2NvsvNdwr_Eqg9D883qD9xEiSHvZNNIiDJJaM6b5IMfH-NZe9022dk='
     # Stream Commands Local
     STOP = '/stop'
     STREAM = '/stream'
@@ -86,16 +90,7 @@ def SendMessageToAlwaysWin(message):
     requests.post(mUrl, json=data)
 
 
-async def StartTelegramForwarding():
-    global stringsesh
-
-    loop = asyncio.get_event_loop()
-    sleeper = Sleeper(loop)
-
-    api_id = 5747368
-    api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
-    client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
-
+async def StartTelegramForwarding(client):
     folios = Folios()
     folios.recover()
 
@@ -108,10 +103,12 @@ async def StartTelegramForwarding():
         sender_id = str(sender.id)
         channel_name = utils.get_display_name(sender)
         message = str(event.raw_text)
+        print(sender_id,'|',message)
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
 
         post = msg + '\n' + message + '\n' + str(sender.id) + '|' + str(chat.id) + '\n_________________\n'
-        utility.add_message('ALL Telegram Groups', post)
+        print(post)
+        # Real code
 
         if sender_id == "1548802426":                           # Always Win, Signal
             await client.send_message(1576065688, event.message)
@@ -183,8 +180,9 @@ async def StartTelegramForwarding():
             print("Robot Section +++")
             # Bot commands
             if message == STOP:
-                await trade_stream.restart_schedule(sleeper)
-                sleeper.cancel_all_helper()
+                # await trade_stream.restart_schedule(sleeper)
+                # sleeper.cancel_all_helper()
+                # todo figure out if sleeper access is necessary here
                 await asyncio.sleep(1)
                 print('Exiting....')
                 await client.disconnect()
@@ -201,8 +199,6 @@ async def StartTelegramForwarding():
             # Testing Stubs, To be removed at a later stage
             elif message == HIRN_SIGNAL:
                 post = 'fake hirn message log' + str(chat.id)
-                utility.add_message('fake hirn message log', post)
-                # todo remove utility logs above once finished debugging
                 with open('docs/hirn_example.txt', encoding="utf8") as f:
                     msg = f.read()
                     valid = hirn.valid_trade_message(msg)
@@ -303,12 +299,23 @@ async def StartTelegramForwarding():
             if not recognized:
                 post = msg + '\n' + message + '\n' + str(sender.id) + '|' + str(chat.id) + '\n_________________\n'
                 utility.add_message('New Telegram Groups', post)
-                print(post)
 
     # End of event handler code ____________________
+
+
+async def setup_scraper():
+    global stringsesh
+    api_id = 5747368
+    api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
+    client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
+    await StartTelegramForwarding(client)
+
     print("Launching Telegram Scraper...")
     await client.start()
     await client.get_dialogs()
+
+    loop = asyncio.get_event_loop()
+    sleeper = Sleeper(loop)
     await trade_stream.streamer()
     await trade_stream.restart_schedule(sleeper)
     await client.run_until_disconnected()
@@ -323,7 +330,7 @@ def handler_stop_signals(sig, frame):
 
 
 # signal.signal(signal.SIGTERM, handler_stop_signals)  # Intializing graceful death on heroku restart
-asyncio.run(StartTelegramForwarding())
+asyncio.run(setup_scraper())
 print('We out this bitch')
 
 os.kill(os.getpid(), signal.SIGTERM)  # Not sure how this is going to react with heroku
