@@ -103,11 +103,7 @@ async def StartTelegramForwarding(client):
         sender_id = str(sender.id)
         channel_name = utils.get_display_name(sender)
         message = str(event.raw_text)
-        print(sender_id,'|',message)
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
-
-        post = msg + '\n' + message + '\n' + str(sender.id) + '|' + str(chat.id) + '\n_________________\n'
-        print(post)
         # Real code
 
         if sender_id == "1548802426":                           # Always Win, Signal
