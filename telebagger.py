@@ -124,7 +124,7 @@ async def StartTelegramForwarding(client):
                     print("Problem with PreSignal Validation")
                 if valid2:
                     print("PreSignal Message")
-        if sender.id == '1312345502':                               # Vip Signals, Signal
+        elif sender_id == '1312345502':                               # Vip Signals, Signal
             valid = msg_vip_signals.valid_trade_message(message)
             if valid:
                 try:
@@ -135,7 +135,7 @@ async def StartTelegramForwarding(client):
                     utility.failed_message(message, 'Vip Signals', e, '_failed.txt')
                     utility.add_message('Vip Signals', '[-]')
 
-        elif sender.id == '1248393106':                             # HIRN, Signal
+        elif sender_id == '1248393106':                             # HIRN, Signal
             print("HIRN MESSAAAGGEEGE")
             post = 'real hirn message log' + str(chat.id)
             utility.add_message('real hirn message log', post)
@@ -160,16 +160,6 @@ async def StartTelegramForwarding(client):
                     utility.failed_message(message, 'Hirn', e, '_failed.txt')
                     utility.add_message('Hirn', '[-]')
 
-        elif sender_id == "1350854897":                         # Futures Signals, Signal
-            valid = futures_signals.valid_trade_message(message)
-            if valid:
-                try:
-                    futsig = futures_signals.bag(message)
-                    utility.add_message('Futures Signals', '[X]')
-                    await trade_stream.addtrade(futsig)
-                except Exception as e:
-                    utility.failed_message(message, 'Futures Signals', e, '_failed.txt')
-                    utility.add_message('Futures Signals', '[-]')
         # ___________________________________________________________________________________________________
 
         elif chat.id == 1899129008:  # Telegram Bot
