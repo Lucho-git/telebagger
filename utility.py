@@ -49,7 +49,7 @@ else:
     SAVE_FOLIO = unique_id + "/save_data/savefolios"  # Path and file
     SAVE_TRADE = unique_id + "/trade_results/"  # Path
     RESULTS = unique_id + "/trade_results/juice/"  # Path
-    LOG = unique_id + 'logs/'
+    LOG = unique_id + '/logs/'
 
 
 def get_binance_client():
