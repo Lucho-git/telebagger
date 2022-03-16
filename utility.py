@@ -132,8 +132,10 @@ def gen_log(log):
             f.write(log + '\n')
         storage.child(path_on_cloud).put(path_on_local)
     except Exception as e:
+        print(e)
         with open(path_on_local, 'w+', encoding="utf8") as f:
-            f.write('Failed')
+            f.write('Daily General Logs ' + date_formatted + '\n')
+            f.write(str(log))
         storage.child(path_on_cloud).put(path_on_local)
 
 
