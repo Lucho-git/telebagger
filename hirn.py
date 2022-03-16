@@ -7,9 +7,9 @@ hirn_timer = [0]
 last_pair = ['']
 tradeheat = [False]
 first = [True]
-HIRN_REAL = [True]
+HIRN_REAL = [False]
 
-HIRN_COOLDOWN_TIME = 8000  # In milliseconds
+HIRN_COOLDOWN_TIME = 12000  # In milliseconds
 HIRN_LEVERAGE = 10  # Trade Leverage for Futures trades
 HIRN_TRADE_PERCENT = 0.4  # How much remaining balance should be invested on each trade
 HIRN_STOPLOSS_REDUCTION = 0.75   # Stoploss value to avoid getting liquidated

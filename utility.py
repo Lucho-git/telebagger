@@ -4,6 +4,7 @@ import numpy as np
 import asyncio as aio
 import re
 from binance.client import Client
+from datetime import date
 from fake_portfolio import Folio, Folios
 
 local = [False]
@@ -29,6 +30,7 @@ SAVE_STREAM_L = 'save_data/savefile'
 SAVE_FOLIO_L = "save_data/savefolios"
 SAVE_TRADE_L = "trade_results/"
 RESULTS_L = "trade_results/juice/"
+LOG_L = 'logs/'
 
 if local[0]:
     # Firebase Cloud Storage File Paths
@@ -38,6 +40,7 @@ if local[0]:
     SAVE_FOLIO = "save_data/savefolios"  # Path and file
     SAVE_TRADE = "trade_results/"  # Path
     RESULTS = "trade_results/juice/"  # Path
+    LOG = 'logs/'
 else:
     # Heroku Version
     FAILED_MESSAGES = unique_id + "/trade_results/failed_messages/"  # Filepath
@@ -46,6 +49,7 @@ else:
     SAVE_FOLIO = unique_id + "/save_data/savefolios"  # Path and file
     SAVE_TRADE = unique_id + "/trade_results/"  # Path
     RESULTS = unique_id + "/trade_results/juice/"  # Path
+    LOG = unique_id + 'logs/'
 
 
 def get_binance_client():
@@ -115,6 +119,21 @@ def add_message(origin, result):
             f.write(origin + 'Signal Count    [-] is Fail  ||  [X] is Success \n')
             f.write('==========================\n')
             f.write(result + '\n')
+        storage.child(path_on_cloud).put(path_on_local)
+
+
+def gen_log(log):
+    today = date.today()
+    date_formatted = today.strftime('%b-%d-%y')
+    path_on_cloud = LOG + date_formatted + '.txt'
+    path_on_local = LOG_L + date_formatted + '.txt'
+    try:
+        with open(path_on_local, 'a', encoding="utf8") as f:
+            f.write(log + '\n')
+        storage.child(path_on_cloud).put(path_on_local)
+    except Exception as e:
+        with open(path_on_local, 'w+', encoding="utf8") as f:
+            f.write('Failed')
         storage.child(path_on_cloud).put(path_on_local)
 
 
@@ -242,6 +261,7 @@ def get_binance_futures_list():
     storage.child(path_on_cloud).download("./", path_on_local)
     with open(path_on_local, "r") as file:
         return file.read().split('\n')
+
 
 
 def format_float(num):

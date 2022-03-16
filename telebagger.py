@@ -104,6 +104,7 @@ async def StartTelegramForwarding(client):
         channel_name = utils.get_display_name(sender)
         message = str(event.raw_text)
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
+        print(msg)
         # Real code
 
         if sender_id == "1548802426":                           # Always Win, Signal
@@ -136,11 +137,6 @@ async def StartTelegramForwarding(client):
                     utility.add_message('Vip Signals', '[-]')
 
         elif sender_id == '1248393106':                             # HIRN, Signal
-            print("HIRN MESSAAAGGEEGE")
-            post = 'real hirn message log' + str(chat.id)
-            utility.add_message('real hirn message log', post)
-            # todo remove utility logs above once finished debugging
-
             print('Hirn Message')
             valid = hirn.valid_trade_message(message)
 
@@ -164,6 +160,7 @@ async def StartTelegramForwarding(client):
 
         elif chat.id == 1899129008:  # Telegram Bot
             print("Robot Section +++")
+            utility.gen_log('Command: ' + message)
             # Bot commands
             if message == STOP:
                 # await trade_stream.restart_schedule(sleeper)
