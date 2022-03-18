@@ -20,7 +20,7 @@ stop = [False]
 update = [False]
 
 RESTART_TIMER = 60  # 60 second restart checks
-RESTART_LIMIT = 2  # 60 * 60 second restart schedule (1 hour)
+RESTART_LIMIT = 60  # 60 * 60 second restart schedule (1 hour)
 RESTART_COUNTER = [0]  # Current count
 
 # Not Error is default, must be explicitly set as error by binance
