@@ -1,8 +1,0 @@
-Daily General Logs Mar-18-22
-
-10:54:59:| Trade Stream is Empty
-10:57:04:| Trade Stream is Empty
-10:57:54:| Trade Stream is Empty
-11:03:44:| Trade Stream is Empty
-13:53:54:| Launching Telegram Scraper
-13:53:58:| Trade Stream is Empty

@@ -290,7 +290,6 @@ def get_binance_futures_list():
         return file.read().split('\n')
 
 
-
 def format_float(num):
     return np.format_float_positional(num, trim='-')
 
