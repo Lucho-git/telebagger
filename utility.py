@@ -9,7 +9,7 @@ from datetime import date
 from datetime import datetime
 from fake_portfolio import Folio, Folios
 
-local = [False]
+local = [True]
 
 config = {  # initialising database connection
     "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",

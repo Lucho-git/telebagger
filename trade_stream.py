@@ -174,7 +174,7 @@ def stream_status():
     for s in streamdict:
         for u in streamdict[s]:
             status += u.overview
-    if status is '':
+    if status == '':
         status = 'Trade Stream is Empty'
     print("Status is :", status)
 
