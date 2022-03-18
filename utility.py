@@ -5,7 +5,6 @@ import asyncio as aio
 import re
 import os.path
 from binance.client import Client
-from datetime import date
 from datetime import datetime
 from fake_portfolio import Folio, Folios
 
