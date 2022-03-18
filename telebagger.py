@@ -296,6 +296,7 @@ async def setup_scraper():
     await StartTelegramForwarding(client)
 
     print("Launching Telegram Scraper...")
+    utility.gen_log('Launching Telegram Scraper')
     await client.start()
     await client.get_dialogs()
 
