@@ -23,7 +23,7 @@ config = {  # initialising database connection
 }
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
-unique_id = 'heroku'  # heroku, lach, tom, cozza
+unique_id = 'heroku/'  # heroku, lach, tom, cozza
 
 
 FAILED_MESSAGES_L = 'trade_results/failed_messages/'
@@ -45,13 +45,13 @@ if local[0]:
     LOG = 'logs/'
 else:
     # Heroku Version
-    FAILED_MESSAGES = unique_id + "/trade_results/failed_messages/"  # Filepath
-    ADD_MESSAGE = unique_id + "/trade_results/message_count/"  # Filepath
-    SAVE_STREAM = unique_id + "/save_data/savefile"  # Path and file
-    SAVE_FOLIO = unique_id + "/save_data/savefolios"  # Path and file
-    SAVE_TRADE = unique_id + "/trade_results/"  # Path
-    RESULTS = unique_id + "/trade_results/juice/"  # Path
-    LOG = unique_id + '/logs/'
+    FAILED_MESSAGES = unique_id + "trade_results/failed_messages/"  # Filepath
+    ADD_MESSAGE = unique_id + "trade_results/message_count/"  # Filepath
+    SAVE_STREAM = unique_id + "save_data/savefile"  # Path and file
+    SAVE_FOLIO = unique_id + "save_data/savefolios"  # Path and file
+    SAVE_TRADE = unique_id + "trade_results/"  # Path
+    RESULTS = unique_id + "trade_results/juice/"  # Path
+    LOG = unique_id + 'logs/'
 
 
 def get_binance_client():
