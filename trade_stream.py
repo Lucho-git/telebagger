@@ -20,7 +20,7 @@ stop = [False]
 update = [False]
 
 RESTART_TIMER = 60  # 60 second restart checks
-RESTART_LIMIT = 60  # 60 * 60 second restart schedule (1 hour)
+RESTART_LIMIT = 2  # 60 * 60 second restart schedule (1 hour)
 RESTART_COUNTER = [0]  # Current count
 
 # Not Error is default, must be explicitly set as error by binance
@@ -81,6 +81,7 @@ async def restart_schedule(sleeper=None):
     else:
         update[0] = True
     while update[0]:
+        utility.gen_log(stream_status())
         print("Scheduled Restart")
         await restart()
         await streamer()
@@ -169,9 +170,15 @@ def stoptrade(in_stoptrades, in_streamdict, in_completedtrades):
 
 
 def stream_status():
+    status = ''
     for s in streamdict:
         for u in streamdict[s]:
-            print(u.overview())
+            status += u.overview
+    if status is '':
+        status = 'Trade Stream is Empty'
+    print("Status is :", status)
+
+    return status
 
 
 def savetraderesults(in_completedtrades):

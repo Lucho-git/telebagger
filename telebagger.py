@@ -118,6 +118,7 @@ async def StartTelegramForwarding(client):
                 except Exception as e:
                     utility.failed_message(message, 'Always Win', e, '_failed.txt')
                     utility.add_message('Always Win', '[-]')
+                utility.gen_log('Signal from Always Win')
             else:
                 try:
                     valid2 = always_win.valid_trade_message(message)
@@ -155,6 +156,7 @@ async def StartTelegramForwarding(client):
                 except Exception as e:
                     utility.failed_message(message, 'Hirn', e, '_failed.txt')
                     utility.add_message('Hirn', '[-]')
+                utility.gen_log('Signal from HIRN')
 
         # ___________________________________________________________________________________________________
 

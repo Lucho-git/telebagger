@@ -3,8 +3,10 @@ import pickle
 import numpy as np
 import asyncio as aio
 import re
+import os.path
 from binance.client import Client
 from datetime import date
+from datetime import datetime
 from fake_portfolio import Folio, Folios
 
 local = [False]
@@ -67,9 +69,10 @@ def get_binance_client():
     r_api_key = 'hWQABbUYYwhonkS6FN8LtCr7QRhtAsj1IwbpbuXWGhbdHn9nRbVe5tZDzyMQrfsp'
     r_api_secret = 'G9HH87QyzZtjmUUjfAxsQQJkcDLOwGRCiL3oyL85p7IoBeKD68JMwjPxmBl3Fm6K'
 
+    #Todo uncomment binance client
     # Binance Client Object
-    realclient = Client(r_api_key, r_api_secret)
-    return realclient
+#    realclient = Client(r_api_key, r_api_secret)
+#    return realclient
 
 
 def is_local():
@@ -124,19 +127,41 @@ def add_message(origin, result):
 
 def gen_log(log):
     today = date.today()
+    now = datetime.now()
+
     date_formatted = today.strftime('%b-%d-%y')
-    path_on_cloud = LOG + date_formatted + '.txt'
-    path_on_local = LOG_L + date_formatted + '.txt'
+    time_formatted = now.strftime('%H:%M:%S:')
+    path_on_cloud = LOG + 'general_logs/' + date_formatted + '.txt'
+    path_on_local = LOG_L + 'general_logs/' + date_formatted + '.txt'
+    try:
+        if os.path.exists(path_on_local):
+            with open(path_on_local, 'a', encoding="utf8") as f:
+                f.write(time_formatted + '| ' + log + '\n')
+            storage.child(path_on_cloud).put(path_on_local)
+        else:
+            print('making new file 0')
+            with open(path_on_local, 'w+', encoding="utf8") as f:
+                f.write('Daily General Logs ' + date_formatted + '\n\n')
+                f.write(time_formatted + '| ' + log + '\n')
+
+            storage.child(path_on_cloud).put(path_on_local)
+    except Exception as e:
+        print('logging Exception: ', e)
+        error_log(e)
+
+
+def error_log(error):
+    now = datetime.now()
+    date_time_formatted = now.strftime('%d:%m:%Y: %H:%M:%S:')
+    path_on_cloud = LOG + 'exceptions' + '.txt'
+    path_on_local = LOG_L + 'exceptions' + '.txt'
     try:
         with open(path_on_local, 'a', encoding="utf8") as f:
-            f.write(log + '\n')
+            f.write(date_time_formatted + '| ' + error + '\n')
         storage.child(path_on_cloud).put(path_on_local)
     except Exception as e:
-        print(e)
-        with open(path_on_local, 'w+', encoding="utf8") as f:
-            f.write('Daily General Logs ' + date_formatted + '\n')
-            f.write(str(log))
-        storage.child(path_on_cloud).put(path_on_local)
+        print('Exception in exceptor :(')
+        print(str(e))
 
 
 def pickle_save(obj, cloudpath, localpath):
