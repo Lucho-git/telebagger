@@ -108,7 +108,8 @@ async def StartTelegramForwarding(client):
         # Real code
 
         if sender_id == "1548802426":                           # Always Win, Signal
-            await client.send_message(1576065688, event.message)
+            # Changed to sending text only, as sending the full message is no longer functional, I suspect Always win guy did something to his data to try and prevent copycats
+            await client.send_message(1576065688, message)
             valid = always_win.valid_trade_message(message)
             if valid:
                 try:
@@ -162,7 +163,7 @@ async def StartTelegramForwarding(client):
 
         elif chat.id == 1899129008:  # Telegram Bot
             print("Robot Section +++")
-            utility.gen_log('Command: ' + message)
+            utility.gen_log('Telegram Robot: ' + message)
             # Bot commands
             if message == STOP:
                 # await trade_stream.restart_schedule(sleeper)
@@ -204,7 +205,7 @@ async def StartTelegramForwarding(client):
                         print('notvalid')
 
             elif message == '/status':
-                trade_stream.stream_status()
+                print(trade_stream.stream_status())
 
             elif message == '/futsig':
                 with open('docs/futures_signals_example.txt', encoding="utf8") as f:
@@ -296,9 +297,7 @@ async def setup_scraper():
     await StartTelegramForwarding(client)
 
     print("Launching Telegram Scraper...")
-    print('Doing logs')
-    utility.gen_log('Launching Telegram Scraper')
-    print('Finished Logs')
+    utility.gen_log('\nLaunching Telegram Scraper...\n')
     await client.start()
     await client.get_dialogs()
 

@@ -1,0 +1,78 @@
+Daily General Logs 18-Mar-22
+
+14:14:31:| Launching Telegram Scraper...
+14:14:34:| Trade Stream is Empty
+14:17:09:| Launching Telegram Scraper...
+14:17:13:| Trade Stream is Empty
+14:17:21:| Telegram Robot: /status
+14:17:55:| Launching Telegram Scraper...
+14:17:58:| Trade Stream is Empty
+14:18:04:| Telegram Robot: /status
+14:19:18:| Launching Telegram Scraper...
+
+14:19:21:| Trade Stream is Empty
+14:19:26:| Telegram Robot: /status
+14:20:20:| 
+Launching Telegram Scraper...
+
+14:20:26:| Trade Stream is Empty
+14:20:31:| Telegram Robot: /status
+14:23:53:| Telegram Robot: /hirn
+14:24:25:| 
+Launching Telegram Scraper...
+
+14:24:29:| Trade Stream is Empty
+14:25:09:| Telegram Robot: /hirn
+14:25:26:| Telegram Robot: hi
+14:32:01:| 
+Launching Telegram Scraper...
+
+14:32:11:| Trade Stream is Empty
+14:32:17:| Telegram Robot: /hirn
+14:35:59:| 
+Launching Telegram Scraper...
+
+14:36:02:| Trade Stream is Empty
+14:36:15:| Telegram Robot: /hirn
+14:40:52:| 
+Launching Telegram Scraper...
+
+14:40:55:| Trade Stream is Empty
+14:41:11:| Telegram Robot: /hirn
+14:43:02:| <bound method Trade.overview of ALGOUSDT_1647585674125>
+14:47:17:| 
+Launching Telegram Scraper...
+
+14:47:27:| Telegram Robot: /hirn
+14:52:10:| 
+Launching Telegram Scraper...
+
+14:52:37:| 
+Launching Telegram Scraper...
+
+14:52:40:| Trade Stream is Empty
+14:52:56:| Telegram Robot: /hirn
+14:54:45:| Trade: ALGOUSDT | 1647586379656
+TimeStarted: 2022-03-18  14:52 | 2022-03-18  14:54
+Status: active
+
+14:57:53:| 
+Launching Telegram Scraper...
+
+14:58:14:| 
+Launching Telegram Scraper...
+
+14:58:17:| Trade Stream is Empty
+14:58:36:| Telegram Robot: /hirn
+15:00:23:| Trade: ALGOUSDT | 1647586719591TimeStarted: 2022-03-18  14:58 | TimeUpdated: 2022-03-18  15:00Status: active
+
+15:04:04:| 
+Launching Telegram Scraper...
+
+15:04:07:| Trade Stream is Empty
+15:04:15:| Telegram Robot: /hirn
+15:06:12:| Trade: ALGOUSDT | 1647587058222| TimeStarted: 18-Mar-22  15:04 | TimeUpdated: 18-Mar-22  15:06 | LongestUpdate: 60001| Status: active
+
+15:07:51:| 
+Launching Telegram Scraper...
+

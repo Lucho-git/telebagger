@@ -69,10 +69,9 @@ def get_binance_client():
     r_api_key = 'hWQABbUYYwhonkS6FN8LtCr7QRhtAsj1IwbpbuXWGhbdHn9nRbVe5tZDzyMQrfsp'
     r_api_secret = 'G9HH87QyzZtjmUUjfAxsQQJkcDLOwGRCiL3oyL85p7IoBeKD68JMwjPxmBl3Fm6K'
 
-    #Todo uncomment binance client
     # Binance Client Object
-#    realclient = Client(r_api_key, r_api_secret)
-#    return realclient
+    realclient = Client(r_api_key, r_api_secret)
+    return realclient
 
 
 def is_local():
@@ -126,10 +125,9 @@ def add_message(origin, result):
 
 
 def gen_log(log):
-    today = date.today()
-    now = datetime.now()
+    now = datetime.now().astimezone()
 
-    date_formatted = today.strftime('%b-%d-%y')
+    date_formatted = now.strftime('%d-%b-%y')
     time_formatted = now.strftime('%H:%M:%S:')
     path_on_cloud = LOG + 'general_logs/' + date_formatted + '.txt'
     path_on_local = LOG_L + 'general_logs/' + date_formatted + '.txt'
@@ -139,7 +137,6 @@ def gen_log(log):
                 f.write(time_formatted + '| ' + log + '\n')
             storage.child(path_on_cloud).put(path_on_local)
         else:
-            print('making new file 0')
             with open(path_on_local, 'w+', encoding="utf8") as f:
                 f.write('Daily General Logs ' + date_formatted + '\n\n')
                 f.write(time_formatted + '| ' + log + '\n')

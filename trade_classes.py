@@ -464,14 +464,10 @@ class Trade:
         time_started = None
         latest_update = None
         if self.latest_update:
-            time_started = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%Y-%m-%d  %H:%M')
-            latest_update = datetime.datetime.fromtimestamp(float(self.latest_update) / 1000).strftime('%Y-%m-%d  %H:%M')
+            time_started = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%d-%b-%y  %H:%M')
+            latest_update = datetime.datetime.fromtimestamp(float(self.latest_update) / 1000).strftime('%d-%b-%y  %H:%M')
 
-        ov_string = ''
-        ov_string += 'Trade: ' + self.pair + ' | ' + str(self.id) + '\n'
-        ov_string += 'TimeStarted: ' + time_started + ' | ' + latest_update + '\n'
-        ov_string += 'Status: ' + self.status + '\n'
-
+        ov_string = 'Trade: ' + self.pair + ' | ' + str(self.id) + '| TimeStarted: ' + time_started + ' | TimeUpdated: ' + latest_update + ' | LongestUpdate: ' + str(self.largest_update/60000) + 'm | Status: ' + self.status + '\n'
         return ov_string
 
     # Creates an End of Trade string
