@@ -382,3 +382,51 @@ Result Window: 0.03848 | 0.03843[- 1.3%] | 0.04438794[+ 153.53%]
 
 _________________________________
 
+DODOUSDT | 1647674973845
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-19  15:29 | 2022-03-19  15:38
+Duration: 0.14 hrs
+================================
+Pricechange: + 13.51%
+Buy Price: 0.408 |  Sell Price: 0.4135131
+Result Window: 0.408 | 0.408[+ 0.0%] | 0.374999625[- 80.88%]
+
+_________________________________
+
+DODOUSDT | 1647691497212
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-19  20:04 | 2022-03-19  20:30
+Duration: 0.42 hrs
+================================
+Pricechange: + 1.24%
+Buy Price: 0.413 |  Sell Price: 0.4135131
+Result Window: 0.413 | 0.411[- 4.84%] | 0.374999625[- 92.01%]
+
+_________________________________
+
+DODOUSDT | 1647691582508
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-19  20:06 | 2022-03-19  20:30
+Duration: 0.4 hrs
+================================
+Pricechange: + 3.67%
+Buy Price: 0.412 |  Sell Price: 0.4135131
+Result Window: 0.412 | 0.411[- 2.43%] | 0.374999625[- 89.81%]
+
+_________________________________
+
+DODOUSDT | 1647693899652
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-19  20:44 | 2022-03-19  20:45
+Duration: 0.0 hrs
+================================
+Pricechange: - 15.44%
+Buy Price: 0.42 |  Sell Price: 0.4135131
+Result Window: 0.42 | 0.42[+ 0.0%] | 0.374999625[- 107.14%]
+
+_________________________________
+

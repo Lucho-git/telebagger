@@ -4,6 +4,7 @@ from trade_classes import Trade, Futures
 import asyncio
 import time
 import utility
+import threading
 import binance_wrap
 
 twm = ThreadedWebsocketManager()
@@ -67,7 +68,7 @@ async def stopstream():
     stop[0] = True
 
 
-async def restart():
+async def close_stream():
     print('Saving stream and closing sockets')
     await save(streamdict)
     active[0] = False
@@ -75,21 +76,22 @@ async def restart():
     reload[0] = True
 
 
-async def restart_schedule(sleeper=None):
-    if update[0]:
-        update[0] = False
-    else:
-        update[0] = True
-    while update[0]:
-        utility.gen_log(stream_status())
+async def restart_stream():
+    utility.gen_log(stream_status())
+    await close_stream()
+    await asyncio.gather(streamer(), timer())
+
+
+async def timer():
+    RESTART_COUNTER[0] = 0
+    while RESTART_COUNTER[0] < RESTART_LIMIT:
+        await asyncio.sleep(RESTART_TIMER)
+        RESTART_COUNTER[0] += 1
+    if streamdict:
         print("Scheduled Restart")
-        await restart()
-        await streamer()
-        RESTART_COUNTER[0] = 0
-        while RESTART_COUNTER[0] < RESTART_LIMIT:
-            await sleeper.sleep(RESTART_TIMER)
-            RESTART_COUNTER[0] += 1
-    print('Ending Restart Schedule')
+        utility.gen_log(stream_status())
+        await close_stream()
+        await asyncio.gather(streamer(), timer())
 
 
 async def save(in_streamdict):
@@ -213,12 +215,14 @@ async def streamer():
 
     while streamdict:
         await asyncio.sleep(1)
-        time.sleep(1)
 
+        '''
         streamstring = ''
         for i in streamdict:
             streamstring += str(i) + ' #'+str(len(streamdict[i])) + ' | '
         # print('Checking for updates....', streamstring, twm)
+        print(streamstring)
+        '''
 
         if reload[0] or stop[0]:
             break

@@ -4,8 +4,10 @@ import numpy as np
 import asyncio as aio
 import re
 import os.path
+import pytz
 from binance.client import Client
 from datetime import datetime
+
 from fake_portfolio import Folio, Folios
 
 local = [False]
@@ -124,8 +126,8 @@ def add_message(origin, result):
 
 
 def gen_log(log):
-    now = datetime.now().astimezone()
-
+    tz = pytz.timezone('Australia/Perth')
+    now = datetime.now(tz)
     date_formatted = now.strftime('%d-%b-%y')
     time_formatted = now.strftime('%H:%M:%S:')
     path_on_cloud = LOG + 'general_logs/' + date_formatted + '.txt'

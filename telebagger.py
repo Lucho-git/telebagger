@@ -42,6 +42,7 @@ if local:
     # Stream Commands Local
     STOP = '/stop'
     STREAM = '/stream'
+    STOPSTREAM = '/stopstream'
     RESTART = '/restart'
     MENU = '/menu'
     ADD = '/add'
@@ -65,6 +66,7 @@ else:
     # Backup:1BVtsOJEBuzPKndfyOcR8Db9PCaurB8JH7jyBTy8H2ur2WZMoPlqEki0GOPEfgnWjXptA40uN1OK3QL8yGCF4CEWbfsBdUvk1b8zhdo0ZF42vSNKgyz6mrupuEKZ9OmQxgXWSHx66vjM70le782D-z8dnreaVxmmSsrMxkU3GCjyQE2fHRZZp2-9njfZMNAVczYimmK2QzHhvvFHpDxXBgJ4WxZp3hg5FICpBo05fy7xc9Y5xV_ZZpRwwixjy0iZOo8o1ZbvLx7AFC8g-RvFWYHK8ZJVJcjp8KyXc95tBQxtdDbRv6EDxVUEQROLH5C5apM9laK-pZQp_LUc5FiGX_nT0iRBrVg4=
     STOP = '/stop!'
     STREAM = '/stream!'
+    STOPSTREAM = '/stopstream!'
     RESTART = '/restart!'
     MENU = '/menu!'
     ADD = '/add!'
@@ -177,8 +179,10 @@ async def StartTelegramForwarding(client):
             # Stream Commands
             elif message == STREAM:
                 await trade_stream.streamer()
+            elif message == STOPSTREAM:
+                await trade_stream.close_stream()
             elif message == RESTART:
-                await trade_stream.restart()
+                await trade_stream.restart_stream()
             elif message == MENU:
                 await trade_stream.stopstream()
 
@@ -300,12 +304,8 @@ async def setup_scraper():
     utility.gen_log('\nLaunching Telegram Scraper...\n')
     await client.start()
     await client.get_dialogs()
-
-    loop = asyncio.get_event_loop()
-    sleeper = Sleeper(loop)
-    await trade_stream.streamer()
-    await trade_stream.restart_schedule(sleeper)
-    await client.run_until_disconnected()
+    #loop = asyncio.get_event_loop()
+    await asyncio.gather(trade_stream.streamer(), trade_stream.timer(), client.run_until_disconnected())
 
 
 # Currently non functional, want to find a way to gracefully shutdown the program when heroku calls sigterm
