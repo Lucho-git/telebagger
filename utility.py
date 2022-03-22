@@ -133,6 +133,7 @@ def gen_log(log):
     path_on_cloud = LOG + 'general_logs/' + date_formatted + '.txt'
     path_on_local = LOG_L + 'general_logs/' + date_formatted + '.txt'
     try:
+        storage.child(path_on_cloud).download("./", path_on_local)
         if os.path.exists(path_on_local):
             with open(path_on_local, 'a', encoding="utf8") as f:
                 f.write(time_formatted + '| ' + log + '\n')
