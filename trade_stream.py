@@ -92,6 +92,8 @@ async def timer():
         utility.gen_log(stream_status())
         await close_stream()
         await asyncio.gather(streamer(), timer())
+    else:
+        await asyncio.gather(streamer(), timer())
 
 
 async def save(in_streamdict):
@@ -184,6 +186,7 @@ def stream_status():
 def savetraderesults(in_completedtrades):
     for c in in_completedtrades[:]:
         # Save trade to database
+        utility.gen_log(c.overview())
         utility.save_trade(c)
         if c.bag_id:
             utility.trade_results(c)

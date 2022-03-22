@@ -360,7 +360,7 @@ class Trade:
     def update_trade(self, k):
         # Updates latest update information (Tracks if there is a large window of no updates - like if the program went down)
         if self.latest_update:
-            update_time_diff = int(k['time']) - int(self.latest_update)
+            update_time_diff = round(int(k['time']) - int(self.latest_update), 2)
             if update_time_diff > self.largest_update:
                 self.largest_update = update_time_diff
                 if self.largest_update > 600000:  # 10 minutes
