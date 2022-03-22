@@ -1,0 +1,7 @@
+Daily General Logs 22-Mar-22
+
+20:41:35:| Launching Telegram Scraper...
+
+20:42:09:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  20:42 | LongestUpdate: 21.1m | Status: active
+20:42:50:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  20:42 | LongestUpdate: 21.1m | Status: active
+20:43:26:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  20:43 | LongestUpdate: 21.1m | Status: active

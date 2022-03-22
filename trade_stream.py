@@ -77,23 +77,25 @@ async def close_stream():
 
 
 async def restart_stream():
-    utility.gen_log(stream_status())
+    utility.gen_log(str(stream_status()))
     await close_stream()
     await asyncio.gather(streamer(), timer())
 
 
 async def timer():
-    RESTART_COUNTER[0] = 0
-    while RESTART_COUNTER[0] < RESTART_LIMIT:
+    restart_counter = 0
+    while restart_counter < RESTART_LIMIT:
         await asyncio.sleep(RESTART_TIMER)
-        RESTART_COUNTER[0] += 1
+        restart_counter += 1
+        print(str(restart_counter) + '->' + str(RESTART_LIMIT))
     if streamdict:
         print("Scheduled Restart")
-        utility.gen_log(stream_status())
-        await close_stream()
-        await asyncio.gather(streamer(), timer())
+        await restart_stream()
     else:
+        print("Empty Restart")
+        utility.gen_log(str(stream_status()))
         await asyncio.gather(streamer(), timer())
+    print('Finished, and closing timer')
 
 
 async def save(in_streamdict):
@@ -125,6 +127,8 @@ def load():
 async def addtrade(new_trades):  # import trade in future
     tradequeue.extend(new_trades)
     print("Adding trades", new_trades)
+    for t in new_trades:
+        utility.gen_log(str(t.overview()))
     addstream(tradequeue, streamdict)
     print('bumping')
     await bump()
@@ -176,8 +180,12 @@ def stoptrade(in_stoptrades, in_streamdict, in_completedtrades):
 def stream_status():
     status = ''
     for s in streamdict:
+        first_run_check = True
         for u in streamdict[s]:
             status += u.overview()
+            if not first_run_check:
+                status += '\n'
+            first_run_check = False
     if status == '':
         status = 'Trade Stream is Empty'
     return status
@@ -186,7 +194,7 @@ def stream_status():
 def savetraderesults(in_completedtrades):
     for c in in_completedtrades[:]:
         # Save trade to database
-        utility.gen_log(c.overview())
+        utility.gen_log(str(c.overview()))
         utility.save_trade(c)
         if c.bag_id:
             utility.trade_results(c)
