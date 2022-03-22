@@ -5,3 +5,28 @@ Daily General Logs 22-Mar-22
 20:42:09:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  20:42 | LongestUpdate: 21.1m | Status: active
 20:42:50:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  20:42 | LongestUpdate: 21.1m | Status: active
 20:43:26:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  20:43 | LongestUpdate: 21.1m | Status: active
+21:02:29:| Launching Telegram Scraper...
+
+21:02:41:| Launching Telegram Scraper...
+
+21:03:46:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:03 | LongestUpdate: 21.1m | Status: active
+21:04:53:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:04 | LongestUpdate: 21.1m | Status: active
+21:06:00:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:06 | LongestUpdate: 21.1m | Status: active
+21:07:08:| Launching Telegram Scraper...
+
+21:08:13:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:08 | LongestUpdate: 21.1m | Status: active
+21:09:20:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:09 | LongestUpdate: 21.1m | Status: active
+21:09:29:| Launching Telegram Scraper...
+
+21:10:34:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:10 | LongestUpdate: 21.1m | Status: active
+21:11:40:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:11 | LongestUpdate: 21.1m | Status: active
+21:12:47:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:12 | LongestUpdate: 21.1m | Status: active
+21:13:22:| Launching Telegram Scraper...
+
+21:14:27:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:14 | LongestUpdate: 21.1m | Status: active
+21:15:19:| Launching Telegram Scraper...
+
+21:16:24:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:16 | LongestUpdate: 21.1m | Status: active
+21:17:22:| Launching Telegram Scraper...
+
+21:18:27:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:18 | LongestUpdate: 21.1m | Status: active
