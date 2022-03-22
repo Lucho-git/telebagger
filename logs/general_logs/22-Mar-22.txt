@@ -1,90 +1,49 @@
 Daily General Logs 22-Mar-22
 
-16:01:33:| Launching Telegram Scraper...
+20:41:35:| Launching Telegram Scraper...
 
-16:02:07:| Closing Trade: ZRXUSDT | 1647835020172 | TimeStarted: 21-Mar-22  03:57 | TimeFinished: 22-Mar-22  08:02 | LongestUpdate: 1152.9999666666668m | Status: stopprof
+20:42:09:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  20:42 | LongestUpdate: 21.1m | Status: active
+20:42:50:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  20:42 | LongestUpdate: 21.1m | Status: active
+20:43:26:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  20:43 | LongestUpdate: 21.1m | Status: active
+21:02:29:| Launching Telegram Scraper...
 
-16:06:38:| Launching Telegram Scraper...
+21:02:41:| Launching Telegram Scraper...
 
-16:07:07:| Closing Trade: ZRXUSDT | 1647835020172 | TimeStarted: 21-Mar-22  03:57 | TimeFinished: 22-Mar-22  08:07 | LongestUpdate: 1157.9999666666668m | Status: stopprof
+21:03:46:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:03 | LongestUpdate: 21.1m | Status: active
+21:04:53:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:04 | LongestUpdate: 21.1m | Status: active
+21:06:00:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:06 | LongestUpdate: 21.1m | Status: active
+21:07:08:| Launching Telegram Scraper...
 
-16:15:22:| Telegram Robot: /hirn!
-16:18:57:| Launching Telegram Scraper...
+21:08:13:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:08 | LongestUpdate: 21.1m | Status: active
+21:09:20:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:09 | LongestUpdate: 21.1m | Status: active
+21:09:29:| Launching Telegram Scraper...
 
-16:19:02:| Closing Trade: ZRXUSDT | 1647835020172 | TimeStarted: 21-Mar-22  03:57 | TimeFinished: 22-Mar-22  08:19 | LongestUpdate: 1169.9151333333334m | Status: stopprof
+21:10:34:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:10 | LongestUpdate: 21.1m | Status: active
+21:11:40:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:11 | LongestUpdate: 21.1m | Status: active
+21:12:47:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:12 | LongestUpdate: 21.1m | Status: active
+21:13:22:| Launching Telegram Scraper...
 
-16:19:42:| Telegram Robot: /hirn!
-16:20:00:| Trade: KNCUSDT | 1647937183887 | TimeStarted:  | TimeUpdated:  | LongestUpdate: 0.0m | Status: active
+21:14:27:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:14 | LongestUpdate: 21.1m | Status: active
+21:15:19:| Launching Telegram Scraper...
 
-16:20:59:| Telegram Robot: /restart!
-16:20:59:| Trade: KNCUSDT | 1647937183887 | TimeStarted:  | TimeUpdated:  | LongestUpdate: 0.0m | Status: active
+21:16:24:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:16 | LongestUpdate: 21.1m | Status: active
+21:17:22:| Launching Telegram Scraper...
 
-16:21:14:| Telegram Robot: /restart!
-16:21:15:| Trade: KNCUSDT | 1647937183887 | TimeStarted: 22-Mar-22  08:19 | TimeUpdated: 22-Mar-22  08:21 | LongestUpdate: 0.0m | Status: active
+21:18:27:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:18 | LongestUpdate: 21.1m | Status: active
+21:19:34:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:19 | LongestUpdate: 21.1m | Status: active
+21:20:42:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:20 | LongestUpdate: 21.1m | Status: active
+21:21:49:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:21 | LongestUpdate: 21.1m | Status: active
+21:22:57:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:22 | LongestUpdate: 21.1m | Status: active
+21:24:03:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:23 | LongestUpdate: 21.1m | Status: active
+21:25:11:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:25 | LongestUpdate: 21.1m | Status: active
+21:26:18:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 22-Mar-22  21:26 | LongestUpdate: 21.1m | Status: active
+21:30:11:| Launching Telegram Scraper...
 
-16:23:05:| Launching Telegram Scraper...
+21:32:42:| Launching Telegram Scraper...
 
-16:23:15:| Telegram Robot: /hirn!
-16:24:16:| Telegram Robot: /restart!
-16:24:19:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  08:24 | LongestUpdate: 0.0m | Status: active
+21:33:22:| Launching Telegram Scraper...
 
-16:25:10:| Telegram Robot: /restart!
-16:25:11:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  08:25 | LongestUpdate: 0.9746333333333334m | Status: active
+21:33:33:| Launching Telegram Scraper...
 
-16:25:23:| Telegram Robot: hi
-16:25:24:| Telegram Robot: hi
-16:27:53:| Telegram Robot: /restart!
-16:27:54:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  08:27 | LongestUpdate: 1.0518666666666667m | Status: active
-
-16:29:02:| Telegram Robot: /hirn
-16:29:16:| Telegram Robot: /hirn
-16:30:54:| Telegram Robot: /restart
-16:33:16:| Telegram Robot: /restart
-16:42:56:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  08:42 | LongestUpdate: 1.0958666666666668m | Status: active
-
-16:57:58:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  08:57 | LongestUpdate: 1.0958666666666668m | Status: active
-
-17:13:00:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  09:12 | LongestUpdate: 1.1145m | Status: active
-
-17:28:02:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  09:27 | LongestUpdate: 1.12425m | Status: active
-
-17:43:04:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  09:42 | LongestUpdate: 1.12425m | Status: active
-
-17:58:07:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  09:57 | LongestUpdate: 1.12425m | Status: active
-
-18:13:09:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  10:13 | LongestUpdate: 1.12425m | Status: active
-
-18:13:10:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  10:13 | LongestUpdate: 1.12425m | Status: active
-
-18:28:12:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  10:28 | LongestUpdate: 1.1260666666666668m | Status: active
-
-18:43:15:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  10:43 | LongestUpdate: 1.1260666666666668m | Status: active
-
-18:43:16:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  10:43 | LongestUpdate: 1.1260666666666668m | Status: active
-
-18:58:18:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  10:58 | LongestUpdate: 1.1260666666666668m | Status: active
-
-19:13:20:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  11:13 | LongestUpdate: 1.1260666666666668m | Status: active
-
-19:28:22:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  11:28 | LongestUpdate: 1.1260666666666668m | Status: active
-
-19:28:24:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  11:28 | LongestUpdate: 1.1260666666666668m | Status: active
-
-19:43:26:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  11:43 | LongestUpdate: 1.1260666666666668m | Status: active
-
-19:58:28:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  11:58 | LongestUpdate: 1.1260666666666668m | Status: active
-
-20:13:30:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  12:13 | LongestUpdate: 1.1260666666666668m | Status: active
-
-20:28:33:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  12:28 | LongestUpdate: 1.1260666666666668m | Status: active
-
-20:43:35:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  12:43 | LongestUpdate: 1.1260666666666668m | Status: active
-
-20:44:55:| Launching Telegram Scraper...
-
-20:45:14:| Telegram Robot: /restart!
-20:45:15:| Trade: KNCUSDT | 1647937397464 | TimeStarted: 22-Mar-22  08:23 | TimeUpdated: 22-Mar-22  12:45 | LongestUpdate: 2.1m | Status: active
-21:20:18:| Launching Telegram Scraper...
-
-21:26:53:| Launching Telegram Scraper...
+21:34:01:| Launching Telegram Scraper...
 

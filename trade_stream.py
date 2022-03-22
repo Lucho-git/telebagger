@@ -38,14 +38,11 @@ def coin_trade_data(msg):
         i = k['i']
         stream['symbol'] = msg['s']
         stream['time'] = msg['E']
-        print(stream['time'])
-        print(datetime.fromtimestamp(float(stream['time']) / 1000).strftime('%d-%b-%y  %H:%M'))
+
         dt = datetime.fromtimestamp(float(stream['time']) / 1000)
-        print(dt.strftime('%d-%b-%y  %H:%M'))
         tz = pytz.timezone('Australia/Perth')
         dt = dt.astimezone(tz)
-        print(dt.strftime('%d-%b-%y  %H:%M'))
-
+        stream['time'] = datetime.timestamp(dt)*1000
         stream['last'] = float(k['c'])
         stream['high'] = float(k['h'])
         stream['low'] = float(k['l'])
