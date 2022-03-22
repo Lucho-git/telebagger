@@ -43,7 +43,7 @@ def coin_trade_data(msg):
         dt = datetime.fromtimestamp(float(stream['time']) / 1000)
         print(dt.strftime('%d-%b-%y  %H:%M'))
         tz = pytz.timezone('Australia/Perth')
-        dt = dt.replace(tzinfo=tz)
+        dt = dt.astimezone(tz)
         print(dt.strftime('%d-%b-%y  %H:%M'))
 
         stream['last'] = float(k['c'])
