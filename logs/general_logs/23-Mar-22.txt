@@ -56,3 +56,11 @@ Daily General Logs 23-Mar-22
 12:22:01:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 23-Mar-22  12:22 | LongestUpdate: 618.0m | Status: activeTrade: LITUSDT | 1648002240151 | TimeStarted: 23-Mar-22  10:24 | TimeUpdated: 23-Mar-22  12:22 | LongestUpdate: 6.0m | Status: active
 12:22:48:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 23-Mar-22  12:22 | LongestUpdate: 618.0m | Status: activeTrade: LITUSDT | 1648002240151 | TimeStarted: 23-Mar-22  10:24 | TimeUpdated: 23-Mar-22  12:22 | LongestUpdate: 6.0m | Status: active
 12:23:35:| Trade: KNCUSDT | 1647937762009 | TimeStarted: 22-Mar-22  16:29 | TimeUpdated: 23-Mar-22  12:23 | LongestUpdate: 618.0m | Status: activeTrade: LITUSDT | 1648002240151 | TimeStarted: 23-Mar-22  10:24 | TimeUpdated: 23-Mar-22  12:23 | LongestUpdate: 6.0m | Status: active
+12:57:07:| Launching Telegram Scraper...
+
+12:58:59:| Launching Telegram Scraper...
+
+13:21:29:| Launching Telegram Scraper...
+
+13:21:38:| Telegram Robot: /hirn
+13:21:43:| Trade: LITUSDT | 1648012905837 | TimeStarted:  | TimeUpdated:  | LongestUpdate: 0.0m | Status: active

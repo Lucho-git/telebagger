@@ -43,6 +43,12 @@ def coin_trade_data(msg):
         tz = pytz.timezone('Australia/Perth')
         dt = dt.astimezone(tz)
         print(dt.strftime('%d-%b-%y  %H:%M'))
+        aus_timezone = dt
+        print(aus_timezone.strftime('%d-%b-%y  %H:%M'))
+        aus_timezone = datetime.timestamp(aus_timezone)*1000
+        print('Incorrect Timezone', datetime.fromtimestamp(float(aus_timezone) / 1000).strftime('%Y-%m-%d_%H:%M'))
+        aus_timezone = datetime.astimezone(tz).timestamp(dt)*1000
+        print('Correct Timezone', datetime.fromtimestamp(float(aus_timezone) / 1000).strftime('%Y-%m-%d_%H:%M'))
         stream['time'] = datetime.timestamp(dt)*1000
         print(datetime.fromtimestamp(float(stream['time']) / 1000).strftime('%Y-%m-%d_%H:%M'))
         stream['last'] = float(k['c'])
