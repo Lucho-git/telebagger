@@ -40,18 +40,15 @@ def coin_trade_data(msg):
         stream['time'] = msg['E']
 
         print('As timestamp', stream['time'])
+        print('Before Changes', datetime.fromtimestamp(float(stream['time'])).strftime('%Y-%m-%d_%H:%M'))
         dt = datetime.fromtimestamp(float(stream['time']) / 1000)
         tz = pytz.timezone('Australia/Perth')
-        dt = dt.astimezone(tz)
-        print(dt.strftime('%d-%b-%y  %H:%M'))
-        aus_timezone = dt
-        #Correct timezone
-        print(aus_timezone.strftime('%d-%b-%y  %H:%M'))
+        aus_timezone = dt.astimezone(tz)
+        # Correct timezone
+        print('After Changes', aus_timezone.strftime('%d-%b-%y  %H:%M'))
         aus_timezone = datetime.timestamp(aus_timezone)
         print('As timestamp', aus_timezone)
         print('Incorrect Timezone', datetime.fromtimestamp(float(aus_timezone)).strftime('%Y-%m-%d_%H:%M'))
-
-
 
         stream['time'] = datetime.timestamp(dt)*1000
         stream['last'] = float(k['c'])
