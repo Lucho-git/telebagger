@@ -1,7 +1,8 @@
 from binance.exceptions import BinanceAPIException, BinanceOrderException
 from datetime import datetime
 import math
-import time
+from datetime import datetime
+import pytz
 
 import utility
 
@@ -21,6 +22,14 @@ def get_futures_balance():
             balance = float(b['withdrawAvailable'])
             print('Balance = ', balance)
     return balance
+
+
+# TODO maybe move this into utility, there is another use of it in trade_stream class, which is streaming sockets through binance ThreadedWM
+def get_specific_timezone(server_time):
+    tz = pytz.timezone('Australia/Perth')
+    dt = datetime.fromtimestamp(float(server_time) / 1000)
+    dt = dt.astimezone(tz)
+    return str(datetime.timestamp(dt) * 1000)
 
 
 # Rounds a decimal value down, to account for binance precision values
@@ -262,6 +271,7 @@ def futures_trade_no_orders(signal, trade_size, bag_id=None):
 
     trade_id = trade_receipt['orderId']
     receipt = realclient.futures_get_order(orderId=trade_id, symbol=signal.pair)
+    receipt['transactTime'] = get_specific_timezone(receipt['transactTime'])
     signal.init_trade_futures(trade_id, receipt)
 
     # Add receipt to filled orders

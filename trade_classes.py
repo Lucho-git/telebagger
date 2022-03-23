@@ -113,6 +113,7 @@ class Trade:
         #TODO sort out if this is Futures and Mfutures or only Futures
         # self.conditions.filled_orders.append(receipt)
 
+    # TODO, is this function required? Currently nothing is calling on it.
     def init_trade_vals(self, receipt):
         self.receipt = receipt
         fills = receipt['fills']
