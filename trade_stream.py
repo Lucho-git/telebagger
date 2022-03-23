@@ -44,10 +44,10 @@ def coin_trade_data(msg):
         dt = datetime.fromtimestamp(float(stream['time']) / 1000)
         tz = pytz.timezone('Australia/Perth')
         aus_timezone = dt.astimezone(tz)
+        timestamp = aus_timezone.replace(tz).timestamp()
         # Correct timezone
         print('After Changes', aus_timezone.strftime('%d-%b-%y  %H:%M'))
-        aus_timezone = datetime.timestamp(aus_timezone)
-        print('As timestamp', aus_timezone)
+        print('As timestamp', timestamp)
         print('Incorrect Timezone', datetime.fromtimestamp(float(aus_timezone)).strftime('%Y-%m-%d_%H:%M'))
 
         stream['time'] = datetime.timestamp(dt)*1000
