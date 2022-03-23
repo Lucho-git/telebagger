@@ -366,7 +366,8 @@ class Trade:
                 self.largest_update = update_time_diff
                 if self.largest_update > 600000:  # 10 minutes
                     self.corruption_chance = True
-        print('Update_trade:', k['time'])
+        k_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%Y-%m-%d_%H:%M')
+        print('Update_trade:', k_time)
         self.latest_update = k['time']
 
         # Updating latest trade price values

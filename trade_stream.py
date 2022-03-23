@@ -44,6 +44,7 @@ def coin_trade_data(msg):
         dt = dt.astimezone(tz)
         print(dt.strftime('%d-%b-%y  %H:%M'))
         stream['time'] = datetime.timestamp(dt)*1000
+        print(datetime.fromtimestamp(float(stream['time']) / 1000).strftime('%Y-%m-%d_%H:%M'))
         stream['last'] = float(k['c'])
         stream['high'] = float(k['h'])
         stream['low'] = float(k['l'])
