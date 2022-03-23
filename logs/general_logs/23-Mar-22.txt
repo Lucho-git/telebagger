@@ -64,3 +64,7 @@ Daily General Logs 23-Mar-22
 
 13:21:38:| Telegram Robot: /hirn
 13:21:43:| Trade: LITUSDT | 1648012905837 | TimeStarted:  | TimeUpdated:  | LongestUpdate: 0.0m | Status: active
+13:33:21:| Launching Telegram Scraper...
+
+13:33:31:| Telegram Robot: /hirn
+13:33:36:| Trade: LITUSDT | 1648013618067 | TimeStarted:  | TimeUpdated:  | LongestUpdate: 0.0m | Status: active
