@@ -7,7 +7,7 @@ import utility
 import threading
 import binance_wrap
 
-from datetime import datetime
+from datetime import datetime, timezone
 import pytz
 
 twm = ThreadedWebsocketManager()
@@ -44,11 +44,11 @@ def coin_trade_data(msg):
         dt = datetime.fromtimestamp(float(stream['time']) / 1000)
         tz = pytz.timezone('Australia/Perth')
         aus_timezone = dt.astimezone(tz)
-        timestamp = dt.replace(tz).timestamp()
+        timestamp = dt.replace(tzinfo=tz).timestamp()
         # Correct timezone
         print('After Changes', aus_timezone.strftime('%d-%b-%y  %H:%M'))
         print('As timestamp', timestamp)
-        print('Incorrect Timezone', datetime.fromtimestamp(float(aus_timezone)).strftime('%Y-%m-%d_%H:%M'))
+        #print('Incorrect Timezone', datetime.fromtimestamp(float(aus_timezone)).strftime('%Y-%m-%d_%H:%M'))
 
         stream['time'] = datetime.timestamp(dt)*1000
         stream['last'] = float(k['c'])
