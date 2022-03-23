@@ -21,7 +21,7 @@ streamdict = {}
 reload = [False]
 active = [False]
 stop = [False]
-update = [False]
+restart = [True]
 
 RESTART_TIMER = 60  # 60 second restart checks
 RESTART_LIMIT = 60  # 60 * 60 second restart schedule (1 hour)
@@ -84,18 +84,27 @@ async def close_stream():
     reload[0] = True
 
 
+# Restarts the stream, and schedules a restart timer to ensure streams run smoothly
 async def restart_stream():
     utility.gen_log(str(stream_status()))
+    restart[0] = False
     await close_stream()
     await asyncio.gather(streamer(), timer())
 
 
+# Restart functionality on a timer system, that will call itself again apon being restarted, Can be Switched off using restart[0] variable
 async def timer():
     restart_counter = 0
-    while restart_counter < RESTART_LIMIT:
+    if not restart[0]:
+        await asyncio.sleep(RESTART_TIMER)
+        restart[0] = True
+    while restart_counter < RESTART_LIMIT and restart[0]:
         await asyncio.sleep(RESTART_TIMER)
         restart_counter += 1
         print(str(restart_counter) + '->' + str(RESTART_LIMIT))
+    if not restart[0]:
+        print("Closing Restart Loop")
+        return
     if streamdict:
         print("Scheduled Restart")
         await restart_stream()
@@ -103,7 +112,6 @@ async def timer():
         print("Empty Restart")
         utility.gen_log(str(stream_status()))
         await asyncio.gather(streamer(), timer())
-    print('Finished, and closing timer')
 
 
 async def save(in_streamdict):
