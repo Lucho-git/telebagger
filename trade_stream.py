@@ -44,7 +44,7 @@ def coin_trade_data(msg):
         dt = datetime.fromtimestamp(float(stream['time']) / 1000)
         tz = pytz.timezone('Australia/Perth')
         aus_timezone = dt.astimezone(tz)
-        timestamp = aus_timezone.replace(tz).timestamp()
+        timestamp = dt.replace(tz).timestamp()
         # Correct timezone
         print('After Changes', aus_timezone.strftime('%d-%b-%y  %H:%M'))
         print('As timestamp', timestamp)
