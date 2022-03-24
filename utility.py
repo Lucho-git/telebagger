@@ -303,7 +303,7 @@ def binance_timestamp_local(timestamp):
     utctime = datetime.utcfromtimestamp(dt)
     timedelta = 60 * 60 * 8  # + 8 Hours from UTC
     timestamp = datetime.timestamp(utctime) + timedelta
-    return timestamp * 1000
+    return int(timestamp * 1000)
 
 
 class Sleeper:

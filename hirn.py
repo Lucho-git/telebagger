@@ -2,7 +2,8 @@ import fake_trade
 import time
 import utility
 import binance_wrap
-from trade_classes import Trade, Futures, STrade
+import trade_classes
+
 hirn_timer = [0]
 last_pair = ['']
 tradeheat = [False]
@@ -115,8 +116,8 @@ def search_coin(text):
     print(is_futures)
     print(HIRN_REAL[0])
     if is_futures and HIRN_REAL[0]:
-        signal = Trade(pair, base, 'Hirn', 'futures')
-        signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
+        signal = trade_classes.Trade(pair, base, 'Hirn', 'futures')
+        signal.conditions = trade_classes.Futures(sl, exit_price, direction, lev, 'isolation')
         try:
             binance_wrap.futures_trade_no_orders(signal, HIRN_TRADE_PERCENT)
             binance_wrap.futures_trade_add_orders(signal)
@@ -126,17 +127,17 @@ def search_coin(text):
             print(e)
         finally:
             print('Starting Fake Trade')
-            fake_trade.fake_trade(signal, percent=HIRN_TRADE_PERCENT)
+            trade_classes.fake_trade(signal, percent=HIRN_TRADE_PERCENT)
             print('Completed Fake Trade')
     elif is_futures:
         print('Starting Fake Trade')
-        signal = Trade(pair, base, 'Hirn', 'futures')
-        signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
-        fake_trade.fake_trade(signal, percent=HIRN_TRADE_PERCENT)
+        signal = trade_classes.Trade(pair, base, 'Hirn', 'futures')
+        signal.conditions = trade_classes.Futures(sl, exit_price, direction, lev, 'isolation')
+        trade_classes.fake_trade(signal, percent=HIRN_TRADE_PERCENT)
     else:
-        signal = Trade(pair, base, 'Hirn', 'spot')
-        signal.conditions = STrade(sl, exit_price)
-        fake_trade.spot_trade(signal, percent=HIRN_TRADE_PERCENT)
+        signal = trade_classes.Trade(pair, base, 'Hirn', 'spot')
+        signal.conditions = trade_classes.STrade(sl, exit_price)
+        trade_classes.fake_trade(signal, percent=HIRN_TRADE_PERCENT)
 
     relative_price = abs(float(signal.price) - entry)/entry
 
