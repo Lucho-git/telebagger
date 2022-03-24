@@ -264,6 +264,7 @@ def futures_trade_no_orders(signal, trade_size, bag_id=None):
     trade_id = trade_receipt['orderId']
     receipt = realclient.futures_get_order(orderId=trade_id, symbol=signal.pair)
     receipt['transactTime'] = utility.binance_timestamp_local(receipt['transactTime'])
+    receipt['time'] = utility.binance_timestamp_local(receipt['time'])
     signal.init_trade_futures(trade_id, receipt)
 
     # Add receipt to filled orders

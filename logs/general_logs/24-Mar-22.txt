@@ -99,3 +99,5 @@ Daily General Logs 24-Mar-22
 
 15:00:31:| Telegram Robot: /hirn
 15:00:36:| Trade: UNIUSDT | 1648105237296 | TimeStarted:  | TimeUpdated:  | LongestUpdate: 0.0m | Status: active
+15:03:17:| Telegram Robot: /hirn!
+15:06:32:| Telegram Robot: /restart!
