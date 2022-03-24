@@ -366,7 +366,7 @@ class Trade:
                 self.largest_update = update_time_diff
                 if self.largest_update > 600000:  # 10 minutes
                     self.corruption_chance = True
-        k_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%Y-%m-%d_%H:%M')
+        k_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%d-%b-%y_%H:%M')
         print('Update_trade:', k_time)
         self.latest_update = k['time']
 
@@ -419,8 +419,8 @@ class Trade:
 
         print('\n')
 
-        start_time = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%Y-%m-%d_%H:%M')
-        k_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%Y-%m-%d_%H:%M')
+        start_time = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%d-%b-%y_%H:%M')
+        k_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%d-%b-%y_%H:%M')
         print('Snapshot, ktime -> selftime', k_time, start_time)
         time_passed = round((k['time'] - self.time) / 3600000, 2)
         print(coin_name, leverage, direction, '--', start_time, '(', time_passed, ') hrs')
@@ -482,8 +482,8 @@ class Trade:
     # Creates an End of Trade string
     def trade_complete(self, k):
         time_passed = str(round((k['time'] - self.time) / 3600000, 2))
-        start_time = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%Y-%m-%d  %H:%M')
-        end_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%Y-%m-%d  %H:%M')
+        start_time = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%d-%b-%y  %H:%M')
+        end_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%d-%b-%y  %H:%M')
 
         # Percent Trade Difference Value
         if self.type == 'mfutures':

@@ -37,7 +37,7 @@ def coin_trade_data(msg):
         e = msg['e']
         i = k['i']
         stream['symbol'] = msg['s']
-        stream['time'] = utility.binance_timestamp_local(int(['E']))
+        stream['time'] = utility.binance_timestamp_local(int(msg['E']))
         stream['last'] = float(k['c'])
         stream['high'] = float(k['h'])
         stream['low'] = float(k['l'])
