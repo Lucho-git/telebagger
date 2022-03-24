@@ -42,8 +42,21 @@ def coin_trade_data(msg):
         print('As timestamp', stream['time'])
         print('Before Changes', datetime.fromtimestamp(float(stream['time'])/1000).strftime('%Y-%m-%d_%H:%M'))
         dt = datetime.fromtimestamp(float(stream['time']) / 1000)
-        tz = pytz.timezone('Australia/Perth')
-        timestamp = dt.replace(tzinfo=tz).timestamp()
+        dt = float(stream['time']/1000)
+        # tz = pytz.timezone('Australia/Perth')
+        timedelta = 60*60*8  # + 8 Hours from UTC
+
+        # timestamp = dt.replace(tzinfo=tz).timestamp()
+
+        timestamp = datetime.utcfromtimestamp(dt)
+        print(timestamp)
+        timestamp = datetime.timestamp(timestamp)
+        print(timestamp)
+        print('UTC TIME', datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d_%H:%M'))
+        timestamp = timestamp + timedelta
+        print(timestamp)
+        print('LOCAL TIME', datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d_%H:%M'))
+
         stream['time'] = timestamp*1000
         stream['last'] = float(k['c'])
         stream['high'] = float(k['h'])

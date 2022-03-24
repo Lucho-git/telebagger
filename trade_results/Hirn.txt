@@ -430,3 +430,123 @@ Result Window: 0.42 | 0.42[+ 0.0%] | 0.374999625[- 107.14%]
 
 _________________________________
 
+LITUSDT | 1648101482305
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-24  13:58 | 2022-03-24  21:59
+Duration: 8.02 hrs
+================================
+Pricechange: - 0.27%
+Buy Price: 1.391 |  Sell Price: 1.39062924
+Result Window: 1.391 | 1.392[+ 0.72%] | 1.26110985[- 93.38%]
+
+_________________________________
+
+LITUSDT | 1648101633708
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-24  14:00 | 2022-03-24  22:01
+Duration: 8.01 hrs
+================================
+Pricechange: - 0.98%
+Buy Price: 1.392 |  Sell Price: 1.39062924
+Result Window: 1.392 | 1.393[+ 0.72%] | 1.26110985[- 94.03%]
+
+_________________________________
+
+LITUSDT | 1648101862026
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-24  14:04 | 2022-03-25  06:05
+Duration: 16.01 hrs
+================================
+Pricechange: - 1.7%
+Buy Price: 1.393 |  Sell Price: 1.39062924
+Result Window: 1.393 | 1.394[+ 0.72%] | 1.26110985[- 94.68%]
+
+_________________________________
+
+LITUSDT | 1648102055089
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-24  14:07 | 2022-03-24  14:08
+Duration: 0.01 hrs
+================================
+Pricechange: - 1.7%
+Buy Price: 1.393 |  Sell Price: 1.39062924
+Result Window: 1.393 | 1.394[+ 0.72%] | 1.26110985[- 94.68%]
+
+_________________________________
+
+LITUSDT | 1648102244701
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-24  14:10 | 2022-03-24  14:28
+Duration: 0.29 hrs
+================================
+Pricechange: - 2.42%
+Buy Price: 1.394 |  Sell Price: 1.39062924
+Result Window: 1.394 | 1.394[+ 0.0%] | 1.26110985[- 95.33%]
+
+_________________________________
+
+LITUSDT | 1648102443050
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-24  14:14 | 2022-03-24  14:31
+Duration: 0.28 hrs
+================================
+Pricechange: - 3.85%
+Buy Price: 1.396 |  Sell Price: 1.39062924
+Result Window: 1.396 | 1.397[+ 0.72%] | 1.26110985[- 96.63%]
+
+_________________________________
+
+LITUSDT | 1648103485578
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-24  14:31 | 2022-03-24  14:32
+Duration: 0.01 hrs
+================================
+Pricechange: - 4.56%
+Buy Price: 1.397 |  Sell Price: 1.39062924
+Result Window: 1.397 | 1.399[+ 1.43%] | 1.26110985[- 97.27%]
+
+_________________________________
+
+LITUSDT | 1648103621465
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-24  14:33 | 2022-03-24  14:34
+Duration: 0.01 hrs
+================================
+Pricechange: - 4.56%
+Buy Price: 1.397 |  Sell Price: 1.39062924
+Result Window: 1.397 | 1.397[+ 0.0%] | 1.26110985[- 97.27%]
+
+_________________________________
+
+LITUSDT | 1648104028763
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-24  14:40 | 2022-03-24  14:41
+Duration: 0.01 hrs
+================================
+Pricechange: - 5.27%
+Buy Price: 1.398 |  Sell Price: 1.39062924
+Result Window: 1.398 | 1.398[+ 0.0%] | 1.26110985[- 97.92%]
+
+_________________________________
+
+LITUSDT | 1648104128216
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 2022-03-24  14:42 | 2022-03-24  14:43
+Duration: 0.02 hrs
+================================
+Pricechange: - 4.56%
+Buy Price: 1.397 |  Sell Price: 1.39062924
+Result Window: 1.397 | 1.399[+ 1.43%] | 1.26110985[- 97.27%]
+
+_________________________________
+
