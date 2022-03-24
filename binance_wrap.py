@@ -24,14 +24,6 @@ def get_futures_balance():
     return balance
 
 
-# TODO maybe move this into utility, there is another use of it in trade_stream class, which is streaming sockets through binance ThreadedWM
-def get_specific_timezone(server_time):
-    tz = pytz.timezone('Australia/Perth')
-    dt = datetime.fromtimestamp(float(server_time) / 1000)
-    dt = dt.astimezone(tz)
-    return str(datetime.timestamp(dt) * 1000)
-
-
 # Rounds a decimal value down, to account for binance precision values
 def round_decimals_down(number: float, decimals: int = 2):
     if not isinstance(decimals, int):
@@ -271,7 +263,7 @@ def futures_trade_no_orders(signal, trade_size, bag_id=None):
 
     trade_id = trade_receipt['orderId']
     receipt = realclient.futures_get_order(orderId=trade_id, symbol=signal.pair)
-    receipt['transactTime'] = get_specific_timezone(receipt['transactTime'])
+    receipt['transactTime'] = utility.binance_timestamp_local(receipt['transactTime'])
     signal.init_trade_futures(trade_id, receipt)
 
     # Add receipt to filled orders
@@ -280,7 +272,6 @@ def futures_trade_no_orders(signal, trade_size, bag_id=None):
     if bag_id:
         signal.bag_id.append(bag_id)
     print("Made Futures Order")
-
     return True
 
 

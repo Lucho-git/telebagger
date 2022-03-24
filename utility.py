@@ -297,6 +297,15 @@ def strip_ansi_codes(s):
     return re.sub('\033\\[([0-9]+)(;[0-9]+)*m', '', s)
 
 
+# Converts a Binance server timestamp into a local timestamp in milliseconds
+def binance_timestamp_local(timestamp):
+    dt = float(timestamp / 1000)
+    utctime = datetime.utcfromtimestamp(dt)
+    timedelta = 60 * 60 * 8  # + 8 Hours from UTC
+    timestamp = datetime.timestamp(utctime) + timedelta
+    return timestamp * 1000
+
+
 class Sleeper:
     # Group sleep calls allowing instant cancellation of all
     def __init__(self, loop):
