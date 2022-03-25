@@ -137,7 +137,6 @@ def load():
 
 async def addtrade(new_trades):  # import trade in future
     tradequeue.extend(new_trades)
-    print("Adding trades", new_trades)
     for t in new_trades:
         utility.gen_log(str(t.overview()))
     addstream(tradequeue, streamdict)
@@ -190,11 +189,8 @@ def stoptrade(in_stoptrades, in_streamdict, in_completedtrades):
 
 def stream_status():
     status = ''
+    first_run_check = True
     for s in streamdict:
-        first_run_check = True
-        print(streamdict)
-        print(s)
-        print(streamdict[s])
         for u in streamdict[s]:
             if not first_run_check:
                 status += '\n'

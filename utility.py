@@ -132,6 +132,7 @@ def gen_log(log):
     time_formatted = now.strftime('%H:%M:%S:')
     path_on_cloud = LOG + 'general_logs/' + date_formatted + '.txt'
     path_on_local = LOG_L + 'general_logs/' + date_formatted + '.txt'
+    log = log.replace('\n', str('\n'+time_formatted+'| '))
     try:
         storage.child(path_on_cloud).download("./", path_on_local)
         if os.path.exists(path_on_local):
