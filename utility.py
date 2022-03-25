@@ -24,7 +24,7 @@ config = {  # initialising database connection
 }
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
-unique_id = 'ella/'  # heroku, lach, tom, cozza
+unique_id = 'heroku/'  # heroku, lach, tom, cozza
 
 
 FAILED_MESSAGES_L = 'trade_results/failed_messages/'
