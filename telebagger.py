@@ -62,8 +62,8 @@ if local:
 else:
     # Hosted Telegram Session
     stringsesh = '1BVtsOIYBu0ovo28ka-RmvdqJHl7RbsJJpyDOKdEjyfK3-8E5tKCiaHyPmgaTvb1zIB-irRQqHtEOSw0ZL3LAvJTCfkMTuLet_11w1Zr6iaYNc_yrWV9h8r3OPEaTcKjXeEc-Nh9DLNhwjEIJ1EIS5PCPVeoEn9nwlFqfh8dtXbGGl0U3vLcp1-0wsp7tGUw958MZkmvvgFvZyiJ-iKr7FImY_1_Li4dY3S2ex68fz4UPSukfCzPpTJBf_HGX5dDvMT9HYF5xWG2XqlqoueSHRR9x4ylhq6vnkJOtfftSmPXoO2E76Gd80b_1UIbOfQ_y0fy5lvGsMI3_UZXvqV9cVaariRrHUlE='
+    stringsesh = '1BVtsOJEBuzPKndfyOcR8Db9PCaurB8JH7jyBTy8H2ur2WZMoPlqEki0GOPEfgnWjXptA40uN1OK3QL8yGCF4CEWbfsBdUvk1b8zhdo0ZF42vSNKgyz6mrupuEKZ9OmQxgXWSHx66vjM70le782D-z8dnreaVxmmSsrMxkU3GCjyQE2fHRZZp2-9njfZMNAVczYimmK2QzHhvvFHpDxXBgJ4WxZp3hg5FICpBo05fy7xc9Y5xV_ZZpRwwixjy0iZOo8o1ZbvLx7AFC8g-RvFWYHK8ZJVJcjp8KyXc95tBQxtdDbRv6EDxVUEQROLH5C5apM9laK-pZQp_LUc5FiGX_nT0iRBrVg4='
     # Stream Commands Heroku Hosted
-    # Backup:1BVtsOJEBuzPKndfyOcR8Db9PCaurB8JH7jyBTy8H2ur2WZMoPlqEki0GOPEfgnWjXptA40uN1OK3QL8yGCF4CEWbfsBdUvk1b8zhdo0ZF42vSNKgyz6mrupuEKZ9OmQxgXWSHx66vjM70le782D-z8dnreaVxmmSsrMxkU3GCjyQE2fHRZZp2-9njfZMNAVczYimmK2QzHhvvFHpDxXBgJ4WxZp3hg5FICpBo05fy7xc9Y5xV_ZZpRwwixjy0iZOo8o1ZbvLx7AFC8g-RvFWYHK8ZJVJcjp8KyXc95tBQxtdDbRv6EDxVUEQROLH5C5apM9laK-pZQp_LUc5FiGX_nT0iRBrVg4=
     STOP = '/stop!'
     STREAM = '/stream!'
     STOPSTREAM = '/stopstream!'
@@ -100,198 +100,202 @@ async def StartTelegramForwarding(client):
     @client.on(events.NewMessage())
     async def my_event_handler(event):
 
-        sender = await event.get_sender()
-        chat = await event.get_chat()
-        sender_id = str(sender.id)
-        channel_name = utils.get_display_name(sender)
-        message = str(event.raw_text)
-        msg = "Channel name: " + channel_name + " | ID: " + sender_id
-        print(msg)
-        # Real code
+        try:
+            sender = await event.get_sender()
+            chat = await event.get_chat()
+            sender_id = str(sender.id)
+            channel_name = utils.get_display_name(sender)
+            message = str(event.raw_text)
+            msg = "Channel name: " + channel_name + " | ID: " + sender_id
+            print(msg)
+            # Real code
 
-        if sender_id == "1548802426":                           # Always Win, Signal
-            # Changed to sending text only, as sending the full message is no longer functional, I suspect Always win guy did something to his data to try and prevent copycats
-            await client.send_message(1576065688, message)
-            valid = always_win.valid_trade_message(message)
-            if valid:
-                try:
-                    aw = always_win.bag(message)
-                    utility.add_message('Always Win', '[X]')
-                    await trade_stream.addtrade(aw)
-                except Exception as e:
-                    utility.failed_message(message, 'Always Win', e, '_failed.txt')
-                    utility.add_message('Always Win', '[-]')
-                utility.gen_log('Signal from Always Win')
-            else:
-                try:
-                    valid2 = always_win.valid_trade_message(message)
-                except ValueError:
-                    print("Problem with PreSignal Validation")
-                if valid2:
-                    print("PreSignal Message")
-        elif sender_id == '1312345502':                               # Vip Signals, Signal
-            valid = msg_vip_signals.valid_trade_message(message)
-            if valid:
-                try:
-                    vip = msg_vip_signals.bag(message)
-                    utility.add_message('Vip Signals', '[X]')
-                    await trade_stream.addtrade(vip)
-                except Exception as e:
-                    utility.failed_message(message, 'Vip Signals', e, '_failed.txt')
-                    utility.add_message('Vip Signals', '[-]')
+            if sender_id == "1548802426":                           # Always Win, Signal
+                # Changed to sending text only, as sending the full message is no longer functional, I suspect Always win guy did something to his data to try and prevent copycats
+                await client.send_message(1576065688, message)
+                valid = always_win.valid_trade_message(message)
+                if valid:
+                    try:
+                        aw = always_win.bag(message)
+                        utility.add_message('Always Win', '[X]')
+                        await trade_stream.addtrade(aw)
+                    except Exception as e:
+                        utility.failed_message(message, 'Always Win', e, '_failed.txt')
+                        utility.add_message('Always Win', '[-]')
+                    utility.gen_log('Signal from Always Win')
+                else:
+                    try:
+                        valid2 = always_win.valid_trade_message(message)
+                    except ValueError:
+                        print("Problem with PreSignal Validation")
+                    if valid2:
+                        print("PreSignal Message")
+            elif sender_id == '1312345502':                               # Vip Signals, Signal
+                valid = msg_vip_signals.valid_trade_message(message)
+                if valid:
+                    try:
+                        vip = msg_vip_signals.bag(message)
+                        utility.add_message('Vip Signals', '[X]')
+                        await trade_stream.addtrade(vip)
+                    except Exception as e:
+                        utility.failed_message(message, 'Vip Signals', e, '_failed.txt')
+                        utility.add_message('Vip Signals', '[-]')
 
-        elif sender_id == '1248393106':                             # HIRN, Signal
-            print('Hirn Message')
-            valid = hirn.valid_trade_message(message)
+            elif sender_id == '1248393106':                             # HIRN, Signal
+                print('Hirn Message')
+                valid = hirn.valid_trade_message(message)
 
-            if valid and not event.is_reply:
-                try:
-                    hirn.cooldown()
-                except ValueError:
-                    print("Hirn Cooling Down")
-                try:
-                    hir = hirn.bag(message)
-                    if hir:
-                        utility.add_message('Hirn', '[X]')
-                        await trade_stream.addtrade(hir)
-                    else:
-                        raise ValueError("No Signal / Cooling Down")
-                except Exception as e:
-                    utility.failed_message(message, 'Hirn', e, '_failed.txt')
-                    utility.add_message('Hirn', '[-]')
-                utility.gen_log('Signal from HIRN')
-
-        # ___________________________________________________________________________________________________
-
-        elif chat.id == 1899129008:  # Telegram Bot
-            print("Robot Section +++")
-            utility.gen_log('Telegram Robot: ' + message)
-            # Bot commands
-            if message == STOP:
-                # await trade_stream.restart_schedule(sleeper)
-                # sleeper.cancel_all_helper()
-                # todo figure out if sleeper access is necessary here
-                await asyncio.sleep(1)
-                print('Exiting....')
-                await client.disconnect()
-                print("End of lin3e")
-
-            # Stream Commands
-            elif message == STREAM:
-                await trade_stream.streamer()
-            elif message == STOPSTREAM:
-                await trade_stream.close_stream()
-            elif message == RESTART:
-                await trade_stream.restart_stream()
-            elif message == MENU:
-                await trade_stream.stopstream()
-
-            # Testing Stubs, To be removed at a later stage
-            elif message == HIRN_SIGNAL:
-                post = 'fake hirn message log' + str(chat.id)
-                with open('docs/hirn_example.txt', encoding="utf8") as f:
-                    msg = f.read()
-                    valid = hirn.valid_trade_message(msg)
+                if valid and not event.is_reply:
                     try:
                         hirn.cooldown()
                     except ValueError:
                         print("Hirn Cooling Down")
-                    if valid:
+                    try:
+                        hir = hirn.bag(message)
+                        if hir:
+                            utility.add_message('Hirn', '[X]')
+                            await trade_stream.addtrade(hir)
+                        else:
+                            raise ValueError("No Signal / Cooling Down")
+                    except Exception as e:
+                        utility.failed_message(message, 'Hirn', e, '_failed.txt')
+                        utility.add_message('Hirn', '[-]')
+                    utility.gen_log('Signal from HIRN')
+
+            # ___________________________________________________________________________________________________
+
+            elif chat.id == 1899129008:  # Telegram Bot
+                print("Robot Section +++")
+                utility.gen_log('Telegram Robot: ' + message)
+                # Bot commands
+                if message == STOP:
+                    # await trade_stream.restart_schedule(sleeper)
+                    # sleeper.cancel_all_helper()
+                    # todo figure out if sleeper access is necessary here
+                    await asyncio.sleep(1)
+                    print('Exiting....')
+                    await client.disconnect()
+                    print("End of lin3e")
+
+                # Stream Commands
+                elif message == STREAM:
+                    await trade_stream.streamer()
+                elif message == STOPSTREAM:
+                    await trade_stream.close_stream()
+                elif message == RESTART:
+                    await trade_stream.restart_stream()
+                elif message == MENU:
+                    await trade_stream.stopstream()
+
+                # Testing Stubs, To be removed at a later stage
+                elif message == HIRN_SIGNAL:
+                    post = 'fake hirn message log' + str(chat.id)
+                    with open('docs/hirn_example.txt', encoding="utf8") as f:
+                        msg = f.read()
+                        valid = hirn.valid_trade_message(msg)
                         try:
-                            hir = hirn.bag(msg)
-                            if hir:
-                                await trade_stream.addtrade(hir)
+                            hirn.cooldown()
+                        except ValueError:
+                            print("Hirn Cooling Down")
+                        if valid:
+                            try:
+                                hir = hirn.bag(msg)
+                                if hir:
+                                    await trade_stream.addtrade(hir)
+                                    utility.add_message('Hirn', '[-]')
+                            except Exception as e:
+                                utility.failed_message(message, 'Hirn', e, '_failed.txt')
                                 utility.add_message('Hirn', '[-]')
-                        except Exception as e:
-                            utility.failed_message(message, 'Hirn', e, '_failed.txt')
-                            utility.add_message('Hirn', '[-]')
+                        else:
+                            print('notvalid')
+
+                elif message == '/status':
+                    print(trade_stream.stream_status())
+
+                elif message == '/futsig':
+                    with open('docs/futures_signals_example.txt', encoding="utf8") as f:
+                        msg = f.read()
+                        valid = futures_signals.valid_trade_message(msg)
+                        if valid:
+                            futsig = futures_signals.bag(msg)
+                            await trade_stream.addtrade(futsig)
+                        else:
+                            print('notvalid')
+
+                elif message == '/real':
+                    pair = 'ETHUSDT'
+                    base = 'USDT'
+                    sigal = Trade(pair, base, 'Futures Signals', 'mfutures')
+                    stoploss = [1, 1, 1, 1, 1]
+                    stopprof = [0.2, 0.2, 0.2, 0.2, 0.2]
+                    loss_targets = [3400, 3430, 3440, 3450, 3460]
+                    proftargets = [3475, 3480, 3490, 3500, 3510]
+                    sigal.conditions = MFutures(stoploss, loss_targets, stopprof, proftargets, 'long', '1', 'isolation')
+                    binance_wrap.mfutures_trade(sigal, 1)
+
+                elif message == '/past':
+                    msgs = await client.get_messages('HIRN_CRYPTO', limit=5)
+                    if msgs is not None:
+                        print("Messages:\n---------")
+                        for msg in msgs:
+                            print(msg)
+                            print(msg.chat_id)
+                            print(msg.message)
+                            print('______________________')
+
+                elif message == ALWAYS_WIN_SIGNAL:
+                    with open('docs/aw_example.txt', encoding="utf8") as f:
+                        msg = f.read()
+                        valid = always_win.valid_trade_message(msg)
+                        if valid:
+                            aw = always_win.bag(msg)
+                            await trade_stream.addtrade(aw)
+                        else:
+                            print('notval id')
+                elif message == PRE_AW:
+                    with open('docs/pre_aw_example.txt', encoding="utf8") as f:
+                        msg = f.read()
+                        always_win.valid_trade_message_2(msg)
+
+                elif NEW_PORTFOLIO in message:
+                    split = message.split(' ')
+                    if NEW_PORTFOLIO == split[0]:
+                        port = Folio(split[1], split[2])
+                        folios.add_folios(port)
+                        folios.save()
+
+                elif message == CLEAR_PORTFOLIOS:
+                    folios.clear_folios()
+
+                elif message == DISPLAY_PORTFOLIOS:
+                    folios.recover()
+                    if folios.folios:
+                        print('Folios:')
+                        folios.snapshot()
                     else:
-                        print('notvalid')
+                        print('Folios is empty')
 
-            elif message == '/status':
-                print(trade_stream.stream_status())
+                elif message == SNAPSHOT:
+                    print(binance_wrap.futures_snapshot())
 
-            elif message == '/futsig':
-                with open('docs/futures_signals_example.txt', encoding="utf8") as f:
-                    msg = f.read()
-                    valid = futures_signals.valid_trade_message(msg)
-                    if valid:
-                        futsig = futures_signals.bag(msg)
-                        await trade_stream.addtrade(futsig)
-                    else:
-                        print('notvalid')
+                elif message == CLOSE_FUTURES:
+                    binance_wrap.close_all_futures()
+            else:
+                recognized = False
+                for i in chat_ids:
+                    if i == chat.id:
+                        recognized = True
 
-            elif message == '/real':
-                pair = 'ETHUSDT'
-                base = 'USDT'
-                sigal = Trade(pair, base, 'Futures Signals', 'mfutures')
-                stoploss = [1, 1, 1, 1, 1]
-                stopprof = [0.2, 0.2, 0.2, 0.2, 0.2]
-                loss_targets = [3400, 3430, 3440, 3450, 3460]
-                proftargets = [3475, 3480, 3490, 3500, 3510]
-                sigal.conditions = MFutures(stoploss, loss_targets, stopprof, proftargets, 'long', '1', 'isolation')
-                binance_wrap.mfutures_trade(sigal, 1)
+                # Unrecognized Telegram Channels
+                if not recognized:
+                    post = msg + '\n' + message + '\n' + str(sender.id) + '|' + str(chat.id) + '\n_________________\n'
+                    utility.add_message('New Telegram Groups', post)
 
-            elif message == '/past':
-                msgs = await client.get_messages('HIRN_CRYPTO', limit=5)
-                if msgs is not None:
-                    print("Messages:\n---------")
-                    for msg in msgs:
-                        print(msg)
-                        print(msg.chat_id)
-                        print(msg.message)
-                        print('______________________')
+        except Exception as e:
+            utility.error_log(e)
 
-            elif message == ALWAYS_WIN_SIGNAL:
-                with open('docs/aw_example.txt', encoding="utf8") as f:
-                    msg = f.read()
-                    valid = always_win.valid_trade_message(msg)
-                    if valid:
-                        aw = always_win.bag(msg)
-                        await trade_stream.addtrade(aw)
-                    else:
-                        print('notval id')
-            elif message == PRE_AW:
-                with open('docs/pre_aw_example.txt', encoding="utf8") as f:
-                    msg = f.read()
-                    always_win.valid_trade_message_2(msg)
 
-            elif NEW_PORTFOLIO in message:
-                split = message.split(' ')
-                if NEW_PORTFOLIO == split[0]:
-                    port = Folio(split[1], split[2])
-                    folios.add_folios(port)
-                    folios.save()
-
-            elif message == CLEAR_PORTFOLIOS:
-                folios.clear_folios()
-
-            elif message == DISPLAY_PORTFOLIOS:
-                folios.recover()
-                if folios.folios:
-                    print('Folios:')
-                    folios.snapshot()
-                else:
-                    print('Folios is empty')
-
-            elif message == SNAPSHOT:
-                print(binance_wrap.futures_snapshot())
-
-            elif message == CLOSE_FUTURES:
-                binance_wrap.close_all_futures()
-        else:
-            recognized = False
-            for i in chat_ids:
-                if i == chat.id:
-                    recognized = True
-
-            # Unrecognized Telegram Channels
-            if not recognized:
-                post = msg + '\n' + message + '\n' + str(sender.id) + '|' + str(chat.id) + '\n_________________\n'
-                utility.add_message('New Telegram Groups', post)
-
-    # End of event handler code ____________________
-
+# End of event handler code ____________________
 
 async def setup_scraper():
     global stringsesh

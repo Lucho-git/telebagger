@@ -24,7 +24,7 @@ config = {  # initialising database connection
 }
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
-unique_id = 'heroku/'  # heroku, lach, tom, cozza
+unique_id = 'ella/'  # heroku, lach, tom, cozza
 
 
 FAILED_MESSAGES_L = 'trade_results/failed_messages/'
@@ -133,21 +133,19 @@ def gen_log(log):
     path_on_cloud = LOG + 'general_logs/' + date_formatted + '.txt'
     path_on_local = LOG_L + 'general_logs/' + date_formatted + '.txt'
     log = log.replace('\n', str('\n'+time_formatted+'| '))
-    try:
-        storage.child(path_on_cloud).download("./", path_on_local)
-        if os.path.exists(path_on_local):
-            with open(path_on_local, 'a', encoding="utf8") as f:
-                f.write(time_formatted + '| ' + log + '\n')
-            storage.child(path_on_cloud).put(path_on_local)
-        else:
-            with open(path_on_local, 'w+', encoding="utf8") as f:
-                f.write('Daily General Logs ' + date_formatted + '\n\n')
-                f.write(time_formatted + '| ' + log + '\n')
 
-            storage.child(path_on_cloud).put(path_on_local)
-    except Exception as e:
-        print('logging Exception: ', e)
-        error_log(e)
+    # Access and update cloud logs
+    storage.child(path_on_cloud).download("./", path_on_local)
+    if os.path.exists(path_on_local):
+        with open(path_on_local, 'a', encoding="utf8") as f:
+            f.write(time_formatted + '| ' + log + '\n')
+        storage.child(path_on_cloud).put(path_on_local)
+    else:
+        with open(path_on_local, 'w+', encoding="utf8") as f:
+            f.write('Daily General Logs ' + date_formatted + '\n\n')
+            f.write(time_formatted + '| ' + log + '\n')
+
+        storage.child(path_on_cloud).put(path_on_local)
 
 
 def error_log(error):
@@ -238,16 +236,20 @@ def end_trade_folios(trade, trade_return):
 
 def save_trade(t):
     # Add trade result to all trades textfile
-    path_on_cloud = SAVE_TRADE + 'TradeResults.txt'
-    path_on_local = SAVE_TRADE_L + 'TradeResults.txt'
+    tz = pytz.timezone('Australia/Perth')
+    now = datetime.now(tz)
+    date_string = now.strftime('%y-%b-')
+
+    path_on_cloud = SAVE_TRADE + date_string + 'TradeResults.txt'
+    path_on_local = SAVE_TRADE_L + date_string + 'TradeResults.txt'
     storage.child(path_on_cloud).download("./", path_on_local)
     with open(path_on_local, 'a', encoding="utf8") as f:
         f.write(str(t.savestring))
         f.write('\n\n')
     storage.child(path_on_cloud).put(path_on_local)
     # Add trade result to specific trade textfile
-    path_on_cloud = SAVE_TRADE + t.origin + ".txt"
-    path_on_local = SAVE_TRADE_L + t.origin + ".txt"
+    path_on_cloud = SAVE_TRADE + date_string + t.origin + ".txt"
+    path_on_local = SAVE_TRADE_L + date_string + t.origin + ".txt"
     storage.child(path_on_cloud).download("./", path_on_local)
     with open(path_on_local, 'a', encoding="utf8") as f:
         f.write(str(t.savestring))

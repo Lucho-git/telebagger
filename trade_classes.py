@@ -428,7 +428,7 @@ class Trade:
         print('Now:', ut.format_float(k['last']), '|', self.style_percent_diff(now))
         print('===============================')
         if self.type == 'futures' or self.type == 'spot':
-            print('Targets:', Fore.RED, ut.format_float(self.conditions.stoploss), '|', Fore.LIGHTBLUE_EX, ut.format_float(now),'|',Fore.LIGHTGREEN_EX, ut.format_float(self.conditions.stopprof), Style.RESET_ALL)
+            print('Targets:', Fore.RED, ut.format_float(round(self.conditions.stoploss, 8)), '|', Fore.LIGHTBLUE_EX, ut.format_float(round(now, 8)),'|',Fore.LIGHTGREEN_EX, ut.format_float(round(self.conditions.stopprof, 8)), Style.RESET_ALL)
             print('_______________________________')
         elif self.type == 'mfutures':
             print('NextTargets:', Fore.RED, self.conditions.losstargets[self.conditions.targetnum], '|', Fore.LIGHTBLUE_EX, now,'|',Fore.LIGHTGREEN_EX, self.conditions.proftargets[self.conditions.targetnum], Style.RESET_ALL)

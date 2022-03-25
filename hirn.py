@@ -116,7 +116,7 @@ def search_coin(text):
     print(is_futures)
     print(HIRN_REAL[0])
     if is_futures and HIRN_REAL[0]:
-        signal = trade_classes.Trade(pair, base, 'Hirn', 'futures')
+        signal = trade_classes.Trade(pair, base, 'Hirn', 'futures', text)
         signal.conditions = trade_classes.Futures(sl, exit_price, direction, lev, 'isolation')
         try:
             binance_wrap.futures_trade_no_orders(signal, HIRN_TRADE_PERCENT)
@@ -131,11 +131,11 @@ def search_coin(text):
             print('Completed Fake Trade')
     elif is_futures:
         print('Starting Fake Trade')
-        signal = trade_classes.Trade(pair, base, 'Hirn', 'futures')
+        signal = trade_classes.Trade(pair, base, 'Hirn', 'futures', text)
         signal.conditions = trade_classes.Futures(sl, exit_price, direction, lev, 'isolation')
         trade_classes.fake_trade(signal, percent=HIRN_TRADE_PERCENT)
     else:
-        signal = trade_classes.Trade(pair, base, 'Hirn', 'spot')
+        signal = trade_classes.Trade(pair, base, 'Hirn', 'spot', text)
         signal.conditions = trade_classes.STrade(sl, exit_price)
         trade_classes.fake_trade(signal, percent=HIRN_TRADE_PERCENT)
 
