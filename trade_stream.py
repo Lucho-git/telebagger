@@ -193,9 +193,9 @@ def stream_status():
     for s in streamdict:
         first_run_check = True
         for u in streamdict[s]:
-            status += u.overview()
             if not first_run_check:
                 status += '\n'
+            status += u.overview()
             first_run_check = False
     if status == '':
         status = 'Trade Stream is Empty'
