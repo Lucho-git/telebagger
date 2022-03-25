@@ -46,3 +46,4 @@ Trade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-
 16:17:00:| Telegram Robot: /restart!
 16:50:19:| Launching Telegram Scraper...
 16:50:19:| 
+17:04:03:| Telegram Robot: hi
