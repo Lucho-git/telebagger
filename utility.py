@@ -238,8 +238,9 @@ def save_trade(t):
     # Add trade result to all trades textfile
     tz = pytz.timezone('Australia/Perth')
     now = datetime.now(tz)
-    date_string = now.strftime('%y-%b-')
+    date_string = now.strftime('%Y-%B-')
 
+    # Store in All Trade results
     path_on_cloud = SAVE_TRADE + date_string + 'TradeResults.txt'
     path_on_local = SAVE_TRADE_L + date_string + 'TradeResults.txt'
     storage.child(path_on_cloud).download("./", path_on_local)
@@ -247,7 +248,7 @@ def save_trade(t):
         f.write(str(t.savestring))
         f.write('\n\n')
     storage.child(path_on_cloud).put(path_on_local)
-    # Add trade result to specific trade textfile
+    # Store in monthly trade group breakdown
     path_on_cloud = SAVE_TRADE + date_string + t.origin + ".txt"
     path_on_local = SAVE_TRADE_L + date_string + t.origin + ".txt"
     storage.child(path_on_cloud).download("./", path_on_local)
@@ -255,6 +256,13 @@ def save_trade(t):
         f.write(str(t.savestring))
         f.write(t.trade_log)
         f.write('_________________________________\n\n')
+    storage.child(path_on_cloud).put(path_on_local)
+    # Store the essential trading metric overview
+    path_on_cloud = SAVE_TRADE + 'juice/' + t.origin + '/' + date_string + '.txt'
+    path_on_local = SAVE_TRADE_L + 'juice/' + t.origin + '/' + date_string + '.txt'
+    storage.child(path_on_cloud).download("./", path_on_local)
+    with open(path_on_local, 'a', encoding="utf8") as f:
+        f.write(str(t.closed_diff + ' | ' + t.pair + ' | ' + t.duration + '\n'))
     storage.child(path_on_cloud).put(path_on_local)
 
 

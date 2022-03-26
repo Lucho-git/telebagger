@@ -1,0 +1,22 @@
+RUNEBTC | 1648265859248
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 26-Mar-22  11:37 | 26-Mar-22  11:40
+Duration: 0.04 hrs
+================================
+Pricechange: + 1.47%
+Buy Price: 0.0002252 |  Sell Price: 0.0002285
+Result Window: 0.0002252 | 0.0002245[- 0.31%] | 0.000056005[- 75.13%]
+
+
+NEARUSDT | 1648265496098
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 26-Mar-22  11:31 | 26-Mar-22  11:59
+Duration: 0.46 hrs
+================================
+Pricechange: + 23.21%
+Buy Price: 12.609 |  Sell Price: 12.90160872
+Result Window: 12.609 | 12.584[- 1.98%] | 11.6999883[- 72.09%]
+
+

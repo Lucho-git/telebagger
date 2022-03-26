@@ -1,0 +1,18 @@
+Daily General Logs 26-Mar-22
+
+00:50:09:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 25-Mar-22  18:56 | LongestUpdate: 57.0m | Status: active
+00:50:09:| Trade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-Mar-22  18:56 | LongestUpdate: 57.0m | Status: active
+10:24:14:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 26-Mar-22  01:46 | LongestUpdate: 355.0m | Status: active
+10:24:14:| Trade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 26-Mar-22  01:46 | LongestUpdate: 355.0m | Status: active
+11:25:25:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 26-Mar-22  11:25 | LongestUpdate: 519.0m | Status: active
+11:25:25:| Trade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 26-Mar-22  11:25 | LongestUpdate: 519.1m | Status: active
+11:31:39:| Trade: NEARUSDT | 1648265496098 | TimeStarted:  | TimeUpdated:  | LongestUpdate: 0.0m | Status: active
+11:31:42:| Signal from HIRN
+11:31:54:| Signal from HIRN
+11:37:42:| Trade: RUNEBTC | 1648265859248 | TimeStarted:  | TimeUpdated:  | LongestUpdate: 0.0m | Status: active
+11:37:45:| Signal from HIRN
+11:37:57:| Signal from HIRN
+11:40:00:| Closing Trade: RUNEBTC | 1648265859248 | TimeStarted: 26-Mar-22  11:37 | TimeFinished: 26-Mar-22  11:40 | LongestUpdate: 1.0m | Status: stopprof
+11:59:00:| Closing Trade: NEARUSDT | 1648265496098 | TimeStarted: 26-Mar-22  11:31 | TimeFinished: 26-Mar-22  11:59 | LongestUpdate: 1.0m | Status: stopprof
+12:26:33:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 26-Mar-22  12:26 | LongestUpdate: 519.0m | Status: active
+12:26:33:| Trade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 26-Mar-22  12:26 | LongestUpdate: 519.1m | Status: active

@@ -1,0 +1,54 @@
+Daily General Logs 25-Mar-22
+
+15:50:03:| Launching Telegram Scraper...
+
+15:50:13:| Telegram Robot: /restart
+15:50:16:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: activeTrade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+15:51:17:| Launching Telegram Scraper...
+
+15:51:29:| Telegram Robot: /restart
+15:51:31:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: activeTrade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+15:54:28:| Launching Telegram Scraper...
+
+15:54:35:| Telegram Robot: /restart
+15:54:38:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: activeTrade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+15:55:10:| Launching Telegram Scraper...
+
+15:55:18:| Telegram Robot: /restart
+15:55:21:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: activeTrade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+15:56:18:| Launching Telegram Scraper...
+
+15:56:26:| Telegram Robot: /restart
+15:56:28:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: activeTrade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+15:57:32:| Launching Telegram Scraper...
+
+15:57:37:| Telegram Robot: /restart
+15:57:40:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+Trade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+16:00:22:| Launching Telegram Scraper...
+16:00:22:
+16:00:34:| Telegram Robot: /restart
+16:00:37:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+16:00:37:Trade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+16:01:16:| Launching Telegram Scraper...
+| 16:01:16:
+16:01:24:| Telegram Robot: /restart
+16:01:27:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+| 16:01:27:Trade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+16:02:03:| Launching Telegram Scraper...
+16:02:03:| 
+16:02:09:| Telegram Robot: /restart
+16:02:11:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+16:02:11:| Trade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-Mar-22  23:44 | LongestUpdate: 57.0m | Status: active
+16:11:01:| Telegram Robot: /restart!
+16:15:40:| Launching Telegram Scraper...
+16:15:40:| 
+16:17:00:| Telegram Robot: /restart!
+16:50:19:| Launching Telegram Scraper...
+16:50:19:| 
+17:04:03:| Telegram Robot: hi
+17:11:14:| Telegram Robot: hi
+17:50:26:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 25-Mar-22  17:50 | LongestUpdate: 57.0m | Status: active
+17:50:26:| Trade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-Mar-22  17:50 | LongestUpdate: 57.0m | Status: active
+18:51:34:| Trade: SOLUSDT | 1648207926906 | TimeStarted: 25-Mar-22  19:32 | TimeUpdated: 25-Mar-22  18:51 | LongestUpdate: 57.0m | Status: active
+18:51:34:| Trade: SOLBTC | 1648208231235 | TimeStarted: 25-Mar-22  19:37 | TimeUpdated: 25-Mar-22  18:51 | LongestUpdate: 57.0m | Status: active

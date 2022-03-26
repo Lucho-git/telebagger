@@ -74,6 +74,7 @@ class Trade:
         self.lowest = None
         self.highest = None
         self.closed = None
+        self.duration = None
         self.latest_price = None
         self.latest_update = None
         self.largest_update = 0
@@ -478,7 +479,7 @@ class Trade:
 
     # Creates an End of Trade string
     def trade_complete(self, k):
-        time_passed = str(round((k['time'] - self.time) / 3600000, 2))
+        self.duration = str(round((k['time'] - self.time) / 3600000, 2))
         start_time = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%d-%b-%y  %H:%M')
         end_time = datetime.datetime.fromtimestamp(float(k['time']) / 1000).strftime('%d-%b-%y  %H:%M')
 
@@ -547,7 +548,7 @@ class Trade:
         savestr += 'Status: ' + self.status.upper() + '\n'
         savestr += 'Origin: ' + self.origin + '\n'
         savestr += 'TimeStarted: ' + start_time + ' | ' + end_time + '\n'
-        savestr += 'Duration: ' + time_passed + ' hrs\n'
+        savestr += 'Duration: ' + self.duration + ' hrs\n'
         savestr += '================================\n'
         savestr += 'Pricechange: ' + percent + '\n'
         savestr += 'Buy Price: ' + str(ut.format_float(float(self.price))) + ' |  Sell Price: ' + str(ut.format_float(float(self.closed))) + '\n'
