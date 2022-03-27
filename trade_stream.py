@@ -194,7 +194,6 @@ def stream_status():
         for u in streamdict[s]:
             if not first_run_check:
                 status += '\n'
-                print('Adding Line')
             status += u.overview()
             first_run_check = False
     if status == '':

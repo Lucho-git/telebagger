@@ -280,6 +280,9 @@ async def StartTelegramForwarding(client):
 
                 elif message == CLOSE_FUTURES:
                     binance_wrap.close_all_futures()
+
+                elif message == '/except':
+                    raise Exception('Log this exception please')
             else:
                 recognized = False
                 for i in chat_ids:
@@ -305,10 +308,9 @@ async def setup_scraper():
     await StartTelegramForwarding(client)
 
     print("Launching Telegram Scraper...")
-    utility.gen_log('Launching Telegram Scraper...\n')
+    utility.gen_log('Launching Telegram Scraper...')
     await client.start()
     await client.get_dialogs()
-    #loop = asyncio.get_event_loop()
     await asyncio.gather(trade_stream.streamer(), trade_stream.timer(), client.run_until_disconnected())
 
 

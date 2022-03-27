@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import asyncio as aio
 import re
-import os.path
+import os
 import pytz
 from binance.client import Client
 from datetime import datetime
@@ -29,8 +29,9 @@ unique_id = 'heroku/'  # heroku, lach, tom, cozza
 
 FAILED_MESSAGES_L = 'trade_results/failed_messages/'
 ADD_MESSAGE_L = 'trade_results/message_count/'
-SAVE_STREAM_L = 'save_data/savefile'
-SAVE_FOLIO_L = "save_data/savefolios"
+SAVE_L = 'save_data/'
+STREAM_L = 'savefile'
+FOLIO_L = 'savefolios'
 SAVE_TRADE_L = "trade_results/"
 RESULTS_L = "trade_results/juice/"
 LOG_L = 'logs/'
@@ -39,8 +40,9 @@ if local[0]:
     # Firebase Cloud Storage File Paths
     FAILED_MESSAGES = "trade_results/failed_messages/"  # Filepath
     ADD_MESSAGE = "trade_results/message_count/"  # Filepath
-    SAVE_STREAM = "save_data/savefile"  # Path and file
-    SAVE_FOLIO = "save_data/savefolios"  # Path and file
+    SAVE = "save_data/"  # Path
+    STREAM = 'savefile'
+    FOLIO = 'savefolios'
     SAVE_TRADE = "trade_results/"  # Path
     RESULTS = "trade_results/juice/"  # Path
     LOG = 'logs/'
@@ -48,8 +50,9 @@ else:
     # Heroku Version
     FAILED_MESSAGES = unique_id + "trade_results/failed_messages/"  # Filepath
     ADD_MESSAGE = unique_id + "trade_results/message_count/"  # Filepath
-    SAVE_STREAM = unique_id + "save_data/savefile"  # Path and file
-    SAVE_FOLIO = unique_id + "save_data/savefolios"  # Path and file
+    SAVE = unique_id + "save_data/"  # Path
+    STREAM = 'savefile'
+    FOLIO = 'savefolios'
     SAVE_TRADE = unique_id + "trade_results/"  # Path
     RESULTS = unique_id + "trade_results/juice/"  # Path
     LOG = unique_id + 'logs/'
@@ -79,6 +82,7 @@ def is_local():
     return local[0]
 
 
+# Todo is depreciated???
 def failed_message(msg, origin, e, file_string):
     path_on_cloud = FAILED_MESSAGES + origin + file_string
     path_on_local = FAILED_MESSAGES_L + origin + '_failed.txt'
@@ -107,6 +111,7 @@ def failed_message(msg, origin, e, file_string):
         print("Made new file for ", origin)
 
 
+# Todo is depreciated???
 def add_message(origin, result):
     path_on_cloud = ADD_MESSAGE + origin + '_count.txt'
     path_on_local = ADD_MESSAGE_L + origin + '_count.txt'
@@ -128,89 +133,113 @@ def add_message(origin, result):
 def gen_log(log):
     tz = pytz.timezone('Australia/Perth')
     now = datetime.now(tz)
+    month_year = now.strftime('%B-%Y')
     date_formatted = now.strftime('%d-%b-%y')
     time_formatted = now.strftime('%H:%M:%S:')
-    path_on_cloud = LOG + 'general_logs/' + date_formatted + '.txt'
-    path_on_local = LOG_L + 'general_logs/' + date_formatted + '.txt'
+    path_on_cloud = LOG + 'general_logs/' + month_year + '/' + date_formatted + '.txt'
+    d_path_on_local = LOG_L + 'general_logs/' + month_year + '/'
+    f_path_on_local = d_path_on_local + date_formatted + '.txt'
+
     log = log.replace('\n', str('\n'+time_formatted+'| '))
 
     # Access and update cloud logs
-    storage.child(path_on_cloud).download("./", path_on_local)
-    if os.path.exists(path_on_local):
-        with open(path_on_local, 'a', encoding="utf8") as f:
-            f.write(time_formatted + '| ' + log + '\n')
-        storage.child(path_on_cloud).put(path_on_local)
+    if os.path.exists(d_path_on_local):
+        storage.child(path_on_cloud).download("./", f_path_on_local)
+        if os.path.exists(f_path_on_local):
+            with open(f_path_on_local, 'a', encoding="utf8") as f:
+                f.write(time_formatted + '| ' + log + '\n\n')
+            storage.child(path_on_cloud).put(f_path_on_local)
+        else:
+            print("Making new file")
+            with open(f_path_on_local, 'w+', encoding="utf8") as f:
+                f.write('Daily General Logs ' + date_formatted + '\n\n')
+                f.write(time_formatted + '| ' + log + '\n\n')
+            storage.child(path_on_cloud).put(f_path_on_local)
     else:
-        with open(path_on_local, 'w+', encoding="utf8") as f:
-            f.write('Daily General Logs ' + date_formatted + '\n\n')
-            f.write(time_formatted + '| ' + log + '\n')
-
-        storage.child(path_on_cloud).put(path_on_local)
+        os.makedirs(d_path_on_local)
+        gen_log(log)
 
 
 def error_log(error):
-    now = datetime.now()
-    date_time_formatted = now.strftime('%d:%m:%Y: %H:%M:%S:')
-    path_on_cloud = LOG + 'exceptions' + '.txt'
-    path_on_local = LOG_L + 'exceptions' + '.txt'
+    tz = pytz.timezone('Australia/Perth')
+    now = datetime.now(tz)
+    month_year = now.strftime('%B-%Y')
+    date_formatted = now.strftime('%d-%b-%y')
+    time_formatted = now.strftime('%H:%M:%S:')
+
+    path_on_cloud = LOG + 'exceptions/' + month_year + '/' + date_formatted + '.txt'
+    d_path_on_local = LOG_L + 'exceptions/' + month_year + '/'
+    f_path_on_local = d_path_on_local + date_formatted + '.txt'
     try:
-        with open(path_on_local, 'a', encoding="utf8") as f:
-            f.write(date_time_formatted + '| ' + error + '\n')
-        storage.child(path_on_cloud).put(path_on_local)
+        if os.path.exists(d_path_on_local):
+            print(str(error))
+            storage.child(path_on_cloud).download("./", f_path_on_local)
+            with open(f_path_on_local, 'a', encoding="utf8") as f:
+                f.write(time_formatted + '| ' + str(error) + '\n\n')
+            storage.child(path_on_cloud).put(f_path_on_local)
+        else:
+            os.makedirs(d_path_on_local)
+            error_log(error)
     except Exception as e:
         print('Exception in exceptor :(')
         print(str(e))
 
 
 def pickle_save(obj, cloudpath, localpath):
-    path_on_cloud = cloudpath
-    path_on_local = localpath
-    storage.child(path_on_cloud).download("./", path_on_local)
-    try:
-        with open(path_on_local, 'wb') as stream_save_file:
-            pickle.dump(obj, stream_save_file)
-        storage.child(path_on_cloud).put(path_on_local)
-    except Exception as e:
-        print(str(e))
-        print("Unexpected Picklesave Error")
+    path_on_cloud = SAVE + cloudpath
+    path_on_local = SAVE + localpath
+
+    if os.path.exists(SAVE):
+        storage.child(path_on_cloud).download("./", path_on_local)
+        try:
+            with open(path_on_local, 'wb') as stream_save_file:
+                pickle.dump(obj, stream_save_file)
+            storage.child(path_on_cloud).put(path_on_local)
+        except Exception as e:
+            print(str(e))
+            print("Unexpected Picklesave Error")
+    else:
+        os.makedirs(SAVE)
+        pickle_save(obj, cloudpath, localpath)
 
 
-def pickle_load(cloudpath, localpath):
-    path_on_cloud = cloudpath
-    path_on_local = localpath
+def pickle_load(path_on_cloud, path_on_local):
     ret_obj = None
-    storage.child(path_on_cloud).download("./", path_on_local)
-    try:
-        with open(path_on_local, 'rb') as config_dictionary_file:
-            ret_obj = pickle.load(config_dictionary_file)
-    except Exception as e:
-        print('No Save File')
-        print(str(e))
+    if os.path.exists(SAVE):
+        storage.child(path_on_cloud).download("./", path_on_local)
+        try:
+            with open(path_on_local, 'rb') as config_dictionary_file:
+                ret_obj = pickle.load(config_dictionary_file)
+        except FileNotFoundError as e:
+            print(str(e))
+    else:
+        os.makedirs(SAVE)
+        pickle_load(path_on_cloud, path_on_local)
     return ret_obj
 
 
 def save_stream(restartstream):
-    path_on_cloud = SAVE_STREAM
-    path_on_local = SAVE_STREAM_L
+    path_on_cloud = STREAM
+    path_on_local = STREAM
     pickle_save(restartstream, path_on_cloud, path_on_local)
 
 
 def load_stream():
-    path_on_cloud = SAVE_STREAM
-    path_on_local = SAVE_STREAM_L
+    path_on_cloud = SAVE + STREAM
+    path_on_local = SAVE + STREAM
     loaded = pickle_load(path_on_cloud, path_on_local)
     return loaded
 
 
 def save_folio(folios):
-    path_on_cloud = SAVE_FOLIO
-    path_on_local = SAVE_FOLIO_L
+    path_on_cloud = SAVE + FOLIO
+    path_on_local = SAVE + FOLIO_L
     pickle_save(folios, path_on_cloud, path_on_local)
 
 
 def load_folio():
-    path_on_cloud = SAVE_FOLIO
-    path_on_local = SAVE_FOLIO_L
+    path_on_cloud = SAVE + FOLIO
+    path_on_local = SAVE + FOLIO_L
     folio = pickle_load(path_on_cloud, path_on_local)
     if not folio:
         folio = None
@@ -238,34 +267,40 @@ def save_trade(t):
     # Add trade result to all trades textfile
     tz = pytz.timezone('Australia/Perth')
     now = datetime.now(tz)
-    date_string = now.strftime('%Y-%B-')
+    date_string = now.strftime('%B-%Y')
 
-    # Store in All Trade results
-    path_on_cloud = SAVE_TRADE + date_string + 'TradeResults.txt'
-    path_on_local = SAVE_TRADE_L + date_string + 'TradeResults.txt'
-    storage.child(path_on_cloud).download("./", path_on_local)
-    with open(path_on_local, 'a', encoding="utf8") as f:
-        f.write(str(t.savestring))
-        f.write('\n\n')
-    storage.child(path_on_cloud).put(path_on_local)
-    # Store in monthly trade group breakdown
-    path_on_cloud = SAVE_TRADE + date_string + t.origin + ".txt"
-    path_on_local = SAVE_TRADE_L + date_string + t.origin + ".txt"
-    storage.child(path_on_cloud).download("./", path_on_local)
-    with open(path_on_local, 'a', encoding="utf8") as f:
-        f.write(str(t.savestring))
-        f.write(t.trade_log)
-        f.write('_________________________________\n\n')
-    storage.child(path_on_cloud).put(path_on_local)
-    # Store the essential trading metric overview
-    path_on_cloud = SAVE_TRADE + 'juice/' + t.origin + '/' + date_string + '.txt'
-    path_on_local = SAVE_TRADE_L + 'juice/' + t.origin + '/' + date_string + '.txt'
-    storage.child(path_on_cloud).download("./", path_on_local)
-    with open(path_on_local, 'a', encoding="utf8") as f:
-        f.write(str(t.closed_diff + ' | ' + t.pair + ' | ' + t.duration + '\n'))
-    storage.child(path_on_cloud).put(path_on_local)
+    m_path_on_cloud = SAVE_TRADE + t.origin + '/' + date_string + '.txt'
+    j_path_on_cloud = SAVE_TRADE + t.origin + '/' + 'juice/' + date_string + '.txt'
+
+    dm_path_on_local = SAVE_TRADE_L + t.origin + '/'
+    dj_path_on_local = dm_path_on_local + 'juice/'
+    m_path_on_local = dm_path_on_local + date_string + '.txt'
+    j_path_on_local = dj_path_on_local + date_string + '.txt'
+
+    # Check file structure exists, if not create it
+    if os.path.exists(dj_path_on_local):
+
+        # Store in monthly trade group breakdown
+        storage.child(m_path_on_cloud).download("./", m_path_on_local)
+        with open(m_path_on_local, 'a', encoding="utf8") as f:
+            f.write(str(t.savestring))
+            f.write(t.trade_log)
+            f.write('_________________________________\n\n')
+        storage.child(m_path_on_cloud).put(m_path_on_local)
+
+        # Store the essential trading metric overview
+        storage.child(j_path_on_cloud).download("./", j_path_on_local)
+        with open(j_path_on_local, 'a', encoding="utf8") as f:
+            tradevalue = float(t.closed_diff)/100 + 1
+            tradevalue = round(tradevalue, 2)
+            f.write(str(tradevalue) + ' | ' + t.pair + ' | ' + str(t.duration) + '\n')
+        storage.child(j_path_on_cloud).put(j_path_on_local)
+    else:
+        os.makedirs(dj_path_on_local)
+        save_trade(t)
 
 
+'''
 def trade_results(t):
     for b in t.bag_id:
         path_on_cloud = RESULTS + b + '.txt'
@@ -282,6 +317,7 @@ def trade_results(t):
 
     if t.bag_id:
         end_trade_folios(t, tradevalue)
+'''
 
 
 def get_binance_spot_list():
