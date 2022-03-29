@@ -24,9 +24,6 @@ import utility
 import hirn
 import futures_signals
 
-import logging
-logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
-                    level=logging.WARNING)
 
 local = utility.is_local()
 
@@ -112,8 +109,8 @@ async def StartTelegramForwarding(client):
             # Real code
 
             if sender_id == "1548802426":                           # Always Win, Signal
-                # Changed to sending text only, as sending the full message is no longer functional, I suspect Always win guy did something to his data to try and prevent copycats
-                await client.send_message(1576065688, message)
+                await client.send_message(1576065688, event.raw_text)
+                await client.send_message(1576065688, event)
                 valid = always_win.valid_trade_message(message)
                 if valid:
                     try:
@@ -238,18 +235,18 @@ async def StartTelegramForwarding(client):
                     binance_wrap.mfutures_trade(sigal, 1)
 
                 elif message == '/past':
-                    msgs = await client.get_messages(1548802426, limit=5)
+                    msgs = await client.get_messages(1548802426, limit=10)
                     if msgs is not None:
+                        print("Messages:\n---------")
                         for msg in msgs:
                             print(msg)
-                            await client.send_file(1576065688, msg.media)
-
-                        #print("Messages:\n---------")
-                        #for msg in msgs:
-                        #    print(msg)
-                        #    print(msg.chat_id)
-                        #    print(msg.message)
-                        #    print('______________________')
+                            print(msg.chat_id)
+                            print(msg.message)
+                            print('______________________')
+                            if not msg.photo:
+                                await client.send_message(1576065688, msg)
+                            else:
+                                print('has photo')
 
                 elif message == ALWAYS_WIN_SIGNAL:
                     with open('docs/aw_example.txt', encoding="utf8") as f:
@@ -302,7 +299,7 @@ async def StartTelegramForwarding(client):
                 # Unrecognized Telegram Channels
                 if not recognized:
                     post = msg + '\n' + message + '\n' + str(sender.id) + '|' + str(chat.id) + '\n_________________\n'
-                    utility.add_message('New Telegram Groups', post)
+                    # utility.add_message('New Telegram Groups', post)
 
         except Exception as e:
             utility.error_log(e)

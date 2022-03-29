@@ -150,7 +150,6 @@ def gen_log(log):
                 f.write(time_formatted + '| ' + log + '\n\n')
             storage.child(path_on_cloud).put(f_path_on_local)
         else:
-            print("Making new file")
             with open(f_path_on_local, 'w+', encoding="utf8") as f:
                 f.write('Daily General Logs ' + date_formatted + '\n\n')
                 f.write(time_formatted + '| ' + log + '\n\n')
