@@ -1,4 +1,4 @@
-telethon==git+git://github.com/kshubham506/Telethon
+telethon==git+https://github.com/kshubham506/Telethon@b1984615afc684e1182ff82674dcfc0a43ed5cd9
 asyncio==3.4.3
 requests==2.25.1
 python-binance==1.0.12

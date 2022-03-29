@@ -18,3 +18,9 @@
 
 17:34:39:| The provided media object is invalid or the current account may not be able to send it (such as games as users) (caused by SendMediaRequest)
 
+17:46:47:| The provided media object is invalid or the current account may not be able to send it (such as games as users) (caused by SendMediaRequest)
+
+17:54:36:| The provided media object is invalid or the current account may not be able to send it (such as games as users) (caused by SendMediaRequest)
+
+17:57:16:| Cannot use <telethon.tl.types.MessageMediaWebPage object at 0x0000029D2C4D5DC0> as file
+
