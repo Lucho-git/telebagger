@@ -83,13 +83,14 @@ else:
     SNAPSHOT = '/snapshot!'
     CLOSE_FUTURES = '/close_futures!'
 
-
+'''
 def SendMessageToAlwaysWin(message):
     if '/USDT' in message:
         message = "<@&834911692303237172>\n" + message
     mUrl = "https://ptb.discord.com/api/webhooks/838079506660851762/7-lpGNlqWGGlO08XZJ3RwAvSXpWGDf5J6Z4ro5bsdtogYGGXovVfmYGmCb3Jvr1RvtWG"
     data = {"content": message}
     requests.post(mUrl, json=data)
+'''
 
 
 async def StartTelegramForwarding(client):
@@ -161,6 +162,9 @@ async def StartTelegramForwarding(client):
                         utility.failed_message(message, 'Hirn', e, '_failed.txt')
                         utility.add_message('Hirn', '[-]')
                     utility.gen_log('Signal from HIRN')
+
+            elif sender_id == '1576065688':
+                print('RECIEVED!!!')
 
             # ___________________________________________________________________________________________________
 
@@ -234,24 +238,30 @@ async def StartTelegramForwarding(client):
                     binance_wrap.mfutures_trade(sigal, 1)
 
                 elif message == '/past':
-                    msgs = await client.get_messages('HIRN_CRYPTO', limit=5)
+                    msgs = await client.get_messages(1548802426, limit=5)
                     if msgs is not None:
-                        print("Messages:\n---------")
                         for msg in msgs:
                             print(msg)
-                            print(msg.chat_id)
-                            print(msg.message)
-                            print('______________________')
+                            await client.send_file(1576065688, msg.media)
+
+                        #print("Messages:\n---------")
+                        #for msg in msgs:
+                        #    print(msg)
+                        #    print(msg.chat_id)
+                        #    print(msg.message)
+                        #    print('______________________')
 
                 elif message == ALWAYS_WIN_SIGNAL:
                     with open('docs/aw_example.txt', encoding="utf8") as f:
                         msg = f.read()
-                        valid = always_win.valid_trade_message(msg)
-                        if valid:
-                            aw = always_win.bag(msg)
-                            await trade_stream.addtrade(aw)
-                        else:
-                            print('notval id')
+                        print('sending message')
+                        print('done')
+                        #valid = always_win.valid_trade_message(msg)
+                        #if valid:
+                        #    aw = always_win.bag(msg)
+                        #    await trade_stream.addtrade(aw)
+                        #else:
+                        #    print('notval id')
                 elif message == PRE_AW:
                     with open('docs/pre_aw_example.txt', encoding="utf8") as f:
                         msg = f.read()

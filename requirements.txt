@@ -1,4 +1,4 @@
-telethon==1.24.0
+telethon==git+git://github.com/kshubham506/Telethon
 asyncio==3.4.3
 requests==2.25.1
 python-binance==1.0.12

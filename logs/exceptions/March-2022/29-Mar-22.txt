@@ -1,0 +1,20 @@
+17:15:33:| module 'fake_trade' has no attribute 'fake_trade'
+
+17:16:18:| module 'fake_trade' has no attribute 'fake_trade'
+
+17:17:54:| module 'fake_trade' has no attribute 'fake_trade'
+
+17:24:41:| Cannot find any entity corresponding to "1548802426"
+
+17:27:55:| ord() expected string of length 1, but Message found
+
+17:29:51:| ord() expected string of length 1, but Message found
+
+17:30:11:| The provided media object is invalid or the current account may not be able to send it (such as games as users) (caused by SendMediaRequest)
+
+17:32:00:| The provided media object is invalid or the current account may not be able to send it (such as games as users) (caused by SendMediaRequest)
+
+17:32:53:| The provided media object is invalid or the current account may not be able to send it (such as games as users) (caused by SendMediaRequest)
+
+17:34:39:| The provided media object is invalid or the current account may not be able to send it (such as games as users) (caused by SendMediaRequest)
+
