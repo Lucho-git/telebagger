@@ -268,7 +268,7 @@ async def StartTelegramForwarding(client):
                     # log Post here
 
         except Exception as e:
-            utility.error_log(e + '\n' + str(traceback.format_exc()))
+            utility.error_log(str(e) + '\n' + str(traceback.format_exc()))
 
 
 # End of event handler code ____________________
