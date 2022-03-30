@@ -157,7 +157,6 @@ class Trade:
         else:
             raise ValueError('Trade Type Error')
 
-    # todo have a style percentages module here
     def style_percent_diff(self, now):
         if self.type == 'spot':
             diff = float(now) - self.price
@@ -558,30 +557,31 @@ class Trade:
 
         self.savestring = savestr
 
+    def fake_trade(self, bag_id=None, percent=None):
+        self.price = float(client.get_symbol_ticker(symbol=self.pair)['price'])
+        self.time = ut.binance_timestamp_local(client.get_server_time()['serverTime'])
+        self.id = self.time
+        self.lowest = self.price
+        self.highest = self.price
+        self.status = 'active'
+        if bag_id and percent:
+            self.bag_id.append(bag_id)
+            ut.start_trade_folios(self.trade, percent)
+
+    def fake_trade_copy(self, old_trade, bag_id=None, percent=None):
+        self.price = old_trade.price
+        self.time = old_trade.time + 1
+        self.id = old_trade.id + 1
+        self.lowest = old_trade.lowest
+        self.highest = old_trade.highest
+        self.status = old_trade.status
+        if bag_id and percent:
+            self.bag_id.append(bag_id)
+            ut.start_trade_folios(self, percent)
+        return self
+
 
 #  Initiating Fake trade functionality goes here #######
 
-def fake_trade(trade, bag_id=None, percent=None):
-    trade.price = float(client.get_symbol_ticker(symbol=trade.pair)['price'])
-    trade.time = ut.binance_timestamp_local(client.get_server_time()['serverTime'])
-    trade.id = trade.time
-    trade.lowest = trade.price
-    trade.highest = trade.price
-    trade.status = 'active'
-    if bag_id and percent:
-        trade.bag_id.append(bag_id)
-        ut.start_trade_folios(trade, percent)
 
-
-def fake_trade_copy(new_trade, old_trade, bag_id=None, percent=None):
-    new_trade.price = old_trade.price
-    new_trade.time = old_trade.time + 1
-    new_trade.id = old_trade.id + 1
-    new_trade.lowest = old_trade.lowest
-    new_trade.highest = old_trade.highest
-    new_trade.status = old_trade.status
-    if bag_id and percent:
-        new_trade.bag_id.append(bag_id)
-        ut.start_trade_folios(new_trade, percent)
-    return new_trade
 

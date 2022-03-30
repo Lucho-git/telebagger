@@ -1,25 +1,21 @@
 # 3rd Party libs
 from colorama import init
-from colorama import Fore, Back, Style
 from telethon import TelegramClient, events, sync, utils, tl
-from binance.exceptions import BinanceAPIException, BinanceOrderException
 from telethon.sessions import StringSession
 import requests
 import asyncio
-from utility import Sleeper
 import signal
 import sys
 import time
 import os
+import traceback
 
 # Methods within this package
 from trade_classes import Trade, Futures, MFutures
 from fake_portfolio import Folio, Folios
-import msg_vip_signals
 import always_win
 import binance_wrap
 import trade_stream
-import fake_trade
 import utility
 import hirn
 import futures_signals
@@ -117,22 +113,7 @@ async def StartTelegramForwarding(client):
                         aw = always_win.bag(message)
                         await trade_stream.addtrade(aw)
                     except Exception as e:
-                        utility.failed_message(message, 'Always Win', e, '_failed.txt')
-                else:
-                    try:
-                        valid2 = always_win.valid_trade_message(message)
-                    except ValueError:
-                        print("Problem with PreSignal Validation")
-                    if valid2:
-                        print("PreSignal Message")
-            elif sender_id == '1312345502':                               # Vip Signals, Signal
-                valid = msg_vip_signals.valid_trade_message(message)
-                if valid:
-                    try:
-                        vip = msg_vip_signals.bag(message)
-                        await trade_stream.addtrade(vip)
-                    except Exception as e:
-                        utility.failed_message(message, 'Vip Signals', e, '_failed.txt')
+                        utility.failed_message(message, 'Always Win', e)
 
             elif sender_id == '1248393106':                             # HIRN, Signal
                 print('Hirn Message')
@@ -151,7 +132,7 @@ async def StartTelegramForwarding(client):
                         else:
                             raise ValueError("No Signal / Cooling Down")
                     except Exception as e:
-                        utility.failed_message(message, 'Hirn', e, '_failed.txt')
+                        utility.failed_message(message, 'Hirn', e)
 
             # ___________________________________________________________________________________________________
 
@@ -191,7 +172,7 @@ async def StartTelegramForwarding(client):
                                 if hir:
                                     await trade_stream.addtrade(hir)
                             except Exception as e:
-                                utility.failed_message(message, 'Hirn', e, '_failed.txt')
+                                utility.failed_message(message, 'Hirn', e)
                         else:
                             print('notvalid')
 
@@ -287,7 +268,7 @@ async def StartTelegramForwarding(client):
                     # log Post here
 
         except Exception as e:
-            utility.error_log(e)
+            utility.error_log(e + '\n' + str(traceback.format_exc()))
 
 
 # End of event handler code ____________________

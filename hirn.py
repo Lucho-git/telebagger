@@ -1,8 +1,8 @@
-import fake_trade
 import time
 import utility
 import binance_wrap
 import trade_classes
+from trade_classes import Trade, Futures, STrade
 
 hirn_timer = [0]
 last_pair = ['']
@@ -51,11 +51,8 @@ def bag(msg):
 
     else:
         raw_server_time = binance_wrap.timenow()
-        utility.failed_message(msg, 'HIRN_DOUBLE_TEST', str(raw_server_time) + str(tradeheat[0]), '_doubleups.txt')  # TODO remove later
+        utility.failed_message(msg, 'Hirn', str(raw_server_time) + str(tradeheat[0]))  # TODO remove later
         duplicate = get_pair(msg)
-        print('compared')
-        print(duplicate)
-        print(last_pair[0])
         if not last_pair[0] == duplicate:
             try:
                 result = search_coin(msg)
@@ -95,7 +92,6 @@ def search_coin(text):
     entry = float(lines[1].split(': ')[1])
     exit_price = lines[2].split(': ')[1]
     exit_price = float(exit_price.split(' ')[0])
-    direction = ''
     lev = 1
     if entry > exit_price:
         direction = 'short'
@@ -110,14 +106,17 @@ def search_coin(text):
             if f == coin:
                 is_futures = True
                 lev = HIRN_LEVERAGE
+                lev2 = HIRN_LEVERAGE*2
 
     sl = entry - (entry/lev)*HIRN_STOPLOSS_REDUCTION
+    sl2 = entry - (entry/lev*2)*HIRN_STOPLOSS_REDUCTION
+
     print('Pair|', pair, '|Direction|', direction, '|Entry|', entry, '|Exit|', exit_price, '|Leverage|', lev)
     print(is_futures)
     print(HIRN_REAL[0])
     if is_futures and HIRN_REAL[0]:
-        signal = trade_classes.Trade(pair, base, 'Hirn', 'futures', text)
-        signal.conditions = trade_classes.Futures(sl, exit_price, direction, lev, 'isolation')
+        signal = Trade(pair, base, 'Hirn', 'futures', text)
+        signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
         try:
             binance_wrap.futures_trade_no_orders(signal, HIRN_TRADE_PERCENT)
             binance_wrap.futures_trade_add_orders(signal)
@@ -127,17 +126,22 @@ def search_coin(text):
             print(e)
         finally:
             print('Starting Fake Trade')
-            trade_classes.fake_trade(signal, percent=HIRN_TRADE_PERCENT)
+            signal.fake_trade(percent=HIRN_TRADE_PERCENT)
             print('Completed Fake Trade')
     elif is_futures:
         print('Starting Fake Trade')
-        signal = trade_classes.Trade(pair, base, 'Hirn', 'futures', text)
-        signal.conditions = trade_classes.Futures(sl, exit_price, direction, lev, 'isolation')
-        trade_classes.fake_trade(signal, percent=HIRN_TRADE_PERCENT)
+        signal = Trade(pair, base, 'Hirn', 'futures', in_message=text)
+        signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
+        signal.fake_trade(percent=HIRN_TRADE_PERCENT)
+
+        print('Starting Fake Trade2')
+        signal = Trade(pair, base, 'Hirn2', 'futures', in_message=text)
+        signal.conditions = Futures(sl2, exit_price, direction, lev2, 'isolation')
+        signal.fake_trade(percent=HIRN_TRADE_PERCENT)
     else:
-        signal = trade_classes.Trade(pair, base, 'Hirn', 'spot', text)
-        signal.conditions = trade_classes.STrade(sl, exit_price)
-        trade_classes.fake_trade(signal, percent=HIRN_TRADE_PERCENT)
+        signal = Trade(pair, base, 'Hirn', 'spot', in_message=text)
+        signal.conditions = STrade(sl, exit_price)
+        signal.fake_trade(percent=HIRN_TRADE_PERCENT)
 
     relative_price = abs(float(signal.price) - entry)/entry
 

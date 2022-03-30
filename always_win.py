@@ -1,6 +1,5 @@
-import time
-import fake_trade
 import binance_wrap
+import trade_classes
 from trade_classes import Trade, MFutures
 
 AW_TRADE_PERCENTAGE = 0.4
@@ -59,14 +58,14 @@ def add_fake_orders(info):
     losstargets = [sl, entry, t1, t2, t3]
 
     copy_signal = Trade(signal.pair, signal.base, 'Always Win2', 'mfutures')
-    copy_signal = fake_trade.fake_trade_copy(copy_signal, signal, percent=AW_TRADE_PERCENTAGE)
+    copy_signal = copy_signal.fake_trade_copy(signal, percent=AW_TRADE_PERCENTAGE)
 
     signal.conditions = MFutures(direction, lev, losstargets, stopprof, proftargets, 'isolation', entry)
     copy_signal.conditions = MFutures(losstargets, stopprof2, proftargets, direction, lev, 'isolation', entry)
     signal.type = 'mfutures'
     return [signal, copy_signal]
 
-
+'''
 def bag(msg):
     # TODO Fix up this spagetti block
     if valid_trade_message(msg):
@@ -106,13 +105,25 @@ def bag(msg):
         valid_trade_message_2(msg)
         result = None
     return result
+'''
+
+
+# Doesn't use presignal message
+def bag(msg):
+    if valid_trade_message(msg):
+        print('Valid Message')
+        info = search_coin(msg)
+        if AW_REAL[0]:
+            pass
+        else:
+            return signal_trade(info)
+    else:
+        return None
 
 
 def valid_trade_message(msg):
-    caps = msg.upper()
     # if ('/USDT' in msg) or ('SHORT' in caps) or ('LONG' in caps):
-    if '/USDT' in msg:
-        print("Signal Message")
+    if '/USDT' in msg.upper():
         return True
     else:
         return False
@@ -134,7 +145,7 @@ def valid_trade_message_2(msg):
                 binance_wrap.futures_trade_no_orders(signal, AW_TRADE_PERCENTAGE_REAL)
                 AW_WAIT_SIGNAL_REAL[0] = signal
             else:
-                fake_trade.fake_trade(signal, percent=AW_TRADE_PERCENTAGE)
+                signal.fake_trade(percent=AW_TRADE_PERCENTAGE)
             AW_WAIT_SIGNAL[0] = signal
             print('Signal Incoming:', pair)
             return True
@@ -197,16 +208,16 @@ def signal_trade(info):
     t4 = info[8]
     t5 = info[9]
 
-    signal = Trade(pair, base, 'Always Win', 'mfutures')
-    signal2 = Trade(pair, base, 'Always Win2', 'mfutures')
+    signal = Trade(pair, base, 'Always Win', 'mfutures', in_message=info)
+    signal2 = Trade(pair, base, 'Always Win2', 'mfutures', in_message=info)
     stopprof = [65, 15, 10, 5, 5]
     stopprof2 = [50, 30, 10, 5, 5]
     proftargets = [t1, t2, t3, t4, t5]
     losstargets = [sl, entry, t1, t2, t3]
     signal.conditions = MFutures(direction, lev, losstargets, stopprof, proftargets, 'isolation', entry)
     signal2.conditions = MFutures(direction, lev, losstargets, stopprof2, proftargets, 'isolation', entry)
-    fake_trade.fake_trade(signal2, percent=AW_TRADE_PERCENTAGE)
-    fake_trade.fake_trade(signal, percent=AW_TRADE_PERCENTAGE)
+    signal2.fake_trade(percent=AW_TRADE_PERCENTAGE)
+    signal.fake_trade(percent=AW_TRADE_PERCENTAGE)
 
     return [signal, signal2]
 
