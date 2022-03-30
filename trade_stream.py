@@ -166,6 +166,7 @@ def addstream(in_tradequeue, in_streamdict):
             print(streamID)
             t.stream_id = streamID
             in_streamdict[t.stream_id] = [t]
+        utility.gen_log('Started Trade: ' + t.pair + ' | ' + t.id)
         in_tradequeue.remove(t)
 
 

@@ -110,17 +110,14 @@ async def StartTelegramForwarding(client):
 
             if sender_id == "1548802426":                           # Always Win, Signal
                 await client.send_message(1576065688, event.raw_text)
-                await client.send_message(1576065688, event)
+                # await client.send_message(1576065688, event)
                 valid = always_win.valid_trade_message(message)
                 if valid:
                     try:
                         aw = always_win.bag(message)
-                        utility.add_message('Always Win', '[X]')
                         await trade_stream.addtrade(aw)
                     except Exception as e:
                         utility.failed_message(message, 'Always Win', e, '_failed.txt')
-                        utility.add_message('Always Win', '[-]')
-                    utility.gen_log('Signal from Always Win')
                 else:
                     try:
                         valid2 = always_win.valid_trade_message(message)
@@ -133,11 +130,9 @@ async def StartTelegramForwarding(client):
                 if valid:
                     try:
                         vip = msg_vip_signals.bag(message)
-                        utility.add_message('Vip Signals', '[X]')
                         await trade_stream.addtrade(vip)
                     except Exception as e:
                         utility.failed_message(message, 'Vip Signals', e, '_failed.txt')
-                        utility.add_message('Vip Signals', '[-]')
 
             elif sender_id == '1248393106':                             # HIRN, Signal
                 print('Hirn Message')
@@ -151,17 +146,12 @@ async def StartTelegramForwarding(client):
                     try:
                         hir = hirn.bag(message)
                         if hir:
-                            utility.add_message('Hirn', '[X]')
+                            utility.gen_log('Signal from HIRN')
                             await trade_stream.addtrade(hir)
                         else:
                             raise ValueError("No Signal / Cooling Down")
                     except Exception as e:
                         utility.failed_message(message, 'Hirn', e, '_failed.txt')
-                        utility.add_message('Hirn', '[-]')
-                    utility.gen_log('Signal from HIRN')
-
-            elif sender_id == '1576065688':
-                print('RECIEVED!!!')
 
             # ___________________________________________________________________________________________________
 
@@ -170,13 +160,10 @@ async def StartTelegramForwarding(client):
                 utility.gen_log('Telegram Robot: ' + message)
                 # Bot commands
                 if message == STOP:
-                    # await trade_stream.restart_schedule(sleeper)
-                    # sleeper.cancel_all_helper()
-                    # todo figure out if sleeper access is necessary here
+
                     await asyncio.sleep(1)
                     print('Exiting....')
                     await client.disconnect()
-                    print("End of lin3e")
 
                 # Stream Commands
                 elif message == STREAM:
@@ -203,10 +190,8 @@ async def StartTelegramForwarding(client):
                                 hir = hirn.bag(msg)
                                 if hir:
                                     await trade_stream.addtrade(hir)
-                                    utility.add_message('Hirn', '[-]')
                             except Exception as e:
                                 utility.failed_message(message, 'Hirn', e, '_failed.txt')
-                                utility.add_message('Hirn', '[-]')
                         else:
                             print('notvalid')
 
@@ -299,7 +284,7 @@ async def StartTelegramForwarding(client):
                 # Unrecognized Telegram Channels
                 if not recognized:
                     post = msg + '\n' + message + '\n' + str(sender.id) + '|' + str(chat.id) + '\n_________________\n'
-                    # utility.add_message('New Telegram Groups', post)
+                    # log Post here
 
         except Exception as e:
             utility.error_log(e)

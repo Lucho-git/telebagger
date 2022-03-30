@@ -12,6 +12,9 @@ from fake_portfolio import Folio, Folios
 
 local = [False]
 
+# Set operating timezone
+tz = pytz.timezone('Australia/Perth')
+
 config = {  # initialising database connection
     "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
     "authDomain": "telebagger.firebaseapp.com",
@@ -27,7 +30,6 @@ storage = firebase.storage()
 unique_id = 'heroku/'  # heroku, lach, tom, cozza
 
 
-FAILED_MESSAGES_L = 'trade_results/failed_messages/'
 ADD_MESSAGE_L = 'trade_results/message_count/'
 SAVE_L = 'save_data/'
 STREAM_L = 'savefile'
@@ -38,7 +40,6 @@ LOG_L = 'logs/'
 
 if local[0]:
     # Firebase Cloud Storage File Paths
-    FAILED_MESSAGES = "trade_results/failed_messages/"  # Filepath
     ADD_MESSAGE = "trade_results/message_count/"  # Filepath
     SAVE = "save_data/"  # Path
     STREAM = 'savefile'
@@ -48,7 +49,6 @@ if local[0]:
     LOG = 'logs/'
 else:
     # Heroku Version
-    FAILED_MESSAGES = unique_id + "trade_results/failed_messages/"  # Filepath
     ADD_MESSAGE = unique_id + "trade_results/message_count/"  # Filepath
     SAVE = unique_id + "save_data/"  # Path
     STREAM = 'savefile'
@@ -82,56 +82,27 @@ def is_local():
     return local[0]
 
 
-# Todo is depreciated???
-def failed_message(msg, origin, e, file_string):
-    path_on_cloud = FAILED_MESSAGES + origin + file_string
-    path_on_local = FAILED_MESSAGES_L + origin + '_failed.txt'
-    storage.child(path_on_cloud).download("./", path_on_local)
-    e = str(e)
+def failed_message(msg, origin, e):
+    now = datetime.now(tz)
+    month_year = now.strftime('%B-%Y')
+    path_on_cloud = SAVE_TRADE + origin + '/' + month_year + '.txt'
+    d_path_on_local = SAVE_TRADE_L + origin + '/'
+    f_path_on_local = d_path_on_local + month_year + '.txt'
 
-    try:
-        with open(path_on_local, 'a', encoding="utf8") as f:
+    if os.path.exists(d_path_on_local):
+        storage.child(path_on_cloud).download("./", f_path_on_local)
+        with open(f_path_on_local, 'a', encoding="utf8") as f:
             f.write(msg + '\n')
             f.write('__________________________\n')
             f.write(e)
             f.write('\n\n')
-        storage.child(path_on_cloud).put(path_on_local)
-    except Exception as ex:
-        ex = str(ex)
-        print(ex)
-        print("No Previous File existed I think")
-        with open(path_on_local, 'w+', encoding="utf8") as f:
-            f.write('Failed ' + origin + ' Messages:\n')
-            f.write('==========================\n')
-            f.write(msg + '\n')
-            f.write('__________________________\n')
-            f.write(ex)
-            f.write('\n\n')
-        storage.child(path_on_cloud).put(path_on_local)
-        print("Made new file for ", origin)
-
-
-# Todo is depreciated???
-def add_message(origin, result):
-    path_on_cloud = ADD_MESSAGE + origin + '_count.txt'
-    path_on_local = ADD_MESSAGE_L + origin + '_count.txt'
-    storage.child(path_on_cloud).download("./", path_on_local)
-    try:
-        with open(path_on_local, 'a', encoding="utf8") as f:
-            f.write(result + '\n')
-        storage.child(path_on_cloud).put(path_on_local)
-    except Exception as e:
-        print(e)
-        print("New count file?")
-        with open(path_on_local, 'w+', encoding="utf8") as f:
-            f.write(origin + 'Signal Count    [-] is Fail  ||  [X] is Success \n')
-            f.write('==========================\n')
-            f.write(result + '\n')
-        storage.child(path_on_cloud).put(path_on_local)
+        storage.child(path_on_cloud).put(f_path_on_local)
+    else:
+        os.makedirs(d_path_on_local)
+        failed_message(msg, origin, e)
 
 
 def gen_log(log):
-    tz = pytz.timezone('Australia/Perth')
     now = datetime.now(tz)
     month_year = now.strftime('%B-%Y')
     date_formatted = now.strftime('%d-%b-%y')
@@ -160,7 +131,6 @@ def gen_log(log):
 
 
 def error_log(error):
-    tz = pytz.timezone('Australia/Perth')
     now = datetime.now(tz)
     month_year = now.strftime('%B-%Y')
     date_formatted = now.strftime('%d-%b-%y')
@@ -264,7 +234,6 @@ def end_trade_folios(trade, trade_return):
 
 def save_trade(t):
     # Add trade result to all trades textfile
-    tz = pytz.timezone('Australia/Perth')
     now = datetime.now(tz)
     date_string = now.strftime('%B-%Y')
 
