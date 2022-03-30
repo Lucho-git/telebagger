@@ -105,8 +105,10 @@ async def StartTelegramForwarding(client):
             # Real code
 
             if sender_id == "1548802426":                           # Always Win, Signal
-                await client.send_message(1576065688, event.raw_text)
-                # await client.send_message(1576065688, event)
+                if not event.message.photo:
+                    await client.send_message(1576065688, event.message)
+                else:
+                    await client.send_message(1576065688, message)
                 valid = always_win.valid_trade_message(message)
                 if valid:
                     try:
