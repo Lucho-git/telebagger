@@ -85,8 +85,8 @@ def is_local():
 def failed_message(msg, origin, e):
     now = datetime.now(tz)
     month_year = now.strftime('%B-%Y')
-    path_on_cloud = SAVE_TRADE + origin + '/' + month_year + '.txt'
-    d_path_on_local = SAVE_TRADE_L + origin + '/'
+    path_on_cloud = SAVE_TRADE + origin + '/failed/' + month_year + '.txt'
+    d_path_on_local = SAVE_TRADE_L + origin + '/failed/'
     f_path_on_local = d_path_on_local + month_year + '.txt'
 
     if os.path.exists(d_path_on_local):
