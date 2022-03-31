@@ -94,7 +94,7 @@ def failed_message(msg, origin, e):
         with open(f_path_on_local, 'a', encoding="utf8") as f:
             f.write(msg + '\n')
             f.write('__________________________\n')
-            f.write(e)
+            f.write(str(e))
             f.write('\n\n')
         storage.child(path_on_cloud).put(f_path_on_local)
     else:
