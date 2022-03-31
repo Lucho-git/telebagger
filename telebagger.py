@@ -139,6 +139,7 @@ async def StartTelegramForwarding(client):
             # ___________________________________________________________________________________________________
 
             elif chat.id == 1899129008:  # Telegram Bot
+                return
                 print("Robot Section +++")
                 utility.gen_log('Telegram Robot: ' + message)
                 # Bot commands
