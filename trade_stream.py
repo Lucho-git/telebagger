@@ -137,10 +137,7 @@ def load():
 
 async def addtrade(new_trades):  # import trade in future
     tradequeue.extend(new_trades)
-    for t in new_trades:
-        utility.gen_log(str(t.overview()))
     addstream(tradequeue, streamdict)
-    print('bumping')
     await bump()
 
 
