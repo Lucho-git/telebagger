@@ -83,6 +83,7 @@ def get_pair(text):
 
 
 def search_coin(text):
+    signals = []
     lines = text.split('\n')
     print(lines[0])
     pair = lines[0].split('#')[1]
@@ -127,28 +128,28 @@ def search_coin(text):
         finally:
             print('Starting Fake Trade')
             signal.fake_trade(percent=HIRN_TRADE_PERCENT)
+            signals.append(signal)
             print('Completed Fake Trade')
     elif is_futures:
         print('Starting Fake Trade')
         signal = Trade(pair, base, 'Hirn', 'futures', in_message=text)
         signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
         signal.fake_trade(percent=HIRN_TRADE_PERCENT)
+        signals.append(signal)
 
         print('Starting Fake Trade2')
-        signal = Trade(pair, base, 'Hirn2', 'futures', in_message=text)
-        signal.conditions = Futures(sl2, exit_price, direction, lev2, 'isolation')
-        signal.fake_trade(percent=HIRN_TRADE_PERCENT)
+        signal2 = Trade(pair, base, 'Hirn2', 'futures', in_message=text)
+        signal2.conditions = Futures(sl2, exit_price, direction, lev2, 'isolation')
+        signal2.fake_trade(percent=HIRN_TRADE_PERCENT)
+        signals.append(signal2)
     else:
         signal = Trade(pair, base, 'Hirn', 'spot', in_message=text)
         signal.conditions = STrade(sl, exit_price)
         signal.fake_trade(percent=HIRN_TRADE_PERCENT)
+        signals.append(signal)
 
     relative_price = abs(float(signal.price) - entry)/entry
-
     if relative_price > 0.1:
         raise ValueError("MarketValue is more than 10% different than it's expected value")
 
-    print('Returning:')
-    print(signal)
-
-    return [signal]
+    return signals

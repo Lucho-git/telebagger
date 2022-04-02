@@ -261,7 +261,7 @@ def save_trade(t):
         with open(j_path_on_local, 'a', encoding="utf8") as f:
             tradevalue = float(t.closed_diff)/100 + 1
             tradevalue = round(tradevalue, 2)
-            f.write(str(tradevalue) + ' | ' + t.pair + ' | ' + str(t.duration) + '\n')
+            f.write(str(tradevalue) + ' | ' + t.pair + ' | ' + str(t.duration) + ' Hours\n')
         storage.child(j_path_on_cloud).put(j_path_on_local)
     else:
         os.makedirs(dj_path_on_local)
