@@ -1,0 +1,4 @@
+Daily General Logs 07-May-22
+
+14:15:03:| Launching Telegram Scraper...
+

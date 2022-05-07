@@ -23,10 +23,14 @@ config = {  # initialising database connection
     "storageBucket": "telebagger.appspot.com",
     "appId": "1:332905720250:web:e2006e777fa8d980d61583",
     "measurementId": "G-02W82CCF85",
-    "databaseURL":  "https://telebagger-default-rtdb.firebaseio.com/"
+    "databaseURL":  "https://telebagger-default-rtdb.firebaseio.com/",
+    "serviceAccount": "docs/db_admin.json",
 }
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
+database = firebase.database()
+
+
 unique_id = 'heroku/'  # heroku, lach, tom, cozza
 
 
@@ -236,14 +240,17 @@ def save_trade(t):
     # Add trade result to all trades textfile
     now = datetime.now(tz)
     date_string = now.strftime('%B-%Y')
+    day_string = now.strftime("%d/%B/%Y")
 
     m_path_on_cloud = SAVE_TRADE + t.origin + '/' + date_string + '.txt'
     j_path_on_cloud = SAVE_TRADE + t.origin + '/' + 'juice/' + date_string + '.txt'
+    gj_path_on_cloud = SAVE_TRADE + t.origin + '/' + 'juice/' + 'last30.txt'
 
     dm_path_on_local = SAVE_TRADE_L + t.origin + '/'
     dj_path_on_local = dm_path_on_local + 'juice/'
     m_path_on_local = dm_path_on_local + date_string + '.txt'
     j_path_on_local = dj_path_on_local + date_string + '.txt'
+    gj_path_on_local = dj_path_on_local + 'last30.txt'
 
     # Check file structure exists, if not create it
     if os.path.exists(dj_path_on_local):
@@ -263,9 +270,67 @@ def save_trade(t):
             tradevalue = round(tradevalue, 2)
             f.write(str(tradevalue) + ' | ' + t.pair + ' | ' + str(t.duration) + ' Hours\n')
         storage.child(j_path_on_cloud).put(j_path_on_local)
+
+        storage.child(gj_path_on_cloud).download("./", gj_path_on_local)
+        tradevalue = float(t.closed_diff)/100
+        tradevalue = round(tradevalue, 2)
+        data = str(tradevalue) + ',' + day_string
+        # Pushing Data to database
+        db_data = {"TradeValue:": str(tradevalue), "DateFinished": day_string}
+        database.push(db_data)
+
+        contents = []
+        try:
+            with open(gj_path_on_local, 'r') as f:
+                contents = f.readlines()
+        except (FileNotFoundError, IOError):
+            print('New File')
+
+        if len(contents) > 29:
+            del contents[29]
+        contents.insert(0, data + '\n')
+
+        with open(gj_path_on_local, 'w+')as f:
+            for c in contents:
+                if c != '\n' and c:
+                    f.write(c)
+        storage.child(gj_path_on_cloud).put(gj_path_on_local)
+        realtime_save_trade(tradevalue-1, t.origin, now)
+
     else:
         os.makedirs(dj_path_on_local)
         save_trade(t)
+
+
+def realtime_save_trade(tradevalue, origin, now):
+    date_string = now.strftime('%B-%Y')
+    day_string = now.strftime("%d-%B")
+
+    signal_group = origin
+    newvalue = [tradevalue, day_string]
+
+    last7 = database.child('signals/' + signal_group + '/Last-7').get()
+    last30 = database.child('signals/' + signal_group + '/Last-30').get()
+    monthly = database.child('signals/' + signal_group + '/Month/' + date_string).get()
+    last7 = last7.val()['values']
+    last30 = last30.val()['values']
+    monthly = monthly.val()['values']
+
+    if len(last7) > 6:
+        del last7[0]
+    last7.append(newvalue)
+
+    if len(last30) > 29:
+        del last30[0]
+    last30.append(newvalue)
+    monthly.append(newvalue)
+    data7 = {"label": signal_group + " Signals Last-7", "values": last7}
+    data30 = {"label": signal_group + " Signals Last-30", "values": last30}
+    monthly = {"label": signal_group + ' ' + date_string, "values": monthly}
+
+    database.child('signals/' + signal_group + '/Last-7').set(data7)
+    database.child('signals/' + signal_group + '/Last-30').set(data30)
+    database.child('signals/' + signal_group + '/Month/' + date_string).set(monthly)
 
 
 '''

@@ -1,0 +1,36 @@
+16:48:00:| The message cannot be empty unless a file is provided
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 111, in my_event_handler
+    await client.send_message(1576065688, message)
+  File "C:\Python39\lib\site-packages\telethon\client\messages.py", line 855, in send_message
+    raise ValueError(
+ValueError: The message cannot be empty unless a file is provided
+
+
+16:48:01:| The message cannot be empty unless a file is provided
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 111, in my_event_handler
+    await client.send_message(1576065688, message)
+  File "C:\Python39\lib\site-packages\telethon\client\messages.py", line 855, in send_message
+    raise ValueError(
+ValueError: The message cannot be empty unless a file is provided
+
+
+16:48:02:| The message cannot be empty unless a file is provided
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 111, in my_event_handler
+    await client.send_message(1576065688, message)
+  File "C:\Python39\lib\site-packages\telethon\client\messages.py", line 855, in send_message
+    raise ValueError(
+ValueError: The message cannot be empty unless a file is provided
+
+
+16:48:02:| The message cannot be empty unless a file is provided
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 111, in my_event_handler
+    await client.send_message(1576065688, message)
+  File "C:\Python39\lib\site-packages\telethon\client\messages.py", line 855, in send_message
+    raise ValueError(
+ValueError: The message cannot be empty unless a file is provided
+
+

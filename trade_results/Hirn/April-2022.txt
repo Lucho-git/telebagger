@@ -1,0 +1,360 @@
+NEARUSDT | 1648876790611
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 02-Apr-22  13:19 | 02-Apr-22  13:20
+Duration: 0.0 hrs
+================================
+Pricechange: - 1.8%
+Buy Price: 15.027 |  Sell Price: 15
+Result Window: 15.027 | 15.036[+ 0.6%] | 13.7825[- 82.82%]
+
+_________________________________
+
+NEARUSDT | 1649739586629
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  12:59 | 12-Apr-22  13:00
+Duration: 0.0 hrs
+================================
+Pricechange: - 55.77%
+Buy Price: 15.886 |  Sell Price: 15
+Result Window: 15.886 | 15.905[+ 1.2%] | 13.7825[- 132.41%]
+
+_________________________________
+
+NEARUSDT | 1649739696387
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:01 | 12-Apr-22  13:02
+Duration: 0.01 hrs
+================================
+Pricechange: - 53.69%
+Buy Price: 15.851 |  Sell Price: 15
+Result Window: 15.851 | 15.884[+ 2.08%] | 13.7825[- 130.5%]
+
+_________________________________
+
+NEARUSDT | 1649739783958
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:03 | 12-Apr-22  13:04
+Duration: 0.02 hrs
+================================
+Pricechange: - 53.99%
+Buy Price: 15.856 |  Sell Price: 15
+Result Window: 15.856 | 15.87[+ 0.88%] | 13.7825[- 130.77%]
+
+_________________________________
+
+NEARUSDT | 1649740025424
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:07 | 12-Apr-22  13:08
+Duration: 0.02 hrs
+================================
+Pricechange: - 54.11%
+Buy Price: 15.858 |  Sell Price: 15
+Result Window: 15.858 | 15.889[+ 1.95%] | 13.7825[- 130.88%]
+
+_________________________________
+
+NEARUSDT | 1649740499984
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:14 | 12-Apr-22  13:16
+Duration: 0.02 hrs
+================================
+Pricechange: - 50.45%
+Buy Price: 15.797 |  Sell Price: 15
+Result Window: 15.797 | 15.805[+ 0.51%] | 13.7825[- 127.52%]
+
+_________________________________
+
+NEARUSDT | 1649740650956
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:17 | 12-Apr-22  13:18
+Duration: 0.01 hrs
+================================
+Pricechange: - 55.24%
+Buy Price: 15.877 |  Sell Price: 15
+Result Window: 15.877 | 15.898[+ 1.32%] | 13.7825[- 131.92%]
+
+_________________________________
+
+NEARUSDT | 1649740761839
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:19 | 12-Apr-22  13:20
+Duration: 0.01 hrs
+================================
+Pricechange: - 53.99%
+Buy Price: 15.856 |  Sell Price: 15
+Result Window: 15.856 | 15.867[+ 0.69%] | 13.7825[- 130.77%]
+
+_________________________________
+
+NEARUSDT | 1649741123458
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:25 | 12-Apr-22  13:26
+Duration: 0.01 hrs
+================================
+Pricechange: - 60.39%
+Buy Price: 15.964 |  Sell Price: 15
+Result Window: 15.964 | 15.984[+ 1.25%] | 13.7825[- 136.65%]
+
+_________________________________
+
+NEARUSDT | 1649741295670
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:28 | 12-Apr-22  13:29
+Duration: 0.01 hrs
+================================
+Pricechange: - 60.68%
+Buy Price: 15.969 |  Sell Price: 15
+Result Window: 15.969 | 15.983[+ 0.88%] | 13.7825[- 136.92%]
+
+_________________________________
+
+NEARUSDT | 1649741453309
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:30 | 12-Apr-22  13:31
+Duration: 0.0 hrs
+================================
+Pricechange: - 59.8%
+Buy Price: 15.954 |  Sell Price: 15
+Result Window: 15.954 | 15.985[+ 1.94%] | 13.7825[- 136.11%]
+
+_________________________________
+
+NEARUSDT | 1649741476025
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:31 | 12-Apr-22  13:32
+Duration: 0.01 hrs
+================================
+Pricechange: - 58.62%
+Buy Price: 15.934 |  Sell Price: 15
+Result Window: 15.934 | 15.966[+ 2.01%] | 13.7825[- 135.03%]
+
+_________________________________
+
+NEARUSDT | 1649741527109
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:32 | 12-Apr-22  13:33
+Duration: 0.01 hrs
+================================
+Pricechange: - 59.33%
+Buy Price: 15.946 |  Sell Price: 15
+Result Window: 15.946 | 15.965[+ 1.19%] | 13.7825[- 135.68%]
+
+_________________________________
+
+NEARUSDT | 1649741727765
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:35 | 12-Apr-22  13:36
+Duration: 0.01 hrs
+================================
+Pricechange: - 58.91%
+Buy Price: 15.939 |  Sell Price: 15
+Result Window: 15.939 | 15.943[+ 0.25%] | 13.7825[- 135.3%]
+
+_________________________________
+
+NEARUSDT | 1649741939210
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:38 | 12-Apr-22  13:39
+Duration: 0.0 hrs
+================================
+Pricechange: - 58.68%
+Buy Price: 15.935 |  Sell Price: 15
+Result Window: 15.935 | 15.944[+ 0.56%] | 13.7825[- 135.08%]
+
+_________________________________
+
+NEARUSDT | 1649741974639
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:39 | 12-Apr-22  13:40
+Duration: 0.01 hrs
+================================
+Pricechange: - 58.91%
+Buy Price: 15.939 |  Sell Price: 15
+Result Window: 15.939 | 15.948[+ 0.56%] | 13.7825[- 135.3%]
+
+_________________________________
+
+NEARUSDT | 1649742011176
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:40 | 12-Apr-22  13:41
+Duration: 0.01 hrs
+================================
+Pricechange: - 58.32%
+Buy Price: 15.929 |  Sell Price: 15
+Result Window: 15.929 | 15.97[+ 2.57%] | 13.7825[- 134.75%]
+
+_________________________________
+
+NEARUSDT | 1649742073996
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:41 | 12-Apr-22  13:42
+Duration: 0.01 hrs
+================================
+Pricechange: - 60.03%
+Buy Price: 15.958 |  Sell Price: 15
+Result Window: 15.958 | 15.994[+ 2.26%] | 13.7825[- 136.33%]
+
+_________________________________
+
+NEARUSDT | 1649742255033
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:44 | 12-Apr-22  13:45
+Duration: 0.01 hrs
+================================
+Pricechange: - 62.21%
+Buy Price: 15.995 |  Sell Price: 15
+Result Window: 15.995 | 16.043[+ 3.0%] | 13.7825[- 138.32%]
+
+_________________________________
+
+NEARUSDT | 1649742309737
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:45 | 12-Apr-22  13:46
+Duration: 0.01 hrs
+================================
+Pricechange: - 66.06%
+Buy Price: 16.061 |  Sell Price: 15
+Result Window: 16.061 | 16.07[+ 0.56%] | 13.7825[- 141.87%]
+
+_________________________________
+
+NEARUSDT | 1649742372552
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:46 | 12-Apr-22  13:47
+Duration: 0.01 hrs
+================================
+Pricechange: - 64.72%
+Buy Price: 16.038 |  Sell Price: 15
+Result Window: 16.038 | 16.048[+ 0.62%] | 13.7825[- 140.63%]
+
+_________________________________
+
+NEARUSDT | 1649742587914
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:49 | 12-Apr-22  13:50
+Duration: 0.0 hrs
+================================
+Pricechange: - 68.38%
+Buy Price: 16.101 |  Sell Price: 15
+Result Window: 16.101 | 16.116[+ 0.93%] | 13.7825[- 144.0%]
+
+_________________________________
+
+NEARUSDT | 1649742617256
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:50 | 12-Apr-22  13:51
+Duration: 0.01 hrs
+================================
+Pricechange: - 67.63%
+Buy Price: 16.088 |  Sell Price: 15
+Result Window: 16.088 | 16.112[+ 1.49%] | 13.7825[- 143.31%]
+
+_________________________________
+
+NEARUSDT | 1649742740093
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  13:52 | 12-Apr-22  13:53
+Duration: 0.01 hrs
+================================
+Pricechange: - 70.0%
+Buy Price: 16.129 |  Sell Price: 15
+Result Window: 16.129 | 16.146[+ 1.05%] | 13.7825[- 145.48%]
+
+_________________________________
+
+NEARUSDT | 1649753835788
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  16:57 | 12-Apr-22  16:58
+Duration: 0.01 hrs
+================================
+Pricechange: - 41.74%
+Buy Price: 16.697 |  Sell Price: 16
+Result Window: 16.697 | 16.715[+ 1.08%] | 14.3375[- 141.31%]
+
+_________________________________
+
+NEARUSDT | 1649753835788
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  16:57 | 12-Apr-22  16:58
+Duration: 0.01 hrs
+================================
+Pricechange: - 41.74%
+Buy Price: 16.697 |  Sell Price: 16
+Result Window: 16.697 | 16.715[+ 1.08%] | 14.3375[- 141.31%]
+
+_________________________________
+
+NEARUSDT | 1649754713373
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  17:11 | 12-Apr-22  17:12
+Duration: 0.0 hrs
+================================
+Pricechange: - 35.27%
+Buy Price: 16.585 |  Sell Price: 16
+Result Window: 16.585 | 16.61[+ 1.51%] | 14.3375[- 135.51%]
+
+_________________________________
+
+NEARUSDT | 1649754981298
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  17:16 | 12-Apr-22  17:17
+Duration: 0.01 hrs
+================================
+Pricechange: - 40.08%
+Buy Price: 16.668 |  Sell Price: 16
+Result Window: 16.668 | 16.721[+ 3.18%] | 14.3375[- 139.82%]
+
+_________________________________
+
+NEARUSDT | 1649754981298
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  17:16 | 12-Apr-22  17:17
+Duration: 0.01 hrs
+================================
+Pricechange: - 40.08%
+Buy Price: 16.668 |  Sell Price: 16
+Result Window: 16.668 | 16.721[+ 3.18%] | 14.3375[- 139.82%]
+
+_________________________________
+
+NEARUSDT | 1649766016002
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 12-Apr-22  20:20 | 12-Apr-22  20:21
+Duration: 0.01 hrs
+================================
+Pricechange: - 19.79%
+Buy Price: 16.323 |  Sell Price: 16
+Result Window: 16.323 | 16.342[+ 1.16%] | 14.3375[- 121.64%]
+
+_________________________________
+

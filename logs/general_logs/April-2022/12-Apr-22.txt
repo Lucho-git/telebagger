@@ -1,0 +1,358 @@
+Daily General Logs 12-Apr-22
+
+12:58:16:| Launching Telegram Scraper...
+
+12:59:38:| Telegram Robot: /hirn
+
+12:59:45:| Started Trade: NEARUSDT | 1649739586629
+
+12:59:49:| Started Trade: NEARUSDT | 1649739587996
+
+12:59:58:| Closing Trade: NEARUSDT | 1649739586629 | TimeStarted: 12-Apr-22  12:59 | TimeFinished: 12-Apr-22  13:00 | LongestUpdate: 0.0m | Status: stopprof
+
+13:01:22:| Launching Telegram Scraper...
+
+13:01:29:| Telegram Robot: /hirn
+
+13:01:34:| Started Trade: NEARUSDT | 1649739696387
+
+13:01:37:| Started Trade: NEARUSDT | 1649739696740
+
+13:01:58:| Closing Trade: NEARUSDT | 1649739696387 | TimeStarted: 12-Apr-22  13:01 | TimeFinished: 12-Apr-22  13:02 | LongestUpdate: 0.0m | Status: stopprof
+
+13:02:51:| Launching Telegram Scraper...
+
+13:02:57:| Telegram Robot: /hirn
+
+13:03:02:| Started Trade: NEARUSDT | 1649739783958
+
+13:03:05:| Started Trade: NEARUSDT | 1649739784315
+
+13:03:58:| Closing Trade: NEARUSDT | 1649739783958 | TimeStarted: 12-Apr-22  13:03 | TimeFinished: 12-Apr-22  13:04 | LongestUpdate: 0.0m | Status: stopprof
+
+13:04:09:| Closing Trade: NEARUSDT | 1649739784315 | TimeStarted: 12-Apr-22  13:03 | TimeFinished: 12-Apr-22  13:04 | LongestUpdate: 0.0m | Status: stopprof
+
+13:06:27:| Launching Telegram Scraper...
+
+13:06:58:| Telegram Robot: /hirn
+
+13:07:03:| Started Trade: NEARUSDT | 1649740025424
+
+13:07:06:| Started Trade: NEARUSDT | 1649740025776
+
+13:07:58:| Closing Trade: NEARUSDT | 1649740025424 | TimeStarted: 12-Apr-22  13:07 | TimeFinished: 12-Apr-22  13:08 | LongestUpdate: 0.0m | Status: stopprof
+
+13:08:09:| Closing Trade: NEARUSDT | 1649740025776 | TimeStarted: 12-Apr-22  13:07 | TimeFinished: 12-Apr-22  13:08 | LongestUpdate: 0.0m | Status: stopprof
+
+13:11:34:| Launching Telegram Scraper...
+
+13:11:42:| Telegram Robot: /hirn
+
+13:11:47:| Started Trade: NEARUSDT | 1649740309715
+
+13:11:50:| Started Trade: NEARUSDT | 1649740310072
+
+13:11:59:| Closing Trade: NEARUSDT | 1649740309715 | TimeStarted: 12-Apr-22  13:11 | TimeFinished: 12-Apr-22  13:12 | LongestUpdate: 0.0m | Status: stopprof
+
+13:12:33:| Launching Telegram Scraper...
+
+13:12:39:| Telegram Robot: /hirn
+
+13:12:45:| Started Trade: NEARUSDT | 1649740366375
+
+13:12:47:| Started Trade: NEARUSDT | 1649740367241
+
+13:12:58:| Closing Trade: NEARUSDT | 1649740366375 | TimeStarted: 12-Apr-22  13:12 | TimeFinished: 12-Apr-22  13:13 | LongestUpdate: 0.0m | Status: stopprof
+
+13:14:45:| Launching Telegram Scraper...
+
+13:14:52:| Telegram Robot: /hirn
+
+13:14:58:| Started Trade: NEARUSDT | 1649740499984
+
+13:15:01:| Started Trade: NEARUSDT | 1649740500845
+
+13:15:57:| Closing Trade: NEARUSDT | 1649740499984 | TimeStarted: 12-Apr-22  13:14 | TimeFinished: 12-Apr-22  13:16 | LongestUpdate: 0.0m | Status: stopprof
+
+13:16:08:| Closing Trade: NEARUSDT | 1649740500845 | TimeStarted: 12-Apr-22  13:15 | TimeFinished: 12-Apr-22  13:16 | LongestUpdate: 0.0m | Status: stopprof
+
+13:17:23:| Telegram Robot: /hirn
+
+13:17:29:| Started Trade: NEARUSDT | 1649740650956
+
+13:17:32:| Started Trade: NEARUSDT | 1649740651824
+
+13:17:58:| Closing Trade: NEARUSDT | 1649740650956 | TimeStarted: 12-Apr-22  13:17 | TimeFinished: 12-Apr-22  13:18 | LongestUpdate: 0.0m | Status: stopprof
+
+13:18:09:| Closing Trade: NEARUSDT | 1649740651824 | TimeStarted: 12-Apr-22  13:17 | TimeFinished: 12-Apr-22  13:18 | LongestUpdate: 0.0m | Status: stopprof
+
+13:19:09:| Launching Telegram Scraper...
+
+13:19:14:| Telegram Robot: /hirn
+
+13:19:20:| Started Trade: NEARUSDT | 1649740761839
+
+13:19:22:| Started Trade: NEARUSDT | 1649740762193
+
+13:20:00:| Closing Trade: NEARUSDT | 1649740761839 | TimeStarted: 12-Apr-22  13:19 | TimeFinished: 12-Apr-22  13:20 | LongestUpdate: 0.0m | Status: stopprof
+
+13:20:10:| Closing Trade: NEARUSDT | 1649740762193 | TimeStarted: 12-Apr-22  13:19 | TimeFinished: 12-Apr-22  13:20 | LongestUpdate: 0.0m | Status: stopprof
+
+13:24:59:| Launching Telegram Scraper...
+
+13:25:16:| Telegram Robot: /hirn
+
+13:25:22:| Started Trade: NEARUSDT | 1649741123458
+
+13:25:24:| Started Trade: NEARUSDT | 1649741124321
+
+13:26:02:| Closing Trade: NEARUSDT | 1649741123458 | TimeStarted: 12-Apr-22  13:25 | TimeFinished: 12-Apr-22  13:26 | LongestUpdate: 0.0m | Status: stopprof
+
+13:26:13:| Closing Trade: NEARUSDT | 1649741124321 | TimeStarted: 12-Apr-22  13:25 | TimeFinished: 12-Apr-22  13:26 | LongestUpdate: 0.0m | Status: stopprof
+
+13:28:03:| Launching Telegram Scraper...
+
+13:28:08:| Telegram Robot: /hirn
+
+13:28:14:| Started Trade: NEARUSDT | 1649741295670
+
+13:28:17:| Started Trade: NEARUSDT | 1649741297043
+
+13:28:58:| Closing Trade: NEARUSDT | 1649741295670 | TimeStarted: 12-Apr-22  13:28 | TimeFinished: 12-Apr-22  13:29 | LongestUpdate: 0.0m | Status: stopprof
+
+13:29:08:| Closing Trade: NEARUSDT | 1649741297043 | TimeStarted: 12-Apr-22  13:28 | TimeFinished: 12-Apr-22  13:29 | LongestUpdate: 0.0m | Status: stopprof
+
+13:29:12:| Telegram Robot: /hirn
+
+13:29:17:| Started Trade: NEARUSDT | 1649741359652
+
+13:29:20:| Started Trade: NEARUSDT | 1649741360014
+
+13:29:35:| Launching Telegram Scraper...
+
+13:30:36:| Launching Telegram Scraper...
+
+13:30:46:| Telegram Robot: /hirn
+
+13:30:51:| Started Trade: NEARUSDT | 1649741453309
+
+13:30:54:| Started Trade: NEARUSDT | 1649741453665
+
+13:30:58:| Closing Trade: NEARUSDT | 1649741453309 | TimeStarted: 12-Apr-22  13:30 | TimeFinished: 12-Apr-22  13:31 | LongestUpdate: 0.0m | Status: stopprof
+
+13:31:09:| Closing Trade: NEARUSDT | 1649741453665 | TimeStarted: 12-Apr-22  13:30 | TimeFinished: 12-Apr-22  13:31 | LongestUpdate: 0.0m | Status: stopprof
+
+13:31:14:| Started Trade: NEARUSDT | 1649741476025
+
+13:31:16:| Started Trade: NEARUSDT | 1649741476381
+
+13:31:57:| Closing Trade: NEARUSDT | 1649741476025 | TimeStarted: 12-Apr-22  13:31 | TimeFinished: 12-Apr-22  13:32 | LongestUpdate: 0.0m | Status: stopprof
+
+13:32:00:| Telegram Robot: /hirn
+
+13:32:05:| Started Trade: NEARUSDT | 1649741527109
+
+13:32:08:| Closing Trade: NEARUSDT | 1649741476381 | TimeStarted: 12-Apr-22  13:31 | TimeFinished: 12-Apr-22  13:32 | LongestUpdate: 0.0m | Status: stopprof
+
+13:32:58:| Closing Trade: NEARUSDT | 1649741527109 | TimeStarted: 12-Apr-22  13:32 | TimeFinished: 12-Apr-22  13:33 | LongestUpdate: 0.0m | Status: stopprof
+
+13:33:09:| Closing Trade: NEARUSDT | 1649741527461 | TimeStarted: 12-Apr-22  13:32 | TimeFinished: 12-Apr-22  13:33 | LongestUpdate: 0.0m | Status: stopprof
+
+13:35:12:| Launching Telegram Scraper...
+
+13:35:20:| Telegram Robot: /hirn
+
+13:35:26:| Started Trade: NEARUSDT | 1649741727765
+
+13:35:29:| Started Trade: NEARUSDT | 1649741728624
+
+13:35:58:| Closing Trade: NEARUSDT | 1649741727765 | TimeStarted: 12-Apr-22  13:35 | TimeFinished: 12-Apr-22  13:36 | LongestUpdate: 0.0m | Status: stopprof
+
+13:36:02:| Telegram Robot: /hirn
+
+13:36:07:| Started Trade: NEARUSDT | 1649741769217
+
+13:36:09:| Started Trade: NEARUSDT | 1649741769568
+
+13:36:58:| Closing Trade: NEARUSDT | 1649741728624 | TimeStarted: 12-Apr-22  13:35 | TimeFinished: 12-Apr-22  13:36 | LongestUpdate: 0.0m | Status: stopprof
+
+13:38:47:| Launching Telegram Scraper...
+
+13:38:52:| Telegram Robot: /hirn
+
+13:38:57:| Started Trade: NEARUSDT | 1649741939210
+
+13:39:00:| Started Trade: NEARUSDT | 1649741939563
+
+13:39:26:| Telegram Robot: /hirn
+
+13:39:33:| Started Trade: NEARUSDT | 1649741974639
+
+13:39:35:| Started Trade: NEARUSDT | 1649741975504
+
+13:39:59:| Closing Trade: NEARUSDT | 1649741939563 | TimeStarted: 12-Apr-22  13:38 | TimeFinished: 12-Apr-22  13:40 | LongestUpdate: 0.0m | Status: stopprof
+
+13:40:04:| Telegram Robot: /hirn
+
+13:40:09:| Started Trade: NEARUSDT | 1649742011176
+
+13:40:12:| Started Trade: NEARUSDT | 1649742011529
+
+13:40:20:| Closing Trade: NEARUSDT | 1649741975504 | TimeStarted: 12-Apr-22  13:39 | TimeFinished: 12-Apr-22  13:40 | LongestUpdate: 0.0m | Status: stopprof
+
+13:40:58:| Closing Trade: NEARUSDT | 1649742011176 | TimeStarted: 12-Apr-22  13:40 | TimeFinished: 12-Apr-22  13:41 | LongestUpdate: 0.0m | Status: stopprof
+
+13:41:08:| Closing Trade: NEARUSDT | 1649742011529 | TimeStarted: 12-Apr-22  13:40 | TimeFinished: 12-Apr-22  13:41 | LongestUpdate: 0.0m | Status: stopprof
+
+13:41:12:| Started Trade: NEARUSDT | 1649742073996
+
+13:41:14:| Started Trade: NEARUSDT | 1649742074345
+
+13:41:58:| Closing Trade: NEARUSDT | 1649742073996 | TimeStarted: 12-Apr-22  13:41 | TimeFinished: 12-Apr-22  13:42 | LongestUpdate: 0.0m | Status: stopprof
+
+13:42:09:| Closing Trade: NEARUSDT | 1649742074345 | TimeStarted: 12-Apr-22  13:41 | TimeFinished: 12-Apr-22  13:42 | LongestUpdate: 0.0m | Status: stopprof
+
+13:43:58:| Launching Telegram Scraper...
+
+13:44:08:| Telegram Robot: /hirn
+
+13:44:14:| Started Trade: NEARUSDT | 1649742255033
+
+13:44:17:| Started Trade: NEARUSDT | 1649742256409
+
+13:44:58:| Closing Trade: NEARUSDT | 1649742255033 | TimeStarted: 12-Apr-22  13:44 | TimeFinished: 12-Apr-22  13:45 | LongestUpdate: 0.0m | Status: stopprof
+
+13:45:02:| Telegram Robot: /hirn
+
+13:45:09:| Closing Trade: NEARUSDT | 1649742256409 | TimeStarted: 12-Apr-22  13:44 | TimeFinished: 12-Apr-22  13:45 | LongestUpdate: 0.0m | Status: stopprof
+
+13:45:11:| Started Trade: NEARUSDT | 1649742310593
+
+13:46:00:| Closing Trade: NEARUSDT | 1649742309737 | TimeStarted: 12-Apr-22  13:45 | TimeFinished: 12-Apr-22  13:46 | LongestUpdate: 0.0m | Status: stopprof
+
+13:46:05:| Telegram Robot: /hirn
+
+13:46:11:| Closing Trade: NEARUSDT | 1649742310593 | TimeStarted: 12-Apr-22  13:45 | TimeFinished: 12-Apr-22  13:46 | LongestUpdate: 0.0m | Status: stopprof
+
+13:46:13:| Started Trade: NEARUSDT | 1649742372904
+
+13:46:57:| Closing Trade: NEARUSDT | 1649742372552 | TimeStarted: 12-Apr-22  13:46 | TimeFinished: 12-Apr-22  13:47 | LongestUpdate: 0.0m | Status: stopprof
+
+13:47:08:| Closing Trade: NEARUSDT | 1649742372904 | TimeStarted: 12-Apr-22  13:46 | TimeFinished: 12-Apr-22  13:47 | LongestUpdate: 0.0m | Status: stopprof
+
+13:47:34:| Launching Telegram Scraper...
+
+13:49:03:| Launching Telegram Scraper...
+
+13:49:14:| Launching Telegram Scraper...
+
+13:49:34:| Launching Telegram Scraper...
+
+13:49:40:| Telegram Robot: /hirn
+
+13:49:46:| Started Trade: NEARUSDT | 1649742587914
+
+13:49:49:| Started Trade: NEARUSDT | 1649742588797
+
+13:49:57:| Closing Trade: NEARUSDT | 1649742587914 | TimeStarted: 12-Apr-22  13:49 | TimeFinished: 12-Apr-22  13:50 | LongestUpdate: 0.0m | Status: stopprof
+
+13:50:09:| Closing Trade: NEARUSDT | 1649742588797 | TimeStarted: 12-Apr-22  13:49 | TimeFinished: 12-Apr-22  13:50 | LongestUpdate: 0.0m | Status: stopprof
+
+13:50:10:| Telegram Robot: /hirn
+
+13:50:15:| Started Trade: NEARUSDT | 1649742617256
+
+13:50:18:| Started Trade: NEARUSDT | 1649742617607
+
+13:50:58:| Closing Trade: NEARUSDT | 1649742617256 | TimeStarted: 12-Apr-22  13:50 | TimeFinished: 12-Apr-22  13:51 | LongestUpdate: 0.0m | Status: stopprof
+
+13:51:08:| Closing Trade: NEARUSDT | 1649742617607 | TimeStarted: 12-Apr-22  13:50 | TimeFinished: 12-Apr-22  13:51 | LongestUpdate: 0.0m | Status: stopprof
+
+13:52:03:| Launching Telegram Scraper...
+
+13:52:13:| Telegram Robot: /hirn
+
+13:52:18:| Started Trade: NEARUSDT | 1649742740093
+
+13:52:21:| Started Trade: NEARUSDT | 1649742740446
+
+13:52:58:| Closing Trade: NEARUSDT | 1649742740093 | TimeStarted: 12-Apr-22  13:52 | TimeFinished: 12-Apr-22  13:53 | LongestUpdate: 0.0m | Status: stopprof
+
+13:53:09:| Closing Trade: NEARUSDT | 1649742740446 | TimeStarted: 12-Apr-22  13:52 | TimeFinished: 12-Apr-22  13:53 | LongestUpdate: 0.0m | Status: stopprof
+
+14:52:08:| Trade Stream is Empty
+
+15:52:14:| Trade Stream is Empty
+
+16:52:18:| Trade Stream is Empty
+
+16:54:14:| Launching Telegram Scraper...
+
+16:54:21:| Telegram Robot: /hirn
+
+16:57:04:| Launching Telegram Scraper...
+
+16:57:10:| Telegram Robot: /hirn
+
+16:57:16:| Started Trade: NEARUSDT | 1649753835788
+
+16:57:19:| Started Trade: NEARUSDT | 1649753836141
+
+16:58:00:| Closing Trade: NEARUSDT | 1649753835788 | TimeStarted: 12-Apr-22  16:57 | TimeFinished: 12-Apr-22  16:58 | LongestUpdate: 0.0m | Status: stopprof
+
+16:59:45:| Telegram Robot: /hirn
+
+16:59:50:| Started Trade: NEARUSDT | 1649753990495
+
+16:59:53:| Started Trade: NEARUSDT | 1649753990846
+
+17:00:00:| Closing Trade: NEARUSDT | 1649753835788 | TimeStarted: 12-Apr-22  16:57 | TimeFinished: 12-Apr-22  16:58 | LongestUpdate: 0.0m | Status: stopprof
+
+17:11:38:| Launching Telegram Scraper...
+
+17:11:48:| Telegram Robot: /hirn
+
+17:11:53:| Started Trade: NEARUSDT | 1649754713373
+
+17:11:56:| Started Trade: NEARUSDT | 1649754713726
+
+17:12:00:| Closing Trade: NEARUSDT | 1649754713373 | TimeStarted: 12-Apr-22  17:11 | TimeFinished: 12-Apr-22  17:12 | LongestUpdate: 0.0m | Status: stopprof
+
+17:16:12:| Launching Telegram Scraper...
+
+17:16:16:| Telegram Robot: /hirn
+
+17:16:21:| Started Trade: NEARUSDT | 1649754981298
+
+17:16:24:| Started Trade: NEARUSDT | 1649754981653
+
+17:17:00:| Closing Trade: NEARUSDT | 1649754981298 | TimeStarted: 12-Apr-22  17:16 | TimeFinished: 12-Apr-22  17:17 | LongestUpdate: 0.0m | Status: stopprof
+
+18:25:39:| Trade Stream is Empty
+
+19:01:56:| Started Trade: MTLUSDT | 1649761316870
+
+19:02:00:| Started Trade: MTLUSDT | 1649761316518
+
+19:22:00:| Closing Trade: NEARUSDT | 1649754981298 | TimeStarted: 12-Apr-22  17:16 | TimeFinished: 12-Apr-22  17:17 | LongestUpdate: 0.0m | Status: stopprof
+
+19:25:43:| Trade Stream is Empty
+
+20:19:59:| Launching Telegram Scraper...
+
+20:20:13:| Telegram Robot: /hirn
+
+20:20:15:| Started Trade: NEARUSDT | 1649766016002
+
+20:20:16:| Started Trade: NEARUSDT | 1649766016354
+
+20:20:59:| Closing Trade: NEARUSDT | 1649766016002 | TimeStarted: 12-Apr-22  20:20 | TimeFinished: 12-Apr-22  20:21 | LongestUpdate: 0.0m | Status: stopprof
+
+20:21:03:| Closing Trade: NEARUSDT | 1649766016354 | TimeStarted: 12-Apr-22  20:20 | TimeFinished: 12-Apr-22  20:21 | LongestUpdate: 0.0m | Status: stopprof
+
+21:20:01:| Trade Stream is Empty
+
+22:20:03:| Trade Stream is Empty
+
+23:29:43:| Trade Stream is Empty
+
