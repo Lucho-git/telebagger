@@ -295,18 +295,18 @@ def save_trade(t):
                 if c != '\n' and c:
                     f.write(c)
         storage.child(gj_path_on_cloud).put(gj_path_on_local)
-        realtime_save_trade(tradevalue-1, t.origin, now)
+        realtime_save_trade(tradevalue-1, t, now)
 
     else:
         os.makedirs(dj_path_on_local)
         save_trade(t)
 
 
-def realtime_save_trade(tradevalue, origin, now):
+def realtime_save_trade(tradevalue, t, now):
     date_string = now.strftime('%B-%Y')
     day_string = now.strftime("%d-%B")
 
-    signal_group = origin
+    signal_group = t.origin
     newvalue = [tradevalue, day_string]
 
     last7 = database.child('signals/' + signal_group + '/Last-7').get()
@@ -324,9 +324,9 @@ def realtime_save_trade(tradevalue, origin, now):
         del last30[0]
     last30.append(newvalue)
     monthly.append(newvalue)
-    data7 = {"label": signal_group + " Signals Last-7", "values": last7}
-    data30 = {"label": signal_group + " Signals Last-30", "values": last30}
-    monthly = {"label": signal_group + ' ' + date_string, "values": monthly}
+    data7 = {"label": signal_group + " Signals Last-7", "values": last7, "info": {'TradePair': t.pair, 'Duration(hrs)': str(t.duration)}}
+    data30 = {"label": signal_group + " Signals Last-30", "values": last30, "info": {'TradePair': t.pair, 'Duration(hrs)': str(t.duration)}}
+    monthly = {"label": signal_group + ' ' + date_string, "values": monthly, "info": {'TradePair': t.pair, 'Duration(hrs)': str(t.duration)}}
 
     database.child('signals/' + signal_group + '/Last-7').set(data7)
     database.child('signals/' + signal_group + '/Last-30').set(data30)
