@@ -39,10 +39,9 @@ for li in lines:
 
 newdata = {"label": 'Always Win2 April-2022', "values": linedata}
 #database.child('signals/Always Win2/Month/April-2022').set(newdata)
-'''
 
 allvalues = []
-realtime = database.child('signals/Always Win2/Month/').get().val()
+realtime = database.child('signals/Hirn2/Month/').get().val()
 print(realtime)
 if realtime.get('March-2022'):
     for v in realtime['March-2022']['values']:
@@ -58,12 +57,12 @@ allvalues.reverse()
 last30 = allvalues[0:30]
 last7 = allvalues[0:7]
 
-database.child('signals/Always Win2/Last-7').set(last7)
-database.child('signals/Always Win2/Last-30').set(last30)
+last7 = {"label": 'Hirn2 Win Last-7', "values": last7}
+last30 = {"label": 'Hirn2 Last-30', "values": last30}
 
-
-
-
+database.child('signals/Hirn2/Last-7').set(last7)
+database.child('signals/Hirn2/Last-30').set(last30)
+'''
 
 
 '''
@@ -85,3 +84,5 @@ database.child('signals/' + signal_group + '/Last-30').set(data30)
 database.child('signals/' + signal_group + '/Month/' + date_string).set(monthly)
 
 '''
+
+last7 = database.child('signals/' + signal_group + '/Last-7').get()
