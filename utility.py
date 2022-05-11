@@ -285,7 +285,7 @@ def realtime_save_trade(tradevalue, t, now):
     day_string = now.strftime("%d-%B")
 
     signal_group = t.origin
-    newvalue = [tradevalue, day_string, {'pair': t.pair, 'duration': t.duration}]
+    newvalue = [tradevalue, day_string, {'pair': t.pair, 'duration': str(t.duration) + ' Hours'}]
 
     last7 = database.child('signals/' + signal_group + '/Last-7').get()
     last30 = database.child('signals/' + signal_group + '/Last-30').get()
