@@ -1,10 +1,10 @@
-IOTX/USDT SHORT 🛑
+MKR/USDT SHORT 🛑
 Leverage 20x
-Entries 0.21
-Target 1 0.21
-Target 2 0.2
-Target 3 0.192
-Target 4 0.170
-Target 5 0.160
+Entries 1355
+Target 1 1334
+Target 2 1300
+Target 3 1253
+Target 4 1100
+Target 5 1000
 
-SL 0.22
+SL 1456
