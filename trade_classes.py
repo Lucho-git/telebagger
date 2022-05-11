@@ -471,9 +471,9 @@ class Trade:
             time_started = datetime.datetime.fromtimestamp(float(self.time) / 1000).strftime('%d-%b-%y  %H:%M')
             latest_update = datetime.datetime.fromtimestamp(float(self.latest_update) / 1000).strftime('%d-%b-%y  %H:%M')
         if self.status == 'active':
-            ov_string = 'Trade: ' + self.pair + ' | ' + str(self.id) + ' | TimeStarted: ' + time_started + ' | TimeUpdated: ' + str(latest_update) + ' | LongestUpdate: ' + str(round((self.largest_update/60000), 1)) + 'm | Status: ' + self.status
+            ov_string = 'Trade: ' + self.pair + ' | ' + str(self.id) + ' | TimeStarted: ' + time_started + ' | TimeUpdated: ' + str(latest_update) + ' | LongestUpdate: ' + str(round((self.largest_update/60000), 1)) + 'm | Origin: ' + self.origin + ' | Status: ' + self.status
         else:
-            ov_string = 'Closing Trade: ' + self.pair + ' | ' + str(self.id) + ' | TimeStarted: ' + time_started + ' | TimeFinished: ' + str(latest_update) + ' | LongestUpdate: ' + str(round((self.largest_update/60000), 1)) + 'm | Status: ' + self.status
+            ov_string = 'Closing Trade: ' + self.pair + ' | ' + str(self.id) + ' | TimeStarted: ' + time_started + ' | TimeFinished: ' + str(latest_update) + ' | LongestUpdate: ' + str(round((self.largest_update/60000), 1)) + 'm | Origin: ' + self.origin + ' | Status: ' + self.status
         return ov_string
 
     # Creates an End of Trade string

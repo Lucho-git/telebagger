@@ -24,14 +24,13 @@ config = {  # initialising database connection
     "appId": "1:332905720250:web:e2006e777fa8d980d61583",
     "measurementId": "G-02W82CCF85",
     "databaseURL":  "https://telebagger-default-rtdb.firebaseio.com/",
-    "serviceAccount": "docs/db_admin.json",
 }
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
 database = firebase.database()
 
 
-unique_id = 'heroku/'  # heroku, lach, tom, cozza
+unique_id = 'heroku/'  # heroku, lach, tom, cozzaf
 
 
 ADD_MESSAGE_L = 'trade_results/message_count/'
@@ -244,13 +243,12 @@ def save_trade(t):
 
     m_path_on_cloud = SAVE_TRADE + t.origin + '/' + date_string + '.txt'
     j_path_on_cloud = SAVE_TRADE + t.origin + '/' + 'juice/' + date_string + '.txt'
-    gj_path_on_cloud = SAVE_TRADE + t.origin + '/' + 'juice/' + 'last30.txt'
 
     dm_path_on_local = SAVE_TRADE_L + t.origin + '/'
     dj_path_on_local = dm_path_on_local + 'juice/'
     m_path_on_local = dm_path_on_local + date_string + '.txt'
     j_path_on_local = dj_path_on_local + date_string + '.txt'
-    gj_path_on_local = dj_path_on_local + 'last30.txt'
+
 
     # Check file structure exists, if not create it
     if os.path.exists(dj_path_on_local):
@@ -271,30 +269,10 @@ def save_trade(t):
             f.write(str(tradevalue) + ' | ' + t.pair + ' | ' + str(t.duration) + ' Hours\n')
         storage.child(j_path_on_cloud).put(j_path_on_local)
 
-        storage.child(gj_path_on_cloud).download("./", gj_path_on_local)
+        # Store website data in realtime DB
         tradevalue = float(t.closed_diff)/100
         tradevalue = round(tradevalue, 2)
-        data = str(tradevalue) + ',' + day_string
-        # Pushing Data to database
-        db_data = {"TradeValue:": str(tradevalue), "DateFinished": day_string}
-        database.push(db_data)
 
-        contents = []
-        try:
-            with open(gj_path_on_local, 'r') as f:
-                contents = f.readlines()
-        except (FileNotFoundError, IOError):
-            print('New File')
-
-        if len(contents) > 29:
-            del contents[29]
-        contents.insert(0, data + '\n')
-
-        with open(gj_path_on_local, 'w+')as f:
-            for c in contents:
-                if c != '\n' and c:
-                    f.write(c)
-        storage.child(gj_path_on_cloud).put(gj_path_on_local)
         realtime_save_trade(tradevalue-1, t, now)
 
     else:
