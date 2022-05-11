@@ -222,14 +222,12 @@ async def StartTelegramForwarding(client):
                 elif message == ALWAYS_WIN_SIGNAL:
                     with open('docs/aw_example.txt', encoding="utf8") as f:
                         msg = f.read()
-                        print('sending message')
-                        print('done')
-                        #valid = always_win.valid_trade_message(msg)
-                        #if valid:
-                        #    aw = always_win.bag(msg)
-                        #    await trade_stream.addtrade(aw)
-                        #else:
-                        #    print('notval id')
+                        valid = always_win.valid_trade_message(msg)
+                        if valid:
+                            aw = always_win.bag(msg)
+                            await trade_stream.addtrade(aw)
+                        else:
+                            print('notval id')
                 elif message == PRE_AW:
                     with open('docs/pre_aw_example.txt', encoding="utf8") as f:
                         msg = f.read()
