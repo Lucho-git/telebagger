@@ -302,9 +302,9 @@ def realtime_save_trade(tradevalue, t, now):
         del last30[0]
     last30.append(newvalue)
     monthly.append(newvalue)
-    data7 = {"label": signal_group + "  Last-7", "values": last7, "info": {'TradePair': t.pair, 'Duration(hrs)': str(t.duration)}}
-    data30 = {"label": signal_group + "  Last-30", "values": last30, "info": {'TradePair': t.pair, 'Duration(hrs)': str(t.duration)}}
-    monthly = {"label": signal_group + ' ' + date_string, "values": monthly, "info": {'TradePair': t.pair, 'Duration(hrs)': str(t.duration)}}
+    data7 = {"label": "Last-7", "values": last7, "info": {'TradePair': t.pair, 'Duration(hrs)': str(t.duration)}}
+    data30 = {"label": "Last-30", "values": last30, "info": {'TradePair': t.pair, 'Duration(hrs)': str(t.duration)}}
+    monthly = {"label": date_string, "values": monthly, "info": {'TradePair': t.pair, 'Duration(hrs)': str(t.duration)}}
 
     database.child('signals/' + signal_group + '/Last-7').set(data7)
     database.child('signals/' + signal_group + '/Last-30').set(data30)
