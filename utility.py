@@ -50,6 +50,7 @@ if local[0]:
     SAVE_TRADE = "trade_results/"  # Path
     RESULTS = "trade_results/juice/"  # Path
     LOG = 'logs/'
+    REALTIME_SAVE = 'signals/'
 else:
     # Heroku Version
     ADD_MESSAGE = unique_id + "trade_results/message_count/"  # Filepath
@@ -59,6 +60,8 @@ else:
     SAVE_TRADE = unique_id + "trade_results/"  # Path
     RESULTS = unique_id + "trade_results/juice/"  # Path
     LOG = unique_id + 'logs/'
+    REALTIME_SAVE = unique_id + 'signals/'
+
 
 
 def get_binance_client():
@@ -273,7 +276,7 @@ def save_trade(t):
         tradevalue = float(t.closed_diff)/100
         tradevalue = round(tradevalue, 2)
 
-        realtime_save_trade(tradevalue-1, t, now)
+        realtime_save_trade(tradevalue, t, now)
 
     else:
         os.makedirs(dj_path_on_local)
@@ -287,12 +290,22 @@ def realtime_save_trade(tradevalue, t, now):
     signal_group = t.origin
     newvalue = [tradevalue, day_string, {'pair': t.pair, 'duration': str(t.duration) + ' Hours'}]
 
-    last7 = database.child('signals/' + signal_group + '/Last-7').get()
-    last30 = database.child('signals/' + signal_group + '/Last-30').get()
-    monthly = database.child('signals/' + signal_group + '/Month/' + date_string).get()
-    last7 = last7.val()['values']
-    last30 = last30.val()['values']
-    monthly = monthly.val()['values']
+    last7 = database.child(REALTIME_SAVE + signal_group + '/Last-7').get()
+    last30 = database.child(REALTIME_SAVE + signal_group + '/Last-30').get()
+    monthly = database.child(REALTIME_SAVE + signal_group + '/Month/' + date_string).get()
+
+    if last7.val():
+        last7 = last7.val()['values']
+    else:
+        last7 = []
+    if last30.val():
+        last30 = last30.val()['values']
+    else:
+        last30 = []
+    if monthly.val():
+        monthly = monthly.val()['values']
+    else:
+        monthly = []
 
     if len(last7) > 6:
         del last7[0]
@@ -306,9 +319,9 @@ def realtime_save_trade(tradevalue, t, now):
     data30 = {"label": "Last-30", "values": last30, "info": {'TradePair': t.pair, 'Duration(hrs)': str(t.duration)}}
     monthly = {"label": date_string, "values": monthly, "info": {'TradePair': t.pair, 'Duration(hrs)': str(t.duration)}}
 
-    database.child('signals/' + signal_group + '/Last-7').set(data7)
-    database.child('signals/' + signal_group + '/Last-30').set(data30)
-    database.child('signals/' + signal_group + '/Month/' + date_string).set(monthly)
+    database.child(REALTIME_SAVE + signal_group + '/Last-7').set(data7)
+    database.child(REALTIME_SAVE + signal_group + '/Last-30').set(data30)
+    database.child(REALTIME_SAVE + signal_group + '/Month/' + date_string).set(monthly)
 
 
 '''

@@ -150,6 +150,7 @@ def search_coin(text):
 
     relative_price = abs(float(signal.price) - entry)/entry
     if relative_price > 0.1:
+        print('Value Error')
         raise ValueError("MarketValue is more than 10% different than it's expected value")
 
     return signals

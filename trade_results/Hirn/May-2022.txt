@@ -1,0 +1,84 @@
+TOMOUSDT | 1653642019809
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 27-May-22  17:00 | 27-May-22  17:01
+Duration: 0.01 hrs
+================================
+Pricechange: - 14.02%
+Buy Price: 0.534 |  Sell Price: 0.52651586
+Result Window: 0.534 | 0.536[+ 3.75%] | 0.46844775000000005[- 122.76%]
+
+_________________________________
+
+TOMOUSDT | 1653642255751
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 27-May-22  17:04 | 27-May-22  17:05
+Duration: 0.01 hrs
+================================
+Pricechange: - 12.17%
+Buy Price: 0.533 |  Sell Price: 0.52651586
+Result Window: 0.533 | 0.533[+ 0.0%] | 0.46844775000000005[- 121.11%]
+
+_________________________________
+
+TOMOUSDT | 1653642427207
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 27-May-22  17:07 | 27-May-22  17:08
+Duration: 0.02 hrs
+================================
+Pricechange: - 12.17%
+Buy Price: 0.533 |  Sell Price: 0.52651586
+Result Window: 0.533 | 0.534[+ 1.88%] | 0.46844775000000005[- 121.11%]
+
+_________________________________
+
+TOMOUSDT | 1653642660672
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 27-May-22  17:11 | 27-May-22  17:11
+Duration: 0.0 hrs
+================================
+Pricechange: - 12.17%
+Buy Price: 0.533 |  Sell Price: 0.52651586
+Result Window: 0.533 | 0.535[+ 3.75%] | 0.46844775000000005[- 121.11%]
+
+_________________________________
+
+TOMOUSDT | 1653642731305
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 27-May-22  17:12 | 27-May-22  17:13
+Duration: 0.02 hrs
+================================
+Pricechange: - 12.17%
+Buy Price: 0.533 |  Sell Price: 0.52651586
+Result Window: 0.533 | 0.533[+ 0.0%] | 0.46844775000000005[- 121.11%]
+
+_________________________________
+
+TOMOUSDT | 1653642951083
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 27-May-22  17:15 | 27-May-22  17:16
+Duration: 0.0 hrs
+================================
+Pricechange: - 14.02%
+Buy Price: 0.534 |  Sell Price: 0.52651586
+Result Window: 0.534 | 0.534[+ 0.0%] | 0.46844775000000005[- 122.76%]
+
+_________________________________
+
+TOMOUSDT | 1653643070740
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 27-May-22  17:17 | 27-May-22  17:18
+Duration: 0.0 hrs
+================================
+Pricechange: - 17.69%
+Buy Price: 0.536 |  Sell Price: 0.52651586
+Result Window: 0.536 | 0.536[+ 0.0%] | 0.46844775000000005[- 126.03%]
+
+_________________________________
+
