@@ -14,6 +14,7 @@ HIRN_COOLDOWN_TIME = 16000  # In milliseconds
 HIRN_LEVERAGE = 10  # Trade Leverage for Futures trades
 HIRN_TRADE_PERCENT = 0.4  # How much remaining balance should be invested on each trade
 HIRN_STOPLOSS_REDUCTION = 0.75   # Stoploss value to avoid getting liquidated
+HIRN_TRADE_TIMEOUT = 604800000  # 7 Days in milliseconds
 
 
 def am_first():
@@ -140,12 +141,12 @@ def search_coin(text):
         print('Starting Fake Trade2')
         signal2 = Trade(pair, base, 'Hirn2', 'futures', in_message=text)
         signal2.conditions = Futures(sl2, exit_price, direction, lev2, 'isolation')
-        signal2.fake_trade(percent=HIRN_TRADE_PERCENT)
+        signal2.fake_trade(percent=HIRN_TRADE_PERCENT, timelimit=HIRN_TRADE_TIMEOUT)
         signals.append(signal2)
     else:
         signal = Trade(pair, base, 'Hirn', 'spot', in_message=text)
         signal.conditions = STrade(sl, exit_price)
-        signal.fake_trade(percent=HIRN_TRADE_PERCENT)
+        signal.fake_trade(percent=HIRN_TRADE_PERCENT, timelimit=HIRN_TRADE_TIMEOUT)
         signals.append(signal)
 
     relative_price = abs(float(signal.price) - entry)/entry

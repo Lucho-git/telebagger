@@ -55,7 +55,7 @@ class STrade:
 
 
 class Trade:
-    def __init__(self, pair, base, origin, in_type, in_message=None):
+    def __init__(self, pair, base, origin, in_type, in_message=None, timelimit=None):
         self.pair = pair.upper()
         self.base = base.upper()
         self.status = 'Pre_Trade'
@@ -557,13 +557,16 @@ class Trade:
 
         self.savestring = savestr
 
-    def fake_trade(self, bag_id=None, percent=None):
+    def fake_trade(self, bag_id=None, percent=None, timelimit=None):
         self.price = float(client.get_symbol_ticker(symbol=self.pair)['price'])
         self.time = ut.binance_timestamp_local(client.get_server_time()['serverTime'])
         self.id = self.time
         self.lowest = self.price
         self.highest = self.price
         self.status = 'active'
+        if timelimit:
+            self.timelimit = self.time + timelimit
+
         if bag_id and percent:
             self.bag_id.append(bag_id)
             ut.start_trade_folios(self.trade, percent)
@@ -575,6 +578,7 @@ class Trade:
         self.lowest = old_trade.lowest
         self.highest = old_trade.highest
         self.status = old_trade.status
+        self.timelimit = old_trade.timelimit
         if bag_id and percent:
             self.bag_id.append(bag_id)
             ut.start_trade_folios(self, percent)
