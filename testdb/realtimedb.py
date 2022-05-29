@@ -84,5 +84,15 @@ database.child('signals/' + signal_group + '/Last-30').set(data30)
 database.child('signals/' + signal_group + '/Month/' + date_string).set(monthly)
 
 '''
+info_month =
 
-last7 = database.child('signals/' + signal_group + '/Last-7').get()
+
+
+
+
+
+signal_group = 'Hirn'
+actual_month = 'April-2022'
+
+
+monthly = {"label": actual_month, "values": values_month}
