@@ -84,7 +84,11 @@ database.child('signals/' + signal_group + '/Last-30').set(data30)
 database.child('signals/' + signal_group + '/Month/' + date_string).set(monthly)
 
 '''
-info_month =
+values_month = [
+    [value, date, {'Tradepair': , 'Duration(Hrs)'}],
+    [],
+
+]
 
 
 
