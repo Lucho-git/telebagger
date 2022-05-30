@@ -307,14 +307,14 @@ def realtime_save_trade(tradevalue, t, now):
     else:
         monthly = []
 
+    last7.insert(newvalue)
+    last30.insert(newvalue)
+    monthly.append(newvalue)
     if len(last7) > 6:
-        del last7[0]
-    last7.append(newvalue)
+        del last7[7]
 
     if len(last30) > 29:
-        del last30[0]
-    last30.append(newvalue)
-    monthly.append(newvalue)
+        del last30[30]
     data7 = {"label": "Last-7", "values": last7}
     data30 = {"label": "Last-30", "values": last30}
     monthly = {"label": date_string, "values": monthly}

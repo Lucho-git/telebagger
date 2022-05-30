@@ -39,9 +39,12 @@ for li in lines:
 
 newdata = {"label": 'Always Win2 April-2022', "values": linedata}
 #database.child('signals/Always Win2/Month/April-2022').set(newdata)
+'''
+
+signal_group = 'Hirn2'
 
 allvalues = []
-realtime = database.child('signals/Hirn2/Month/').get().val()
+realtime = database.child('heroku/signals/'+signal_group+'/Month/').get().val()
 print(realtime)
 if realtime.get('March-2022'):
     for v in realtime['March-2022']['values']:
@@ -57,12 +60,12 @@ allvalues.reverse()
 last30 = allvalues[0:30]
 last7 = allvalues[0:7]
 
-last7 = {"label": 'Hirn2 Win Last-7', "values": last7}
-last30 = {"label": 'Hirn2 Last-30', "values": last30}
+last7 = {"label": 'Last-7', "values": last7}
+last30 = {"label": 'Last-30', "values": last30}
 
-database.child('signals/Hirn2/Last-7').set(last7)
-database.child('signals/Hirn2/Last-30').set(last30)
-'''
+database.child('heroku/signals/'+signal_group+'/Last-7').set(last7)
+database.child('heroku/signals/'+signal_group+'/Last-30').set(last30)
+
 
 
 '''
@@ -83,20 +86,40 @@ database.child('signals/' + signal_group + '/Last-7').set(data7)
 database.child('signals/' + signal_group + '/Last-30').set(data30)
 database.child('signals/' + signal_group + '/Month/' + date_string).set(monthly)
 
-'''
+[,'-April',{'Tradepair': '', 'Duration(Hrs)': }],
 values_month = [
-    [value, date, {'Tradepair': , 'Duration(Hrs)'}],
-    [],
-
-]
+[-0.006,'2-April',{'Tradepair': 'ALPHAUSDT', 'Duration(Hrs)': 0.42}],
 
 
+'''
 
 
 
 
-signal_group = 'Hirn'
-actual_month = 'April-2022'
 
+'''
 
-monthly = {"label": actual_month, "values": values_month}
+signal_group = 'Always Win2'
+actual_month = 'May-2022'
+
+realtime = database.child('heroku/signals/'+signal_group+ '/Month/' + actual_month).get().val()
+
+x = 0
+for i in realtime['values']:
+    #i[2] = {'Tradepair': i[2]['pair'].strip(), 'Duration(Hrs)': i[2]['duration'].split('Hours')[0].strip()}
+
+    #stepsize = 29/len(realtime['values'])
+    #x += float(stepsize)
+    #datenum = int(x)
+
+    #i[1] = str(datenum) + '-' + i[1].split('-')[1]
+    if x < 15:
+        i[0] = round(i[0]-1, 2)
+    print(i)
+    x+=1
+
+print(realtime)
+
+database.child('heroku/signals/' + signal_group + '/Month/' + actual_month).set(realtime)
+
+'''
