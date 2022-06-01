@@ -307,8 +307,8 @@ def realtime_save_trade(tradevalue, t, now):
     else:
         monthly = []
 
-    last7.insert(newvalue)
-    last30.insert(newvalue)
+    last7.insert(0,newvalue)
+    last30.insert(0,newvalue)
     monthly.append(newvalue)
     if len(last7) > 6:
         del last7[7]

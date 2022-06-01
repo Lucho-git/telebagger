@@ -1,0 +1,24 @@
+HNTUSDT | 1654075188588
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 01-Jun-22  17:19 | 01-Jun-22  17:20
+Duration: 0.01 hrs
+================================
+Pricechange: - 0.32%
+Buy Price: 9.28 |  Sell Price: 9.250022
+Result Window: 9.28 | 9.29[+ 0.11%] | 2.2990250000000003[- 75.23%]
+
+_________________________________
+
+HNTUSDT | 1654075582663
+Status: STOPPROF
+Origin: Hirn
+TimeStarted: 01-Jun-22  17:26 | 01-Jun-22  17:27
+Duration: 0.01 hrs
+================================
+Pricechange: - 0.54%
+Buy Price: 9.3 |  Sell Price: 9.250022
+Result Window: 9.3 | 9.3[0.0%] | 2.2990250000000003[- 75.28%]
+
+_________________________________
+
