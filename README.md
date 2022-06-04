@@ -1,6 +1,6 @@
 # telebagger
-Various Crypto or Exchange related projects
+Telebagger is a telegram + discord message scraping program. Which scrapes trading signals from various groups, and simulates their profit/loss outcomes.
+The results are automatically stored in a firebase database and some groups are publically displayed on https://telebagger.netlify.app/#!
 
-#This codebase is intended to be run from a webserver, I'll use it with heroku
-
-#Telegram scraper, it scrapes messages from telegram and uses them to perform and track trades through the binance exchange
+The scraping program is written in python and hosted using the heroku webservice.
+The program can also perform real trades for anyone with a binance.com trading account, by connecting to it's API if it's likely a signal group will continue making profitable trading calls.
