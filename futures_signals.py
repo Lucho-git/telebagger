@@ -1,6 +1,6 @@
 # Signal group, discontinued, legacy code
 
-import fake_trade  # removed
+# import fake_trade
 import re
 from trade_classes import Trade, MFutures
 
@@ -70,6 +70,6 @@ def search_coin(text):
     proftargets = [t1, t2, t3, t4, t5]
     losstargets = [sl, sl, sl, entry, entry]
     signal.conditions = MFutures(losstargets, stopprof, proftargets, direction, lev, 'isolation')
-    fake_trade.mfutures_trade(signal)
+    # fake_trade.mfutures_trade(signal)
 
     return [signal]

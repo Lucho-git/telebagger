@@ -10,7 +10,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 from fake_portfolio import Folio, Folios
 
-local = [True]
+local = [False]
 
 # Get environment variables
 load_dotenv()

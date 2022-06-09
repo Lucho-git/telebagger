@@ -2,7 +2,7 @@
 
 import time
 import copy
-import fake_trade  # removed
+# import fake_trade
 from trade_classes import Trade, Futures, STrade
 import pyrebase
 import utility
@@ -52,7 +52,7 @@ def bag(msg):
         signals = []
         for w in WAIT_TIMES:
             signal = Trade(pair, base, 'VIP Signals', 'spot')
-            fake_trade.spot_trade(signal)
+            #fake_trade.spot_trade(signal)
             signal.conditions = STrade(0, 99999999)
             signal.timelimit = signal.time + w
             signals.append(signal)
