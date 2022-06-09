@@ -7,16 +7,19 @@ import os
 import pytz
 from binance.client import Client
 from datetime import datetime
-
+from dotenv import load_dotenv
 from fake_portfolio import Folio, Folios
 
-local = [False]
+local = [True]
+
+# Get environment variables
+load_dotenv()
 
 # Set operating timezone
 tz = pytz.timezone('Australia/Perth')
 
 config = {  # initialising database connection
-    "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
+    "apiKey": str(os.getenv("FIREBASE_API")),
     "authDomain": "telebagger.firebaseapp.com",
     "projectId": "telebagger",
     "messagingSenderId": "332905720250",
@@ -29,9 +32,7 @@ firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
 database = firebase.database()
 
-
 unique_id = 'heroku/'  # heroku, lach, tom, cozzaf
-
 
 ADD_MESSAGE_L = 'trade_results/message_count/'
 SAVE_L = 'save_data/'
@@ -63,21 +64,20 @@ else:
     REALTIME_SAVE = unique_id + 'signals/'
 
 
-
 def get_binance_client():
-    # Binance API Keys, TODO: Switch these to environmental variables if this code ever goes public
+    # Binance API Keys, Load as environment variables for security
 
     # Lachs Binance Acc
-    r_api_key = 'GAOURZ9dgm3BbjmGx1KfLNCS6jicVOOQzmZRJabF9KMdhfp24XzdjweiDqAJ4Lad'  # Put your own api keys here
-    r_api_secret = 'gAo0viDK8jwaTXVxlcpjjW9DNoxg4unLC0mSUSHQT0ZamLm47XJUuXASyGi3Q032'
+    r_api_key = os.getenv('DAD_BINANCE_KEY')
+    r_api_secret = os.getenv('DAD_BINANCE_SECRET')
 
     # Ellas Binance Acc
-    r_api_key = 'lQaHpUmEKPEDpquVPpF9WkKfiUNGl6jf6XGTQ6K6KSOOZaa70xN9qbUK3A5Q10DX'
-    r_api_secret = 'gxLJI8vbMonUHkIDHIBRnQkDrkEKXPz0xOdHHNDYGRSelwqJTjytt2REDKY1zxyG'
+    r_api_key = os.getenv('ELLA_BINANCE_KEY')
+    r_api_secret = os.getenv('ELLA_BINANCE_SECRET')
 
     # Dads Binance Acc
-    r_api_key = 'hWQABbUYYwhonkS6FN8LtCr7QRhtAsj1IwbpbuXWGhbdHn9nRbVe5tZDzyMQrfsp'
-    r_api_secret = 'G9HH87QyzZtjmUUjfAxsQQJkcDLOwGRCiL3oyL85p7IoBeKD68JMwjPxmBl3Fm6K'
+    r_api_key = os.getenv('LACH_BINANCE_KEY')
+    r_api_secret = os.getenv('LACH_BINANCE_SECRET')
 
     # Binance Client Object
     realclient = Client(r_api_key, r_api_secret)

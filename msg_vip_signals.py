@@ -1,23 +1,13 @@
+# Signal group, discontinued, legacy code
+
 import time
 import copy
-import fake_trade
+import fake_trade  # removed
 from trade_classes import Trade, Futures, STrade
 import pyrebase
 import utility
 import binance_wrap
-# Setting up connection to Firebase, cloud storage system
-config = {
-    "apiKey": "AIzaSyDl_eUsJkNxN5yW9KS6X0n0tkQFruV8Tbs",
-    "authDomain": "telebagger.firebaseapp.com",
-    "projectId": "telebagger",
-    "storageBucket": "telebagger.appspot.com",
-    "messagingSenderId": "332905720250",
-    "appId": "1:332905720250:web:e2006e777fa8d980d61583",
-    "measurementId": "G-02W82CCF85",
-    "databaseURL":  "https://telebagger-default-rtdb.firebaseio.com/"
-}
-firebase = pyrebase.initialize_app(config)
-storage = firebase.storage()
+
 
 tradeheat = [False]
 vip_signals_timer = [0]

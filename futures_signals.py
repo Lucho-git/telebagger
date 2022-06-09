@@ -1,4 +1,6 @@
-import fake_trade
+# Signal group, discontinued, legacy code
+
+import fake_trade  # removed
 import re
 from trade_classes import Trade, MFutures
 

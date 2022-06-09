@@ -52,7 +52,7 @@ def bag(msg):
 
     else:
         raw_server_time = binance_wrap.timenow()
-        utility.failed_message(msg, 'Hirn', 'Exception TradeHeat')  # TODO remove later
+        utility.failed_message(msg, 'Hirn', 'Exception TradeHeat')
         duplicate = get_pair(msg)
         if not last_pair[0] == duplicate:
             try:

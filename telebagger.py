@@ -2,6 +2,7 @@
 from colorama import init
 from telethon import TelegramClient, events, sync, utils, tl
 from telethon.sessions import StringSession
+from dotenv import load_dotenv
 import requests
 import asyncio
 import signal
@@ -23,6 +24,7 @@ import futures_signals
 
 local = utility.is_local()
 
+load_dotenv()  # gathering environment variables
 init()  # Initialising colorama
 update = [False]
 update2 = [False]
@@ -31,7 +33,7 @@ chat_ids = []
 
 if local:
     # Local Telegram Session
-    stringsesh = '1BVtsOIYBu3-mW8LWNklskWf4ubCwmoTJCMtaTn1yotapoMDSnukfzWHHy0VZdOu5THq8Z8dvfLZ-3QYoqZW7sFja_0uk_ovCdQTOhdzUu72KMnSoqxntyvytcfYQyfVdt1UV7V1d4Zhxy9WlMJEl3IcEeWbCyruidkkVGs4n1cW_vh__Li3PvHfKTuJA5EeZ58KNp1LzmDC-G66T8chUqU-RKHdFt2RT6NEQL-6zJLYyq_VTMgRiv-8HtfEs2OOyI-rsVsOwHC-p7_794gPk_B14HQ02zoWne_QZNesgc2NvsvNdwr_Eqg9D883qD9xEiSHvZNNIiDJJaM6b5IMfH-NZe9022dk='
+    stringsesh = os.getenv('TELEGRAM_LOCALSAVE')
     # Stream Commands Local
     STOP = '/stop'
     STREAM = '/stream'
@@ -54,8 +56,8 @@ if local:
 
 else:
     # Hosted Telegram Session
-    stringsesh = '1BVtsOIYBu0ovo28ka-RmvdqJHl7RbsJJpyDOKdEjyfK3-8E5tKCiaHyPmgaTvb1zIB-irRQqHtEOSw0ZL3LAvJTCfkMTuLet_11w1Zr6iaYNc_yrWV9h8r3OPEaTcKjXeEc-Nh9DLNhwjEIJ1EIS5PCPVeoEn9nwlFqfh8dtXbGGl0U3vLcp1-0wsp7tGUw958MZkmvvgFvZyiJ-iKr7FImY_1_Li4dY3S2ex68fz4UPSukfCzPpTJBf_HGX5dDvMT9HYF5xWG2XqlqoueSHRR9x4ylhq6vnkJOtfftSmPXoO2E76Gd80b_1UIbOfQ_y0fy5lvGsMI3_UZXvqV9cVaariRrHUlE='
-    # Ellas Savestring: stringsesh = '1BVtsOJEBuzPKndfyOcR8Db9PCaurB8JH7jyBTy8H2ur2WZMoPlqEki0GOPEfgnWjXptA40uN1OK3QL8yGCF4CEWbfsBdUvk1b8zhdo0ZF42vSNKgyz6mrupuEKZ9OmQxgXWSHx66vjM70le782D-z8dnreaVxmmSsrMxkU3GCjyQE2fHRZZp2-9njfZMNAVczYimmK2QzHhvvFHpDxXBgJ4WxZp3hg5FICpBo05fy7xc9Y5xV_ZZpRwwixjy0iZOo8o1ZbvLx7AFC8g-RvFWYHK8ZJVJcjp8KyXc95tBQxtdDbRv6EDxVUEQROLH5C5apM9laK-pZQp_LUc5FiGX_nT0iRBrVg4='
+    stringsesh = os.getenv('TELEGRAM_SERVERSAVE')
+    # Ellas Savestring: stringsesh = os.getenv('TELEGRAMELLASAVE')
     # Stream Commands Heroku Hosted
     STOP = '/stop!'
     STREAM = '/stream!'
@@ -259,6 +261,10 @@ async def StartTelegramForwarding(client):
 
                 elif message == '/except':
                     raise Exception('Log this exception please')
+                elif message == '/environ':
+                    config = dotenv_values('.env')
+                    print(config)
+
             else:
                 recognized = False
                 for i in chat_ids:
@@ -273,13 +279,14 @@ async def StartTelegramForwarding(client):
         except Exception as e:
             utility.error_log(str(e) + '\n' + str(traceback.format_exc()))
 
+# End of event handler code ___________________________________________________________
 
-# End of event handler code ____________________
 
+# Telegram login and start messsage handling
 async def setup_scraper():
     global stringsesh
-    api_id = 5747368
-    api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
+    api_id = os.getenv('TELEGRAM_ID')
+    api_hash = os.getenv('TELEGRAM_HASH')
     client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
     await StartTelegramForwarding(client)
 
@@ -290,7 +297,7 @@ async def setup_scraper():
     await asyncio.gather(trade_stream.streamer(), trade_stream.timer(), client.run_until_disconnected())
 
 
-# Currently non functional, want to find a way to gracefully shutdown the program when heroku calls sigterm
+# Currently non functional, TODO: find a way to gracefully shutdown the stream when heroku calls sigterm
 def handler_stop_signals(sig, frame):
     print("Am Dying lol")
     print('Aaaaaah it hurts')
@@ -300,7 +307,7 @@ def handler_stop_signals(sig, frame):
 
 # signal.signal(signal.SIGTERM, handler_stop_signals)  # Intializing graceful death on heroku restart
 asyncio.run(setup_scraper())
-print('We out this bitch')
+print('Exiting....')
 
-os.kill(os.getpid(), signal.SIGTERM)  # Not sure how this is going to react with heroku
+os.kill(os.getpid(), signal.SIGTERM)  # Not sure how this is going to react with heroku servers
 print('Still going')

@@ -522,6 +522,7 @@ def mfutures_update(signal):
         changes = True
     return changes
 
+
 # Performs a percentage market trade of any spot coin, using BTC or USDT as the base
 def market_trade(signal, percentage, buying):
     symbol = signal.pair
