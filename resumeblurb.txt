@@ -1,0 +1,9 @@
+My software development summary:
+
+
+I am a Software Engineering graduate from Curtin university, since leaving uni I developed a full stack web application Telebagger to buy and sell 
+Cryptocurrencies based off of Telegram trading signals. As well as simulating potential trades.
+The backend was developed with Python, and hosted using free webservices Heroku and Firebase.
+The frontend was developed with HTML,CSS,Javascript, the Materialize framework and hosted with Netlify.
+
+I am most proficient in Python, but can quickly adapt to any language or techstack.

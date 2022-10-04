@@ -1,0 +1,86 @@
+23:30:06:| 'Message' object has no attribute 'time'
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 40, in my_event_handler
+    print(event.time)
+  File "C:\Python39\lib\site-packages\telethon\events\newmessage.py", line 217, in __getattr__
+    return getattr(self.message, item)
+AttributeError: 'Message' object has no attribute 'time'
+
+
+23:43:47:| 'coroutine' object has no attribute 'id'
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 36, in my_event_handler
+    'origin': utils.get_display_name(str(event.get_sender().id)),
+AttributeError: 'coroutine' object has no attribute 'id'
+
+
+23:45:22:| 'coroutine' object has no attribute 'id'
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 36, in my_event_handler
+    'origin': utils.get_display_name(str(await event.get_sender().id)),
+AttributeError: 'coroutine' object has no attribute 'id'
+
+
+23:45:34:| 'coroutine' object has no attribute 'id'
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 36, in my_event_handler
+    'origin': utils.get_display_name(str(await event.get_sender().id)),
+AttributeError: 'coroutine' object has no attribute 'id'
+
+
+23:46:44:| 'coroutine' object has no attribute 'id'
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 36, in my_event_handler
+    sender_id = str(sender.id)
+AttributeError: 'coroutine' object has no attribute 'id'
+
+
+23:46:56:| 'coroutine' object has no attribute 'id'
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 41, in my_event_handler
+    test = str(event.get_sender().id)
+AttributeError: 'coroutine' object has no attribute 'id'
+
+
+23:47:26:| name 'chat' is not defined
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 89, in my_event_handler
+    elif chat.id == 1899129008:  # Telegram Bot
+NameError: name 'chat' is not defined
+
+
+23:53:55:| can't set attributes of built-in/extension type 'object'
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 40, in my_event_handler
+    origin.id = sender_id = str(sender.id)
+TypeError: can't set attributes of built-in/extension type 'object'
+
+
+23:56:47:| MyObj() takes no arguments
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 41, in my_event_handler
+    origin = MyObj(object)
+TypeError: MyObj() takes no arguments
+
+
+23:57:05:| name 'message' is not defined
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 94, in my_event_handler
+    db.gen_log('Telegram Robot: ' + message)
+NameError: name 'message' is not defined
+
+
+23:57:50:| name 'message' is not defined
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 94, in my_event_handler
+    db.gen_log('Telegram Robot: ' + message)
+NameError: name 'message' is not defined
+
+
+23:59:44:| name 'message' is not defined
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 94, in my_event_handler
+    db.gen_log('Telegram Robot: ' + message)
+NameError: name 'message' is not defined
+
+

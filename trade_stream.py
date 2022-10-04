@@ -1,14 +1,7 @@
 from binance import ThreadedWebsocketManager
 from binance.streams import AsyncClient
-from trade_classes import Trade, Futures
 import asyncio
-import time
 import utility
-import threading
-import binance_wrap
-
-from datetime import datetime, timezone
-import pytz
 
 twm = ThreadedWebsocketManager()
 twm.start()
@@ -37,7 +30,7 @@ def coin_trade_data(msg):
         e = msg['e']
         i = k['i']
         stream['symbol'] = msg['s']
-        stream['time'] = utility.binance_timestamp_local(int(msg['E']))
+        stream['time'] = utility.convert_timestamp_utc8(int(msg['E']))
         stream['last'] = float(k['c'])
         stream['high'] = float(k['h'])
         stream['low'] = float(k['l'])
