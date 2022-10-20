@@ -1,0 +1,140 @@
+17:03:41:| TradeStream.streamer() takes 1 positional argument but 2 were given
+Message:/hirn
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 82, in telegram_command
+    await new_signal.new_signal(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 26, in new_signal
+    await trade_streamer.streamer(t)
+TypeError: TradeStream.streamer() takes 1 positional argument but 2 were given
+
+
+17:04:34:| 'SpotBasic' object is not iterable
+Message:/hirn
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 82, in telegram_command
+    await new_signal.new_signal(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 26, in new_signal
+    await trade_streamer.addtrade(t)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 133, in addtrade
+    self.tradequeue.extend(new_trades)
+TypeError: 'SpotBasic' object is not iterable
+
+
+17:05:54:| 'SpotBasic' object has no attribute 'pair'
+Message:/hirn
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 82, in telegram_command
+    await new_signal.new_signal(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 26, in new_signal
+    await trade_streamer.addtrade(t)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 134, in addtrade
+    self.addstream()
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 156, in addstream
+    streamID = self.twm.start_kline_socket(callback=self.coin_trade_data, symbol=t.pair, interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
+AttributeError: 'SpotBasic' object has no attribute 'pair'
+
+
+17:10:17:| 'types.SimpleNamespace' object has no attribute 'pair'
+Message:/hirn
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 82, in telegram_command
+    await new_signal.new_signal(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 26, in new_signal
+    await trade_streamer.addtrade(t)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 134, in addtrade
+    self.addstream()
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 156, in addstream
+    streamID = self.twm.start_kline_socket(callback=self.coin_trade_data, symbol=t.signal.pair, interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
+AttributeError: 'types.SimpleNamespace' object has no attribute 'pair'
+
+
+17:11:19:| 'SpotBasic' object has no attribute 'pair'
+Message:/hirn
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 82, in telegram_command
+    await new_signal.new_signal(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 26, in new_signal
+    await trade_streamer.addtrade(t)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 134, in addtrade
+    self.addstream()
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 156, in addstream
+    streamID = self.twm.start_kline_socket(callback=self.coin_trade_data, symbol=t.pair, interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
+AttributeError: 'SpotBasic' object has no attribute 'pair'
+
+
+17:11:56:| As of 3.10, the *loop* parameter was removed from Queue() since it is no longer necessary
+Message:/hirn
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 82, in telegram_command
+    await new_signal.new_signal(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 26, in new_signal
+    await trade_streamer.addtrade(new_trade)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 134, in addtrade
+    self.addstream()
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 156, in addstream
+    streamID = self.twm.start_kline_socket(callback=self.coin_trade_data, symbol=t.pair, interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\.venv\lib\site-packages\binance\streams.py", line 1113, in start_kline_socket
+    return self._start_async_socket(
+  File "C:\Users\lachl\Repos\GitHub\telebagger\.venv\lib\site-packages\binance\streams.py", line 1093, in _start_async_socket
+    socket = getattr(self._bsm, socket_name)(**params)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\.venv\lib\site-packages\binance\streams.py", line 484, in kline_socket
+    return self._get_socket(path)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\.venv\lib\site-packages\binance\streams.py", line 318, in _get_socket
+    self._conns[conn_id] = ReconnectingWebsocket(
+  File "C:\Users\lachl\Repos\GitHub\telebagger\.venv\lib\site-packages\binance\streams.py", line 58, in __init__
+    self._queue = asyncio.Queue(loop=self._loop)
+  File "C:\Python310\lib\asyncio\queues.py", line 34, in __init__
+    super().__init__(loop=loop)
+  File "C:\Python310\lib\asyncio\mixins.py", line 17, in __init__
+    raise TypeError(
+TypeError: As of 3.10, the *loop* parameter was removed from Queue() since it is no longer necessary
+
+
+17:15:05:| module 'utility' has no attribute 'gen_log'
+Message:/hirn
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 82, in telegram_command
+    await new_signal.new_signal(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 26, in new_signal
+    await trade_streamer.addtrade(new_trade)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 134, in addtrade
+    self.addstream()
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 160, in addstream
+    utility.gen_log('Started Trade: ' + t.pair + ' | ' + str(t.id))
+AttributeError: module 'utility' has no attribute 'gen_log'
+
+
+17:43:59:| module 'trade_stream' has no attribute 'close_stream'
+Message:/stopstream
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 72, in telegram_command
+    await trade_stream.close_stream()
+AttributeError: module 'trade_stream' has no attribute 'close_stream'
+
+
+18:15:59:| new_signal() missing 1 required positional argument: 'trade_stream'
+Message:/hirn
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 82, in telegram_command
+    await new_signal.new_signal(signal)
+TypeError: new_signal() missing 1 required positional argument: 'trade_stream'
+
+

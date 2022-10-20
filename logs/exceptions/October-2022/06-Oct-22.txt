@@ -1,0 +1,38 @@
+22:40:05:| 'coroutine' object is not iterable
+Message:/hirn
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 82, in telegram_command
+    await new_signal.new_signal(signal)
+  File "C:\Users\lachl\Documents\GitHub\telebagger\new_signal.py", line 23, in new_signal
+    for t in trades:
+TypeError: 'coroutine' object is not iterable
+
+
+22:43:29:| 'types.SimpleNamespace' object has no attribute 'coin'
+Message:/hirn
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 82, in telegram_command
+    await new_signal.new_signal(signal)
+  File "C:\Users\lachl\Documents\GitHub\telebagger\new_signal.py", line 24, in new_signal
+    new_trade = Trade(t)
+  File "C:\Users\lachl\Documents\GitHub\telebagger\trade.py", line 11, in __init__
+    self.pair = trade.signal.coin + trade.signal.base
+AttributeError: 'types.SimpleNamespace' object has no attribute 'coin'
+
+
+22:46:40:| 'Trade' object has no attribute '__dict_'
+Message:/hirn
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 82, in telegram_command
+    await new_signal.new_signal(signal)
+  File "C:\Users\lachl\Documents\GitHub\telebagger\new_signal.py", line 25, in new_signal
+    print(new_trade.__dict_)
+AttributeError: 'Trade' object has no attribute '__dict_'
+
+

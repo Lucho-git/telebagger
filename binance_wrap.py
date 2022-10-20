@@ -3,14 +3,13 @@ from datetime import datetime
 import math
 from datetime import datetime
 import pytz
-
+from config import get_binance_config
 import utility
 
 MIN_TRADE_VALUE = 10
 
 # Binance Client Object
-realclient = utility.get_binance_client()
-
+realclient = get_binance_config
 
 # Get futures balance
 def get_futures_balance():
@@ -263,8 +262,8 @@ def futures_trade_no_orders(signal, trade_size, bag_id=None):
 
     trade_id = trade_receipt['orderId']
     receipt = realclient.futures_get_order(orderId=trade_id, symbol=signal.pair)
-    receipt['transactTime'] = utility.binance_timestamp_local(receipt['transactTime'])
-    receipt['time'] = utility.binance_timestamp_local(receipt['time'])
+    receipt['transactTime'] = utility.convert_timestamp_utc8(receipt['transactTime'])
+    receipt['time'] = utility.convert_timestamp_utc8(receipt['time'])
     signal.init_trade_futures(trade_id, receipt)
 
     # Add receipt to filled orders
@@ -759,3 +758,4 @@ def close_all_futures():
             amount = float(str(p['positionAmt']).replace('-', ''))
             realclient.futures_create_order(symbol=p['symbol'], side=side, type='MARKET', quantity=amount, reduceOnly=True)
     print('Clean Futures Account')
+

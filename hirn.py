@@ -2,156 +2,89 @@ import time
 import utility
 import binance_wrap
 import trade_classes
-from trade_classes import Trade, Futures, STrade
+import database_logging as db
+from trade_conditions import FutureBasic, SpotBasic
+from datetime import datetime
 
-hirn_timer = [0]
-last_pair = ['']
-tradeheat = [False]
-first = [True]
-HIRN_REAL = [False]
 
-HIRN_COOLDOWN_TIME = 16000  # In milliseconds
+HIRN_COOLDOWN_TIME = 1  # In seconds
 HIRN_LEVERAGE = 10  # Trade Leverage for Futures trades
 HIRN_TRADE_PERCENT = 0.4  # How much remaining balance should be invested on each trade
-HIRN_STOPLOSS_REDUCTION = 0.75   # Stoploss value to avoid getting liquidated
-HIRN_TRADE_TIMEOUT = 604800000  # 7 Days in milliseconds
+HIRN_STOPLOSS_PERCENTAGE = 0.95   # Stoploss value to avoid getting liquidated
+HIRN_TRADE_TIMEOUT = 604800000  # 7 Days in econds
+
+class HirnSignal():
+    '''Deals with signals from Hirn'''
+    def __init__(self):
+        self.timer = datetime.now().timestamp()
+        self.tradeheat = False
+        self.first = True
+
+    def new_signal(self, signal):
+        '''Entry point, returns nothing, or a trade signal'''
+        if not self.validate_signal(signal.message):
+            return
+        return self.parse_conditions(signal)
 
 
-def am_first():
-    first[0] = False
-
-
-def cooldown():
-    if not first[0]:
-        time.sleep(5)
-    am_first()
-
-    raw_server_time = binance_wrap.timenow()
-    if raw_server_time < hirn_timer[0]:
-        tradeheat[0] = True
-        raise ValueError('Hirn Signal while Cooling Down')
-    else:
-        tradeheat[0] = False
-        hirn_timer[0] = raw_server_time + HIRN_COOLDOWN_TIME
-        first[0] = True
-
-
-def bag(msg):
-
-    print('message recieved: Tradeheat?', tradeheat[0])
-    if not tradeheat[0]:
-        try:
-            result = search_coin(msg)
-            last_pair[0] = get_pair(msg)
-            print("secucess trades ")
-            print(last_pair[0])
-            return result
-        except ValueError as e:
-            print('Exception in Hirn Signal')
-            print(e)
-
-    else:
-        raw_server_time = binance_wrap.timenow()
-        utility.failed_message(msg, 'Hirn', 'Exception TradeHeat')
-        duplicate = get_pair(msg)
-        if not last_pair[0] == duplicate:
+    def parse_conditions(self, msg):
+        '''returns trade conditions from a valid signal msg'''
+        if not self.tradeheat:
             try:
-                result = search_coin(msg)
-                return result
+                return self.parse(msg)
             except ValueError as e:
                 print('Exception in Hirn Signal')
                 print(e)
         else:
-            print('Duplicate Message')
-    return None
+            db.failed_message(msg, 'Hirn', 'Exception TradeHeat')
+            print('Suspected Tradeheat')
+            return
+
+    def validate_signal(self, msg):
+        '''Verifies if the message from Hirn is a trade signal'''
+        if 'Buy #' in msg:
+            try:
+                self.cooldown()
+                print('\nNew Hirn Signal:\n', msg,'\n')
+                return True
+            except ValueError:
+                print("Hirn Cooling Down")
+                return False
+        else:
+            return False
 
 
-def valid_trade_message(msg):
-    if 'Buy #' in msg:
-        print("Valid Message")
-        return True
-    else:
-        return False
+    def cooldown(self):
+        '''Hirn sometimes double posts their messages, this makes sure we are only trading once'''
+        if not self.first:
+            time.sleep(5)
+        self.first = False
 
+        timenow = datetime.now().timestamp()
+        if timenow < self.timer:
+            self.tradeheat = True
+            raise ValueError('Hirn Signal while Cooling Down')
+        else:
+            self.tradeheat = False
+            self.timer = timenow + HIRN_COOLDOWN_TIME
+            self.first = True
 
-def get_pair(text):
-    lines = text.split('\n')
-    print(lines[0])
-    pair = lines[0].split('#')[1]
-    base = pair.split('/')[1]
-    pair = pair.split('/')[0] + base
-    return pair
-
-
-def search_coin(text):
-    signals = []
-    lines = text.split('\n')
-    print(lines[0])
-    pair = lines[0].split('#')[1]
-    coin = pair.split('/')[0]
-    base = pair.split('/')[1]
-    pair = pair.split('/')[0] + base
-    entry = float(lines[1].split(': ')[1])
-    exit_price = lines[2].split(': ')[1]
-    exit_price = float(exit_price.split(' ')[0])
-    lev = 1
-    if entry > exit_price:
-        direction = 'short'
-    else:
-        direction = 'long'
-    is_futures = None
-    if base == 'USDT':
-        futureslist = utility.get_binance_futures_list()
-        is_futures = False
-        # TODO this method can identify coins within coins, e.g.  HINT contains INT,
-        for f in futureslist:
-            if f == coin:
-                is_futures = True
-                lev = HIRN_LEVERAGE
-                lev2 = HIRN_LEVERAGE*2
-
-    sl = entry - (entry/lev)*HIRN_STOPLOSS_REDUCTION
-    sl2 = entry - (entry/lev*2)*HIRN_STOPLOSS_REDUCTION
-
-    print('Pair|', pair, '|Direction|', direction, '|Entry|', entry, '|Exit|', exit_price, '|Leverage|', lev)
-    print(is_futures)
-    print(HIRN_REAL[0])
-    if is_futures and HIRN_REAL[0]:
-        signal = Trade(pair, base, 'Hirn', 'futures', text)
-        signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
-        try:
-            binance_wrap.futures_trade_no_orders(signal, HIRN_TRADE_PERCENT)
-            binance_wrap.futures_trade_add_orders(signal)
-            # add orders
-        except ValueError as e:
-            print('Exception in Hirn Real Trade')
-            print(e)
-        finally:
-            print('Starting Fake Trade')
-            signal.fake_trade(percent=HIRN_TRADE_PERCENT)
-            signals.append(signal)
-            print('Completed Fake Trade')
-    elif is_futures:
-        print('Starting Fake Trade')
-        signal = Trade(pair, base, 'Hirn', 'futures', in_message=text)
-        signal.conditions = Futures(sl, exit_price, direction, lev, 'isolation')
-        signal.fake_trade(percent=HIRN_TRADE_PERCENT)
-        signals.append(signal)
-
-        print('Starting Fake Trade2')
-        signal2 = Trade(pair, base, 'Hirn2', 'futures', in_message=text)
-        signal2.conditions = Futures(sl2, exit_price, direction, lev2, 'isolation')
-        signal2.fake_trade(percent=HIRN_TRADE_PERCENT, timelimit=HIRN_TRADE_TIMEOUT)
-        signals.append(signal2)
-    else:
-        signal = Trade(pair, base, 'Hirn', 'spot', in_message=text)
-        signal.conditions = STrade(sl, exit_price)
-        signal.fake_trade(percent=HIRN_TRADE_PERCENT, timelimit=HIRN_TRADE_TIMEOUT)
-        signals.append(signal)
-
-    relative_price = abs(float(signal.price) - entry)/entry
-    if relative_price > 0.1:
-        print('Value Error')
-        raise ValueError("MarketValue is more than 10% different than it's expected value")
-
-    return signals
+    def parse(self, signal):
+        '''Parses out the signal message into values'''
+        lines = signal.message.split('\n')
+        pair = lines[0].split('#')[1]
+        coin = pair.split('/')[0]
+        base = pair.split('/')[1]
+        pair = pair.split('/')[0] + base
+        entry = float(lines[1].split(': ')[1])
+        profit_price = lines[2].split(': ')[1]
+        profit_price = float(profit_price.split(' ')[0])
+        lev = 1
+        if entry > profit_price:
+            direction = 'short'
+            return
+        else:
+            direction = 'long'
+        loss_price = entry * HIRN_STOPLOSS_PERCENTAGE/lev
+        timeout = utility.get_timestamp_now() + HIRN_TRADE_TIMEOUT # 7 Days timeout in seconds
+        return [SpotBasic('Hirn', signal, coin, base, entry, profit_price, loss_price, timeout)]

@@ -21,7 +21,6 @@ def add_real_orders(info):
 
     entry = info[4]
     sl = info[10]
-
     t1 = info[5]
     t2 = info[6]
     t3 = info[7]

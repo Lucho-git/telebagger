@@ -1,0 +1,119 @@
+18:07:29:| 'coroutine' object has no attribute 'origin'
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 157, in my_event_handler
+    if signal.origin.id == "1548802426":                           # Always Win, Signal
+AttributeError: 'coroutine' object has no attribute 'origin'
+
+
+23:08:26:| SIGNAL_GROUPS
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\munch\__init__.py", line 103, in __getattr__
+    return object.__getattribute__(self, k)
+AttributeError: 'Munch' object has no attribute 'SIGNAL_GROUPS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\munch\__init__.py", line 106, in __getattr__
+    return self[k]
+KeyError: 'SIGNAL_GROUPS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    if signal.origin.id in self.com.SIGNAL_GROUPS:
+  File "C:\Python39\lib\site-packages\munch\__init__.py", line 108, in __getattr__
+    raise AttributeError(k)
+AttributeError: SIGNAL_GROUPS
+
+
+23:08:42:| SIGNAL_GROUPS
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\munch\__init__.py", line 103, in __getattr__
+    return object.__getattribute__(self, k)
+AttributeError: 'Munch' object has no attribute 'SIGNAL_GROUPS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\munch\__init__.py", line 106, in __getattr__
+    return self[k]
+KeyError: 'SIGNAL_GROUPS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    if signal.origin.id in self.com.SIGNAL_GROUPS:
+  File "C:\Python39\lib\site-packages\munch\__init__.py", line 108, in __getattr__
+    raise AttributeError(k)
+AttributeError: SIGNAL_GROUPS
+
+
+23:09:22:| SIGNAL_GROUPS
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\munch\__init__.py", line 103, in __getattr__
+    return object.__getattribute__(self, k)
+AttributeError: 'Munch' object has no attribute 'SIGNAL_GROUPS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\munch\__init__.py", line 106, in __getattr__
+    return self[k]
+KeyError: 'SIGNAL_GROUPS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    if signal.origin.id in self.com.SIGNAL_GROUPS:
+  File "C:\Python39\lib\site-packages\munch\__init__.py", line 108, in __getattr__
+    raise AttributeError(k)
+AttributeError: SIGNAL_GROUPS
+
+
+23:09:49:| SIGNAL_GROUPS
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\munch\__init__.py", line 103, in __getattr__
+    return object.__getattribute__(self, k)
+AttributeError: 'Munch' object has no attribute 'SIGNAL_GROUPS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\munch\__init__.py", line 106, in __getattr__
+    return self[k]
+KeyError: 'SIGNAL_GROUPS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 102, in my_event_handler
+    if signal.origin.id in self.com.SIGNAL_GROUPS:
+  File "C:\Python39\lib\site-packages\munch\__init__.py", line 108, in __getattr__
+    raise AttributeError(k)
+AttributeError: SIGNAL_GROUPS
+
+
+23:35:23:| [Errno 2] No such file or directory: '/docs/hirn_example.txt'
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 107, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 83, in telegram_command
+    with open('/docs/hirn_example.txt', 'r') as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/docs/hirn_example.txt'
+
+
+23:36:02:| 'charmap' codec can't decode byte 0x9d in position 21: character maps to <undefined>
+Traceback (most recent call last):
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 107, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Documents\GitHub\telebagger\telebagger.py", line 84, in telegram_command
+    signal.message = f.read()
+  File "C:\Python39\lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x9d in position 21: character maps to <undefined>
+
+

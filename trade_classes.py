@@ -1,21 +1,24 @@
-from binance.client import Client
-from colorama import init
-from colorama import Fore, Back, Style
 import datetime
+import colorama
+from colorama import Fore
+
 import utility as ut
 import binance_wrap
-init(strip=True)
-client = ut.get_binance_client()
+from config import get_binance_config
+
+colorama.init(strip=True)
+client = get_binance_config
 
 
 class Futures:
+    '''explained'''
     def __init__(self, stoploss, stopprof, direction, leverage, mode):
         self.stoploss = stoploss
         self.stopprof = stopprof
         self.status = 'PreTrade'
         self.direction = direction
         self.leverage = leverage
-        self.mode = mode
+        self.mode = mode    
         self.orders = []
         self.filled_orders = []
 
@@ -559,7 +562,7 @@ class Trade:
 
     def fake_trade(self, bag_id=None, percent=None, timelimit=None):
         self.price = float(client.get_symbol_ticker(symbol=self.pair)['price'])
-        self.time = ut.binance_timestamp_local(client.get_server_time()['serverTime'])
+        self.time = ut.convert_timestamp_utc8(client.get_server_time()['serverTime'])
         self.id = self.time
         self.lowest = self.price
         self.highest = self.price
