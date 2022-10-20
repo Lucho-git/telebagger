@@ -1,7 +1,7 @@
 from datetime import datetime
 import config
 import utility
-
+import database_logging as db
 class Trade:
     '''Defines a simulated trade'''
     def __init__(self, trade):
@@ -40,6 +40,7 @@ class Trade:
 
         if self.status != 'active':
             self.closed_value = self.trade.get_value(self)
+            self.save_trade()
             print('Trade', self.pair, ' closed, for reason:', self.status.upper(), 'close_value:', self.closed_value)
             #end of trade behaviours
 
@@ -50,8 +51,14 @@ class Trade:
         ov_string = 'Trade: ' + self.pair + ' | ' + str(self.id) + ' | TimeStarted: ' + time_started + ' | TimeUpdated: ' + str(latest_time) + ' | LongestUpdate: ' + str(round((self.max_time_between_updates/60000), 1)) + 'm | Origin: ' + self.trade.signal.origin.name + ' | Status: ' + self.status
         return ov_string
 
-    #def save_trade(self):
+    def save_trade(self):
+        db.save_trade(self)
 
+    def duration(self):
+        '''Calcs trade duration'''
+        duration = self.latest_time - self.start_time
+        duration = str(round((duration) / 3600000, 2))
+        return duration
 
     def __str__(self):
         return self.pair  + '_' + self.trade.signal.origin.name + '_' + str(self.id)

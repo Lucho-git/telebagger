@@ -78,6 +78,7 @@ def save_trade(trade):
         storage.child(json_path_on_cloud).download("./", json_path_on_local)
         with open(dj_path_on_local, 'a', encoding="utf8") as f:
             f.write(json.dumps(trade))
+        storage.child(json_path_on_cloud).put(json_path_on_local)
 
         # Store in monthly trade group breakdown
         storage.child(m_path_on_cloud).download("./", m_path_on_local)
@@ -90,9 +91,9 @@ def save_trade(trade):
         # Store the profit/loss multiplier, pair and duration
         storage.child(j_path_on_cloud).download("./", j_path_on_local)
         with open(j_path_on_local, 'a', encoding="utf8") as f:
-            tradevalue = float(trade.closed_diff)/100 + 1
+            tradevalue = trade.closed_diff
             tradevalue = round(tradevalue, 2)
-            f.write(str(tradevalue) + ' | ' + trade.pair + ' | ' + str(trade.duration) + ' Hours\n')
+            f.write(str(tradevalue) + ' | ' + trade.pair + ' | ' + str(trade.duration()) + ' Hours\n')
         storage.child(j_path_on_cloud).put(j_path_on_local)
 
         # Store website data in realtime DB
