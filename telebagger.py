@@ -1,7 +1,6 @@
-# 3rd Party libs
+# 3rd Party libraries
 
-from telethon import TelegramClient, events, sync, utils, tl
-from telethon.sessions import StringSession
+from telethon import events, utils
 from dotenv import load_dotenv
 import requests
 import asyncio
@@ -13,22 +12,19 @@ import config
 from types import SimpleNamespace
 
 
-# Methods within this package
-from trade_classes import Trade, Futures, MFutures
-import always_win
-import binance_wrap
-import trade_stream
+# Local imports
+
+from trade_stream import TradeStream
 import utility
-import signal_groups
-import hirn
-import futures_signals
+import new_signal
 from config import get_telegram_config, get_telegram_commands
 import database_logging as db
 
-class TelegramEvents():
+class TelegramEvents:
     '''Handles telegram events'''
-    def __init__(self):
+    def __init__(self, trade_stream):
         self.com = config.get_telegram_commands()
+        self.trade_stream = trade_stream
 
     def init_client(self):
         '''Breaks when I put this inside of init for some reason?'''
@@ -44,7 +40,6 @@ class TelegramEvents():
         origin.name = utils.get_display_name(sender_obj)
         origin.id = sender
         signal.origin, signal.message, signal.timestamp = origin, event.raw_text, event.date
-
         return signal
 
     async def get_past_messages(self, channel_id):
@@ -68,29 +63,47 @@ class TelegramEvents():
         db.gen_log('Telegram Robot: ' + signal.message)
         # Bot commands
         if signal.message == self.com.STOP:
+            await self.trade_stream.close_stream()
             print('Disconnecting Telebagger...')
             await self.client.disconnect()
         # Stream Commands
         elif signal.message == self.com.STREAM:
-            await trade_stream.streamer()
+            await self.trade_stream.streamer()
         elif signal.message == self.com.STOPSTREAM:
-            await trade_stream.close_stream()
+            await self.trade_stream.close_stream()
+        elif signal.message == '/savestream':
+            self.trade_stream.save()
+        elif signal.message == '/loadstream':
+            await self.trade_stream.load()
         elif signal.message == self.com.RESTART:
-            await trade_stream.restart_stream()
+            await self.trade_stream.restart_stream()
         elif signal.message == self.com.MENU:
-            await trade_stream.stopstream()
+            await self.trade_stream.stopstream()
         elif signal.message == self.com.HIRN_SIGNAL:
             with open('docs/hirn_example.txt', 'r', encoding='utf-8') as f:
                 signal.message = f.read()
             signal.origin.id = '1248393106'
             signal.origin.name = 'Hirn'
-            await signal_groups.new_signal(signal)
+            await new_signal.new_signal(signal, self.trade_stream)
+        elif signal.message == '/hirn2':
+            with open('docs/hirn_example2.txt', 'r', encoding='utf-8') as f:
+                signal.message = f.read()
+            signal.origin.id = '1248393106'
+            signal.origin.name = 'Hirn'
+            await new_signal.new_signal(signal, self.trade_stream)
+        elif signal.message == '/now':
+            self.trade_stream.update_trades_now()
+            example = {'e': 'kline', 'E': 1665296280006, 's': 'COTIBTC', 'k': {'t': 1665296220000, 'T': 1665296279999, 's': 'COTIBTC', 'i': '1m', 'f': -1, 'L': -1, 'o': '0.00000580', 'c': '0.00000580', 'h': '0.00000580', 'l': '0.00000580', 'v': '0.00000000', 'n': 0, 'x': True, 'q': '0.00000000', 'V': '0.00000000', 'Q': '0.00000000', 'B': '0'}}
         elif signal.message == '/status':
-            print(trade_stream.stream_status())
+            print(self.trade_stream.stream_status())
         elif signal.message == '/past':
             self.get_past_messages('1548802426')
         elif signal.message == '/except':
             raise Exception('Log this exception please')
+        elif signal.message == '/dump':
+            await self.trade_stream.dump_stream()
+        elif signal.message == '/smoothdump':
+            await self.trade_stream.smooth_dump_stream()
 
 
     async def start_telegram_handler(self, client):
@@ -101,14 +114,13 @@ class TelegramEvents():
                 signal = await self.generate_signal(event)
 
                 if signal.origin.id in self.com.SIGNAL_GROUPS:
-                    await signal_groups.new_signal(signal)
+                    await new_signal.new_signal(signal, self.trade_stream)
 
                 elif signal.origin.id == '1646848328':
                     await self.telegram_command(signal)
 
                 else:
                     print('New Message:', signal)
-                    pass
                     #db.error_log('Unrecognized channel', str(signal))
                     #Deal with unrecognized telegram channels
 
@@ -122,6 +134,5 @@ class TelegramEvents():
         db.gen_log('Launching Telegram Scraper...')
         await self.client.start()
         await self.client.get_dialogs()
-        print('Enter loop')
-        await asyncio.gather(self.client.run_until_disconnected())
-        #trade_stream.streamer(), trade_stream.timer()
+        print('Ready')
+        await self.client.run_until_disconnected()

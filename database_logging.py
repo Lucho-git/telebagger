@@ -60,9 +60,8 @@ def save_trade(trade):
     now = datetime.now(tz)
     date_string = now.strftime('%B-%Y')
 
-    m_path_on_cloud = paths.SAVE_TRADE + trade.origin + '/' + date_string + '.txt'
-    j_path_on_cloud = paths.SAVE_TRADE + trade.origin + '/' + 'juice/' + date_string + '.txt'
-
+    m_path_on_cloud = paths.SAVE_TRADE + trade.signal.origin.name + '/' + date_string + '.txt'
+    j_path_on_cloud = paths.SAVE_TRADE + trade.signal.origin.name + '/' + 'juice/' + date_string + '.txt'
     dm_path_on_local = paths.SAVE_TRADE + trade.origin + '/'
     dj_path_on_local = dm_path_on_local + 'juice/'
     m_path_on_local = dm_path_on_local + date_string + '.txt'
@@ -75,12 +74,12 @@ def save_trade(trade):
         # Store in monthly trade group breakdown
         storage.child(m_path_on_cloud).download("./", m_path_on_local)
         with open(m_path_on_local, 'a', encoding="utf8") as f:
-            f.write(str(trade.savestring))
-            f.write(trade.trade_log)
+            f.write(str(trade.update_snapshot()))
+            #f.write(trade.trade_log)
             f.write('_________________________________\n\n')
         storage.child(m_path_on_cloud).put(m_path_on_local)
 
-        # Store the essential trading metric overview
+        # Store the profit/loss multiplier, pair and duration
         storage.child(j_path_on_cloud).download("./", j_path_on_local)
         with open(j_path_on_local, 'a', encoding="utf8") as f:
             tradevalue = float(trade.closed_diff)/100 + 1

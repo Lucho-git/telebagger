@@ -2,7 +2,6 @@
 import re
 import os
 import numpy as np
-
 from datetime import datetime
 
 def format_float(num):
@@ -22,3 +21,9 @@ def convert_timestamp_utc8(timestamp):
 
 def utc_to_utc8(timestamp):
     '''convert to utc8'''
+
+def get_timestamp_now():
+    '''Returns current timestamp'''
+    stamp = datetime.now().timestamp()
+    stamp = int(stamp * 1000)
+    return stamp

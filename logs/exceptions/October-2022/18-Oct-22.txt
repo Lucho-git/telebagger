@@ -1,0 +1,50 @@
+22:12:20:| name 'datetime' is not defined
+Message:/hirn
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 118, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 87, in telegram_command
+    await new_signal.new_signal(signal, self.trade_stream)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 20, in new_signal
+    trades = await get_trades(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 14, in get_trades
+    return hirn_controller.new_signal(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\hirn.py", line 27, in new_signal
+    return self.parse_conditions(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\hirn.py", line 34, in parse_conditions
+    return self.parse(msg)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\hirn.py", line 90, in parse
+    return [SpotBasic('Hirn', signal, coin, base, entry, profit_price, loss_price, timeout)]
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_conditions.py", line 21, in __init__
+    self.time_generated = datetime.now().timestamp()
+NameError: name 'datetime' is not defined
+
+
+22:13:37:| dictionary changed size during iteration
+Message:/now
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 118, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 95, in telegram_command
+    self.trade_stream.update_trades_now()
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 209, in update_trades_now
+    for t, trades in self.streaming_trades.items():
+RuntimeError: dictionary changed size during iteration
+
+
+22:32:22:| type object 'datetime.datetime' has no attribute 'datetime'
+Message:/now
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 118, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 95, in telegram_command
+    self.trade_stream.update_trades_now()
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 217, in update_trades_now
+    self.coin_trade_data(now_kline_msg)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 52, in coin_trade_data
+    print(trade.update_snapshot())
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade.py", line 47, in update_snapshot
+    latest_time = datetime.datetime.fromtimestamp(float(self.latest_time) / 1000).strftime('%d-%b-%y  %H:%M')
+AttributeError: type object 'datetime.datetime' has no attribute 'datetime'
+
+

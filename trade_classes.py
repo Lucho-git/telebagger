@@ -18,7 +18,7 @@ class Futures:
         self.status = 'PreTrade'
         self.direction = direction
         self.leverage = leverage
-        self.mode = mode
+        self.mode = mode    
         self.orders = []
         self.filled_orders = []
 

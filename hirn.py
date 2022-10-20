@@ -3,15 +3,15 @@ import utility
 import binance_wrap
 import trade_classes
 import database_logging as db
-from conditions import FutureBasic, SpotBasic
+from trade_conditions import FutureBasic, SpotBasic
 from datetime import datetime
 
 
-HIRN_COOLDOWN_TIME = 16  # In seconds
+HIRN_COOLDOWN_TIME = 1  # In seconds
 HIRN_LEVERAGE = 10  # Trade Leverage for Futures trades
 HIRN_TRADE_PERCENT = 0.4  # How much remaining balance should be invested on each trade
 HIRN_STOPLOSS_PERCENTAGE = 0.95   # Stoploss value to avoid getting liquidated
-HIRN_TRADE_TIMEOUT = 604800  # 7 Days in econds
+HIRN_TRADE_TIMEOUT = 604800000  # 7 Days in econds
 
 class HirnSignal():
     '''Deals with signals from Hirn'''
@@ -23,33 +23,29 @@ class HirnSignal():
     def new_signal(self, signal):
         '''Entry point, returns nothing, or a trade signal'''
         if not self.validate_signal(signal.message):
-            return None
+            return
         return self.parse_conditions(signal)
 
 
     def parse_conditions(self, msg):
-        '''Gets trade conditions from signal msg'''
-        print('message recieved: Tradeheat?', self.tradeheat)
+        '''returns trade conditions from a valid signal msg'''
         if not self.tradeheat:
             try:
-                result = self.parse(msg)
-                for r in result:
-                    print(r.__dict__)
-                return result
+                return self.parse(msg)
             except ValueError as e:
                 print('Exception in Hirn Signal')
                 print(e)
         else:
             db.failed_message(msg, 'Hirn', 'Exception TradeHeat')
             print('Suspected Tradeheat')
-            return None
+            return
 
     def validate_signal(self, msg):
         '''Verifies if the message from Hirn is a trade signal'''
         if 'Buy #' in msg:
-            print("Valid Message")
             try:
                 self.cooldown()
+                print('\nNew Hirn Signal:\n', msg,'\n')
                 return True
             except ValueError:
                 print("Hirn Cooling Down")
@@ -76,12 +72,9 @@ class HirnSignal():
     def parse(self, signal):
         '''Parses out the signal message into values'''
         lines = signal.message.split('\n')
-        print(lines[0])
         pair = lines[0].split('#')[1]
         coin = pair.split('/')[0]
-        print('coin', coin)
         base = pair.split('/')[1]
-        print(base)
         pair = pair.split('/')[0] + base
         entry = float(lines[1].split(': ')[1])
         profit_price = lines[2].split(': ')[1]
@@ -93,5 +86,5 @@ class HirnSignal():
         else:
             direction = 'long'
         loss_price = entry * HIRN_STOPLOSS_PERCENTAGE/lev
-        timeout = datetime.now().timestamp() + HIRN_TRADE_TIMEOUT # 7 Days timeout in seconds
+        timeout = utility.get_timestamp_now() + HIRN_TRADE_TIMEOUT # 7 Days timeout in seconds
         return [SpotBasic('Hirn', signal, coin, base, entry, profit_price, loss_price, timeout)]
