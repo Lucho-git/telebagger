@@ -4,6 +4,7 @@ import os
 import pickle
 import pytz
 import json
+import jsonpickle
 
 from config import get_firebase_config, get_storage_paths
 
@@ -18,7 +19,7 @@ def realtime_save_trade(tradevalue, trade, now):
     date_string = now.strftime('%B-%Y')
     day_string = now.strftime("%d-%B")
 
-    signal_group = trade.origin
+    signal_group = trade.trade.signal.origin.name
     newvalue = [tradevalue, day_string, {'Tradepair': trade.pair, 'Duration(Hrs)': str(trade.duration)}]
 
     last7 = database.child(paths.REALTIME_SAVE + signal_group + '/Last-7').get()
@@ -61,10 +62,10 @@ def save_trade(trade):
     now = datetime.now(tz)
     date_string = now.strftime('%B-%Y')
 
-    m_path_on_cloud = paths.SAVE_TRADE + trade.signal.origin.name + '/' + date_string + '.txt'
-    j_path_on_cloud = paths.SAVE_TRADE + trade.signal.origin.name + '/' + 'juice/' + date_string + '.txt'
-    json_path_on_cloud = paths.SAVE_TRADE + trade.signal.origin.name + '/' + 'json/' + date_string + '.txt'
-    dm_path_on_local = paths.SAVE_TRADE + trade.origin + '/'
+    m_path_on_cloud = paths.SAVE_TRADE + trade.trade.signal.origin.name + '/' + date_string + '.txt'
+    j_path_on_cloud = paths.SAVE_TRADE + trade.trade.signal.origin.name + '/' + 'juice/' + date_string + '.txt'
+    json_path_on_cloud = paths.SAVE_TRADE + trade.trade.signal.origin.name + '/' + 'json/' + date_string + '.txt'
+    dm_path_on_local = paths.SAVE_TRADE + trade.trade.signal.origin.name + '/'
     dj_path_on_local = dm_path_on_local + 'juice/'
     djson_path_on_local = dm_path_on_local + 'json/'
     m_path_on_local = dm_path_on_local + date_string + '.txt'
@@ -72,12 +73,13 @@ def save_trade(trade):
     json_path_on_local = djson_path_on_local + date_string + '.txt'
 
     # Check file structure exists, if not create it
-    if os.path.exists(dj_path_on_local):
+    if os.path.exists(dj_path_on_local and djson_path_on_local):
 
         # Store entire trade as json
         storage.child(json_path_on_cloud).download("./", json_path_on_local)
-        with open(dj_path_on_local, 'a', encoding="utf8") as f:
-            f.write(json.dumps(trade))
+        with open(json_path_on_local, 'a', encoding="utf8") as f:
+            f.write(jsonpickle.encode(trade))
+            f.write('\n____________________________________\n\n')
         storage.child(json_path_on_cloud).put(json_path_on_local)
 
         # Store in monthly trade group breakdown
@@ -91,20 +93,23 @@ def save_trade(trade):
         # Store the profit/loss multiplier, pair and duration
         storage.child(j_path_on_cloud).download("./", j_path_on_local)
         with open(j_path_on_local, 'a', encoding="utf8") as f:
-            tradevalue = trade.closed_diff
+            tradevalue = trade.closed_value
             tradevalue = round(tradevalue, 2)
             f.write(str(tradevalue) + ' | ' + trade.pair + ' | ' + str(trade.duration()) + ' Hours\n')
         storage.child(j_path_on_cloud).put(j_path_on_local)
 
         # Store website data in realtime DB
-        tradevalue = float(trade.closed_diff)/100
+        tradevalue = float(trade.closed_value)
         tradevalue = round(tradevalue, 2)
 
         realtime_save_trade(tradevalue, trade, now)
 
     else:
         #os.makedirs = f_path_on_local.split('/')[0:-1]
-        os.makedirs(dj_path_on_local)
+        if not os.path.exists(djson_path_on_local):
+            os.makedirs(djson_path_on_local)
+        if not os.path.exists(dj_path_on_local):
+            os.makedirs(dj_path_on_local)
         save_trade(trade)
 
 

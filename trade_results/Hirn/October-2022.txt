@@ -1,0 +1,18 @@
+Trade: EGLDUSDT | 1666274127413 | TimeStarted: [21:55 20-Oct-22] | TimeUpdated: [22:55 20-Oct-22] | LongestUpdate: 17.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: EGLDUSDT | 1666274127413 | TimeStarted: [21:55 20-Oct-22] | TimeUpdated: [22:56 20-Oct-22] | LongestUpdate: 17.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: EGLDUSDT | 1666278348572 | TimeStarted: [23:05 20-Oct-22] | TimeUpdated: [23:05 20-Oct-22] | LongestUpdate: 0.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: EGLDUSDT | 1666278348572 | TimeStarted: [23:05 20-Oct-22] | TimeUpdated: [23:06 20-Oct-22] | LongestUpdate: 1.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: EGLDUSDT | 1666278455346 | TimeStarted: [23:07 20-Oct-22] | TimeUpdated: [23:07 20-Oct-22] | LongestUpdate: 0.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: EGLDUSDT | 1666278548207 | TimeStarted: [23:09 20-Oct-22] | TimeUpdated: [23:09 20-Oct-22] | LongestUpdate: 0.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: EGLDUSDT | 1666278605886 | TimeStarted: [23:10 20-Oct-22] | TimeUpdated: [23:10 20-Oct-22] | LongestUpdate: 0.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: EGLDUSDT | 1666278742227 | TimeStarted: [23:12 20-Oct-22] | TimeUpdated: [23:12 20-Oct-22] | LongestUpdate: 0.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: EGLDUSDT | 1666278814492 | TimeStarted: [23:13 20-Oct-22] | TimeUpdated: [23:13 20-Oct-22] | LongestUpdate: 0.0m | Origin: Hirn | Status: profit_________________________________
+

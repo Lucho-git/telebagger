@@ -6,6 +6,11 @@ from colorama import init
 from telebagger import TelegramEvents
 from trade_stream import TradeStream
 
+async def run_multiple_tasks(telegram, trade_stream):
+    '''Starts telegram scraper and trade stream loops'''
+    tasks =  await asyncio.gather(telegram.setup_scraper(), trade_stream.launch_stream())
+    return tasks
+    
 def run():
     '''Bagger'''
     init()  # Initialising colorama
@@ -13,13 +18,16 @@ def run():
     print('Connecting to telegram...')
     telegram = TelegramEvents(trade_stream)
     telegram.init_client()
-    loop = asyncio.get_event_loop()
 
+    # New asyncio policy
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     bot = asyncio.gather(telegram.setup_scraper(), trade_stream.launch_stream())
+
     loop.run_until_complete(bot)
     loop.close()
     print('Exiting....')
-    os.kill(os.getpid(), signal.SIGTERM)  # Not sure how this is going to react with heroku servers
+    os.kill(os.getpid(), signal.SIGTERM)  # Not sure how this is going to react with herok
 
 
 if __name__ == '__main__':

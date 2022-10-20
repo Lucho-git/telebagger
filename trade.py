@@ -40,6 +40,7 @@ class Trade:
 
         if self.status != 'active':
             self.closed_value = self.trade.get_value(self)
+            self.client = None
             self.save_trade()
             print('Trade', self.pair, ' closed, for reason:', self.status.upper(), 'close_value:', self.closed_value)
             #end of trade behaviours
