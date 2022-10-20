@@ -3,6 +3,7 @@ from datetime import datetime
 import os
 import pickle
 import pytz
+import json
 
 from config import get_firebase_config, get_storage_paths
 
@@ -62,14 +63,21 @@ def save_trade(trade):
 
     m_path_on_cloud = paths.SAVE_TRADE + trade.signal.origin.name + '/' + date_string + '.txt'
     j_path_on_cloud = paths.SAVE_TRADE + trade.signal.origin.name + '/' + 'juice/' + date_string + '.txt'
+    json_path_on_cloud = paths.SAVE_TRADE + trade.signal.origin.name + '/' + 'json/' + date_string + '.txt'
     dm_path_on_local = paths.SAVE_TRADE + trade.origin + '/'
     dj_path_on_local = dm_path_on_local + 'juice/'
+    djson_path_on_local = dm_path_on_local + 'json/'
     m_path_on_local = dm_path_on_local + date_string + '.txt'
     j_path_on_local = dj_path_on_local + date_string + '.txt'
-
+    json_path_on_local = djson_path_on_local + date_string + '.txt'
 
     # Check file structure exists, if not create it
     if os.path.exists(dj_path_on_local):
+
+        # Store entire trade as json
+        storage.child(json_path_on_cloud).download("./", json_path_on_local)
+        with open(dj_path_on_local, 'a', encoding="utf8") as f:
+            f.write(json.dumps(trade))
 
         # Store in monthly trade group breakdown
         storage.child(m_path_on_cloud).download("./", m_path_on_local)
