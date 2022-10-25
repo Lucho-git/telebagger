@@ -1,0 +1,4 @@
+Trade: MATICUSDT | 1666483489870 | TimeStarted: [08:04 23-Oct-22] | TimeUpdated: [06:01 24-Oct-22] | LongestUpdate: 2.0m | Origin: HIRN SIGNALS FREE | Status: profit_________________________________
+
+Trade: MATICUSDT | 1666483496464 | TimeStarted: [08:04 23-Oct-22] | TimeUpdated: [06:01 24-Oct-22] | LongestUpdate: 2.0m | Origin: HIRN SIGNALS FREE | Status: profit_________________________________
+

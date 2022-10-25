@@ -115,7 +115,7 @@ def get_storage_paths():
         "SAVE": "save_data/",
         "STREAM": 'savefile',
         "SAVE_TRADE": "trade_results/",
-        "RESULTS": "trade_results/juice/",
+        "LIVE_VIEW": "live_view/",
         "LOG": 'logs/',
         "REALTIME_SAVE": 'signals/'
         }
@@ -126,7 +126,7 @@ def get_storage_paths():
         "SAVE": UNIQUE_ID + "save_data/",
         "STREAM": UNIQUE_ID + 'savefile',
         "SAVE_TRADE": UNIQUE_ID + "trade_results/",
-        "RESULTS": UNIQUE_ID + "trade_results/juice/",
+        "LIVE_VIEW": UNIQUE_ID + "live_view/",
         "LOG": UNIQUE_ID + 'logs/',
         "REALTIME_SAVE": UNIQUE_ID + 'signals/'
         }

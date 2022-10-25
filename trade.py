@@ -5,15 +5,15 @@ import database_logging as db
 class Trade:
     '''Defines a simulated trade'''
     def __init__(self, trade):
-        self.client = config.get_binance_config()
+        self.exchange = 'binance'
         self.status = 'active'
-        self.trade = trade
+        self.conditions = trade
         self.pair = trade.coin + trade.base
         self.start_time = utility.get_timestamp_now()
         self.latest_time = self.start_time
         self.id = self.start_time
         self.max_time_between_updates = 0
-        self.entry_price = float(self.client.get_symbol_ticker(symbol=self.pair)['price'])
+        self.entry_price = float(config.get_binance_config().get_symbol_ticker(symbol=self.pair)['price'])
         self.last_price = self.entry_price
         self.highest_price = 0
         self.lowest_price = 99999999999
@@ -35,12 +35,11 @@ class Trade:
         if k['high'] > self.highest_price:
             self.highest_price = k['high']
 
-        self.trade.check_timeout(self)
-        self.trade.check_trade(self)
+        self.conditions.check_timeout(self)
+        self.conditions.check_trade(self)
 
         if self.status != 'active':
-            self.closed_value = self.trade.get_value(self)
-            self.client = None
+            self.closed_value = self.conditions.get_value(self)
             self.save_trade()
             print('Trade', self.pair, ' closed, for reason:', self.status.upper(), 'close_value:', self.closed_value)
             #end of trade behaviours
@@ -49,11 +48,11 @@ class Trade:
         '''Console update of trade information'''
         time_started = datetime.fromtimestamp(float(self.start_time) / 1000).strftime('[%H:%M %d-%b-%y]')
         latest_time = datetime.fromtimestamp(float(self.latest_time) / 1000).strftime('[%H:%M %d-%b-%y]')
-        ov_string = 'Trade: ' + self.pair + ' | ' + str(self.id) + ' | TimeStarted: ' + time_started + ' | TimeUpdated: ' + str(latest_time) + ' | LongestUpdate: ' + str(round((self.max_time_between_updates/60000), 1)) + 'm | Origin: ' + self.trade.signal.origin.name + ' | Status: ' + self.status
+        ov_string = 'Trade: ' + self.pair + ' | ' + str(self.id) + ' | TimeStarted: ' + time_started + ' | TimeUpdated: ' + str(latest_time) + ' | LongestUpdate: ' + str(round((self.max_time_between_updates/60000), 1)) + 'm | Origin: ' + self.conditions.signal.origin.name + ' | Status: ' + self.status
         return ov_string
 
     def save_trade(self):
-        db.save_trade(self)
+        db.save_closed_trade(self)
 
     def duration(self):
         '''Calcs trade duration'''
@@ -62,4 +61,4 @@ class Trade:
         return duration
 
     def __str__(self):
-        return self.pair  + '_' + self.trade.signal.origin.name + '_' + str(self.id)
+        return self.pair  + '_' + self.conditions.signal.origin.name + '_' + str(self.id)

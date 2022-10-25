@@ -120,9 +120,10 @@ class TelegramEvents:
                     await self.telegram_command(signal)
 
                 else:
-                    print('New Message:', signal)
+                    #print('New Message:', signal)
                     #db.error_log('Unrecognized channel', str(signal))
                     #Deal with unrecognized telegram channels
+                    pass
 
             except Exception as e:
                 db.error_log(str(e) + '\nMessage:' + event.raw_text + '\nExcept:' + str(traceback.format_exc()))

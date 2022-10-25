@@ -2,9 +2,10 @@
 from datetime import datetime
 import os
 import pickle
-import pytz
 import json
 import jsonpickle
+import pytz
+
 
 from config import get_firebase_config, get_storage_paths
 
@@ -19,7 +20,7 @@ def realtime_save_trade(tradevalue, trade, now):
     date_string = now.strftime('%B-%Y')
     day_string = now.strftime("%d-%B")
 
-    signal_group = trade.trade.signal.origin.name
+    signal_group = trade.conditions.signal.origin.name
     newvalue = [tradevalue, day_string, {'Tradepair': trade.pair, 'Duration(Hrs)': str(trade.duration)}]
 
     last7 = database.child(paths.REALTIME_SAVE + signal_group + '/Last-7').get()
@@ -55,63 +56,83 @@ def realtime_save_trade(tradevalue, trade, now):
     database.child(paths.REALTIME_SAVE + signal_group + '/Last-30').set(data30)
     database.child(paths.REALTIME_SAVE + signal_group + '/Month/' + date_string).set(monthly)
 
+def update_live_view(trade):
+    '''Saves a trade to live_view'''
+    json_filepath = paths.LIVE_VIEW + 'active/' + str(trade.id) + '.txt'
+    json_dir = json_filepath.rsplit('/', 1)[0]+'/'
+    if not os.path.exists(json_dir):
+        os.makedirs(json_dir)
 
+    # Save json to live_view/active
+    storage.child(json_filepath).download("./", json_filepath)
+    with open(json_filepath, 'w', encoding="utf8") as f:
+        f.write(jsonpickle.encode(trade, make_refs=False, unpicklable=False))
+    storage.child(json_filepath).put(json_filepath)
 
-def save_trade(trade):
+def close_live_view(closed_filepath, trade):
+    '''Changes json trade from active to closed'''
+    # Checks for json in active trades
+    active_filepath = closed_filepath.replace('closed', 'active')
+    active_dirpath = active_filepath.rsplit('/', 1)[0]+'/'
+    if not os.path.exists(active_dirpath):
+        os.makedirs(active_dirpath)
+
+    # reoves json from live_view/active
+    active_exists = False
+    for filename in os.listdir(active_dirpath):
+        if str(trade.id) in filename:
+            os.remove(active_filepath)
+            active_exists = True
+    if not active_exists:
+        error_log('Closing_trade' + str(trade.id) + 'does not seem to exist')
+        return
+
+    # Save json to live_view/closed
+    storage.child(closed_filepath).download("./", closed_filepath)
+    with open(closed_filepath, 'w', encoding="utf8") as f:
+        f.write(jsonpickle.encode(trade, make_refs=False, unpicklable=False))
+    storage.child(closed_filepath).put(closed_filepath)
+
+def save_closed_trade(trade):
     '''Saves trades to database'''
     now = datetime.now(tz)
     date_string = now.strftime('%B-%Y')
 
-    m_path_on_cloud = paths.SAVE_TRADE + trade.trade.signal.origin.name + '/' + date_string + '.txt'
-    j_path_on_cloud = paths.SAVE_TRADE + trade.trade.signal.origin.name + '/' + 'juice/' + date_string + '.txt'
-    json_path_on_cloud = paths.SAVE_TRADE + trade.trade.signal.origin.name + '/' + 'json/' + date_string + '.txt'
-    dm_path_on_local = paths.SAVE_TRADE + trade.trade.signal.origin.name + '/'
-    dj_path_on_local = dm_path_on_local + 'juice/'
-    djson_path_on_local = dm_path_on_local + 'json/'
-    m_path_on_local = dm_path_on_local + date_string + '.txt'
-    j_path_on_local = dj_path_on_local + date_string + '.txt'
-    json_path_on_local = djson_path_on_local + date_string + '.txt'
+    json_filepath = paths.LIVE_VIEW + 'closed/' + str(trade.id) + '.txt'
+    monthly_filepath = paths.SAVE_TRADE + trade.conditions.signal.origin.name + '/' + date_string + '.txt'
+    juice_filepath = paths.SAVE_TRADE + trade.conditions.signal.origin.name + '/juice/' + date_string + '.txt'
 
     # Check file structure exists, if not create it
-    if os.path.exists(dj_path_on_local and djson_path_on_local):
+    filepaths = [json_filepath, monthly_filepath, juice_filepath]
+    for p in filepaths:
+        p = p.rsplit('/', 1)[0]+'/'
+        if not os.path.exists(p):
+            os.makedirs(p)
 
-        # Store entire trade as json
-        storage.child(json_path_on_cloud).download("./", json_path_on_local)
-        with open(json_path_on_local, 'a', encoding="utf8") as f:
-            f.write(jsonpickle.encode(trade))
-            f.write('\n____________________________________\n\n')
-        storage.child(json_path_on_cloud).put(json_path_on_local)
+    # Store entire trade as json
+    close_live_view(json_filepath, trade)
 
-        # Store in monthly trade group breakdown
-        storage.child(m_path_on_cloud).download("./", m_path_on_local)
-        with open(m_path_on_local, 'a', encoding="utf8") as f:
-            f.write(str(trade.update_snapshot()))
-            #f.write(trade.trade_log)
-            f.write('_________________________________\n\n')
-        storage.child(m_path_on_cloud).put(m_path_on_local)
+    # Store in monthly trade group breakdown
+    storage.child(monthly_filepath).download("./", monthly_filepath)
+    with open(monthly_filepath, 'a', encoding="utf8") as f:
+        f.write(str(trade.update_snapshot()))
+        #f.write(trade.conditions_log)
+        f.write('_________________________________\n\n')
+    storage.child(monthly_filepath).put(monthly_filepath)
 
-        # Store the profit/loss multiplier, pair and duration
-        storage.child(j_path_on_cloud).download("./", j_path_on_local)
-        with open(j_path_on_local, 'a', encoding="utf8") as f:
-            tradevalue = trade.closed_value
-            tradevalue = round(tradevalue, 2)
-            f.write(str(tradevalue) + ' | ' + trade.pair + ' | ' + str(trade.duration()) + ' Hours\n')
-        storage.child(j_path_on_cloud).put(j_path_on_local)
-
-        # Store website data in realtime DB
-        tradevalue = float(trade.closed_value)
+    # Store the profit/loss multiplier, pair and duration
+    storage.child(juice_filepath).download("./", juice_filepath)
+    with open(juice_filepath, 'a', encoding="utf8") as f:
+        tradevalue = trade.closed_value
         tradevalue = round(tradevalue, 2)
+        f.write(str(tradevalue) + ' | ' + trade.pair + ' | ' + str(trade.duration()) + ' Hours\n')
+    storage.child(juice_filepath).put(juice_filepath)
 
-        realtime_save_trade(tradevalue, trade, now)
+    # Store website data in realtime DB
+    tradevalue = float(trade.closed_value)
+    tradevalue = round(tradevalue, 2)
 
-    else:
-        #os.makedirs = f_path_on_local.split('/')[0:-1]
-        if not os.path.exists(djson_path_on_local):
-            os.makedirs(djson_path_on_local)
-        if not os.path.exists(dj_path_on_local):
-            os.makedirs(dj_path_on_local)
-        save_trade(trade)
-
+    realtime_save_trade(tradevalue, trade, now)
 
 
 def error_log(error):
@@ -121,24 +142,16 @@ def error_log(error):
     date_formatted = now.strftime('%d-%b-%y')
     time_formatted = now.strftime('%H:%M:%S:')
 
-    path_on_cloud = paths.LOG + 'exceptions/' + month_year + '/' + date_formatted + '.txt'
-    d_path_on_local = paths.LOG + 'exceptions/' + month_year + '/'
-    f_path_on_local = d_path_on_local + date_formatted + '.txt'
-    try:
-        if os.path.exists(d_path_on_local):
-            print(str(error))
-            storage.child(path_on_cloud).download("./", f_path_on_local)
-            with open(f_path_on_local, 'a', encoding="utf8") as f:
-                f.write(time_formatted + '| ' + str(error) + '\n\n')
-            storage.child(path_on_cloud).put(f_path_on_local)
-        else:
-            os.makedirs(d_path_on_local)
-            #os.makedirs = f_path_on_local.split('/')[0:-1]
-            error_log(error)
-    except Exception as e:
-        print('Exception in exceptor :(')
-        print(str(e))
+    error_filepath = paths.LOG + 'exceptions/' + month_year + '/' + date_formatted + '.txt'
+    error_dirpath = error_filepath.rsplit('/', 1)[0]+'/'
+    if not os.path.exists(error_dirpath):
+        os.makedirs(error_dirpath)
 
+    print(str(error))
+    storage.child(error_filepath).download("./", error_filepath)
+    with open(error_filepath, 'a', encoding="utf8") as f:
+        f.write(time_formatted + '| ' + str(error) + '\n\n')
+    storage.child(error_filepath).put(error_filepath)
 
 
 
@@ -148,28 +161,17 @@ def gen_log(log):
     month_year = now.strftime('%B-%Y')
     date_formatted = now.strftime('%d-%b-%y')
     time_formatted = now.strftime('%H:%M:%S:')
-    path_on_cloud = paths.LOG + 'general_logs/' + month_year + '/' + date_formatted + '.txt'
-    d_path_on_local = paths.LOG + 'general_logs/' + month_year + '/'
-    f_path_on_local = d_path_on_local + date_formatted + '.txt'
+    genlog_filepath = paths.LOG + 'general_logs/' + month_year + '/' + date_formatted + '.txt'
+    genlog_dirpath = genlog_filepath.rsplit('/', 1)[0]+'/'
+    if not os.path.exists(genlog_dirpath):
+        os.makedirs(genlog_dirpath)
 
     log = log.replace('\n', str('\n'+time_formatted+'| '))
-
-    # Access and update cloud logs
-    if os.path.exists(d_path_on_local):
-        storage.child(path_on_cloud).download("./", f_path_on_local)
-        if os.path.exists(f_path_on_local):
-            with open(f_path_on_local, 'a', encoding="utf8") as f:
-                f.write(time_formatted + '| ' + log + '\n\n')
-            storage.child(path_on_cloud).put(f_path_on_local)
-        else:
-            with open(f_path_on_local, 'w+', encoding="utf8") as f:
-                f.write('Daily General Logs ' + date_formatted + '\n\n')
-                f.write(time_formatted + '| ' + log + '\n\n')
-            storage.child(path_on_cloud).put(f_path_on_local)
-    else:
-        os.makedirs(d_path_on_local)
-        #os.makedirs = f_path_on_local.split('/')[0:-1]
-        gen_log(log)
+    storage.child(genlog_filepath).download("./", genlog_filepath)
+    # If file exists, add to it, else create a new one
+    with open(genlog_filepath, 'a+', encoding="utf8") as f:
+        f.write(time_formatted + '| ' + log + '\n\n')
+    storage.child(genlog_filepath).put(genlog_filepath)
 
 
 def failed_message(msg, origin, ex):
@@ -177,73 +179,54 @@ def failed_message(msg, origin, ex):
     Example: an error in Hirns signal format, or couldn't match the coin type'''
     now = datetime.now(tz)
     month_year = now.strftime('%B-%Y')
-    path_on_cloud = paths.SAVE_TRADE + origin + '/failed/' + month_year + '.txt'
-    # Path on local will error if there is no directory created beforehand, so we have two filepaths
-    d_path_on_local = paths.SAVE_TRADE + origin + '/failed/'
-    f_path_on_local = d_path_on_local + month_year + '.txt'
 
-    if os.path.exists(d_path_on_local):
-        storage.child(path_on_cloud).download("./", f_path_on_local)
-        with open(f_path_on_local, 'a', encoding="utf8") as f:
-            f.write(msg + '\n')
-            f.write('__________________________\n')
-            f.write(str(ex))
-            f.write('\n\n')
-        storage.child(path_on_cloud).put(f_path_on_local)
-    else:
-        os.makedirs(d_path_on_local)
-        #os.makedirs = f_path_on_local.split('/')[0:-1]
-        failed_message(msg, origin, ex)
+    failedmsg_filepath = paths.SAVE_TRADE + origin + '/failed/' + month_year + '.txt'
+    failedmsg_dirpath = failedmsg_filepath.rsplit('/', 1)[0]+'/'
+    if not os.path.exists(failedmsg_dirpath):
+        os.makedirs(failedmsg_dirpath)
+
+    storage.child(failedmsg_filepath).download("./", failedmsg_filepath)
+    with open(failedmsg_filepath, 'a', encoding="utf8") as f:
+        f.write(msg + '\n')
+        f.write('__________________________\n')
+        f.write(str(ex))
+        f.write('\n\n')
+    storage.child(failedmsg_filepath).put(failedmsg_filepath)
 
 
-def pickle_save(obj, cloudpath, localpath):
-    '''pickle saves'''
-    path_on_cloud = paths.SAVE + cloudpath
-    path_on_local = paths.SAVE + localpath
-
-    if os.path.exists(paths.SAVE):
-        storage.child(path_on_cloud).download("./", path_on_local)
-        try:
-            with open(path_on_local, 'wb') as stream_save_file:
-                pickle.dump(obj, stream_save_file)
-            storage.child(path_on_cloud).put(path_on_local)
-        except Exception as e:
-            print(str(e))
-            print("Unexpected Picklesave Error")
-    else:
-        os.makedirs(paths.SAVE)
-        pickle_save(obj, cloudpath, localpath)
-
-
-def pickle_load(path_on_cloud, path_on_local):
-    '''pickle loads'''
-    ret_obj = None
-    if os.path.exists(paths.SAVE):
-        storage.child(path_on_cloud).download("./", path_on_local)
-        try:
-            with open(path_on_local, 'rb') as config_dictionary_file:
-                ret_obj = pickle.load(config_dictionary_file)
-        except FileNotFoundError as e:
-            print(str(e))
-    else:
-        os.makedirs(paths.SAVE)
-        pickle_load(path_on_cloud, path_on_local)
-    return ret_obj
-
-
-def save_stream(restartstream):
+def save_stream(savestream):
     '''Saves the active tradestream'''
-    path_on_cloud = paths.STREAM
-    path_on_local = paths.STREAM
-    pickle_save(restartstream, path_on_cloud, path_on_local)
+    save_filepath = paths.SAVE + paths.STREAM
+    save_dirpath = save_filepath.rsplit('/', 1)[0]+'/'
+    if not os.path.exists(save_dirpath):
+        os.makedirs(save_dirpath)
+
+    storage.child(save_filepath).download("./", save_filepath)
+    try:
+        with open(save_filepath, 'wb') as stream_save_file:
+            pickle.dump(savestream, stream_save_file)
+        storage.child(save_filepath).put(save_filepath)
+    except Exception as e:
+        print(str(e))
+        print("Unexpected Picklesave Error")
 
 
 def load_stream():
     '''Loads the active tradestream'''
-    path_on_cloud = paths.SAVE + paths.STREAM
-    path_on_local = paths.SAVE + paths.STREAM
-    loaded = pickle_load(path_on_cloud, path_on_local)
-    return loaded
+    load_filepath = paths.SAVE + paths.STREAM
+    load_dirpath = load_filepath.rsplit('/', 1)[0]+'/'
+    if not os.path.exists(load_dirpath):
+        os.makedirs(load_dirpath)
+
+    load_data = None
+    storage.child(load_filepath).download("./", load_filepath)
+    try:
+        with open(load_filepath, 'rb') as config_dictionary_file:
+            load_data = pickle.load(config_dictionary_file)
+        storage.child(load_filepath).put(load_filepath)
+    except FileNotFoundError as e:
+        print(str(e))
+    return load_data
 
 
 def get_binance_spot_list():
