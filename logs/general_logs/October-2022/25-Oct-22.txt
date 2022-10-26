@@ -201,3 +201,12 @@ Daily General Logs 25-Oct-22
 
 22:12:31:| Telegram Robot: /stop
 
+22:14:15:| Launching Telegram Scraper...
+
+23:14:18:| 
+23:14:18:| ___Streaming___
+23:14:18:| 
+23:14:18:| maticusdt@kline_1m  x4
+23:14:18:| _______________
+23:14:18:| 
+

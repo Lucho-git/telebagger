@@ -35,8 +35,8 @@ class TelegramEvents:
         origin = SimpleNamespace()
         signal = SimpleNamespace()
         sender_obj = await event.get_sender()
-        #chat = await event.get_chat()
-        sender = str(sender_obj.id)
+        chat = await event.get_chat()
+        sender = str(chat.id)
         origin.name = utils.get_display_name(sender_obj)
         origin.id = sender
         signal.origin, signal.message, signal.timestamp = origin, event.raw_text, event.date
@@ -44,7 +44,7 @@ class TelegramEvents:
 
     async def get_past_messages(self, channel_id):
         '''Gets past messages from a channel'''
-        msgs = await self.client.get_messages(channel_id, limit=10)
+        msgs = await self.client.get_messages(str(channel_id), limit=10)
         if msgs is not None:
             print("Messages:\n---------")
             for msg in msgs:
@@ -53,7 +53,8 @@ class TelegramEvents:
                 print(msg.signal.message)
                 print('______________________')
                 if not msg.photo:
-                    await self.client.send_message(1576065688, msg)
+                    #await self.client.send_message(1576065688, msg)
+                    pass
                 else:
                     print('has photo')
 
@@ -97,14 +98,13 @@ class TelegramEvents:
         elif signal.message == '/status':
             print(self.trade_stream.stream_status())
         elif signal.message == '/past':
-            self.get_past_messages('1548802426')
+            await self.get_past_messages('1248393106')
         elif signal.message == '/except':
             raise Exception('Log this exception please')
         elif signal.message == '/dump':
             await self.trade_stream.dump_stream()
         elif signal.message == '/smoothdump':
             await self.trade_stream.smooth_dump_stream()
-
 
     async def start_telegram_handler(self, client):
         '''telegram message event handler'''
@@ -116,14 +116,15 @@ class TelegramEvents:
                 if signal.origin.id in self.com.SIGNAL_GROUPS:
                     await new_signal.new_signal(signal, self.trade_stream)
 
-                elif signal.origin.id == '1646848328':
+                elif signal.origin.id == '1899129008':
                     await self.telegram_command(signal)
 
                 else:
+                    print('new chat ID:', signal.origin.id, signal.origin.name)
+                    db.gen_log('new chat ID:' + str(signal.origin.id) + signal.origin.name)
                     #print('New Message:', signal)
                     #db.error_log('Unrecognized channel', str(signal))
                     #Deal with unrecognized telegram channels
-                    pass
 
             except Exception as e:
                 db.error_log(str(e) + '\nMessage:' + event.raw_text + '\nExcept:' + str(traceback.format_exc()))
