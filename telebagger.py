@@ -94,7 +94,6 @@ class TelegramEvents:
             await new_signal.new_signal(signal, self.trade_stream)
         elif signal.message == '/now':
             self.trade_stream.update_trades_now()
-            example = {'e': 'kline', 'E': 1665296280006, 's': 'COTIBTC', 'k': {'t': 1665296220000, 'T': 1665296279999, 's': 'COTIBTC', 'i': '1m', 'f': -1, 'L': -1, 'o': '0.00000580', 'c': '0.00000580', 'h': '0.00000580', 'l': '0.00000580', 'v': '0.00000000', 'n': 0, 'x': True, 'q': '0.00000000', 'V': '0.00000000', 'Q': '0.00000000', 'B': '0'}}
         elif signal.message == '/status':
             print(self.trade_stream.stream_status())
         elif signal.message == '/past':
@@ -118,12 +117,12 @@ class TelegramEvents:
 
                 elif signal.origin.id == '1899129008':
                     await self.telegram_command(signal)
+                elif signal.origin.id in self.com.GENERAL_GROUPS:
+                    pass
 
                 else:
                     print('new chat ID:', signal.origin.id, signal.origin.name)
                     db.gen_log('new chat ID:' + str(signal.origin.id) + signal.origin.name)
-                    #print('New Message:', signal)
-                    #db.error_log('Unrecognized channel', str(signal))
                     #Deal with unrecognized telegram channels
 
             except Exception as e:

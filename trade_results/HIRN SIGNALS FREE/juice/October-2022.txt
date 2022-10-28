@@ -4,3 +4,8 @@
 0.98 | MATICUSDT | 39.24 Hours
 0.98 | MATICUSDT | 1.51 Hours
 0.98 | MATICUSDT | 1.51 Hours
+0.98 | ETHBTC | 23.26 Hours
+0.98 | ETHBTC | 23.66 Hours
+0.98 | ETHBTC | 23.67 Hours
+1.05 | MATICUSDT | 30.56 Hours
+1.05 | MATICUSDT | 30.55 Hours

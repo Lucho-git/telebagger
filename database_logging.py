@@ -21,7 +21,7 @@ def realtime_save_trade(tradevalue, trade, now):
     day_string = now.strftime("%d-%B")
 
     signal_group = trade.conditions.signal.origin.name
-    newvalue = [tradevalue, day_string, {'Tradepair': trade.pair, 'Duration(Hrs)': str(trade.duration)}]
+    newvalue = [tradevalue-1, day_string, {'Tradepair': trade.pair, 'Duration(Hrs)': str(trade.duration())}]
 
     last7 = database.child(paths.REALTIME_SAVE + signal_group + '/Last-7').get()
     last30 = database.child(paths.REALTIME_SAVE + signal_group + '/Last-30').get()
@@ -44,7 +44,14 @@ def realtime_save_trade(tradevalue, trade, now):
     last30.insert(0,newvalue)
     monthly.append(newvalue)
     if len(last7) > 6:
-        del last7[7]
+        try:
+            del last7[7]
+        except Exception as e:
+            print('Caught Exception:', e)
+            print(len(last7))
+            print(last7[7])
+            error_log(str(last7))
+
 
     if len(last30) > 29:
         del last30[30]

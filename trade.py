@@ -48,7 +48,7 @@ class Trade:
         '''Console update of trade information'''
         time_started = datetime.fromtimestamp(float(self.start_time) / 1000).strftime('[%H:%M %d-%b-%y]')
         latest_time = datetime.fromtimestamp(float(self.latest_time) / 1000).strftime('[%H:%M %d-%b-%y]')
-        ov_string = 'Trade: ' + self.pair + ' | ' + str(self.id) + ' | TimeStarted: ' + time_started + ' | TimeUpdated: ' + str(latest_time) + ' | LongestUpdate: ' + str(round((self.max_time_between_updates/60000), 1)) + 'm | Origin: ' + self.conditions.signal.origin.name + ' | Status: ' + self.status
+        ov_string = 'Trade: ' + self.pair + ' | ' + str(self.id) + ' | TimeStarted: ' + time_started + ' | TimeUpdated: ' + str(latest_time) + ' | LongestUpdate: ' + str(round((self.max_time_between_updates/60000), 1)) + 'm | Origin: ' + self.conditions.source + ' | Status: ' + self.status
         return ov_string
 
     def save_trade(self):
@@ -61,4 +61,4 @@ class Trade:
         return duration
 
     def __str__(self):
-        return self.pair  + '_' + self.conditions.signal.origin.name + '_' + str(self.id)
+        return self.pair  + '_' + self.conditions.source + '_' + str(self.id)

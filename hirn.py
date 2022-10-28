@@ -7,7 +7,7 @@ from trade_conditions import FutureBasic, SpotBasic
 from datetime import datetime
 
 
-HIRN_COOLDOWN_TIME = 1  # In seconds
+HIRN_COOLDOWN_TIME = 10  # In seconds
 HIRN_LEVERAGE = 10  # Trade Leverage for Futures trades
 HIRN_TRADE_PERCENT = 0.4  # How much remaining balance should be invested on each trade
 HIRN_STOPLOSS_PERCENTAGE = 0.95   # Stoploss value to avoid getting liquidated

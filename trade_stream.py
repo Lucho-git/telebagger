@@ -239,14 +239,3 @@ class TradeStream:
             new_k = {'t': k[0], 'T': k[6], 's': trade.pair, 'i': '1m', 'f': '-1', 'L': '-1', 'o': k[1], 'c': k[2], 'h': k[3], 'l': k[4], 'v': k[5], 'n': k[8], 'x': True, 'q': k[7], 'V': k[9], 'Q': k[10], 'B': k[11]}
             now_kline_msg = {'e': 'kline', 'E': k[0], 's': trade.pair, 'k': new_k}
             self.coin_trade_data(now_kline_msg)
-
-    # def savetraderesults(in_completedtrades):
-    #     for c in in_completedtrades[:]:
-    #         # Save trade to database
-    #         utility.gen_log(str(c.overview()))
-    #         utility.save_trade(c)
-    #         if c.bag_id:
-    #             utility.trade_results(c)
-    #         # Remove trade fom list
-    #         in_completedtrades.remove(c)
-    #     print("Recorded Trade to Database")

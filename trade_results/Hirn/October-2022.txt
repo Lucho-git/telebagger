@@ -58,3 +58,19 @@ Trade: EGLDUSDT | 1666438444872 | TimeStarted: [19:34 22-Oct-22] | TimeUpdated: 
 
 Trade: EGLDUSDT | 1666438880023 | TimeStarted: [19:41 22-Oct-22] | TimeUpdated: [19:42 22-Oct-22] | LongestUpdate: 0.7m | Origin: Hirn | Status: profit_________________________________
 
+Trade: ETHBTC | 1666878227196 | TimeStarted: [21:43 27-Oct-22] | TimeUpdated: [21:44 27-Oct-22] | LongestUpdate: 0.2m | Origin: Hirn | Status: profit_________________________________
+
+Trade: ETHBTC | 1666879968944 | TimeStarted: [22:12 27-Oct-22] | TimeUpdated: [22:13 27-Oct-22] | LongestUpdate: 0.2m | Origin: Hirn | Status: profit_________________________________
+
+Trade: ETHBTC | 1666879977797 | TimeStarted: [22:12 27-Oct-22] | TimeUpdated: [22:13 27-Oct-22] | LongestUpdate: 0.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: ETHBTC | 1666879968944 | TimeStarted: [22:12 27-Oct-22] | TimeUpdated: [22:15 27-Oct-22] | LongestUpdate: 2.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: ETHBTC | 1666879977797 | TimeStarted: [22:12 27-Oct-22] | TimeUpdated: [22:15 27-Oct-22] | LongestUpdate: 2.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: ETHBTC | 1666880136150 | TimeStarted: [22:15 27-Oct-22] | TimeUpdated: [22:15 27-Oct-22] | LongestUpdate: 0.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: ETHBTC | 1666880313638 | TimeStarted: [22:18 27-Oct-22] | TimeUpdated: [22:18 27-Oct-22] | LongestUpdate: 0.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: ETHBTC | 1666880323307 | TimeStarted: [22:18 27-Oct-22] | TimeUpdated: [22:18 27-Oct-22] | LongestUpdate: 0.0m | Origin: Hirn | Status: profit_________________________________
+

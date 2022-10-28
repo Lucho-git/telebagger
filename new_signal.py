@@ -2,12 +2,14 @@
 
 import hirn
 from trade import Trade
+import database_logging as db
 
 hirn_controller = hirn.HirnSignal()
 
 async def get_trades(signal):
     '''Sends signal to the specified group'''
-    if signal.origin.name == '1548802426':
+    if signal.origin.id == '1548802426':
+        db.gen_log('Always Win Signal')
         print('Always Win Message')
 
     elif signal.origin.id == '1248393106':

@@ -1,0 +1,115 @@
+00:22:26:| 
+00:22:26:| ___Streaming___
+00:22:26:| 
+00:22:26:| maticusdt@kline_1m  x2
+00:22:26:| ethbtc@kline_1m     x2
+00:22:26:| atomusdt@kline_1m   x2
+00:22:26:| _______________
+00:22:26:| 
+
+01:22:30:| 
+01:22:30:| ___Streaming___
+01:22:30:| 
+01:22:30:| maticusdt@kline_1m  x2
+01:22:30:| ethbtc@kline_1m     x2
+01:22:30:| atomusdt@kline_1m   x2
+01:22:30:| _______________
+01:22:30:| 
+
+02:10:03:| Always Win Signal
+
+02:12:59:| Always Win Signal
+
+02:22:35:| 
+02:22:35:| ___Streaming___
+02:22:35:| 
+02:22:35:| maticusdt@kline_1m  x2
+02:22:35:| ethbtc@kline_1m     x2
+02:22:35:| atomusdt@kline_1m   x2
+02:22:35:| _______________
+02:22:35:| 
+
+03:03:49:| Always Win Signal
+
+03:09:55:| Always Win Signal
+
+03:14:59:| Always Win Signal
+
+03:17:02:| Always Win Signal
+
+03:22:40:| 
+03:22:40:| ___Streaming___
+03:22:40:| 
+03:22:40:| maticusdt@kline_1m  x2
+03:22:40:| ethbtc@kline_1m     x2
+03:22:40:| atomusdt@kline_1m   x2
+03:22:40:| _______________
+03:22:40:| 
+
+03:32:02:| Always Win Signal
+
+03:38:03:| Always Win Signal
+
+03:58:05:| Always Win Signal
+
+03:58:12:| Always Win Signal
+
+04:03:08:| Always Win Signal
+
+04:07:48:| Always Win Signal
+
+04:15:50:| Always Win Signal
+
+04:15:59:| Always Win Signal
+
+04:16:13:| Always Win Signal
+
+04:16:21:| Always Win Signal
+
+04:18:35:| Always Win Signal
+
+04:19:55:| Always Win Signal
+
+04:22:44:| 
+04:22:44:| ___Streaming___
+04:22:44:| 
+04:22:44:| maticusdt@kline_1m  x2
+04:22:44:| ethbtc@kline_1m     x2
+04:22:44:| atomusdt@kline_1m   x2
+04:22:44:| _______________
+04:22:44:| 
+
+04:26:37:| Always Win Signal
+
+04:27:33:| Always Win Signal
+
+04:27:37:| Always Win Signal
+
+05:22:49:| 
+05:22:49:| ___Streaming___
+05:22:49:| 
+05:22:49:| ethbtc@kline_1m     x2
+05:22:49:| atomusdt@kline_1m   x2
+05:22:49:| _______________
+05:22:49:| 
+
+05:26:49:| Always Win Signal
+
+06:22:55:| 
+06:22:55:| ___Streaming___
+06:22:55:| 
+06:22:55:| ethbtc@kline_1m     x2
+06:22:55:| atomusdt@kline_1m   x2
+06:22:55:| _______________
+06:22:55:| 
+
+07:23:00:| 
+07:23:00:| ___Streaming___
+07:23:00:| 
+07:23:00:| ethbtc@kline_1m     x2
+07:23:00:| atomusdt@kline_1m   x2
+07:23:00:| _______________
+07:23:00:| 
+
+08:07:53:| Telegram Robot: /stop
+

@@ -1,0 +1,48 @@
+21:36:03:| Closing_trade1666792596704does not seem to exist
+
+21:37:40:| Closing_trade1666792596704does not seem to exist
+
+21:37:48:| [[0.98, '27-October', {'Tradepair': 'ETHBTC', 'Duration(Hrs)': '<bound method Trade.duration of <trade.Trade object at 0x000002C4557255D0>>'}], [0.98, '25-October', {'Duration(Hrs)': '<bound method Trade.duration of <trade.Trade object at 0x0000023C6C59F280>>', 'Tradepair': 'MATICUSDT'}], [0.98, '25-October', {'Duration(Hrs)': '<bound method Trade.duration of <trade.Trade object at 0x0000023C6C59C8E0>>', 'Tradepair': 'MATICUSDT'}], [0.98, '25-October', {'Duration(Hrs)': '<bound method Trade.duration of <trade.Trade object at 0x0000023C6C59CCA0>>', 'Tradepair': 'MATICUSDT'}], [0.98, '25-October', {'Duration(Hrs)': '<bound method Trade.duration of <trade.Trade object at 0x0000023C6C59ED40>>', 'Tradepair': 'MATICUSDT'}], [0.98, '24-October', {'Duration(Hrs)': '<bound method Trade.duration of <trade.Trade object at 0x000001E55665B910>>', 'Tradepair': 'MATICUSDT'}], [0.98, '24-October', {'Duration(Hrs)': '<bound method Trade.duration of <trade.Trade object at 0x000001E5567FB0D0>>', 'Tradepair': 'MATICUSDT'}]]
+
+21:57:43:| name 'known_signals' is not defined
+Message:After last pump with 3.2m$ contributed and gain of  500% profits 
+We have weekly pump coming up on Sunday 30-10-2022
+Another big opportunity to recover your losses 
+Those interested to participate with 5k usd or more to earn 15k usd in return should should message 
+Minimum funds 5k usd 
+
+Remember charges 10% after pump 
+@alwayswin00
+
+https://t.me/Awinmanager
+
+https://t.me/awinsub00
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 120, in my_event_handler
+    elif signal.origin.id in known_signals:
+NameError: name 'known_signals' is not defined
+
+
+21:57:46:| name 'known_signals' is not defined
+Message:After last pump with 3.2m$ contributed and gain of  500% profits 
+We have weekly pump coming up on Sunday 30-10-2022
+Another big opportunity to recover your losses 
+Those interested to participate with 5k usd or more to earn 15k usd in return should should message 
+Minimum funds 5k usd 
+
+Remember charges 10% after pump 
+@alwayswin00
+
+https://t.me/Awinmanager
+
+https://t.me/awinsub00
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 120, in my_event_handler
+    elif signal.origin.id in known_signals:
+NameError: name 'known_signals' is not defined
+
+
+22:15:15:| Closing_trade1666879968944does not seem to exist
+
+22:15:23:| Closing_trade1666879977797does not seem to exist
+
