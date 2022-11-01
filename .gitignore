@@ -1,1 +1,6 @@
 .env
+.venv
+logs
+save_data
+docs
+live_view

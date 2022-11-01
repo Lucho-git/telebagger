@@ -7,3 +7,4 @@ pyrebase4==4.5.0
 numpy==1.21.2
 python-dotenv==0.20.0
 munch
+jsonpickle

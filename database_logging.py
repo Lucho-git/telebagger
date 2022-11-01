@@ -59,6 +59,7 @@ def realtime_save_trade(tradevalue, trade, now):
     data30 = {"label": "Last-30", "values": last30}
     monthly = {"label": date_string, "values": monthly}
 
+    print('Saving to realtime...',paths.REALTIME_SAVE + signal_group)
     database.child(paths.REALTIME_SAVE + signal_group + '/Last-7').set(data7)
     database.child(paths.REALTIME_SAVE + signal_group + '/Last-30').set(data30)
     database.child(paths.REALTIME_SAVE + signal_group + '/Month/' + date_string).set(monthly)

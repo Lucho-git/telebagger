@@ -44,7 +44,7 @@ class TelegramEvents:
 
     async def get_past_messages(self, channel_id):
         '''Gets past messages from a channel'''
-        msgs = await self.client.get_messages(str(channel_id), limit=10)
+        msgs = await self.client.get_messages(str(channel_id), limit=20)
         if msgs is not None:
             print("Messages:\n---------")
             for msg in msgs:
@@ -92,6 +92,15 @@ class TelegramEvents:
             signal.origin.id = '1248393106'
             signal.origin.name = 'Hirn'
             await new_signal.new_signal(signal, self.trade_stream)
+        elif signal.message == '/newhirn':
+            signal.origin.id = '1248393106'
+            signal.origin.name = 'randomHirn'
+            for m in await self.client.get_messages('https://t.me/HIRN_CRYPTO', limit=20):
+                if 'Buy Price:' in m.message:
+                    signal.message = m.message
+                    await new_signal.new_signal(signal, self.trade_stream)
+                    break
+
         elif signal.message == '/now':
             self.trade_stream.update_trades_now()
         elif signal.message == '/status':

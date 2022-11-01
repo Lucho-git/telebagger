@@ -1,0 +1,6 @@
+Trade: EGLDUSDT | 1667289987231 | TimeStarted: [16:06 01-Nov-22] | TimeUpdated: [16:06 01-Nov-22] | LongestUpdate: 0.0m | Origin: Hirn | Status: profit_________________________________
+
+Trade: ETHBTC | 1667290706186 | TimeStarted: [16:18 01-Nov-22] | TimeUpdated: [16:19 01-Nov-22] | LongestUpdate: 0.6m | Origin: Hirn | Status: profit_________________________________
+
+Trade: EGLDUSDT | 1667290695288 | TimeStarted: [16:18 01-Nov-22] | TimeUpdated: [16:19 01-Nov-22] | LongestUpdate: 0.7m | Origin: Hirn | Status: profit_________________________________
+
