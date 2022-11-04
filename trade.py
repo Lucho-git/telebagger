@@ -48,7 +48,7 @@ class Trade:
         '''Console update of trade information'''
         time_started = datetime.fromtimestamp(float(self.start_time) / 1000).strftime('[%H:%M %d-%b-%y]')
         latest_time = datetime.fromtimestamp(float(self.latest_time) / 1000).strftime('[%H:%M %d-%b-%y]')
-        ov_string = 'Trade: ' + self.pair + ' | ' + str(self.id) + ' | TimeStarted: ' + time_started + ' | TimeUpdated: ' + str(latest_time) + ' | LongestUpdate: ' + str(round((self.max_time_between_updates/60000), 1)) + 'm | Origin: ' + self.conditions.source + ' | Status: ' + self.status
+        ov_string = self.pair + ' | ' + str(self.id) + ' | ' + 'TradePercentPlaceholder' + ' | ' + self.easy_duration() + ' | LongestUpdate: ' + str(round((self.max_time_between_updates/60000), 1)) + 'm | ' + self.conditions.source + ' | ' + self.status
         return ov_string
 
     def save_trade(self):
@@ -57,8 +57,24 @@ class Trade:
     def duration(self):
         '''Calcs trade duration'''
         duration = self.latest_time - self.start_time
-        duration = str(round((duration) / 3600000, 2))
+        duration = str(round((duration) / 1000, 2))
         return duration
+
+    def easy_duration(self):
+        time = float(self.duration())
+        unit = 'seconds'
+        if time > 60:
+            time = time/60
+            unit = 'minutes'
+        if time > 60:
+            time = time/60
+            unit = 'hours'
+            if time > 24:
+                time = time/24
+                unit = 'days'
+
+        time = str(round(time, 2))
+        return str(time) + ' ' + unit
 
     def __str__(self):
         return self.pair  + '_' + self.conditions.source + '_' + str(self.id)
