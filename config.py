@@ -13,8 +13,11 @@ import munch
 local = [True]
 if not os.name == 'nt':
     local[0] = False
+    print('Linux Detected...')
 else:
     local[0] = True
+    print('Windows Detected...')
+
 local[0] = True
 
 load_dotenv()
@@ -109,7 +112,7 @@ def get_telegram_commands():
 
 def get_storage_paths():
     """Returns filepaths"""
-    UNIQUE_ID = 'heroku/' 
+    UNIQUE_ID = 'heroku/'
 
     if local[0]:
         # Firebase Cloud Storage File Paths

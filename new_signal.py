@@ -13,7 +13,7 @@ async def get_trades(signal):
         print('Always Win Message')
 
     elif signal.origin.id == '1248393106':
-        return hirn_controller.new_signal(signal)
+        return hirn_controller.new_hirn_signal(signal)
 
 
 async def new_signal(signal, trade_stream):
