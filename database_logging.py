@@ -49,7 +49,7 @@ def realtime_save_trade(tradevalue, trade, now):
         except Exception as e:
             print('Caught Exception:', e)
             print(len(last7))
-            print(last7[7])
+            print(last7)
             error_log(str(last7))
 
 
