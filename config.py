@@ -116,8 +116,7 @@ def get_storage_paths():
         # Firebase Cloud Storage File Paths
         file_paths = {
         "ADD_MESSAGE": "trade_results/message_count/",
-        "SAVE": "save_data/",
-        "STREAM": 'savefile',
+        "SAVE": "save_data/savefile",
         "SAVE_TRADE": "trade_results/",
         "LIVE_VIEW": "live_view/",
         "LOG": 'logs/',
@@ -127,8 +126,7 @@ def get_storage_paths():
         # Heroku Version
         file_paths = {
         "ADD_MESSAGE": UNIQUE_ID + "trade_results/message_count/",
-        "SAVE": UNIQUE_ID + "save_data/",
-        "STREAM": UNIQUE_ID + 'savefile',
+        "SAVE": UNIQUE_ID + "save_data/savefile",
         "SAVE_TRADE": UNIQUE_ID + "trade_results/",
         "LIVE_VIEW": UNIQUE_ID + "live_view/",
         "LOG": UNIQUE_ID + 'logs/',

@@ -202,7 +202,7 @@ def failed_message(msg, origin, ex):
 
 def save_stream(savestream):
     '''Saves the active tradestream'''
-    save_filepath = paths.SAVE + paths.STREAM
+    save_filepath = paths.SAVE
     save_dirpath = save_filepath.rsplit('/', 1)[0]+'/'
     if not os.path.exists(save_dirpath):
         os.makedirs(save_dirpath)
@@ -219,7 +219,7 @@ def save_stream(savestream):
 
 def load_stream():
     '''Loads the active tradestream'''
-    load_filepath = paths.SAVE + paths.STREAM
+    load_filepath = paths.SAVE
     load_dirpath = load_filepath.rsplit('/', 1)[0]+'/'
     if not os.path.exists(load_dirpath):
         os.makedirs(load_dirpath)
