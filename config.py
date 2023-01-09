@@ -18,6 +18,8 @@ else:
     local[0] = True
     print('Windows Detected...')
 
+    local[0] = False
+
 load_dotenv()
 
 def get_firebase_config():
@@ -104,7 +106,9 @@ def get_telegram_commands():
         'CLEAR_PORTFOLIOS': '/clear_folios!',
         'DISPLAY_PORTFOLIOS': '/display_folios!',
         'SNAPSHOT': '/snapshot!',
-        'CLOSE_FUTURES': '/close_futures!'
+        'CLOSE_FUTURES': '/close_futures!',
+        'SIGNAL_GROUPS': ['1548802426', '1248393106'],
+        'GENERAL_GROUPS': ['1576065688', '1220789766']
         }
     return munch.munchify(commands)
 
