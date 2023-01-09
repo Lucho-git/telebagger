@@ -4,6 +4,7 @@ import asyncio
 from binance import ThreadedWebsocketManager
 from binance.streams import AsyncClient
 
+import config
 import utility
 import database_logging as db
 
@@ -66,6 +67,10 @@ class TradeStream:
             #RESTART_COUNTER[0] = RESTART_LIMIT
             self.save()
 
+    def update_live_view(self):
+        '''Saves state of active trades in live_view/active'''
+        for t in self.get_trade_list():
+            db.update_live_view(t)
 
     async def smooth_dump_stream(self):
         '''Sets all active trades to dumped, and stops the stream without saving'''
@@ -103,14 +108,13 @@ class TradeStream:
 
     async def restart_stream(self):
         '''Restarts the stream, and schedules a restart timer to ensure streams run smoothly'''
-        #db.gen_log(str(stream_status()))
+        db.gen_log(str(self.stream_status()))
         await self.close_stream()
         await self.launch_stream()
 
 
     async def restart_timer(self):
         '''Restart functionality on a timer system, that will call itself again apon being restarted, Can be Switched off using restart[0] variable'''
-
         restart_counter = 0
         if not self.restart:
             return
@@ -135,6 +139,7 @@ class TradeStream:
         print('Saving...')
         db.save_stream(self.streaming_trades)
 
+
     async def load(self):
         '''Loads stream state from savefile'''
         self.streaming_trades = db.load_stream()
@@ -145,6 +150,7 @@ class TradeStream:
                 self.twm.start_kline_socket(callback=self.coin_trade_data, symbol=i[1][0].pair, interval=AsyncClient.KLINE_INTERVAL_1MINUTE)
         else:
             self.streaming_trades = {}
+
 
     async def add_trade_to_stream(self, new_trade):
         '''Adds a new pair to stream pricedata if it's not already being streamed'''
@@ -170,8 +176,9 @@ class TradeStream:
                 print('Added', streamID, 'to stream')
                 t.stream_id = streamID
                 self.streaming_trades[t.stream_id] = [t]
-#            utility.gen_log('Started Trade: ' + t.pair + ' | ' + str(t.id))
+            db.gen_log('Started Trade: ' + t.pair + ' | ' + str(t.id))
             self.start_trade_queue.remove(t)
+            db.update_live_view(t)
 
         self.save()
         if self.stream_view:
@@ -213,25 +220,22 @@ class TradeStream:
         return status
 
 
+    def get_trade_list(self):
+        '''returns all streaming trades in a list'''
+        trade_list = []
+        for t in self.streaming_trades:
+            for trade in t:
+                trade_list.append(trade)
+        return trade_list
+
     def update_trades_now(self):
         '''Gathers socket data and sends it instantly'''
-        for t, trades in self.streaming_trades.items():
-            trade = trades[0]
+        for trades in list(self.streaming_trades.items()):
+            trade = trades[1][0]
             time = str(utility.get_timestamp_now())
             time = int(time) - 60*1000
-            klines = trade.client.get_historical_klines(symbol=trade.pair, interval=trade.client.KLINE_INTERVAL_1MINUTE , start_str=time)
+            klines = config.get_binance_config().get_historical_klines(symbol=trade.pair, interval=config.get_binance_config().KLINE_INTERVAL_1MINUTE , start_str=time)
             k = klines[0]
             new_k = {'t': k[0], 'T': k[6], 's': trade.pair, 'i': '1m', 'f': '-1', 'L': '-1', 'o': k[1], 'c': k[2], 'h': k[3], 'l': k[4], 'v': k[5], 'n': k[8], 'x': True, 'q': k[7], 'V': k[9], 'Q': k[10], 'B': k[11]}
             now_kline_msg = {'e': 'kline', 'E': k[0], 's': trade.pair, 'k': new_k}
             self.coin_trade_data(now_kline_msg)
-
-    # def savetraderesults(in_completedtrades):
-    #     for c in in_completedtrades[:]:
-    #         # Save trade to database
-    #         utility.gen_log(str(c.overview()))
-    #         utility.save_trade(c)
-    #         if c.bag_id:
-    #             utility.trade_results(c)
-    #         # Remove trade fom list
-    #         in_completedtrades.remove(c)
-    #     print("Recorded Trade to Database")

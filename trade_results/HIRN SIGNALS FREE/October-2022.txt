@@ -1,0 +1,22 @@
+Trade: MATICUSDT | 1666483489870 | TimeStarted: [08:04 23-Oct-22] | TimeUpdated: [06:01 24-Oct-22] | LongestUpdate: 2.0m | Origin: HIRN SIGNALS FREE | Status: profit_________________________________
+
+Trade: MATICUSDT | 1666483496464 | TimeStarted: [08:04 23-Oct-22] | TimeUpdated: [06:01 24-Oct-22] | LongestUpdate: 2.0m | Origin: HIRN SIGNALS FREE | Status: profit_________________________________
+
+Trade: MATICUSDT | 1666569932906 | TimeStarted: [08:05 24-Oct-22] | TimeUpdated: [23:20 25-Oct-22] | LongestUpdate: 8.0m | Origin: HIRN SIGNALS FREE | Status: profit_________________________________
+
+Trade: MATICUSDT | 1666569939517 | TimeStarted: [08:05 24-Oct-22] | TimeUpdated: [23:20 25-Oct-22] | LongestUpdate: 8.0m | Origin: HIRN SIGNALS FREE | Status: profit_________________________________
+
+Trade: MATICUSDT | 1666705746894 | TimeStarted: [21:49 25-Oct-22] | TimeUpdated: [23:20 25-Oct-22] | LongestUpdate: 8.0m | Origin: HIRN SIGNALS FREE | Status: profit_________________________________
+
+Trade: MATICUSDT | 1666705753466 | TimeStarted: [21:49 25-Oct-22] | TimeUpdated: [23:20 25-Oct-22] | LongestUpdate: 8.0m | Origin: HIRN SIGNALS FREE | Status: profit_________________________________
+
+Trade: ETHBTC | 1666792596704 | TimeStarted: [21:56 26-Oct-22] | TimeUpdated: [21:12 27-Oct-22] | LongestUpdate: 34.0m | Origin: HIRN SIGNALS FREE | Status: profit_________________________________
+
+Trade: ETHBTC | 1666792596704 | TimeStarted: [21:56 26-Oct-22] | TimeUpdated: [21:36 27-Oct-22] | LongestUpdate: 34.0m | Origin: HIRN SIGNALS FREE | Status: profit_________________________________
+
+Trade: ETHBTC | 1666792596704 | TimeStarted: [21:56 26-Oct-22] | TimeUpdated: [21:37 27-Oct-22] | LongestUpdate: 34.0m | Origin: HIRN SIGNALS FREE | Status: profit_________________________________
+
+Trade: MATICUSDT | 1666792172252 | TimeStarted: [21:49 26-Oct-22] | TimeUpdated: [04:23 28-Oct-22] | LongestUpdate: 57.0m | Origin: Hirn | Status: loss_________________________________
+
+Trade: MATICUSDT | 1666792183001 | TimeStarted: [21:49 26-Oct-22] | TimeUpdated: [04:23 28-Oct-22] | LongestUpdate: 57.0m | Origin: Hirn | Status: loss_________________________________
+

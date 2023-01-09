@@ -35,8 +35,8 @@ class TelegramEvents:
         origin = SimpleNamespace()
         signal = SimpleNamespace()
         sender_obj = await event.get_sender()
-        #chat = await event.get_chat()
-        sender = str(sender_obj.id)
+        chat = await event.get_chat()
+        sender = str(chat.id)
         origin.name = utils.get_display_name(sender_obj)
         origin.id = sender
         signal.origin, signal.message, signal.timestamp = origin, event.raw_text, event.date
@@ -44,7 +44,7 @@ class TelegramEvents:
 
     async def get_past_messages(self, channel_id):
         '''Gets past messages from a channel'''
-        msgs = await self.client.get_messages(channel_id, limit=10)
+        msgs = await self.client.get_messages(str(channel_id), limit=20)
         if msgs is not None:
             print("Messages:\n---------")
             for msg in msgs:
@@ -53,7 +53,8 @@ class TelegramEvents:
                 print(msg.signal.message)
                 print('______________________')
                 if not msg.photo:
-                    await self.client.send_message(1576065688, msg)
+                    #await self.client.send_message(1576065688, msg)
+                    pass
                 else:
                     print('has photo')
 
@@ -91,20 +92,27 @@ class TelegramEvents:
             signal.origin.id = '1248393106'
             signal.origin.name = 'Hirn'
             await new_signal.new_signal(signal, self.trade_stream)
+        elif signal.message == '/newhirn':
+            signal.origin.id = '1248393106'
+            signal.origin.name = 'randomHirn'
+            for m in await self.client.get_messages('https://t.me/HIRN_CRYPTO', limit=20):
+                if 'Buy Price:' in m.message:
+                    signal.message = m.message
+                    await new_signal.new_signal(signal, self.trade_stream)
+                    break
+
         elif signal.message == '/now':
             self.trade_stream.update_trades_now()
-            example = {'e': 'kline', 'E': 1665296280006, 's': 'COTIBTC', 'k': {'t': 1665296220000, 'T': 1665296279999, 's': 'COTIBTC', 'i': '1m', 'f': -1, 'L': -1, 'o': '0.00000580', 'c': '0.00000580', 'h': '0.00000580', 'l': '0.00000580', 'v': '0.00000000', 'n': 0, 'x': True, 'q': '0.00000000', 'V': '0.00000000', 'Q': '0.00000000', 'B': '0'}}
         elif signal.message == '/status':
             print(self.trade_stream.stream_status())
         elif signal.message == '/past':
-            self.get_past_messages('1548802426')
+            await self.get_past_messages('1248393106')
         elif signal.message == '/except':
             raise Exception('Log this exception please')
         elif signal.message == '/dump':
             await self.trade_stream.dump_stream()
         elif signal.message == '/smoothdump':
             await self.trade_stream.smooth_dump_stream()
-
 
     async def start_telegram_handler(self, client):
         '''telegram message event handler'''
@@ -116,12 +124,14 @@ class TelegramEvents:
                 if signal.origin.id in self.com.SIGNAL_GROUPS:
                     await new_signal.new_signal(signal, self.trade_stream)
 
-                elif signal.origin.id == '1646848328':
+                elif signal.origin.id == '5935711140':
                     await self.telegram_command(signal)
+                elif signal.origin.id in self.com.GENERAL_GROUPS:
+                    pass
 
                 else:
-                    print('New Message:', signal)
-                    #db.error_log('Unrecognized channel', str(signal))
+                    print('new chat ID:', signal.origin.id, signal.origin.name)
+                    db.gen_log('new chat ID:' + str(signal.origin.id) + signal.origin.name)
                     #Deal with unrecognized telegram channels
 
             except Exception as e:

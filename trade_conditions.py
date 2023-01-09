@@ -1,4 +1,5 @@
 import utility
+import config
 '''
 Defines a set of conditions and parameters, 
 for a signal to become a trade.
@@ -14,6 +15,7 @@ class SpotBasic:
         self.signal = signal
         self.coin = coin
         self.base = base
+        self.pair = coin+base
         self.entry = entry
         self.profit = profit
         self.loss = loss
@@ -39,8 +41,16 @@ class SpotBasic:
     def get_value(self, trade):
         '''Returns current value of the trade'''
         raw_change = trade.entry_price - trade.last_price
-        decimal_change = abs(raw_change)/trade.entry_price
-        return decimal_change
+        decimal_change = raw_change/trade.entry_price
+        return decimal_change + 1
+
+    def get_time(self):
+        '''Gets the starting trade time, should use binance'''
+        return utility.get_timestamp_now()
+
+    def get_price(self):
+        '''Gets current price from binanace'''
+        return float(config.get_binance_config().get_symbol_ticker(symbol=self.pair)['price'])
 
 class SpotAdvanced(SpotBasic):
     """Spot advanced allows for multiple exit prices and percentages"""
@@ -63,3 +73,11 @@ class FutureAdvanced(SpotAdvanced):
         super().__init__(source, signal, 'USD', coin, entry, profit, loss, profit_amount, loss_amount, timeout)
         self.direction = direction
         self.leverage = leverage
+
+
+class SpotBasicBinance(SpotBasic):
+    '''SpotBasic real binance trade'''
+    def __init__(self, user, source, signal, coin, base, entry, profit, loss=None, timeout=None):
+        super().__init__(source, signal, coin, base, entry, profit, loss, timeout)
+        self.user = user
+        self.receipt = self.user.binance.market_trade(self)

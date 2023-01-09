@@ -13,8 +13,11 @@ import munch
 local = [True]
 if not os.name == 'nt':
     local[0] = False
+    print('Linux Detected...')
 else:
     local[0] = True
+    print('Windows Detected...')
+
 local[0] = True
 
 load_dotenv()
@@ -80,7 +83,8 @@ def get_telegram_commands():
         'DISPLAY_PORTFOLIOS': '/display_folios',
         'SNAPSHOT': '/snapshot',
         'CLOSE_FUTURES': '/close_futures',
-        'SIGNAL_GROUPS': ['1548802426', '1248393106']
+        'SIGNAL_GROUPS': ['1548802426', '1248393106'],
+        'GENERAL_GROUPS': ['1576065688', '1220789766']
         }
     else:
         # Stream Commands Heroku Hosted
@@ -108,7 +112,7 @@ def get_telegram_commands():
 
 def get_storage_paths():
     """Returns filepaths"""
-    UNIQUE_ID = 'heroku/' 
+    UNIQUE_ID = 'heroku/'
 
     if local[0]:
         # Firebase Cloud Storage File Paths
@@ -117,7 +121,7 @@ def get_storage_paths():
         "SAVE": "save_data/",
         "STREAM": 'savefile',
         "SAVE_TRADE": "trade_results/",
-        "RESULTS": "trade_results/juice/",
+        "LIVE_VIEW": "live_view/",
         "LOG": 'logs/',
         "REALTIME_SAVE": 'signals/'
         }
@@ -128,7 +132,7 @@ def get_storage_paths():
         "SAVE": UNIQUE_ID + "save_data/",
         "STREAM": UNIQUE_ID + 'savefile',
         "SAVE_TRADE": UNIQUE_ID + "trade_results/",
-        "RESULTS": UNIQUE_ID + "trade_results/juice/",
+        "LIVE_VIEW": UNIQUE_ID + "live_view/",
         "LOG": UNIQUE_ID + 'logs/',
         "REALTIME_SAVE": UNIQUE_ID + 'signals/'
         }

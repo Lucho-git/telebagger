@@ -1,0 +1,290 @@
+Daily General Logs 22-Oct-22
+
+17:08:02:| Telegram Robot: /stop
+
+17:08:26:| Launching Telegram Scraper...
+
+17:08:33:| Telegram Robot: /hirn
+
+17:08:38:| Telegram Robot: /now
+
+17:09:22:| Telegram Robot: /now
+
+17:10:55:| Telegram Robot: /hirn
+
+17:11:01:| Telegram Robot: /now
+
+17:39:43:| Telegram Robot: /stop
+
+17:39:49:| Launching Telegram Scraper...
+
+17:39:57:| Telegram Robot: /hirn
+
+17:40:02:| Telegram Robot: /now
+
+17:40:16:| Telegram Robot: ls
+
+17:40:18:| Telegram Robot: /dump
+
+17:40:27:| Telegram Robot: /dump
+
+17:43:45:| Telegram Robot: /stop
+
+17:44:07:| Launching Telegram Scraper...
+
+17:44:21:| Telegram Robot: /stop
+
+17:44:50:| Launching Telegram Scraper...
+
+17:44:59:| Telegram Robot: /hirn
+
+17:45:04:| Telegram Robot: /close
+
+17:45:10:| Telegram Robot: /now
+
+17:45:38:| Telegram Robot: /stop
+
+17:45:45:| Launching Telegram Scraper...
+
+17:45:50:| Telegram Robot: /now
+
+17:46:04:| Telegram Robot: /hirn
+
+17:46:09:| Telegram Robot: /now
+
+17:46:18:| Telegram Robot: /now
+
+17:49:57:| Telegram Robot: /stop
+
+17:50:03:| Launching Telegram Scraper...
+
+17:50:16:| Telegram Robot: /hirn
+
+18:21:19:| Telegram Robot: /stop
+
+18:21:25:| Launching Telegram Scraper...
+
+18:21:31:| Telegram Robot: /hirn
+
+18:21:41:| Telegram Robot: /now
+
+18:22:11:| Telegram Robot: /stop
+
+18:22:17:| Launching Telegram Scraper...
+
+18:22:21:| Telegram Robot: /hirn
+
+18:22:29:| Telegram Robot: /now
+
+18:55:40:| Telegram Robot: /stop
+
+18:55:58:| Launching Telegram Scraper...
+
+18:56:04:| Telegram Robot: /hirn
+
+18:56:06:| Started Trade: EGLDUSDT | 1666436166714
+
+18:57:37:| Telegram Robot: /hirn
+
+18:57:40:| Started Trade: EGLDUSDT | 1666436259874
+
+19:07:55:| Telegram Robot: /stop
+
+19:08:02:| Launching Telegram Scraper...
+
+19:08:07:| Telegram Robot: /hirn
+
+19:08:09:| Started Trade: EGLDUSDT | 1666436889211
+
+19:08:16:| Telegram Robot: .now
+
+19:08:46:| Telegram Robot: .
+
+19:15:34:| Telegram Robot: /stop
+
+19:15:41:| Launching Telegram Scraper...
+
+19:15:56:| Telegram Robot: /hirn
+
+19:15:59:| Started Trade: EGLDUSDT | 1666437358581
+
+19:16:05:| Telegram Robot: /now
+
+19:16:55:| Telegram Robot: /stop
+
+19:17:15:| Launching Telegram Scraper...
+
+19:17:25:| Telegram Robot: /now
+
+19:18:09:| Telegram Robot: /stop
+
+19:18:15:| Launching Telegram Scraper...
+
+19:18:20:| Telegram Robot: /hirn
+
+19:18:22:| Started Trade: EGLDUSDT | 1666437502186
+
+19:18:37:| Telegram Robot: /now
+
+19:19:26:| Telegram Robot: /stop
+
+19:19:32:| Launching Telegram Scraper...
+
+19:19:37:| Telegram Robot: /hirn
+
+19:19:39:| Started Trade: EGLDUSDT | 1666437579529
+
+19:19:45:| Telegram Robot: /now
+
+19:21:21:| Telegram Robot: /stop
+
+19:21:27:| Launching Telegram Scraper...
+
+19:21:32:| Telegram Robot: /hirn
+
+19:21:34:| Started Trade: EGLDUSDT | 1666437694543
+
+19:21:40:| Telegram Robot: /now
+
+19:21:55:| Telegram Robot: .
+
+19:21:57:| Telegram Robot: w
+
+19:22:55:| Telegram Robot: /stop
+
+19:23:01:| Launching Telegram Scraper...
+
+19:23:06:| Telegram Robot: /hirn
+
+19:23:09:| Started Trade: EGLDUSDT | 1666437788516
+
+19:23:15:| Telegram Robot: /now
+
+19:24:09:| Telegram Robot: /stop
+
+19:24:18:| Launching Telegram Scraper...
+
+19:24:25:| Telegram Robot: /hirn
+
+19:24:27:| Started Trade: EGLDUSDT | 1666437867531
+
+19:24:36:| Telegram Robot: /now
+
+19:25:13:| Telegram Robot: /stop
+
+19:25:19:| Launching Telegram Scraper...
+
+19:25:24:| Telegram Robot: /hirn
+
+19:25:27:| Started Trade: EGLDUSDT | 1666437926729
+
+19:25:33:| Telegram Robot: /now
+
+19:26:39:| Telegram Robot: /stop
+
+19:26:47:| Launching Telegram Scraper...
+
+19:26:53:| Telegram Robot: /hirn
+
+19:26:56:| Started Trade: EGLDUSDT | 1666438016108
+
+19:27:02:| Telegram Robot: /now
+
+19:27:17:| Telegram Robot: /now
+
+19:28:29:| Telegram Robot: /stop
+
+19:28:35:| Launching Telegram Scraper...
+
+19:28:40:| Telegram Robot: /hirn
+
+19:28:44:| Started Trade: EGLDUSDT | 1666438123181
+
+19:28:49:| Telegram Robot: /now
+
+19:29:22:| Telegram Robot: /stop
+
+19:29:29:| Launching Telegram Scraper...
+
+19:29:33:| Telegram Robot: /hirn
+
+19:29:36:| Started Trade: EGLDUSDT | 1666438175827
+
+19:29:42:| Telegram Robot: /now
+
+19:30:07:| Telegram Robot: /stop
+
+19:30:14:| Launching Telegram Scraper...
+
+19:30:22:| Telegram Robot: /hirn
+
+19:30:25:| Started Trade: EGLDUSDT | 1666438225182
+
+19:30:31:| Telegram Robot: /now
+
+19:33:52:| Telegram Robot: /stop
+
+19:33:58:| Launching Telegram Scraper...
+
+19:34:02:| Telegram Robot: /hirn
+
+19:34:05:| Started Trade: EGLDUSDT | 1666438444872
+
+19:34:10:| Telegram Robot: /now
+
+19:41:06:| Telegram Robot: /stop
+
+19:41:12:| Launching Telegram Scraper...
+
+19:41:17:| Telegram Robot: /hirn
+
+19:41:20:| Started Trade: EGLDUSDT | 1666438880023
+
+20:41:15:| 
+20:41:15:| ___Streaming___
+20:41:15:| 
+20:41:15:| _______________
+20:41:15:| 
+
+20:41:18:| 
+20:41:18:| ___Streaming___
+20:41:18:| 
+20:41:18:| _______________
+20:41:18:| 
+
+21:41:23:| 
+21:41:23:| ___Streaming___
+21:41:23:| 
+21:41:23:| _______________
+21:41:23:| 
+
+21:41:25:| 
+21:41:25:| ___Streaming___
+21:41:25:| 
+21:41:25:| _______________
+21:41:25:| 
+
+22:41:30:| 
+22:41:30:| ___Streaming___
+22:41:30:| 
+22:41:30:| _______________
+22:41:30:| 
+
+22:41:33:| 
+22:41:33:| ___Streaming___
+22:41:33:| 
+22:41:33:| _______________
+22:41:33:| 
+
+23:41:38:| 
+23:41:38:| ___Streaming___
+23:41:38:| 
+23:41:38:| _______________
+23:41:38:| 
+
+23:41:40:| 
+23:41:40:| ___Streaming___
+23:41:40:| 
+23:41:40:| _______________
+23:41:40:| 
+
