@@ -47,10 +47,8 @@ def realtime_save_trade(tradevalue, trade, now):
         try:
             del last7[7]
         except Exception as e:
-            print('Caught Exception:', e)
-            print(len(last7))
-            print(last7)
-            error_log(str(last7))
+            error_log(('Caught Exception:' + str(e)))
+            error_log(('Array of length: ' + len(last7) + '|' + str(last7)))
 
 
     if len(last30) > 29:
