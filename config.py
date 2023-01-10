@@ -52,10 +52,10 @@ def get_telegram_config():
     api_hash = os.getenv('TELEGRAM_HASH')
     if local[0]:
         #stringsesh = os.getenv('TELEGRAM_LOCALSAVE')
-        stringsesh = '1BVtsOIYBu3-mW8LWNklskWf4ubCwmoTJCMtaTn1yotapoMDSnukfzWHHy0VZdOu5THq8Z8dvfLZ-3QYoqZW7sFja_0uk_ovCdQTOhdzUu72KMnSoqxntyvytcfYQyfVdt1UV7V1d4Zhxy9WlMJEl3IcEeWbCyruidkkVGs4n1cW_vh__Li3PvHfKTuJA5EeZ58KNp1LzmDC-G66T8chUqU-RKHdFt2RT6NEQL-6zJLYyq_VTMgRiv-8HtfEs2OOyI-rsVsOwHC-p7_794gPk_B14HQ02zoWne_QZNesgc2NvsvNdwr_Eqg9D883qD9xEiSHvZNNIiDJJaM6b5IMfH-NZe9022dk='
+        stringsesh = '1BVtsOMQBuyhIoQWYzzU2C-IyIo0X2VTfU4lUdUxZh06BWVCHo9vpxyZuRqyFVS-dmQ2qF48TJKZZBWjHEqnx6E9VVSRxruaqVoeeLWWlFgAR4Vqij25d65tbdI5rKdJzEDkDfz2z5u11WwgAjFnOmdrQLgg4qFnOj8AlJxQyEqxZ3DRgJKy5uMg8nKg_BZx8uvNhAD-PI2NDMS96YJWSSt5LTS63v5GmBDOFq551Tf0zbmUaINqmwVQdHbPel7hTJahlP3UcuGD3ij0o96mu6kwk0bhFgg7QpD8LPJYVNMFFMGiDS7jHnF_2_wrpV_bHJY7Mn-J8qZuYJpm4__cYIk4yBFW_lTg='
     else:
         #stringsesh = os.getenv('TELEGRAM_SERVERSAVE')
-        stringsesh = '1BVtsOIYBu0ovo28ka-RmvdqJHl7RbsJJpyDOKdEjyfK3-8E5tKCiaHyPmgaTvb1zIB-irRQqHtEOSw0ZL3LAvJTCfkMTuLet_11w1Zr6iaYNc_yrWV9h8r3OPEaTcKjXeEc-Nh9DLNhwjEIJ1EIS5PCPVeoEn9nwlFqfh8dtXbGGl0U3vLcp1-0wsp7tGUw958MZkmvvgFvZyiJ-iKr7FImY_1_Li4dY3S2ex68fz4UPSukfCzPpTJBf_HGX5dDvMT9HYF5xWG2XqlqoueSHRR9x4ylhq6vnkJOtfftSmPXoO2E76Gd80b_1UIbOfQ_y0fy5lvGsMI3_UZXvqV9cVaariRrHUlE='
+        stringsesh = '1BVtsOMQBuyB5EZUQigHT4rPrpS7kDG9-KQp8Hb0vJdKAExgm8ENk1rwrENM2XX4HQ_2x7C75ztyftgmc8FkS2XovH50jEDXgDocoQgwoNATKz-FCvY80HPhMgSQV3VYT93EQj2hXWIEmPX6RhqejXxwLP6V1VkxjQsYy6B7FPT0Ti03JyZUXVFTRJOCS8ozvQgJvnaNIyqgDgtk5kRJ_B9QoZBZNm5-ZKQwj2HVyi1SJyhc2TfhZSRp38fSKWcmBPPloLkw5SMh9VpD6WdG_AcJgMGt8JGjyC7wWZYP7NhI1aNW3c8lWg19AIVIvmkzUWVO3X_er_BNdLaCZVNcEanb69jMie-E='
     return TelegramClient(StringSession(stringsesh), api_id, api_hash)
 
 def get_telegram_commands():
