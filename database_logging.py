@@ -21,7 +21,7 @@ def realtime_save_trade(tradevalue, trade, now):
     day_string = now.strftime("%d-%B")
 
     signal_group = trade.conditions.signal.origin.name
-    newvalue = [tradevalue-1, day_string, {'Tradepair': trade.pair, 'Duration(Hrs)': str(trade.duration())}]
+    newvalue = [tradevalue-1, day_string, {'Tradepair': trade.pair, 'Duration(Hrs)': trade.duration_hours()}]
 
     last7 = database.child(paths.REALTIME_SAVE + signal_group + '/Last-7').get()
     last30 = database.child(paths.REALTIME_SAVE + signal_group + '/Last-30').get()
@@ -47,10 +47,8 @@ def realtime_save_trade(tradevalue, trade, now):
         try:
             del last7[7]
         except Exception as e:
-            print('Caught Exception:', e)
-            print(len(last7))
-            print(last7[7])
-            error_log(str(last7))
+            error_log(('Caught Exception:' + str(e)))
+            error_log(('Array of length: ' + len(last7) + '|' + str(last7)))
 
 
     if len(last30) > 29:
@@ -204,7 +202,7 @@ def failed_message(msg, origin, ex):
 
 def save_stream(savestream):
     '''Saves the active tradestream'''
-    save_filepath = paths.SAVE + paths.STREAM
+    save_filepath = paths.SAVE
     save_dirpath = save_filepath.rsplit('/', 1)[0]+'/'
     if not os.path.exists(save_dirpath):
         os.makedirs(save_dirpath)
@@ -221,7 +219,7 @@ def save_stream(savestream):
 
 def load_stream():
     '''Loads the active tradestream'''
-    load_filepath = paths.SAVE + paths.STREAM
+    load_filepath = paths.SAVE
     load_dirpath = load_filepath.rsplit('/', 1)[0]+'/'
     if not os.path.exists(load_dirpath):
         os.makedirs(load_dirpath)

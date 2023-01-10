@@ -18,8 +18,6 @@ else:
     local[0] = True
     print('Windows Detected...')
 
-local[0] = True
-
 load_dotenv()
 
 def get_firebase_config():
@@ -106,7 +104,9 @@ def get_telegram_commands():
         'CLEAR_PORTFOLIOS': '/clear_folios!',
         'DISPLAY_PORTFOLIOS': '/display_folios!',
         'SNAPSHOT': '/snapshot!',
-        'CLOSE_FUTURES': '/close_futures!'
+        'CLOSE_FUTURES': '/close_futures!',
+        'SIGNAL_GROUPS': ['1548802426', '1248393106'],
+        'GENERAL_GROUPS': ['1576065688', '1220789766']
         }
     return munch.munchify(commands)
 
@@ -118,8 +118,7 @@ def get_storage_paths():
         # Firebase Cloud Storage File Paths
         file_paths = {
         "ADD_MESSAGE": "trade_results/message_count/",
-        "SAVE": "save_data/",
-        "STREAM": 'savefile',
+        "SAVE": "save_data/savefile",
         "SAVE_TRADE": "trade_results/",
         "LIVE_VIEW": "live_view/",
         "LOG": 'logs/',
@@ -129,8 +128,7 @@ def get_storage_paths():
         # Heroku Version
         file_paths = {
         "ADD_MESSAGE": UNIQUE_ID + "trade_results/message_count/",
-        "SAVE": UNIQUE_ID + "save_data/",
-        "STREAM": UNIQUE_ID + 'savefile',
+        "SAVE": UNIQUE_ID + "save_data/savefile",
         "SAVE_TRADE": UNIQUE_ID + "trade_results/",
         "LIVE_VIEW": UNIQUE_ID + "live_view/",
         "LOG": UNIQUE_ID + 'logs/',
