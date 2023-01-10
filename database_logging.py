@@ -21,7 +21,7 @@ def realtime_save_trade(tradevalue, trade, now):
     day_string = now.strftime("%d-%B")
 
     signal_group = trade.conditions.signal.origin.name
-    newvalue = [tradevalue-1, day_string, {'Tradepair': trade.pair, 'Duration(Hrs)': str(trade.duration())}]
+    newvalue = [tradevalue-1, day_string, {'Tradepair': trade.pair, 'Duration(Hrs)': trade.duration_hours()}]
 
     last7 = database.child(paths.REALTIME_SAVE + signal_group + '/Last-7').get()
     last30 = database.child(paths.REALTIME_SAVE + signal_group + '/Last-30').get()

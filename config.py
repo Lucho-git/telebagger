@@ -18,8 +18,6 @@ else:
     local[0] = True
     print('Windows Detected...')
 
-    local[0] = False
-
 load_dotenv()
 
 def get_firebase_config():

@@ -64,6 +64,12 @@ class Trade:
         duration = str(round((duration) / 1000, 2))
         return duration
 
+    def duration_hours(self):
+        '''returns duration in hours'''
+        time = float(self.duration())
+        time = time/3600
+        return str(round(time, 2))
+
     def easy_duration(self):
         '''Returns most readable time duration'''
         time = float(self.duration())
