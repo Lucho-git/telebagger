@@ -124,7 +124,7 @@ class TelegramEvents:
                 if signal.origin.id in self.com.SIGNAL_GROUPS:
                     await new_signal.new_signal(signal, self.trade_stream)
 
-                elif signal.origin.id == '5823636544' or signal.origin.id == '5935711140':
+                elif signal.origin.id == '5963551324' or signal.origin.id == '5935711140':
                     await self.telegram_command(signal)
                 elif signal.origin.id in self.com.GENERAL_GROUPS:
                     pass
