@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 from telethon import TelegramClient
 from telethon.sessions import StringSession
 import munch
-
+import discord
+from discord.ext import commands
 
 # Get environment variables
 local = [True]
@@ -58,11 +59,17 @@ def get_telegram_config():
         stringsesh = '1BVtsOMQBuyB5EZUQigHT4rPrpS7kDG9-KQp8Hb0vJdKAExgm8ENk1rwrENM2XX4HQ_2x7C75ztyftgmc8FkS2XovH50jEDXgDocoQgwoNATKz-FCvY80HPhMgSQV3VYT93EQj2hXWIEmPX6RhqejXxwLP6V1VkxjQsYy6B7FPT0Ti03JyZUXVFTRJOCS8ozvQgJvnaNIyqgDgtk5kRJ_B9QoZBZNm5-ZKQwj2HVyi1SJyhc2TfhZSRp38fSKWcmBPPloLkw5SMh9VpD6WdG_AcJgMGt8JGjyC7wWZYP7NhI1aNW3c8lWg19AIVIvmkzUWVO3X_er_BNdLaCZVNcEanb69jMie-E='
     return TelegramClient(StringSession(stringsesh), api_id, api_hash)
 
-def get_telegram_commands():
+def get_discord_config():
+    """Returns Discord Client"""
+    SELF_TOKEN = 'MTA2NDkwMzYyMzYwMTA0MTQwOA.GTiTCr.v4k71gDRzlpfq2o3W3wjEWaA_B-vlwiVGWnxZ0'
+    bot = commands.Bot(command_prefix='>', self_bot=True)
+    return [bot, SELF_TOKEN]
+
+def get_commands():
     """Returns set of telegram commands"""
     if local[0]:
         # Stream Commands Local
-        commands = {
+        chat_commands = {
         'STOP': '/stop',
         'STREAM': '/stream',
         'STOPSTREAM': '/stopstream',
@@ -86,7 +93,7 @@ def get_telegram_commands():
         }
     else:
         # Stream Commands Heroku Hosted
-        commands = {
+        chat_commands = {
         'STOP': '/stop!',
         'STREAM': '/stream!',
         'STOPSTREAM': '/stopstream!',
@@ -108,7 +115,7 @@ def get_telegram_commands():
         'SIGNAL_GROUPS': ['1548802426', '1248393106'],
         'GENERAL_GROUPS': ['1576065688', '1220789766']
         }
-    return munch.munchify(commands)
+    return munch.munchify(chat_commands)
 
 def get_storage_paths():
     """Returns filepaths"""

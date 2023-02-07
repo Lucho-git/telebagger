@@ -17,18 +17,15 @@ from types import SimpleNamespace
 from trade_stream import TradeStream
 import utility
 import new_signal
-from config import get_telegram_config, get_telegram_commands
+from config import get_telegram_config, get_commands
 import database_logging as db
 
 class TelegramEvents:
     '''Handles telegram events'''
     def __init__(self, trade_stream):
-        self.com = config.get_telegram_commands()
+        self.com = config.get_commands()
         self.trade_stream = trade_stream
-
-    def init_client(self):
-        '''Breaks when I put this inside of init for some reason?'''
-        self.client = config.get_telegram_config() # pylint: disable=W0201
+        self.client = config.get_telegram_config()
 
     async def generate_signal(self, event):
         '''Builds a signal from the telegram event'''
@@ -124,7 +121,7 @@ class TelegramEvents:
                 if signal.origin.id in self.com.SIGNAL_GROUPS:
                     await new_signal.new_signal(signal, self.trade_stream)
 
-                elif signal.origin.id == '5963551324' or signal.origin.id == '5935711140':
+                elif signal.origin.id == '5894740183' or signal.origin.id == '5935711140':
                     await self.telegram_command(signal)
                 elif signal.origin.id in self.com.GENERAL_GROUPS:
                     pass
@@ -139,11 +136,9 @@ class TelegramEvents:
 
     async def setup_scraper(self):
         '''Start recieving telegram events'''
-        self.init_client()
         await self.start_telegram_handler(self.client)
         db.gen_log('Launching Telegram Scraper...')
         await self.client.start()
-        #await self.client.get_dialogs()
         print('Ready')
         await self.client.run_until_disconnected()
-        
+        print('finished telegram')
