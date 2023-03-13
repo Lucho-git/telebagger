@@ -97,6 +97,14 @@ class TradeStream:
         for stream_socket in self.streaming_trades:
             self.twm.stop_socket(stream_socket)
         self.streaming_trades = {}
+        pending_tasks = asyncio.all_tasks()
+
+        # While this loop appears to do nothing, without it the program freezes here :)
+        # Can remove this block, for a warning
+        for task in pending_tasks:
+            pass
+        asyncio.gather(*pending_tasks, return_exceptions=True)
+        self.twm.stop()
 
 
     async def launch_stream(self):

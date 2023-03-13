@@ -61,7 +61,7 @@ def get_telegram_config():
 
 def get_discord_config():
     """Returns Discord Client"""
-    SELF_TOKEN = 'MTA2NDkwMzYyMzYwMTA0MTQwOA.Gbxbci.P8I4-5-ItCi9sGoBsKx8o7pQyVpO25Hnf8UI8o'
+    SELF_TOKEN = 'MTA2NDkwMzYyMzYwMTA0MTQwOA.Gvwoye.vCwIBYjlgdThwIucmmJjCO1UonZqfZVXCbTqtA'
     
     bot = commands.Bot(command_prefix='>', self_bot=True)
     return [bot, SELF_TOKEN]

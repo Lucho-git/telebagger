@@ -23,8 +23,9 @@ async def main():
     print('Connecting to telebagger...')
 
     await asyncio.gather(telebagger.setup_scraper(), discbagger.setup_scraper())
-    print('Exiting....')
 
+    print('Exiting....')
+    print('Leaving Main loop')
 if __name__ == '__main__':
     nest_asyncio.apply()
     loop = asyncio.get_event_loop()

@@ -28,9 +28,10 @@ class DiscordEvents:
         
         @client.event
         async def on_message(message):
-            print(message)
             print('Discord Message')
-            if message.channel.id == '1064541939640324137':
+            print(message)
+            print(message.content)
+            if message.channel.id == 1064541939640324137:
                 print('Discord Robot++')
                 await self.telegram_command(message)
 
@@ -55,8 +56,6 @@ class DiscordEvents:
 
         #     except Exception as e:
         #         db.error_log(str(e) + '\nMessage:' + event.raw_text + '\nExcept:' + str(traceback.format_exc()))
-        client.add_listener(on_message)
-
 
 
     async def telegram_command(self, signal):
@@ -64,10 +63,12 @@ class DiscordEvents:
         print("Disc Robot Section +++")
         #db.gen_log('Telegram Robot: ' + signal.message)
         # Bot commands
-        if signal.message == self.com.STOP:
+        print('S:',signal.content)
+
+        if signal.content == self.com.STOP:
             await self.trade_stream.close_stream()
             print('Disconnecting Discbagger...')
-            await self.client.disconnect()
+            await self.client.close()
         # Stream Commands
         # elif signal.message == self.com.STREAM:
         #     await self.trade_stream.streamer()
