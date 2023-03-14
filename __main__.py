@@ -18,15 +18,25 @@ async def main():
     '''Bagger'''
     init()  # Initialising colorama
     trade_stream = TradeStream() # Init trade stream
-    discbagger = DiscordEvents(trade_stream)
-    telebagger = TelegramEvents(trade_stream)
+
+    #communication channel, so discord and telegram can exit simeltaneously
+    c1 = asyncio.Queue()
+    c2 = asyncio.Queue()
+    channel = [c1,c2]
+
+    discbagger = DiscordEvents(trade_stream, channel)
+    telebagger = TelegramEvents(trade_stream, channel)
+    #This ensures program exits smoothly on command
+    asyncio.create_task(telebagger.exit_self())
+    asyncio.create_task(discbagger.exit_self())
+
     print('Connecting to telebagger...')
-
-    await asyncio.gather(telebagger.setup_scraper(), discbagger.setup_scraper())
-
+    await asyncio.gather(telebagger.run(), discbagger.run())
     print('Exiting....')
-    print('Leaving Main loop')
 if __name__ == '__main__':
     nest_asyncio.apply()
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
+
+
+    

@@ -22,10 +22,21 @@ import database_logging as db
 
 class TelegramEvents:
     '''Handles telegram events'''
-    def __init__(self, trade_stream):
+    def __init__(self, trade_stream, channel):
         self.com = config.get_commands()
         self.trade_stream = trade_stream
+        self.channel = channel
         self.client = config.get_telegram_config()
+    
+
+    async def exit_self(self):
+        '''Polls to see if should disconnect'''
+        while True:
+            msg = await self.channel[1].get()
+            if msg == 'close':
+                print('Disconnecting Telebagger...')
+                await self.client.disconnect()
+                break
 
     async def generate_signal(self, event):
         '''Builds a signal from the telegram event'''
@@ -63,6 +74,7 @@ class TelegramEvents:
         if signal.message == self.com.STOP:
             await self.trade_stream.close_stream()
             print('Disconnecting Telebagger...')
+            await self.channel[0].put('close')
             await self.client.disconnect()
         # Stream Commands
         elif signal.message == self.com.STREAM:
@@ -134,11 +146,10 @@ class TelegramEvents:
             except Exception as e:
                 db.error_log(str(e) + '\nMessage:' + event.raw_text + '\nExcept:' + str(traceback.format_exc()))
 
-    async def setup_scraper(self):
+    async def run(self):
         '''Start recieving telegram events'''
         await self.start_telegram_handler(self.client)
         db.gen_log('Launching Telegram Scraper...')
         await self.client.start()
-        print('Ready')
+        print('Ready...')
         await self.client.run_until_disconnected()
-        print('finished telegram')

@@ -10,14 +10,27 @@ import database_logging as db
 import os
 import discord
 from discord.ext import commands
+import asyncio
 
 
 class DiscordEvents:
     '''Handles discord events'''
-    def __init__(self, trade_stream):
+    def __init__(self, trade_stream, channel):
         self.com = config.get_commands()
         self.trade_stream = trade_stream
+        self.channel = channel
         self.client, self.key = config.get_discord_config()
+
+    async def exit_self(self):
+        '''Polls to see if should disconnect'''
+        while True:
+            # Check the queue for messages
+            msg = await self.channel[0].get()
+            if msg == 'close':
+                print('Disconnecting Discbagger...')
+                await self.client.close()
+                break
+            await asyncio.sleep(1)
 
     async def start_discord_handler(self, client):
         '''discord message event handler'''
@@ -28,11 +41,10 @@ class DiscordEvents:
         
         @client.event
         async def on_message(message):
-            print('Discord Message')
             print(message)
-            print(message.content)
+            print('Discord:', message.content)
             if message.channel.id == 1064541939640324137:
-                print('Discord Robot++')
+                print('Discord Robot ++')
                 await self.telegram_command(message)
 
             if message.author == client.user:
@@ -60,14 +72,12 @@ class DiscordEvents:
 
     async def telegram_command(self, signal):
         '''Commands which can be manually triggered through the telegram client'''
-        print("Disc Robot Section +++")
         #db.gen_log('Telegram Robot: ' + signal.message)
         # Bot commands
-        print('S:',signal.content)
-
         if signal.content == self.com.STOP:
             await self.trade_stream.close_stream()
             print('Disconnecting Discbagger...')
+            await self.channel[1].put('close')
             await self.client.close()
         # Stream Commands
         # elif signal.message == self.com.STREAM:
@@ -118,10 +128,9 @@ class DiscordEvents:
 
 
 
-    async def setup_scraper(self):
+    async def run(self):
         '''Start recieving discord events'''
         await self.start_discord_handler(self.client)
         #db.gen_log('Launching Telegram Scraper...')
-        print('running...')
+        print('Connecting to discord...')
         await self.client.start(self.key)
-        print('finished discord')
