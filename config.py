@@ -85,12 +85,12 @@ def get_commands():
         'ALWAYS_WIN_SIGNAL': '/aw',
         'HIRN_SIGNAL': '/hirn',
         'NEW_PORTFOLIO': '/newport',
-        'CLEAR_PORTFOLIOS': '/clear_folios',
-        'DISPLAY_PORTFOLIOS': '/display_folios',
+        'CLEAR_PORTFOLIO': '/clear_folio',
+        'DISPLAY_PORTFOLIO': '/display_folio',
         'SNAPSHOT': '/snapshot',
-        'CLOSE_FUTURES': '/close_futures',
-        'SIGNAL_GROUPS': ['1548802426', '1248393106'],
-        'GENERAL_GROUPS': ['1576065688', '1220789766']
+        'CLOSE_FUTURE': '/close_future',
+        'SIGNAL_GROUP': ['1548802426', '1248393106'],
+        'GENERAL_GROUP': ['1576065688', '1220789766']
         }
     else:
         # Stream Commands Heroku Hosted
@@ -109,12 +109,12 @@ def get_commands():
         'ALWAYS_WIN_SIGNAL': '/aw!',
         'HIRN_SIGNAL': '/hirn!',
         'NEW_PORTFOLIO': '/newport!',
-        'CLEAR_PORTFOLIOS': '/clear_folios!',
-        'DISPLAY_PORTFOLIOS': '/display_folios!',
+        'CLEAR_PORTFOLIO': '/clear_folio!',
+        'DISPLAY_PORTFOLIO': '/display_folio!',
         'SNAPSHOT': '/snapshot!',
-        'CLOSE_FUTURES': '/close_futures!',
-        'SIGNAL_GROUPS': ['1548802426', '1248393106'],
-        'GENERAL_GROUPS': ['1576065688', '1220789766']
+        'CLOSE_FUTURE': '/close_future!',
+        'SIGNAL_GROUP': ['1548802426', '1248393106'],
+        'GENERAL_GROUP': ['1576065688', '1220789766']
         }
     return munch.munchify(chat_commands)
 
@@ -125,12 +125,14 @@ def get_storage_paths():
     if local[0]:
         # Firebase Cloud Storage File Paths
         file_paths = {
-        "ADD_MESSAGE": "trade_results/message_count/",
+        "ADD_MESSAGE": "trade_result/message_count/",
         "SAVE": "save_data/savefile",
-        "SAVE_TRADE": "trade_results/",
+        "SAVE_TRADE": "trade_result/",
         "LIVE_VIEW": "live_view/",
-        "LOG": 'logs/',
-        "REALTIME_SAVE": 'signals/'
+        "LOG": 'log/',
+        "REALTIME_SAVE": 'signal/',
+        "DISCORD_CHANNEL": 'discord_channel/',
+        "TELEGRAM_CHANNEL": 'telegram_channel/'
         }
     else:
         # Heroku Version
@@ -140,6 +142,8 @@ def get_storage_paths():
         "SAVE_TRADE": UNIQUE_ID + "trade_results/",
         "LIVE_VIEW": UNIQUE_ID + "live_view/",
         "LOG": UNIQUE_ID + 'logs/',
-        "REALTIME_SAVE": UNIQUE_ID + 'signals/'
+        "REALTIME_SAVE": UNIQUE_ID + 'signals/',
+        "DISCORD_CHANNELS": UNIQUE_ID + 'discord_channels/',
+        "TELEGRAM_CHANNELS": UNIQUE_ID + 'telegram_channels/'
         }
     return munch.munchify(file_paths)

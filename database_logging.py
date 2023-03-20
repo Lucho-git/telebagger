@@ -235,21 +235,49 @@ def load_stream():
     return load_data
 
 
-def get_binance_spot_list():
-    '''Gets list of tradeable binance spot pairs
-    DEPRECIATED!'''
-    path_on_cloud = "docs/binance_spot.txt"
-    path_on_local = "docs/binance_spot.txt"
-    storage.child(path_on_cloud).download("./", path_on_local)
-    with open(path_on_local, "r") as file:
-        return file.read().split('\n')
+def get_from_realtime(pathway):
+    for key,value in paths.items():
+        if pathway == key:
+            pathway = value
+            print(f"Matched Key: {key}, Value: {value}")
+    return database.child(pathway).get()
 
 
-def get_binance_futures_list():
-    '''Gets list of tradeable binance futures pairs
-    DEPRECIATED!'''
-    path_on_cloud = "docs/binance_future.txt"
-    path_on_local = "docs/binance_future.txt"
-    storage.child(path_on_cloud).download("./", path_on_local)
-    with open(path_on_local, "r") as file:
-        return file.read().split('\n')
+def set_to_realtime(pathway, data):
+    database.child(pathway).set(data)
+
+def add_to_realtime(pathway, data):
+    try:
+        existing_data = database.child(pathway).get().val()
+        existing_data.update(data)
+    except:
+        existing_data = data
+    database.child(pathway).update(existing_data)
+
+def push_to_realtime(pathway, data):
+    database.child(pathway).set(data)
+
+def add_discord_channel(id, name, category):
+    splitids = id.split('-')
+    guild_id = splitids[0]
+    channel_id = splitids[1]
+    data = {
+        'guild_id': guild_id,
+        'channel_id': channel_id,
+        'channel_name': name,
+        'type': category,
+    }
+    print('DATA:',data)
+    add_to_realtime(paths.DISCORD_CHANNEL +f"/{guild_id}/{channel_id}", data)
+    print('Added new discord channel')
+
+def add_telegram_channel(id, name, category):
+    data = {
+        id: name,
+    }
+    add_to_realtime(paths.TELEGRAM_CHANNEL +f"/{category}", data)
+    print('Added new telegram channel')
+
+
+def get_discord_channels():
+    return get_from_realtime(paths.DISCORD_CHANNEL).val()

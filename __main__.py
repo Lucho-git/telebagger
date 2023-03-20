@@ -19,13 +19,13 @@ async def main():
     init()  # Initialising colorama
     trade_stream = TradeStream() # Init trade stream
 
-    #communication channel, so discord and telegram can exit simeltaneously
+    #communication clientChannel, so discord and telegram can exit simeltaneously
     c1 = asyncio.Queue()
     c2 = asyncio.Queue()
-    channel = [c1,c2]
+    clientChannel = [c1,c2]
 
-    discbagger = DiscordEvents(trade_stream, channel)
-    telebagger = TelegramEvents(trade_stream, channel)
+    discbagger = DiscordEvents(trade_stream, clientChannel)
+    telebagger = TelegramEvents(trade_stream, clientChannel)
     #This ensures program exits smoothly on command
     asyncio.create_task(telebagger.exit_self())
     asyncio.create_task(discbagger.exit_self())

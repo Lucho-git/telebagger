@@ -15,17 +15,18 @@ import asyncio
 
 class DiscordEvents:
     '''Handles discord events'''
-    def __init__(self, trade_stream, channel):
+    def __init__(self, trade_stream, clientChannel):
         self.com = config.get_commands()
+        self.channels = db.get_discord_channels()
         self.trade_stream = trade_stream
-        self.channel = channel
+        self.clientChannel = clientChannel
         self.client, self.key = config.get_discord_config()
 
     async def exit_self(self):
         '''Polls to see if should disconnect'''
         while True:
             # Check the queue for messages
-            msg = await self.channel[0].get()
+            msg = await self.clientChannel[0].get()
             if msg == 'close':
                 print('Disconnecting Discbagger...')
                 await self.client.close()
@@ -41,14 +42,32 @@ class DiscordEvents:
         
         @client.event
         async def on_message(message):
-            print(message)
-            print('Discord:', message.content)
+
             if message.channel.id == 1064541939640324137:
                 print('Discord Robot ++')
                 await self.telegram_command(message)
 
-            if message.author == client.user:
+            elif message.author == client.user:
                 return
+            
+            elif (message.guild.id):
+                guid = str(message.guild.id)
+                chuid = str(message.channel.id)
+                if not guid in self.channels:
+                    combined_id = guid + '-' + chuid
+                    db.add_discord_channel(combined_id, message.channel.name, 'ignore')
+                else:
+                    id_found = any(item['channel_id'] == chuid for item in self.channels[guid].values())
+                    if (id_found):
+                        print('Recognized Channel')
+                    else:
+                        print('Adding new channel: ', message)
+                        combined_id = guid + '-' + chuid
+                        db.add_discord_channel(combined_id, message.channel.name, 'ignore')
+            else:
+                print('No guild id')
+
+
         # async def my_event_handler(event):
         #     try:
         #         signal = await self.generate_signal(event)
@@ -77,7 +96,7 @@ class DiscordEvents:
         if signal.content == self.com.STOP:
             await self.trade_stream.close_stream()
             print('Disconnecting Discbagger...')
-            await self.channel[1].put('close')
+            await self.clientChannel[1].put('close')
             await self.client.close()
         # Stream Commands
         # elif signal.message == self.com.STREAM:

@@ -1,0 +1,176 @@
+16:52:10:| Launching Telegram Scraper...
+
+16:54:42:| Launching Telegram Scraper...
+
+16:54:49:| Telegram Robot: /newchannel 1086571621969563648 cryptosignals-general ignore
+
+16:55:57:| Telegram Robot: /get discord_channel
+
+16:56:58:| Telegram Robot: /stop
+
+16:57:04:| Launching Telegram Scraper...
+
+16:57:10:| Telegram Robot: /get discord_channel
+
+17:03:04:| Telegram Robot: /stop
+
+17:03:16:| Launching Telegram Scraper...
+
+17:03:23:| Telegram Robot: /newchannel 1086571621969563648 cryptosignals-general ignore
+
+17:04:52:| Telegram Robot: /get discord_channel
+
+17:06:41:| Launching Telegram Scraper...
+
+17:07:03:| Telegram Robot: /newchannel 1086571621969563648 cryptosignals-general ignore
+
+17:08:19:| Telegram Robot: /stop
+
+17:08:25:| Launching Telegram Scraper...
+
+17:08:38:| Telegram Robot: /newchannel
+
+17:08:41:| Telegram Robot: /newchannel 1086571621969563648 cryptosignals-general ignore
+
+17:12:04:| Telegram Robot: /newchannel 1086577011423711262 cryptosignals-cryptosignals signal
+
+17:13:32:| Telegram Robot: /newchannel 1086577869297303653 cryptosignals-spotsignals signal
+
+17:13:42:| Telegram Robot: /get discord_signals
+
+17:15:12:| Telegram Robot: /get discord_channel
+
+17:15:23:| Telegram Robot: /get DISCORD_CHANNEL
+
+17:35:35:| Telegram Robot: /stop
+
+17:35:48:| Launching Telegram Scraper...
+
+17:36:08:| Telegram Robot: /newchannel 1086577011423711262 cryptosignals-cryptosignals signal
+
+17:39:28:| Telegram Robot: /stop
+
+17:39:35:| Launching Telegram Scraper...
+
+17:39:42:| Telegram Robot: /newchannel 1086577011423711262 cryptosignals-cryptosignals signal
+
+17:54:21:| Telegram Robot: /get DISCORD_CHANNEL
+
+17:55:43:| Telegram Robot: /stop
+
+17:55:50:| Launching Telegram Scraper...
+
+17:58:09:| Telegram Robot: /stop
+
+17:58:25:| Launching Telegram Scraper...
+
+17:59:28:| Launching Telegram Scraper...
+
+18:01:23:| Launching Telegram Scraper...
+
+18:01:52:| Launching Telegram Scraper...
+
+19:28:04:| Telegram Robot: /newchannel 1055528388397379704 cryptosignals-spotsignals
+
+19:28:36:| Telegram Robot: /newchannel 1055528388397379704 cryptosignals-spotsignals signal
+
+19:29:13:| Telegram Robot: /newchannel 1038975657482395801 cryptosignals-general ignore
+
+19:32:43:| Telegram Robot: /stop
+
+19:32:55:| Launching Telegram Scraper...
+
+19:33:02:| Telegram Robot: /newchannel 1038975657482395801 cryptosignals-general ignore
+
+19:35:09:| Telegram Robot: /newchannel 1057322668698906704 cryptosignals-cryptosignals
+
+19:35:17:| Telegram Robot: /newchannel 1057322668698906704 cryptosignals-cryptosignals signal
+
+20:02:32:| Telegram Robot: /stop
+
+20:02:40:| Launching Telegram Scraper...
+
+20:11:41:| Telegram Robot: /stop
+
+20:11:48:| Launching Telegram Scraper...
+
+20:12:30:| Telegram Robot: /stop
+
+20:12:36:| Launching Telegram Scraper...
+
+20:14:06:| Telegram Robot: /stop
+
+20:14:13:| Launching Telegram Scraper...
+
+20:15:37:| Telegram Robot: /stop
+
+20:15:45:| Launching Telegram Scraper...
+
+20:17:04:| Launching Telegram Scraper...
+
+22:11:50:| Telegram Robot: /stop
+
+22:13:21:| Launching Telegram Scraper...
+
+22:15:00:| Telegram Robot: /newdiscchannel 1064540747988209764-1065431111628492840 income-sharks signal
+
+22:16:10:| Telegram Robot: /newdiscchannel 1064540747988209764-1065430568579371018 income-sharks signal
+
+22:16:59:| Telegram Robot: /stop
+
+22:17:07:| Launching Telegram Scraper...
+
+22:17:14:| Telegram Robot: /newdiscchannel 1064540747988209764-1065431111628492840 income-sharks signal
+
+22:18:55:| Telegram Robot: /get DISCORD_CHANNEL
+
+22:25:19:| Telegram Robot: /stop
+
+22:25:32:| Launching Telegram Scraper...
+
+22:27:12:| Telegram Robot: /stop
+
+22:27:19:| Launching Telegram Scraper...
+
+22:28:12:| Telegram Robot: /stop
+
+22:28:19:| Launching Telegram Scraper...
+
+22:29:03:| Telegram Robot: /stop
+
+22:29:19:| Launching Telegram Scraper...
+
+22:37:25:| Telegram Robot: /stop
+
+22:37:32:| Launching Telegram Scraper...
+
+22:37:38:| Telegram Robot: ok
+
+22:38:38:| Telegram Robot: /stop
+
+22:38:46:| Launching Telegram Scraper...
+
+22:39:06:| Telegram Robot: /stop
+
+22:39:13:| Launching Telegram Scraper...
+
+22:40:23:| Telegram Robot: /stop
+
+22:40:30:| Launching Telegram Scraper...
+
+22:41:45:| Telegram Robot: /stop
+
+22:41:51:| Launching Telegram Scraper...
+
+22:42:20:| Telegram Robot: /stop
+
+22:42:27:| Launching Telegram Scraper...
+
+22:46:35:| Telegram Robot: /stop
+
+22:46:43:| Launching Telegram Scraper...
+
+22:52:44:| Launching Telegram Scraper...
+
+23:38:27:| new chat ID:1244131552Rose Premium Signals 🌹
+

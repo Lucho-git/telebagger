@@ -22,17 +22,17 @@ import database_logging as db
 
 class TelegramEvents:
     '''Handles telegram events'''
-    def __init__(self, trade_stream, channel):
+    def __init__(self, trade_stream, clientChannel):
         self.com = config.get_commands()
         self.trade_stream = trade_stream
-        self.channel = channel
+        self.clientChannel = clientChannel
         self.client = config.get_telegram_config()
     
 
     async def exit_self(self):
         '''Polls to see if should disconnect'''
         while True:
-            msg = await self.channel[1].get()
+            msg = await self.clientChannel[1].get()
             if msg == 'close':
                 print('Disconnecting Telebagger...')
                 await self.client.disconnect()
@@ -74,7 +74,7 @@ class TelegramEvents:
         if signal.message == self.com.STOP:
             await self.trade_stream.close_stream()
             print('Disconnecting Telebagger...')
-            await self.channel[0].put('close')
+            await self.clientChannel[0].put('close')
             await self.client.disconnect()
         # Stream Commands
         elif signal.message == self.com.STREAM:
@@ -122,6 +122,25 @@ class TelegramEvents:
             await self.trade_stream.dump_stream()
         elif signal.message == '/smoothdump':
             await self.trade_stream.smooth_dump_stream()
+        elif '/get ' in signal.message:
+            try:
+                data = db.get_from_realtime(signal.message.split('/get ')[1])
+                for user in data.each():
+                    print(f"{user.key()}: {user.val()}")
+            except Exception as e:
+                print(e)
+        elif '/newdiscchannel ' in signal.message:
+            #Format like  /newchannel guildid-channelid nameofchannel category(ignore/signal)
+            channelinfo = signal.message.split(' ')
+            channel_id_combo, channel_name, channel_category = channelinfo[1], channelinfo[2], channelinfo[3]
+            if channel_category not in ['signal', 'ignore']:
+                raise Exception('Wrong channel category, should be "signal" or "ignore"')
+            db.add_discord_channel(channel_id_combo, channel_name, channel_category)
+        elif '/newtelechannel ' in signal.message:
+            channelinfo = signal.message.split(' ')
+            channel_id, channel_name, channel_category = channelinfo[1], channelinfo[2], channelinfo[3]
+            if len(channel_id) == 10:
+                db.add_telegram_channel(channel_id, channel_name, channel_category)
 
     async def start_telegram_handler(self, client):
         '''telegram message event handler'''
@@ -130,12 +149,12 @@ class TelegramEvents:
             try:
                 signal = await self.generate_signal(event)
 
-                if signal.origin.id in self.com.SIGNAL_GROUPS:
+                if signal.origin.id in self.com.SIGNAL_GROUP:
                     await new_signal.new_signal(signal, self.trade_stream)
 
                 elif signal.origin.id == '5894740183' or signal.origin.id == '5935711140':
                     await self.telegram_command(signal)
-                elif signal.origin.id in self.com.GENERAL_GROUPS:
+                elif signal.origin.id in self.com.GENERAL_GROUP:
                     pass
 
                 else:
