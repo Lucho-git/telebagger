@@ -1,0 +1,28 @@
+08:33:55:| Started Trade: ETCBTC | 1679963634457
+
+08:34:02:| Started Trade: ETCBTC | 1679963642344
+
+08:39:24:| Telegram Robot: /stop
+
+08:40:12:| Launching Telegram Scraper...
+
+08:40:21:| Telegram Robot: /newhirn
+
+08:40:24:| Started Trade: ETCBTC | 1679964024407
+
+08:40:59:| Telegram Robot: /newhirn
+
+08:41:02:| Started Trade: ETCBTC | 1679964062049
+
+12:33:56:| Started Trade: 1INCHUSDT | 1679978035335
+
+12:34:05:| Started Trade: 1INCHUSDT | 1679978044652
+
+20:13:09:| new chat ID:1618912442CryptoSite
+
+20:13:18:| new chat ID:1618912442CryptoSite
+
+20:29:36:| new chat ID:1618912442CryptoSite
+
+21:52:19:| new chat ID:1618912442CryptoSite
+

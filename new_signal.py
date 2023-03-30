@@ -1,5 +1,8 @@
 '''This module contains references to all of the different trade groups, sends signal info to them and recieves trade info'''
+import requests
+import json
 
+url = 'https://luchodore.pythonanywhere.com/save_data'
 import hirn
 from trade import Trade
 import database_logging as db
@@ -13,8 +16,20 @@ async def get_trades(signal):
         print('Always Win Message')
 
     elif signal.origin.id == '1248393106':
-        return hirn_controller.new_hirn_signal(signal)
+        signal = hirn_controller.new_hirn_signal(signal)
+        if signal:
+            print('posting hirn signal', signal[0])
+            print(signal[0].__str__())
+            data = signal[0].get_dict()
+            response = requests.post(url, json=data)
 
+            if response.status_code == 200:
+                print("Request succeeded!")
+                print("Response content:", response.json())
+            else:
+                print(f"Request failed with status code {response.status_code}")
+                print("Response content:", response.text)
+            return signal
 
 async def new_signal(signal, trade_stream):
     '''Controller for signals coming from a signal group'''

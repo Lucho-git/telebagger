@@ -1,0 +1,132 @@
+16:43:03:| new chat ID:1303967688Signal Results From Cartel Providers
+
+16:43:08:| new chat ID:1303967688Signal Results From Cartel Providers
+
+16:46:33:| new chat ID:1303967688Signal Results From Cartel Providers
+
+16:47:38:| new chat ID:1303967688Signal Results From Cartel Providers
+
+16:48:13:| new chat ID:1303967688Signal Results From Cartel Providers
+
+16:52:29:| new chat ID:1303967688Signal Results From Cartel Providers
+
+16:53:36:| new chat ID:1303967688Signal Results From Cartel Providers
+
+16:53:45:| new chat ID:1303967688Signal Results From Cartel Providers
+
+16:53:54:| new chat ID:1303967688Signal Results From Cartel Providers
+
+18:33:42:| new chat ID:5047096363Lach Ross
+
+18:34:07:| new chat ID:5047096363Lach Ross
+
+18:34:16:| new chat ID:5047096363Lach Ross
+
+18:34:28:| new chat ID:5047096363Lach Ross
+
+18:34:41:| new chat ID:5047096363FunGoods77
+
+18:34:53:| new chat ID:5047096363Lach Ross
+
+18:34:55:| new chat ID:5047096363Lach Ross
+
+18:35:01:| new chat ID:5047096363FunGoods77
+
+18:37:54:| new chat ID:5047096363Lach Ross
+
+20:35:19:| new chat ID:5047096363FunGoods77
+
+21:15:35:| new chat ID:5047096363Lach Ross
+
+21:15:45:| new chat ID:5047096363Lach Ross
+
+21:15:51:| new chat ID:5047096363Lach Ross
+
+21:15:59:| new chat ID:5047096363Lach Ross
+
+21:22:31:| new chat ID:5047096363FunGoods77
+
+21:23:09:| new chat ID:5047096363FunGoods77
+
+21:23:21:| new chat ID:5047096363Lach Ross
+
+21:23:29:| new chat ID:5047096363Lach Ross
+
+21:23:34:| new chat ID:5047096363FunGoods77
+
+22:25:40:| new chat ID:5047096363Lach Ross
+
+22:25:44:| new chat ID:5047096363Lach Ross
+
+22:25:57:| new chat ID:5047096363Lach Ross
+
+22:26:01:| Telegram Robot: ok
+
+22:26:19:| Telegram Robot: /stop
+
+22:27:23:| Launching Telegram Scraper...
+
+22:32:28:| new chat ID:1899929952Luchos StompingGround
+
+22:39:47:| Telegram Robot: /stop
+
+22:39:54:| Launching Telegram Scraper...
+
+22:40:05:| Telegram Robot: /channel_link t.me/lucho_stomping_ground
+
+22:40:29:| Telegram Robot: /stop
+
+22:40:36:| Launching Telegram Scraper...
+
+22:40:43:| Telegram Robot: /channel_link t.me/lucho_stomping_ground
+
+22:40:53:| new chat ID:1899929952Luchos StompingGround
+
+22:41:11:| Telegram Robot: /channel_link https://t.me/HIRN_CRYPTO
+
+22:45:14:| Telegram Robot: /newhirn
+
+22:45:18:| Started Trade: RLCUSDT | 1679409917461
+
+23:00:09:| Telegram Robot: /stop
+
+23:00:18:| Launching Telegram Scraper...
+
+23:00:47:| Telegram Robot: /newhirn
+
+23:04:09:| Telegram Robot: /stop
+
+23:04:17:| Launching Telegram Scraper...
+
+23:04:28:| Telegram Robot: /newhirn
+
+23:04:53:| Telegram Robot: /stop
+
+23:04:59:| Launching Telegram Scraper...
+
+23:05:11:| Telegram Robot: /newhirn
+
+23:05:44:| Telegram Robot: /stop
+
+23:05:50:| Launching Telegram Scraper...
+
+23:05:54:| Telegram Robot: /newhirn
+
+23:06:12:| Telegram Robot: /stop
+
+23:06:18:| Launching Telegram Scraper...
+
+23:06:23:| Telegram Robot: /newhirn
+
+23:06:29:| Telegram Robot: /stop
+
+23:06:38:| Launching Telegram Scraper...
+
+23:06:45:| Telegram Robot: /newhirn
+
+23:09:33:| Telegram Robot: /stop
+
+23:09:40:| Launching Telegram Scraper...
+
+23:09:43:| Telegram Robot: /newhirn
+

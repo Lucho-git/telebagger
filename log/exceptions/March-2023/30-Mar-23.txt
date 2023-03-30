@@ -1,0 +1,32 @@
+11:03:27:| APIError(code=0): Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error.
+Message:💱 Buy #CELR/BTC
+❇️ Buy Price: 0.00000086 
+☑️ Sell Price: 0.00000087 +1.00%
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 157, in my_event_handler
+    await new_signal.new_signal(signal, self.trade_stream)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 42, in new_signal
+    new_trade = Trade(t)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade.py", line 16, in __init__
+    self.entry_price = self.get_price()
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade.py", line 107, in get_price
+    return self.conditions.get_price()
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_conditions.py", line 54, in get_price
+    return float(config.get_binance_config().get_symbol_ticker(symbol=self.pair)['price'])
+  File "C:\Users\lachl\Repos\GitHub\telebagger\config.py", line 47, in get_binance_config
+    realclient = Client(r_api_key, r_api_secret)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\.venv\lib\site-packages\binance\client.py", line 300, in __init__
+    self.ping()
+  File "C:\Users\lachl\Repos\GitHub\telebagger\.venv\lib\site-packages\binance\client.py", line 526, in ping
+    return self._get('ping', version=self.PRIVATE_API_VERSION)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\.venv\lib\site-packages\binance\client.py", line 371, in _get
+    return self._request_api('get', path, signed, version, **kwargs)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\.venv\lib\site-packages\binance\client.py", line 334, in _request_api
+    return self._request(method, uri, signed, **kwargs)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\.venv\lib\site-packages\binance\client.py", line 315, in _request
+    return self._handle_response(self.response)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\.venv\lib\site-packages\binance\client.py", line 324, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=0): Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error.
+
+

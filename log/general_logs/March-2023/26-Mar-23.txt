@@ -1,0 +1,108 @@
+21:56:37:| Launching Telegram Scraper...
+
+21:57:07:| Telegram Robot: /newhirn
+
+21:57:24:| Telegram Robot: /stop
+
+21:58:24:| Launching Telegram Scraper...
+
+21:58:33:| Telegram Robot: /newhirn
+
+21:58:48:| Telegram Robot: /stop
+
+22:13:21:| Launching Telegram Scraper...
+
+22:13:33:| Telegram Robot: /newhirn
+
+22:13:56:| Telegram Robot: /stop
+
+22:14:33:| Launching Telegram Scraper...
+
+22:14:39:| Telegram Robot: /newhirn
+
+22:15:33:| Telegram Robot: /stop
+
+22:15:39:| Launching Telegram Scraper...
+
+22:15:49:| Telegram Robot: /newhirn
+
+22:15:52:| Started Trade: SANDUSDT | 1679840152287
+
+22:17:17:| Telegram Robot: /stop
+
+22:17:25:| Launching Telegram Scraper...
+
+22:17:30:| Telegram Robot: /newhirn
+
+22:17:33:| Started Trade: SANDUSDT | 1679840253470
+
+22:18:54:| Telegram Robot: /hirn
+
+22:18:58:| Started Trade: RLCBTC | 1679840337526
+
+22:22:52:| Telegram Robot: /stop
+
+22:23:00:| Launching Telegram Scraper...
+
+22:23:07:| Telegram Robot: /hirn
+
+22:23:37:| Telegram Robot: /stop
+
+22:23:50:| Launching Telegram Scraper...
+
+22:23:55:| Telegram Robot: /newhirn
+
+22:24:56:| Telegram Robot: /stop
+
+22:25:03:| Launching Telegram Scraper...
+
+22:25:07:| Telegram Robot: /newhirn
+
+22:25:54:| Telegram Robot: /stop
+
+22:26:02:| Launching Telegram Scraper...
+
+22:26:08:| Telegram Robot: /newhirn
+
+22:27:55:| Telegram Robot: /stop
+
+22:28:01:| Launching Telegram Scraper...
+
+22:28:07:| Telegram Robot: /newhirn
+
+22:29:10:| Telegram Robot: /stop
+
+22:29:16:| Launching Telegram Scraper...
+
+22:29:29:| Telegram Robot: /newhirn
+
+22:33:02:| Telegram Robot: /stop
+
+22:33:09:| Launching Telegram Scraper...
+
+22:33:15:| Telegram Robot: /newhirn
+
+22:33:18:| Started Trade: SANDUSDT | 1679841198180
+
+22:35:01:| Telegram Robot: /stop
+
+22:35:08:| Launching Telegram Scraper...
+
+22:35:22:| Telegram Robot: /newhirn
+
+22:36:07:| Launching Telegram Scraper...
+
+22:36:12:| Telegram Robot: /newhirn
+
+22:36:15:| Started Trade: SANDUSDT | 1679841375244
+
+22:37:06:| Telegram Robot: /newhirn
+
+22:37:10:| Started Trade: SANDUSDT | 1679841430167
+
+22:37:15:| Telegram Robot: /newhirn
+
+22:37:50:| Telegram Robot: /newhirn
+
+22:37:58:| Started Trade: SANDUSDT | 1679841478237
+

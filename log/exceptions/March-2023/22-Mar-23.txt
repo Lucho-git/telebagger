@@ -1,0 +1,103 @@
+00:02:54:| 'NoneType' object is not subscriptable
+Message:KUCOIN
+#BTC_COTI
+LONG
+SL 0%
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 157, in my_event_handler
+    await new_signal.new_signal(signal, self.trade_stream)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 22, in new_signal
+    trades = await get_trades(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 17, in get_trades
+    print(signal[0].__dict__)
+TypeError: 'NoneType' object is not subscriptable
+
+
+04:38:10:| 'NoneType' object is not subscriptable
+Message:Binance
+#COTI/BTC All take-profit targets achieved 😎
+Profit: 1.145% 📈
+Period: 4 Hours 35 Minutes ⏰
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 157, in my_event_handler
+    await new_signal.new_signal(signal, self.trade_stream)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 22, in new_signal
+    trades = await get_trades(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 17, in get_trades
+    print(signal[0].__dict__)
+TypeError: 'NoneType' object is not subscriptable
+
+
+11:01:48:| 'NoneType' object is not subscriptable
+Message:BINANCE
+#USDT_SXP
+LONG
+SL 0%
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 157, in my_event_handler
+    await new_signal.new_signal(signal, self.trade_stream)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 22, in new_signal
+    trades = await get_trades(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 17, in get_trades
+    print(signal[0].__dict__)
+TypeError: 'NoneType' object is not subscriptable
+
+
+11:01:54:| 'NoneType' object is not subscriptable
+Message:KUCOIN
+#USDT_SXP
+LONG
+SL 0%
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 157, in my_event_handler
+    await new_signal.new_signal(signal, self.trade_stream)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 22, in new_signal
+    trades = await get_trades(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 17, in get_trades
+    print(signal[0].__dict__)
+TypeError: 'NoneType' object is not subscriptable
+
+
+11:01:56:| 'NoneType' object is not subscriptable
+Message:Binance
+#SXP/USDT All entry targets achieved
+Average Entry Price: 0.2794 💵
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 157, in my_event_handler
+    await new_signal.new_signal(signal, self.trade_stream)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 22, in new_signal
+    trades = await get_trades(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 17, in get_trades
+    print(signal[0].__dict__)
+TypeError: 'NoneType' object is not subscriptable
+
+
+11:01:58:| 'NoneType' object is not subscriptable
+Message:💱 Buy #SXP/USDT
+❇️ Buy Price: 0.279400 
+☑️ Sell Price: 0.28219400 +1.00%
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 157, in my_event_handler
+    await new_signal.new_signal(signal, self.trade_stream)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 22, in new_signal
+    trades = await get_trades(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 17, in get_trades
+    print(signal[0].__dict__)
+TypeError: 'NoneType' object is not subscriptable
+
+
+11:15:01:| 'NoneType' object is not subscriptable
+Message:Binance
+#SXP/USDT All take-profit targets achieved 😎
+Profit: 1.0021% 📈
+Period: 13 Minutes ⏰
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 157, in my_event_handler
+    await new_signal.new_signal(signal, self.trade_stream)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 22, in new_signal
+    trades = await get_trades(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\new_signal.py", line 17, in get_trades
+    print(signal[0].__dict__)
+TypeError: 'NoneType' object is not subscriptable
+
+

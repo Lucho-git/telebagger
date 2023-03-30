@@ -1,5 +1,6 @@
 import utility
 import config
+import json
 '''
 Defines a set of conditions and parameters, 
 for a signal to become a trade.
@@ -51,6 +52,32 @@ class SpotBasic:
     def get_price(self):
         '''Gets current price from binanace'''
         return float(config.get_binance_config().get_symbol_ticker(symbol=self.pair)['price'])
+    
+    def __str__(self) -> str:
+        return str({
+                "source": self.source,
+                "coin": self.coin,
+                "base": self.base,
+                "pair": self.pair,
+                "entry": self.entry,
+                "profit": self.profit,
+                "loss": self.loss,
+                "timeout": self.timeout,
+                "time_generated": self.time_generated
+                })
+
+    def get_dict(self):
+        return {
+            "source": self.source,
+            "coin": self.coin,
+            "base": self.base,
+            "pair": self.pair,
+            "entry": self.entry,
+            "profit": self.profit,
+            "loss": self.loss,
+            "timeout": self.timeout,
+            "time_generated": self.time_generated
+        }
 
 class SpotAdvanced(SpotBasic):
     """Spot advanced allows for multiple exit prices and percentages"""

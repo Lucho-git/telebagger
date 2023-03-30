@@ -1,0 +1,8 @@
+1INCHUSDT | 1679978035335 | 0.502 | 99.0% | 14.45 hours | LongestUpdate: 1.0m | Hirn | profit_________________________________
+
+1INCHUSDT | 1679978044652 | 0.502 | 99.0% | 14.45 hours | LongestUpdate: 1.0m | Hirn | profit_________________________________
+
+FLMBTC | 1680051391907 | 3.4e-06 | 99.1% | 4.37 hours | LongestUpdate: 1.0m | Hirn | profit_________________________________
+
+FLMBTC | 1680051401954 | 3.4e-06 | 99.1% | 4.37 hours | LongestUpdate: 1.0m | Hirn | profit_________________________________
+

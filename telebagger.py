@@ -129,18 +129,22 @@ class TelegramEvents:
                     print(f"{user.key()}: {user.val()}")
             except Exception as e:
                 print(e)
-        elif '/newdiscchannel ' in signal.message:
+        elif '/new_disc_channel ' in signal.message:
             #Format like  /newchannel guildid-channelid nameofchannel category(ignore/signal)
             channelinfo = signal.message.split(' ')
             channel_id_combo, channel_name, channel_category = channelinfo[1], channelinfo[2], channelinfo[3]
             if channel_category not in ['signal', 'ignore']:
                 raise Exception('Wrong channel category, should be "signal" or "ignore"')
             db.add_discord_channel(channel_id_combo, channel_name, channel_category)
-        elif '/newtelechannel ' in signal.message:
+        elif '/new_tele_channel ' in signal.message:
             channelinfo = signal.message.split(' ')
             channel_id, channel_name, channel_category = channelinfo[1], channelinfo[2], channelinfo[3]
             if len(channel_id) == 10:
                 db.add_telegram_channel(channel_id, channel_name, channel_category)
+        elif '/channel_link' in signal.message:
+            channel_link = signal.message.split(' ')[1]
+            channel_id = await self.client.get_entity(channel_link)
+            print(channel_id)
 
     async def start_telegram_handler(self, client):
         '''telegram message event handler'''
