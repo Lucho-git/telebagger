@@ -1,0 +1,48 @@
+22:36:44:| SIGNAL_GROUPS
+Message:.
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\AppData\Roaming\Python\Python310\site-packages\munch\__init__.py", line 103, in __getattr__
+    return object.__getattribute__(self, k)
+AttributeError: 'Munch' object has no attribute 'SIGNAL_GROUPS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lachl\AppData\Roaming\Python\Python310\site-packages\munch\__init__.py", line 106, in __getattr__
+    return self[k]
+KeyError: 'SIGNAL_GROUPS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 124, in my_event_handler
+    if signal.origin.id in self.com.SIGNAL_GROUPS:
+  File "C:\Users\lachl\AppData\Roaming\Python\Python310\site-packages\munch\__init__.py", line 108, in __getattr__
+    raise AttributeError(k)
+AttributeError: SIGNAL_GROUPS
+
+
+22:39:53:| SIGNAL_GROUPS
+Message:/stop
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\AppData\Roaming\Python\Python310\site-packages\munch\__init__.py", line 103, in __getattr__
+    return object.__getattribute__(self, k)
+AttributeError: 'Munch' object has no attribute 'SIGNAL_GROUPS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lachl\AppData\Roaming\Python\Python310\site-packages\munch\__init__.py", line 106, in __getattr__
+    return self[k]
+KeyError: 'SIGNAL_GROUPS'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 124, in my_event_handler
+    if signal.origin.id in self.com.SIGNAL_GROUPS:
+  File "C:\Users\lachl\AppData\Roaming\Python\Python310\site-packages\munch\__init__.py", line 108, in __getattr__
+    raise AttributeError(k)
+AttributeError: SIGNAL_GROUPS
+
+

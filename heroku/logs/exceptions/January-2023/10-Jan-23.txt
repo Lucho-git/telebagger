@@ -1,0 +1,28 @@
+08:24:06:| Closing_trade1673310233652does not seem to exist
+
+08:24:10:| unsupported operand type(s) for /: 'method' and 'int'
+Message:/now
+Except:Traceback (most recent call last):
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 128, in my_event_handler
+    await self.telegram_command(signal)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\telebagger.py", line 105, in telegram_command
+    self.trade_stream.update_trades_now()
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 241, in update_trades_now
+    self.coin_trade_data(now_kline_msg)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade_stream.py", line 50, in coin_trade_data
+    trade.update_trade(stream)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade.py", line 43, in update_trade
+    self.save_trade()
+  File "C:\Users\lachl\Repos\GitHub\telebagger\trade.py", line 59, in save_trade
+    db.save_closed_trade(self)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\database_logging.py", line 141, in save_closed_trade
+    realtime_save_trade(tradevalue, trade, now)
+  File "C:\Users\lachl\Repos\GitHub\telebagger\database_logging.py", line 24, in realtime_save_trade
+    newvalue = [tradevalue-1, day_string, {'Tradepair': trade.pair, 'Duration(Hrs)': str(round(trade.duration/3600,2))}]
+TypeError: unsupported operand type(s) for /: 'method' and 'int'
+
+
+08:29:00:| Closing_trade1673310233652does not seem to exist
+
+08:29:09:| Closing_trade1673310547995does not seem to exist
+
