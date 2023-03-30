@@ -56,6 +56,7 @@ class DiscordEvents:
                 if not guid in self.channels:
                     combined_id = guid + '-' + chuid
                     db.add_discord_channel(combined_id, message.channel.name, 'ignore')
+                    self.channels = db.get_discord_channels()
                 else:
                     id_found = any(item['channel_id'] == chuid for item in list(self.channels[guid].values())[1:])
                     if (id_found):

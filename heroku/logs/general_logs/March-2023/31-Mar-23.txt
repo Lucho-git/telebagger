@@ -1,0 +1,16 @@
+00:26:24:| Launching Telegram Scraper...
+
+00:45:11:| Launching Telegram Scraper...
+
+00:50:06:| Launching Telegram Scraper...
+
+00:50:35:| Launching Telegram Scraper...
+
+00:51:40:| Telegram Robot: /stop
+
+00:52:03:| Telegram Robot: /stop
+
+00:52:05:| Telegram Robot: .
+
+00:52:07:| Telegram Robot: /stop!
+
