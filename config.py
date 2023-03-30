@@ -143,7 +143,7 @@ def get_storage_paths():
         "LIVE_VIEW": UNIQUE_ID + "live_view/",
         "LOG": UNIQUE_ID + 'logs/',
         "REALTIME_SAVE": UNIQUE_ID + 'signals/',
-        "DISCORD_CHANNELS": UNIQUE_ID + 'discord_channels/',
-        "TELEGRAM_CHANNELS": UNIQUE_ID + 'telegram_channels/'
+        "DISCORD_CHANNEL": UNIQUE_ID + 'discord_channels/',
+        "TELEGRAM_CHANNEL": UNIQUE_ID + 'telegram_channels/'
         }
     return munch.munchify(file_paths)
