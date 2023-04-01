@@ -27,7 +27,7 @@ class TelegramEvents:
         self.trade_stream = trade_stream
         self.clientChannel = clientChannel
         self.client = config.get_telegram_config()
-        self.lock = asyncio.Lock
+        self.lock = asyncio.Lock()
         self.last_message = {
             'text': None,
             'time': 0
