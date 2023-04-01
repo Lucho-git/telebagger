@@ -167,6 +167,7 @@ class TelegramEvents:
 
     async def start_telegram_handler(self, client):
         '''telegram message event handler'''
+        '''Receive message logic!!!'''
         @client.on(events.NewMessage())
         async def my_event_handler(event):
             async with self.lock:
