@@ -27,7 +27,11 @@ class TelegramEvents:
         self.trade_stream = trade_stream
         self.clientChannel = clientChannel
         self.client = config.get_telegram_config()
-    
+        self.lock = asyncio.Lock
+        self.last_message = {
+            'text': None,
+            'time': 0
+        }
 
     async def exit_self(self):
         '''Polls to see if should disconnect'''
@@ -65,6 +69,21 @@ class TelegramEvents:
                     pass
                 else:
                     print('has photo')
+
+    async def is_duplicate(self, event):
+        message = event.message
+        current_time = time.time()
+        is_same_text = self.last_message['text'] == message.text
+        is_within_timeframe = (current_time - self.last_message['time']) < 1  # 1 second
+
+        if is_same_text and is_within_timeframe:
+            chat = await event.get_chat()
+            print('Duplicate message from:', chat.id)
+            return True
+
+        self.last_message['text'] = message.text
+        self.last_message['time'] = current_time
+        return False
 
     async def telegram_command(self, signal):
         '''Commands which can be manually triggered through the telegram client'''
@@ -150,6 +169,9 @@ class TelegramEvents:
         '''telegram message event handler'''
         @client.on(events.NewMessage())
         async def my_event_handler(event):
+            async with self.lock:
+                if await self.is_duplicate(event):
+                    return
             try:
                 signal = await self.generate_signal(event)
 
