@@ -41,7 +41,7 @@ class SpotBasic:
 
     def get_value(self, trade):
         '''Returns current value of the trade'''
-        raw_change = trade.entry_price - trade.last_price
+        raw_change = trade.last_price - trade.entry_price
         decimal_change = raw_change/trade.entry_price
         return decimal_change + 1
 
