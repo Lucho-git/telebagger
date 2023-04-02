@@ -114,13 +114,7 @@ class TelegramEvents:
             signal.origin.id = '1248393106'
             signal.origin.name = 'Hirn'
             await new_signal.new_signal(signal, self.trade_stream)
-        elif signal.message == '/hirn2':
-            with open('docs/hirn_example2.txt', 'r', encoding='utf-8') as f:
-                signal.message = f.read()
-            signal.origin.id = '1248393106'
-            signal.origin.name = 'Hirn'
-            await new_signal.new_signal(signal, self.trade_stream)
-        elif signal.message == '/newhirn':
+        elif signal.message == self.com.RAND_HIRN_SIGNAL:
             signal.origin.id = '1248393106'
             signal.origin.name = 'randomHirn'
             for m in await self.client.get_messages('https://t.me/HIRN_CRYPTO', limit=20):
@@ -128,18 +122,17 @@ class TelegramEvents:
                     signal.message = m.message
                     await new_signal.new_signal(signal, self.trade_stream)
                     break
-
-        elif signal.message == '/now':
+        elif signal.message == self.com.UPDATE_NOW:
             self.trade_stream.update_trades_now()
-        elif signal.message == '/status':
+        elif signal.message == self.com.STATUS:
             print(self.trade_stream.stream_status())
-        elif signal.message == '/past':
+        elif signal.message == self.com.PAST:
             await self.get_past_messages('1248393106')
-        elif signal.message == '/except':
+        elif signal.message == self.com.EXCEPT:
             raise Exception('Log this exception please')
-        elif signal.message == '/dump':
+        elif signal.message == self.com.DUMP:
             await self.trade_stream.dump_stream()
-        elif signal.message == '/smoothdump':
+        elif signal.message == self.com.SMOOTH_DUMP:
             await self.trade_stream.smooth_dump_stream()
         elif '/get ' in signal.message:
             try:

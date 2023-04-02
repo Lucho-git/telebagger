@@ -48,7 +48,7 @@ class Trade:
         '''Console update of trade information'''
         time_started = datetime.fromtimestamp(float(self.start_time) / 1000).strftime('[%H:%M %d-%b-%y]')
         latest_time = datetime.fromtimestamp(float(self.latest_time) / 1000).strftime('[%H:%M %d-%b-%y]')
-        ov_string = self.pair + ' | ' + str(self.id) + ' | ' + str(self.get_price()) + ' | ' + self.percent_value() + ' | ' + self.easy_duration() + ' | LongestUpdate: ' + str(round((self.max_time_between_updates/60000), 1)) + 'm | ' + self.conditions.source + ' | ' + self.status
+        ov_string = str(latest_time) + ' | ' + self.pair + ' | ' + str(self.id) + ' | ' + str(self.get_price()) + ' | ' + self.percent_value() + ' | ' + self.easy_duration() + ' | LongestUpdate: ' + str(round((self.max_time_between_updates/60000), 1)) + 'm | ' + self.conditions.source + ' | ' + self.status
         return ov_string
 
     def __str__(self):

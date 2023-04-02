@@ -84,6 +84,13 @@ def get_commands():
         'PRE_AW': '/pre_aw',
         'ALWAYS_WIN_SIGNAL': '/aw',
         'HIRN_SIGNAL': '/hirn',
+        'RAND_HIRN_SIGNAL': '/new_hirn',
+        'UPDATE_NOW': '/now',
+        'STATUS': '/status',
+        'PAST': '/past',
+        'EXCEPT': '/except',
+        'DUMP': '/dump',
+        'SMOOTH_DUMP': '/smooth_dump',
         'NEW_PORTFOLIO': '/newport',
         'CLEAR_PORTFOLIO': '/clear_folio',
         'DISPLAY_PORTFOLIO': '/display_folio',
@@ -108,6 +115,13 @@ def get_commands():
         'PRE_AW': '/pre_aw!',
         'ALWAYS_WIN_SIGNAL': '/aw!',
         'HIRN_SIGNAL': '/hirn!',
+        'RAND_HIRN_SIGNAL': '/new_hirn!',
+        'UPDATE_NOW': '/now!',
+        'STATUS': '/status!',
+        'PAST': '/past!',
+        'EXCEPT': '/except!',
+        'DUMP': '/dump!',
+        'SMOOTH_DUMP': '/smooth_dump!',
         'NEW_PORTFOLIO': '/newport!',
         'CLEAR_PORTFOLIO': '/clear_folio!',
         'DISPLAY_PORTFOLIO': '/display_folio!',
@@ -132,7 +146,8 @@ def get_storage_paths():
         "LOG": 'log/',
         "REALTIME_SAVE": 'signal/',
         "DISCORD_CHANNEL": 'discord_channel/',
-        "TELEGRAM_CHANNEL": 'telegram_channel/'
+        "TELEGRAM_CHANNEL": 'telegram_channel/',
+        "SIGNAL_ENDPOINT_URL": 'https://luchodore.pythonanywhere.com/test_data'
         }
     else:
         # Heroku Version
@@ -144,6 +159,7 @@ def get_storage_paths():
         "LOG": UNIQUE_ID + 'logs/',
         "REALTIME_SAVE": UNIQUE_ID + 'signals/',
         "DISCORD_CHANNEL": UNIQUE_ID + 'discord_channels/',
-        "TELEGRAM_CHANNEL": UNIQUE_ID + 'telegram_channels/'
+        "TELEGRAM_CHANNEL": UNIQUE_ID + 'telegram_channels/',
+        "SIGNAL_ENDPOINT_URL": 'https://luchodore.pythonanywhere.com/save_data'
         }
     return munch.munchify(file_paths)

@@ -5,6 +5,7 @@ import pickle
 import json
 import jsonpickle
 import pytz
+import requests
 
 
 from config import get_firebase_config, get_storage_paths
@@ -130,7 +131,7 @@ def save_closed_trade(trade):
     storage.child(juice_filepath).download("./", juice_filepath)
     with open(juice_filepath, 'a', encoding="utf8") as f:
         tradevalue = trade.closed_value
-        tradevalue = round(tradevalue, 2)
+        tradevalue = round(tradevalue, 3)
         f.write(str(tradevalue) + ' | ' + trade.pair + ' | ' + str(trade.duration()) + ' Hours\n')
     storage.child(juice_filepath).put(juice_filepath)
 
@@ -281,3 +282,14 @@ def add_telegram_channel(id, name, category):
 
 def get_discord_channels():
     return get_from_realtime(paths.DISCORD_CHANNEL).val()
+
+
+def post_signal(data):
+    response = requests.post(paths.SIGNAL_ENDPOINT_URL, json=data)
+
+    if response.status_code == 200:
+        print("Request to (", paths.SIGNAL_ENDPOINT_URL, "succeeded!")
+        print("Response content:", response.json())
+    else:
+        print(f"Request failed with status code {response.status_code}")
+        print("Response content:", response.text)

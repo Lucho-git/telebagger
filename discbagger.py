@@ -50,7 +50,7 @@ class DiscordEvents:
             elif message.author == client.user:
                 return
             
-            elif (message.guild.id):
+            elif (message.guild):
                 guid = str(message.guild.id)
                 chuid = str(message.channel.id)
                 if not guid in self.channels:
