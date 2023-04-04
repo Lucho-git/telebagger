@@ -12,12 +12,13 @@ from discord.ext import commands
 
 # Get environment variables
 local = [True]
-if not os.name == 'nt':
-    local[0] = False
-    print('Linux Detected...')
-else:
+if os.name == 'nt':
     local[0] = True
     print('Windows Detected...')
+else:
+    # code is reachable, vscode lying
+    local[0] = False
+    print('Linux Detected...')
 
 load_dotenv()
 
@@ -45,7 +46,7 @@ def get_binance_config():
     r_api_secret = os.getenv('LACH_BINANCE_SECRET')
 
     realclient = Client(r_api_key, r_api_secret)
-    return realclient
+    return realclient   
 
 def get_telegram_config():
     """Returns Telegram Client"""

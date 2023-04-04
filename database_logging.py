@@ -137,7 +137,7 @@ def save_closed_trade(trade):
 
     # Store website data in realtime DB
     tradevalue = float(trade.closed_value)
-    tradevalue = round(tradevalue, 2)
+    tradevalue = round(tradevalue, 3)
 
     realtime_save_trade(tradevalue, trade, now)
 
