@@ -31,7 +31,8 @@ async def main():
     asyncio.create_task(discbagger.exit_self())
 
     print('Connecting to telebagger...')
-    await asyncio.gather(telebagger.run(), discbagger.run())
+    # including trade_stream introduces a bug which stops telebagger from exiting gracefully
+    await asyncio.gather(telebagger.run(), discbagger.run(), trade_stream.launch_stream())
     print('Exiting....')
 if __name__ == '__main__':
     nest_asyncio.apply()

@@ -103,6 +103,7 @@ class TradeStream:
         # Can remove this block, for a warning
         for task in pending_tasks:
             pass
+        
         asyncio.gather(*pending_tasks, return_exceptions=True)
         self.twm.stop()
 
