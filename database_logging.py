@@ -65,42 +65,6 @@ def realtime_save_trade(tradevalue, trade, now):
     database.child(paths.REALTIME_SAVE + signal_group + '/Last-30').set(data30)
     database.child(paths.REALTIME_SAVE + signal_group + '/Month/' + date_string).set(monthly)
 
-def update_live_view(trade):
-    '''Saves a trade to live_view'''
-    json_filepath = paths.LIVE_VIEW + 'active/' + str(trade.id) + '.txt'
-    json_dir = json_filepath.rsplit('/', 1)[0]+'/'
-    if not os.path.exists(json_dir):
-        os.makedirs(json_dir)
-
-    # Save json to live_view/active
-    storage.child(json_filepath).download("./", json_filepath)
-    with open(json_filepath, 'w', encoding="utf8") as f:
-        f.write(jsonpickle.encode(trade, make_refs=False, unpicklable=False))
-    storage.child(json_filepath).put(json_filepath)
-
-def close_live_view(closed_filepath, trade):
-    '''Changes json trade from active to closed'''
-    # Checks for json in active trades
-    active_filepath = closed_filepath.replace('closed', 'active')
-    active_dirpath = active_filepath.rsplit('/', 1)[0]+'/'
-    if not os.path.exists(active_dirpath):
-        os.makedirs(active_dirpath)
-
-    # reoves json from live_view/active
-    active_exists = False
-    for filename in os.listdir(active_dirpath):
-        if str(trade.id) in filename:
-            os.remove(active_filepath)
-            active_exists = True
-    if not active_exists:
-        error_log('Closing_trade' + str(trade.id) + 'does not seem to exist')
-        return
-
-    # Save json to live_view/closed
-    storage.child(closed_filepath).download("./", closed_filepath)
-    with open(closed_filepath, 'w', encoding="utf8") as f:
-        f.write(jsonpickle.encode(trade, make_refs=False, unpicklable=False))
-    storage.child(closed_filepath).put(closed_filepath)
 
 def save_closed_trade(trade):
     '''Saves trades to database'''
@@ -117,9 +81,6 @@ def save_closed_trade(trade):
         p = p.rsplit('/', 1)[0]+'/'
         if not os.path.exists(p):
             os.makedirs(p)
-
-    # Store entire trade as json
-    close_live_view(json_filepath, trade)
 
     # Store in monthly trade group breakdown
     storage.child(monthly_filepath).download("./", monthly_filepath)
@@ -216,7 +177,7 @@ def save_stream(savestream):
             pickle.dump(savestream, stream_save_file)
         storage.child(save_filepath).put(save_filepath)
     except Exception as e:
-        print(str(e))
+        print('savestream exception', str(e))
         print("Unexpected Picklesave Error")
 
 
@@ -234,7 +195,7 @@ def load_stream():
             load_data = pickle.load(config_dictionary_file)
         storage.child(load_filepath).put(load_filepath)
     except FileNotFoundError as e:
-        print(str(e))
+        print('loadstream exception', str(e))
     return load_data
 
 

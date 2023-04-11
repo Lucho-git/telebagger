@@ -67,11 +67,6 @@ class TradeStream:
             #RESTART_COUNTER[0] = RESTART_LIMIT
             self.save()
 
-    def update_live_view(self):
-        '''Saves state of active trades in live_view/active'''
-        for t in self.get_trade_list():
-            db.update_live_view(t)
-
     async def smooth_dump_stream(self):
         '''Sets all active trades to dumped, and stops the stream without saving'''
         print('Dumping...')
@@ -187,7 +182,6 @@ class TradeStream:
                 self.streaming_trades[t.stream_id] = [t]
             db.gen_log('Started Trade: ' + t.pair + ' | ' + str(t.id))
             self.start_trade_queue.remove(t)
-            db.update_live_view(t)
 
         self.save()
         if self.stream_view:
