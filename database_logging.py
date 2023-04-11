@@ -6,7 +6,7 @@ import json
 import jsonpickle
 import pytz
 import requests
-
+import traceback
 
 from config import get_firebase_config, get_storage_paths
 
@@ -46,8 +46,10 @@ def realtime_save_trade(tradevalue, trade, now):
     monthly.append(newvalue)
     if len(last7) > 6:
         try:
-            del last7[7]
+            del last7[6]
         except Exception as e:
+            print('caught exception', str(e))
+            traceback.print_tb(e.__traceback__)
             error_log(('Caught Exception:' + str(e)))
             error_log(('Array of length: ' + len(last7) + '|' + str(last7)))
 
