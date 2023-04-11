@@ -46,7 +46,7 @@ def realtime_save_trade(tradevalue, trade, now):
     monthly.append(newvalue)
     if len(last7) > 6:
         try:
-            del last7[6]
+            del last7[7]
         except Exception as e:
             print('caught exception-', str(e))
             traceback.print_tb(e.__traceback__)
