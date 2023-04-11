@@ -58,13 +58,16 @@ class DiscordEvents:
                     db.add_discord_channel(combined_id, message.channel.name, 'ignore')
                     self.channels = db.get_discord_channels()
                 else:
-                    id_found = any(item['channel_id'] == chuid for item in list(self.channels[guid].values())[1:])
+                    id_found = any(item['channel_id'] == chuid for item in list(self.channels[guid].values())[:])
                     if (id_found):
                         if (self.channels[guid][chuid]['type'] == 'signal'):
                             print('New signal')
                             print(message)
                             print(message.content)
+                        else:
+                            print('ignoring channel', )
                     else:
+                        print('No channel found in ')
                         print('Adding new channel: ', message)
                         combined_id = guid + '-' + chuid
                         db.add_discord_channel(combined_id, message.channel.name, 'ignore')
