@@ -51,7 +51,7 @@ def realtime_save_trade(tradevalue, trade, now):
             print('caught exception-', str(e))
             traceback.print_tb(e.__traceback__)
             error_log(('Caught Exception-' + str(e)))
-            error_log(('Array of length-: ' + len(last7) + '|' + str(last7)))
+            error_log(('Array of length-: ' + str(len(last7)) + '|' + str(last7)))
 
 
     if len(last30) > 29:
