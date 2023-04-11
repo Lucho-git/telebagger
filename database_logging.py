@@ -44,7 +44,7 @@ def realtime_save_trade(tradevalue, trade, now):
     last7.insert(0,newvalue)
     last30.insert(0,newvalue)
     monthly.append(newvalue)
-    if len(last7) > 6:
+    if len(last7) > 7:
         try:
             del last7[7]
         except Exception as e:
