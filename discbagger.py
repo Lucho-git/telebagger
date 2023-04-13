@@ -64,8 +64,6 @@ class DiscordEvents:
                             print('New signal')
                             print(message)
                             print(message.content)
-                        else:
-                            print('ignoring channel', )
                     else:
                         print('No channel found in ')
                         print('Adding new channel: ', message)
